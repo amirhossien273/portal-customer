@@ -1,0 +1,21 @@
+{
+    "Auth": true,
+    "Transaction": true,
+    "Product": true,
+    "Customer": true,
+    "Flow": true,
+    "Task": true,
+    "Dashboard": true,
+    "Calendar": true,
+    "Invoice": true,
+    "Ticket": true,
+    "Media": true,
+    "Chat": true,
+    "Excel": true,
+    "Notification": true,
+    "Note": true,
+    "Shared": true,
+    "Booking": true,
+    "Operation": true,
+    "Accounting": true
+}
