@@ -4,14 +4,10 @@
         <div class="bg-white dark:bg-[#0e1726] h-full">
             <div class="flex justify-between items-center px-4 py-3">
                 <a href="/" class="main-logo flex items-center gap-2 shrink-0">
-                    <img x-show="$store.app.theme !== 'dark'" class="w-[76px] h-11 object-contain flex-none"
+                    <img x-show="$store.app.theme !== 'dark'" class="w-[62px] h-10 object-contain flex-none"
                         src="/assets/images/brand/sepand-provided-header.png" alt="سپند" />
-                    <img x-show="$store.app.theme === 'dark'" class="w-[76px] h-11 object-contain flex-none"
+                    <img x-show="$store.app.theme === 'dark'" class="w-[62px] h-10 object-contain flex-none"
                         src="/assets/images/brand/sepand-provided-header-dark.png" alt="سپند" />
-                    <span class="flex flex-col leading-tight">
-                        <span class="text-base font-extrabold text-[#0f305b] dark:text-white">سپند</span>
-                        <span class="mt-0.5 text-[10px] font-semibold text-slate-500 dark:text-white-dark">CRM هوشمند حمل و نقل</span>
-                    </span>
                 </a>
                 <a href="javascript:;"
                     class="collapse-icon w-8 h-8 rounded-full flex items-center hover:bg-gray-500/10 dark:hover:bg-dark-light/10 dark:text-white-light transition duration-300 rtl:rotate-180"

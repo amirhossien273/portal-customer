@@ -4,9 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f305b">
-    <meta name="description" content="سپند؛ راهکار یکپارچه، هوشمند و شفاف مدیریت حمل‌ونقل و زنجیره تأمین">
-    <title>سپند | مسیر هوشمند تجارت شما</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="description" content="سپند نرم‌افزار یکپارچه CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی است؛ از نرخ‌دهی تا اسناد، مالی و رهگیری.">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند">
+    <meta property="og:description" content="مدیریت مشتریان، نرخ‌دهی، Booking، عملیات حمل، اسناد، مالی و رهگیری مشتری در یک نرم‌افزار تخصصی.">
+    <meta property="og:url" content="{{ route('home') }}">
+    <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
+    <meta property="og:site_name" content="سپند">
+    <link rel="canonical" href="{{ route('home') }}">
+    <title>نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
+    @if(config('services.ga4.measurement_id'))
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ rawurlencode(config('services.ga4.measurement_id')) }}"></script>
+        <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',@json(config('services.ga4.measurement_id')));</script>
+    @endif
+    <script type="application/ld+json">{!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'SoftwareApplication',
+        'name' => 'نرم‌افزار سپند',
+        'applicationCategory' => 'BusinessApplication',
+        'operatingSystem' => 'Web',
+        'url' => route('home'),
+        'description' => 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردری و لجستیک.',
+        'featureList' => ['CRM و مدیریت مشتریان', 'نرخ‌دهی و فروش', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری', 'Workflow و وظایف', 'پرتال و رهگیری مشتری'],
+        'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردری و لجستیک'],
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
     <style>
         @font-face {
@@ -92,8 +117,11 @@
             backdrop-filter: blur(16px);
         }
         .nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-        .brand { display: inline-flex; width: 66px; height: 50px; align-items: center; justify-content: center; flex: 0 0 66px; }
+        .brand { display: inline-flex; width: auto; height: 50px; align-items: center; justify-content: flex-start; gap: 9px; flex: 0 0 auto; }
         .brand img { width: 64px; height: 48px; object-fit: contain; }
+        .brand-copy { display: flex; min-width: 100px; flex-direction: column; align-items: center; justify-content: center; line-height: 1.35; text-align: center; white-space: nowrap; }
+        .brand-copy strong { color: var(--navy); font-size: 15px; font-weight: 900; }
+        .brand-copy small { margin-top: 2px; color: #6d8298; font-size: 9px; font-weight: 600; }
         .main-nav { display: flex; align-items: center; gap: 27px; margin-right: auto; }
         .main-nav > a {
             position: relative; color: #3f5065; font-size: 14px; font-weight: 500;
@@ -153,8 +181,8 @@
             border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: -.1px;
         }
         .eyebrow-dot { width: 7px; height: 7px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 0 5px rgba(18,214,210,.13); }
-        .hero h1 { margin: 0 0 22px; color: var(--navy-900); font-size: clamp(42px, 5vw, 68px); line-height: 1.35; letter-spacing: -2.4px; font-weight: 900; }
-        .hero h1 span { position: relative; color: var(--teal); white-space: nowrap; }
+        .hero h1 { margin: 0 0 22px; color: var(--navy-900); font-size: clamp(40px, 4.2vw, 58px); line-height: 1.42; letter-spacing: -2px; font-weight: 900; }
+        .hero h1 span { position: relative; color: var(--teal); }
         .hero h1 span::after {
             content: ""; position: absolute; right: 4px; bottom: -2px; width: 82%; height: 8px;
             background: url("data:image/svg+xml,%3Csvg width='240' height='12' viewBox='0 0 240 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 9C60 1 151 2 237 4' stroke='%2312D6D2' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;
@@ -176,53 +204,13 @@
         .hero-point { display: inline-flex; align-items: center; gap: 8px; }
         .hero-point svg { width: 18px; color: var(--teal); }
 
-        .hero-visual { position: relative; min-height: 500px; isolation: isolate; }
+        .hero-visual { position: relative; min-height: 470px; display: flex; align-items: center; isolation: isolate; }
         .visual-glow { position: absolute; width: 390px; height: 390px; inset: 54px 55px auto auto; border-radius: 50%; background: rgba(18,214,210,.1); filter: blur(4px); z-index: -2; }
         .visual-ring { position: absolute; width: 400px; height: 400px; top: 48px; right: 45px; border: 1px dashed rgba(47,145,150,.34); border-radius: 50%; z-index: -1; animation: spin 50s linear infinite; }
-        .dashboard-card {
-            position: absolute; top: 48px; right: 12px; width: min(440px, calc(100% - 20px)); min-height: 388px;
-            padding: 21px; overflow: hidden; background: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.9);
-            border-radius: 28px; box-shadow: 0 32px 80px rgba(15,48,91,.17); backdrop-filter: blur(14px);
-            transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
-        }
-        .dash-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
-        .dash-title { display: flex; align-items: center; gap: 11px; }
-        .dash-mark { display: grid; width: 36px; height: 36px; place-items: center; color: #fff; background: var(--navy); border-radius: 11px; }
-        .dash-mark svg { width: 19px; }
-        .dash-title strong { display: block; color: var(--navy); font-size: 13px; line-height: 1.6; }
-        .dash-title small { color: #8692a3; font-size: 9px; }
-        .live-pill { display: flex; align-items: center; gap: 6px; padding: 5px 9px; color: var(--teal-dark); background: #eaf7f6; border-radius: 99px; font-size: 9px; font-weight: 700; }
-        .live-pill i { width: 6px; height: 6px; background: #31c48d; border-radius: 50%; animation: pulse 2s infinite; }
-        .route-map { position: relative; height: 142px; padding: 18px 13px; background: linear-gradient(135deg, #f2f8f9, #f9fcfc); border: 1px solid #e4eeee; border-radius: 20px; }
-        .route-line { position: absolute; top: 63px; right: 57px; left: 58px; height: 2px; background: repeating-linear-gradient(90deg, var(--teal) 0 8px, transparent 8px 15px); }
-        .route-progress { position: absolute; top: 63px; right: 57px; width: 56%; height: 2px; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
-        .route-nodes { position: relative; display: flex; justify-content: space-between; z-index: 2; }
-        .route-node { display: grid; justify-items: center; gap: 8px; width: 90px; color: #6c7b8f; font-size: 9px; }
-        .node-icon { display: grid; width: 40px; height: 40px; place-items: center; color: var(--navy); background: #fff; border: 1px solid #dce8e8; border-radius: 13px; box-shadow: 0 6px 15px rgba(15,48,91,.07); }
-        .node-icon svg { width: 20px; }
-        .route-node.active .node-icon { color: #fff; background: var(--teal); border-color: var(--teal); box-shadow: 0 8px 20px rgba(47,145,150,.25); }
-        .route-node strong { color: var(--navy); font-size: 10px; }
-        .dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
-        .dash-stat { padding: 12px; background: #fff; border: 1px solid #e8efef; border-radius: 15px; }
-        .dash-stat small { display: block; color: #8491a1; font-size: 8px; }
-        .dash-stat strong { display: block; margin-top: 2px; color: var(--navy); font-size: 13px; }
-        .dash-stat .teal { color: var(--teal-dark); }
-        .mini-chart { display: flex; align-items: end; gap: 3px; height: 18px; margin-top: 8px; direction: ltr; }
-        .mini-chart i { display: block; width: 5px; background: #bfe4e3; border-radius: 3px; }
-        .mini-chart i:nth-child(1) { height: 7px; } .mini-chart i:nth-child(2) { height: 12px; }
-        .mini-chart i:nth-child(3) { height: 9px; } .mini-chart i:nth-child(4) { height: 17px; background: var(--teal); }
-        .floating-card {
-            position: absolute; z-index: 4; display: flex; align-items: center; gap: 11px; padding: 11px 14px;
-            background: rgba(255,255,255,.95); border: 1px solid #e3eded; border-radius: 15px;
-            box-shadow: 0 15px 34px rgba(15,48,91,.13); animation: float 5s ease-in-out infinite;
-        }
-        .floating-card svg { width: 20px; color: var(--teal); }
-        .floating-card strong { display: block; color: var(--navy); font-size: 10px; }
-        .floating-card span { display: block; color: #8a96a5; font-size: 8px; }
-        .float-one { top: 18px; left: -16px; }
-        .float-two { bottom: 37px; right: -30px; animation-delay: -2.4s; }
-        .float-two .check { display: grid; width: 29px; height: 29px; place-items: center; color: #fff; background: #22b883; border-radius: 50%; }
-        .float-two .check svg { width: 15px; color: #fff; }
+        .product-shot { position: relative; width: 100%; margin: 0; padding: 42px 13px 13px; overflow: hidden; background: rgba(255,255,255,.96); border: 1px solid #dce9e9; border-radius: 25px; box-shadow: 0 32px 80px rgba(15,48,91,.17); transform: perspective(1200px) rotateY(-3deg) rotateX(1deg); }
+        .product-shot::before { content: ""; position: absolute; top: 17px; right: 19px; width: 8px; height: 8px; background: #ff6b6b; border-radius: 50%; box-shadow: 15px 0 #ffd166, 30px 0 #31c48d; }
+        .product-shot img { width: 835px; max-width: 100%; height: auto; aspect-ratio: 835 / 335; object-fit: cover; border: 1px solid #e2eaea; border-radius: 15px; }
+        .product-shot figcaption { padding: 10px 4px 1px; color: #718096; font-size: 11px; text-align: center; }
 
         .trust-bar { position: relative; z-index: 5; margin-top: -42px; }
         .trust-inner {
@@ -245,7 +233,7 @@
 
         .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
         .service-card {
-            position: relative; min-height: 294px; padding: 27px 24px; overflow: hidden; background: #fff;
+            position: relative; min-height: 330px; padding: 27px 24px; overflow: hidden; background: #fff;
             border: 1px solid #e3ecec; border-radius: var(--radius-lg); transition: .3s ease;
         }
         .service-card::after { content: ""; position: absolute; right: -45px; bottom: -65px; width: 150px; height: 150px; background: rgba(47,145,150,.055); border-radius: 50%; transition: .35s ease; }
@@ -259,6 +247,17 @@
         .service-link { position: absolute; right: 24px; bottom: 22px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; color: var(--teal-dark); font-size: 11px; font-weight: 700; }
         .service-link svg { width: 15px; transition: transform .2s; }
         .service-card:hover .service-link svg { transform: translateX(-4px); }
+
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .audience-card { padding: 24px; background: #fff; border: 1px solid #e3ecec; border-radius: 19px; }
+        .audience-card h3 { margin: 0 0 8px; color: var(--navy); font-size: 17px; }
+        .audience-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 2; }
+        .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .problem-card { padding: 23px; background: #fff; border: 1px solid #e3ecec; border-radius: 19px; }
+        .problem-card h3 { margin: 0 0 9px; color: #7a3440; font-size: 15px; }
+        .problem-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 2; }
+        .problem-card strong { color: var(--teal-dark); }
+        .problem-card:last-child { grid-column: 1 / -1; }
 
         .about-grid { display: grid; grid-template-columns: .94fr 1.06fr; align-items: center; gap: 95px; }
         .about-visual { position: relative; min-height: 510px; }
@@ -305,7 +304,7 @@
         .why-card h3 { margin: 0 0 9px; font-size: 16px; font-weight: 700; }
         .why-card p { margin: 0; color: rgba(255,255,255,.56); font-size: 11px; line-height: 2; }
 
-        .process-grid { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 35px; }
+        .process-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 45px 35px; }
         .process-grid::before { content: ""; position: absolute; top: 32px; right: 12.5%; left: 12.5%; border-top: 1px dashed rgba(47,145,150,.35); }
         .process-item { position: relative; text-align: center; }
         .process-num { position: relative; z-index: 2; display: grid; width: 65px; height: 65px; margin: 0 auto 21px; place-items: center; color: var(--teal-dark); background: #fff; border: 1px solid #cfe3e2; border-radius: 19px; box-shadow: 0 11px 28px rgba(15,48,91,.09); font-size: 17px; font-weight: 900; transition: .3s; }
@@ -329,7 +328,7 @@
 
         .site-footer { padding: 68px 0 26px; color: rgba(255,255,255,.68); background: var(--navy-900); }
         .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, .8fr); gap: 65px; padding-bottom: 48px; }
-        .footer-brand img { width: 142px; filter: brightness(0) invert(1); opacity: .95; }
+        .footer-brand img { width: 64px; height: 48px; object-fit: contain; filter: brightness(0) invert(1); opacity: .95; }
         .footer-brand p { max-width: 360px; margin: 22px 0 0; font-size: 12px; line-height: 2.15; }
         .footer-col h3 { margin: 0 0 18px; color: #fff; font-size: 13px; }
         .footer-col a { display: block; width: fit-content; margin-bottom: 10px; font-size: 11px; transition: .2s; }
@@ -370,11 +369,14 @@
         @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(49,196,141,.35); } 50% { box-shadow: 0 0 0 6px rgba(49,196,141,0); } }
 
         @media (max-width: 1024px) {
+            .brand-copy { min-width: 0; }
+            .brand-copy small { display: none; }
             .main-nav { gap: 18px; }
             .portal-link { padding-inline: 10px; gap: 6px; }
             .hero-grid { gap: 32px; }
             .hero h1 { font-size: 48px; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .audience-grid { grid-template-columns: repeat(2, 1fr); }
             .about-grid { gap: 48px; }
             .why-grid { grid-template-columns: repeat(2, 1fr); }
             .why-card:nth-child(2) { border-left: 0; }
@@ -384,8 +386,11 @@
 
         @media (max-width: 820px) {
             .site-header { height: 74px; }
-            .brand { width: 62px; height: 47px; flex-basis: 62px; }
+            .brand { width: auto; height: 47px; gap: 7px; flex-basis: auto; }
             .brand img { width: 60px; height: 45px; }
+            .brand-copy { min-width: 92px; }
+            .brand-copy strong { font-size: 14px; }
+            .brand-copy small { display: block; font-size: 8px; }
             .menu-toggle { display: flex; }
             .desktop-portals { display: none; }
             .main-nav {
@@ -406,9 +411,7 @@
             .hero-copy > p { margin-inline: auto; }
             .hero-actions, .hero-points { justify-content: center; }
             .hero-visual { width: min(520px, 100%); margin: auto; }
-            .dashboard-card { right: 6%; }
-            .float-one { left: 0; }
-            .float-two { right: 0; }
+            .product-shot { transform: none; }
             .trust-inner { grid-template-columns: 1fr 1fr; padding: 24px; gap: 20px; }
             .trust-copy { grid-column: 1 / -1; text-align: center; }
             .trust-item { border-right: 0; }
@@ -433,17 +436,9 @@
             .hero-actions { display: grid; }
             .btn { width: 100%; }
             .hero-points { gap: 13px; font-size: 10px; }
-            .hero-visual { min-height: 410px; }
-            .dashboard-card { top: 38px; right: 0; width: 100%; min-height: 343px; padding: 15px; transform: none; }
+            .hero-visual { min-height: 310px; }
+            .product-shot { padding: 34px 9px 9px; }
             .visual-ring, .visual-glow { width: 320px; height: 320px; right: 10px; }
-            .route-map { height: 126px; padding-inline: 2px; }
-            .route-line, .route-progress { top: 57px; right: 42px; }
-            .route-node { width: 75px; }
-            .node-icon { width: 35px; height: 35px; }
-            .dash-stat { padding: 9px; }
-            .dash-stat strong { font-size: 10px; }
-            .float-one { top: 5px; left: 5px; }
-            .float-two { bottom: 0; }
             .trust-bar { margin-top: -53px; }
             .trust-inner { border-radius: 18px; padding: 20px 12px; }
             .trust-item { font-size: 10px; }
@@ -453,6 +448,8 @@
             .section-title { font-size: 29px; }
             .services-grid { grid-template-columns: 1fr; }
             .service-card { min-height: 265px; }
+            .audience-grid, .problem-grid { grid-template-columns: 1fr; }
+            .problem-card:last-child { grid-column: auto; }
             .about-visual { min-height: 445px; }
             .about-panel { inset: 0 0 28px 0; }
             .about-content-card { top: 35px; right: 24px; left: 24px; padding: 16px; }
@@ -483,8 +480,12 @@
 
     <header class="site-header" id="site-header">
         <div class="container nav-wrap">
-            <a class="brand" href="#top" aria-label="سپند، صفحه اصلی">
-                <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند">
+            <a class="brand" href="{{ route('home') }}" aria-label="سپند، صفحه اصلی">
+                <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" aria-hidden="true">
+                <span class="brand-copy" aria-hidden="true">
+                    <strong>سپند</strong>
+                    <small>CRM هوشمند حمل‌ونقل</small>
+                </span>
             </a>
             <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
                 <a href="{{ route('modules') }}">ماژول‌ها</a>
@@ -492,7 +493,7 @@
                 <a href="{{ route('about') }}">درباره ما</a>
                 <a href="#why-us">چرا سپند؟</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
-                    <a class="portal-link tracking" href="#contact">
+                    <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking">
                         <span class="portal-new">جدید</span>
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
                         رهگیری محموله
@@ -501,14 +502,14 @@
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         پورتال مشتریان
                     </a>
-                    <a class="portal-link organization" href="#contact">
+                    <a class="portal-link organization" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="mobile_organization_portal">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V4h10v16M15 9h4v11M3 20h18M8 8h4m-4 4h4m-4 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         پرتال سازمان
                     </a>
                 </div>
             </nav>
             <div class="portal-actions desktop-portals" aria-label="ورود به سامانه‌های سپند">
-                <a class="portal-link tracking" href="#contact">
+                <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="desktop_tracking">
                     <span class="portal-new">جدید</span>
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
                     رهگیری محموله
@@ -517,7 +518,7 @@
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     پورتال مشتریان
                 </a>
-                <a class="portal-link organization" href="#contact">
+                <a class="portal-link organization" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V4h10v16M15 9h4v11M3 20h18M8 8h4m-4 4h4m-4 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     پرتال سازمان
                 </a>
@@ -533,110 +534,100 @@
             <div class="hero-orb" aria-hidden="true"></div>
             <div class="container hero-grid">
                 <div class="hero-copy reveal is-visible">
-                    <div class="eyebrow"><span class="eyebrow-dot"></span>راهکار یکپارچه مدیریت حمل‌ونقل</div>
-                    <h1>مسیر تجارت شما،<br><span>شفاف‌تر از همیشه</span></h1>
-                    <p>سپند، پیچیدگی‌های حمل‌ونقل و زنجیره تأمین را به یک تجربه ساده، قابل‌پیگیری و هوشمند تبدیل می‌کند؛ تا شما با اطمینان بیشتری تصمیم بگیرید.</p>
+                    <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
+                    <h1>نرم‌افزار CRM و مدیریت<br><span>عملیات حمل‌ونقل سپند</span></h1>
+                    <p>سپند یک نرم‌افزار یکپارچه برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردری و لجستیک است که مشتریان، نرخ‌دهی، Booking، عملیات، اسناد، مالی و رهگیری را در یک جریان واحد مدیریت می‌کند؛ تا پیگیری‌ها فراموش نشوند، سود هر پرونده روشن باشد و مدیران دید لحظه‌ای داشته باشند.</p>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#contact">
-                            درخواست مشاوره
+                        <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">
+                            درخواست دمو و مشاوره
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </a>
-                        <a class="btn btn-secondary" href="#services">
-                            مشاهده خدمات
+                        <a class="btn btn-secondary" href="{{ route('modules') }}" data-ga-event="cta_click" data-ga-label="hero_modules">
+                            مشاهده ماژول‌های نرم‌افزار
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </a>
                     </div>
                     <div class="hero-points" aria-label="مزیت‌های کلیدی">
-                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>پیگیری لحظه‌ای</span>
-                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش‌دهی شفاف</span>
-                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>پشتیبانی تخصصی</span>
+                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>CRM و پیگیری فروش</span>
+                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>عملیات و اسناد</span>
+                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>مالی و سود هر پرونده</span>
                     </div>
                 </div>
 
-                <div class="hero-visual reveal is-visible delay-2" aria-label="نمایی از داشبورد مدیریت محموله سپند">
+                <div class="hero-visual reveal is-visible delay-2">
                     <div class="visual-glow" aria-hidden="true"></div>
                     <div class="visual-ring" aria-hidden="true"></div>
-                    <div class="dashboard-card">
-                        <div class="dash-head">
-                            <div class="dash-title">
-                                <span class="dash-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 17V9l8-5 8 5v8l-8 5-8-5Z" stroke="currentColor" stroke-width="1.6"/><path d="m4 9 8 5 8-5M12 14v8" stroke="currentColor" stroke-width="1.6"/></svg></span>
-                                <span><strong>محموله فعال</strong><small>نمای کلی فرایند حمل</small></span>
-                            </div>
-                            <span class="live-pill"><i></i>به‌روزرسانی زنده</span>
-                        </div>
-                        <div class="route-map">
-                            <div class="route-line"></div><div class="route-progress"></div>
-                            <div class="route-nodes">
-                                <div class="route-node active">
-                                    <span class="node-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 17V9l8-5 8 5v8l-8 5-8-5Z" stroke="currentColor" stroke-width="1.6"/></svg></span>
-                                    <span><strong>ثبت سفارش</strong><br>تکمیل شده</span>
-                                </div>
-                                <div class="route-node active">
-                                    <span class="node-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg></span>
-                                    <span><strong>در مسیر</strong><br>در حال انجام</span>
-                                </div>
-                                <div class="route-node">
-                                    <span class="node-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 20V8h14v12M3 20h18M8 8V4h8v4M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-                                    <span><strong>تحویل مقصد</strong><br>مرحله بعد</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dash-stats">
-                            <div class="dash-stat"><small>وضعیت اسناد</small><strong class="teal">تکمیل</strong><div class="mini-chart"><i></i><i></i><i></i><i></i></div></div>
-                            <div class="dash-stat"><small>پیشرفت مسیر</small><strong>۶۸٪</strong><div class="mini-chart"><i></i><i></i><i></i><i></i></div></div>
-                            <div class="dash-stat"><small>زمان باقی‌مانده</small><strong>۲ روز</strong><div class="mini-chart"><i></i><i></i><i></i><i></i></div></div>
-                        </div>
-                    </div>
-                    <div class="floating-card float-one">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-                        <span><strong>کنترل لحظه‌ای</strong><span>در تمام مسیر حمل</span></span>
-                    </div>
-                    <div class="floating-card float-two">
-                        <span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                        <span><strong>محموله به‌روزرسانی شد</strong><span>اطلاعات با موفقیت ثبت شد</span></span>
-                    </div>
+                    <figure class="product-shot">
+                        <img src="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}" width="835" height="335" fetchpriority="high" decoding="async" alt="نمای واقعی فرم اطلاعات کالا در نرم‌افزار مدیریت حمل‌ونقل سپند">
+                        <figcaption>نمای واقعی نرم‌افزار سپند با داده‌های نمونه و بدون اطلاعات مشتری</figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
 
         <div class="trust-bar reveal">
             <div class="container trust-inner">
-                <div class="trust-copy"><strong>یک همراه برای تمام مسیر</strong><span>راهکارهای منعطف برای نیازهای متنوع شما</span></div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>حمل زمینی</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17h18l-2 3H5l-2-3Zm3 0V8h12v9M9 8V4h6v4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>حمل دریایی</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="m3 14 18-7-7 14-3-6-8-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>حمل هوایی</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 20V8h14v12M3 20h18M8 8V4h8v4M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>امور گمرکی</div>
+                <div class="trust-copy"><strong>یک نرم‌افزار برای تمام فرایند</strong><span>از اولین تماس مشتری تا سود و گزارش پرونده</span></div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8" stroke="currentColor" stroke-width="1.6"/></svg>CRM و فروش</div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.6"/></svg>Booking و عملیات</div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5V4Zm4 4h6m-6 4h6" stroke="currentColor" stroke-width="1.6"/></svg>اسناد و مالی</div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3 1.5-4.5A7 7 0 0 1 3 13V9a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6v6Z" stroke="currentColor" stroke-width="1.6"/></svg>پرتال مشتری</div>
             </div>
         </div>
 
-        <section class="section" id="services">
+        <section class="section" id="software-modules">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="section-label">خدمات سپند</span>
-                    <h2 class="section-title">هر آنچه برای یک حمل‌ونقل<br><span>مطمئن و یکپارچه</span> نیاز دارید</h2>
-                    <p class="section-subtitle">از برنامه‌ریزی تا تحویل نهایی، جزئیات عملیات شما در یک مسیر شفاف و قابل‌کنترل مدیریت می‌شود.</p>
+                    <span class="section-label">محصول سپند</span>
+                    <h2 class="section-title">ماژول‌های نرم‌افزار سپند</h2>
+                    <p class="section-subtitle">ماژول‌های متصل برای مدیریت مشتری، فروش، رزرو، عملیات، اسناد و مالی؛ بدون ورود چندباره اطلاعات و بدون جزیره‌های نرم‌افزاری.</p>
                 </div>
                 <div class="services-grid">
-                    <article class="service-card reveal delay-1">
-                        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg></span>
-                        <h3>حمل زمینی</h3><p>برنامه‌ریزی و پایش هوشمند حمل جاده‌ای با دسترسی شفاف به وضعیت هر مرحله.</p>
-                        <a class="service-link" href="#contact">درخواست مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
-                    </article>
-                    <article class="service-card reveal delay-2">
-                        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17h18l-2 3H5l-2-3Zm3 0V8h12v9M9 8V4h6v4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 22c2-1 3-1 5 0 2-1 3-1 5 0 2-1 3-1 5 0 2-1 3-1 5 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-                        <h3>حمل دریایی</h3><p>مدیریت محموله‌های دریایی و کانتینری با هماهنگی مستمر و مستندسازی دقیق.</p>
-                        <a class="service-link" href="#contact">درخواست مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
-                    </article>
-                    <article class="service-card reveal delay-3">
-                        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m3 14 18-7-7 14-3-6-8-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m11 15 4-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-                        <h3>حمل هوایی</h3><p>انتخاب سریع‌ترین مسیر برای محموله‌های حساس به زمان همراه با رهگیری یکپارچه.</p>
-                        <a class="service-link" href="#contact">درخواست مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
-                    </article>
-                    <article class="service-card reveal delay-4">
-                        <span class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 20V8h14v12M3 20h18M8 8V4h8v4M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-                        <h3>تشریفات گمرکی</h3><p>هماهنگی فرایندهای اسنادی و گمرکی برای عبور روان‌تر محموله از نقاط کلیدی.</p>
-                        <a class="service-link" href="#contact">درخواست مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
-                    </article>
+                    @foreach(config('site_modules') as $slug => $module)
+                        <article class="service-card reveal delay-{{ ($loop->index % 4) + 1 }}">
+                            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+                            <h3>{{ $module['name'] }}</h3>
+                            <p>{{ $module['summary'] }}</p>
+                            <a class="service-link" href="{{ route('site.modules.show', ['module' => $slug]) }}">مشاهده ماژول {{ $module['name'] }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft" id="audiences">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-label">مخاطبان نرم‌افزار</span>
+                    <h2 class="section-title">سپند برای چه کسب‌وکارهایی طراحی شده است؟</h2>
+                    <p class="section-subtitle">سپند برای سازمان‌هایی ساخته شده که فروش، عملیات حمل، اسناد و مالی آن‌ها باید روی یک داده مشترک کار کنند.</p>
+                </div>
+                <div class="audience-grid">
+                    <article class="audience-card reveal"><h3>شرکت‌های حمل‌ونقل بین‌المللی</h3><p>برای یکپارچه‌کردن پرونده‌های حمل، مشتریان، اسناد، هزینه‌ها و گزارش‌های مدیریتی.</p></article>
+                    <article class="audience-card reveal"><h3>شرکت‌های فورواردری</h3><p>برای مدیریت نرخ‌دهی، Booking، تأمین‌کنندگان و هماهنگی عملیات چندوجهی.</p></article>
+                    <article class="audience-card reveal"><h3>NVOCCها</h3><p>برای کنترل رزرو، ظرفیت، اسناد و ارتباط منظم میان نمایندگان و مشتریان.</p></article>
+                    <article class="audience-card reveal"><h3>نمایندگان خطوط حمل</h3><p>برای ثبت ساختاریافته درخواست‌ها، پیگیری تعهدات و پاسخ‌گویی سریع‌تر به مشتری.</p></article>
+                    <article class="audience-card reveal"><h3>شرکت‌های لجستیک</h3><p>برای داشتن دید یکپارچه از مشتری، عملیات، مالی و کیفیت اجرای خدمات.</p></article>
+                    <article class="audience-card reveal"><h3>تیم‌های فروش، عملیات و مالی</h3><p>برای کار روی یک پرونده مشترک با مسئولیت، مهلت و داده‌های قابل‌اعتماد.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="problems">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="section-label">از مسئله تا راهکار</span>
+                    <h2 class="section-title">سپند چه مشکلاتی را حل می‌کند؟</h2>
+                    <p class="section-subtitle">هر مسئله عملیاتی با یک قابلیت مشخص در نرم‌افزار پاسخ داده می‌شود؛ نه با یک وعده کلی.</p>
+                </div>
+                <div class="problem-grid">
+                    <article class="problem-card reveal"><h3>پراکندگی اطلاعات میان Excel، واتساپ و ایمیل</h3><p><strong>راهکار سپند:</strong> پرونده یکپارچه مشتری و محموله، اطلاعات مرتبط را در یک منبع مشترک و جست‌وجوپذیر نگه می‌دارد.</p></article>
+                    <article class="problem-card reveal"><h3>فراموش‌شدن پیگیری مشتری</h3><p><strong>راهکار سپند:</strong> CRM، وظایف زمان‌دار و یادآوری اقدام بعدی، مالک هر پیگیری و موعد آن را روشن می‌کند.</p></article>
+                    <article class="problem-card reveal"><h3>نبود دید یکپارچه از وضعیت محموله‌ها</h3><p><strong>راهکار سپند:</strong> داشبورد عملیات، مرحله جاری، رویدادها و پرونده‌های نیازمند اقدام را در یک نما نشان می‌دهد.</p></article>
+                    <article class="problem-card reveal"><h3>تأخیر در صدور و کنترل اسناد</h3><p><strong>راهکار سپند:</strong> مدیریت اسناد، نسخه جاری، وضعیت تأیید، مسئول کنترل و مهلت هر سند را ثبت می‌کند.</p></article>
+                    <article class="problem-card reveal"><h3>نامشخص‌بودن سود هر پرونده</h3><p><strong>راهکار سپند:</strong> اتصال درآمد و هزینه به پرونده عملیاتی، حاشیه سود واقعی هر حمل و مشتری را قابل‌مشاهده می‌کند.</p></article>
+                    <article class="problem-card reveal"><h3>وابستگی زیاد عملیات به افراد</h3><p><strong>راهکار سپند:</strong> Workflow استاندارد و تاریخچه اقدامات، دانش فرایند را از حافظه افراد به سامانه منتقل می‌کند.</p></article>
+                    <article class="problem-card reveal"><h3>نبود گزارش مدیریتی لحظه‌ای</h3><p><strong>راهکار سپند:</strong> داده‌های متصل فروش، عملیات و مالی، گزارش قابل‌فیلتر را بدون جمع‌آوری دستی آماده می‌کنند.</p></article>
                 </div>
             </div>
         </section>
@@ -646,24 +637,24 @@
                 <div class="about-visual reveal">
                     <div class="about-panel">
                         <div class="about-content-card">
-                            <span class="about-logo"><img src="{{ asset('assets/images/brand/sepand-icon.png') }}" alt=""></span>
-                            <p class="about-quote">ما فقط محموله‌ها را جابه‌جا نمی‌کنیم؛ جریان اطلاعات، اعتماد و تصمیم‌گیری را در تمام مسیر به هم متصل می‌کنیم.</p>
-                            <div class="about-meta">تفکر یکپارچه سپند</div>
+                            <span class="about-logo"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt=""></span>
+                            <p class="about-quote">فروش، عملیات، اسناد و مالی روی یک پرونده مشترک کار می‌کنند؛ هر داده فقط یک‌بار ثبت می‌شود و در مرحله بعدی قابل‌استفاده است.</p>
+                            <div class="about-meta">کاربرد واقعی نرم‌افزار سپند</div>
                         </div>
                     </div>
-                    <div class="about-badge"><strong>دید ۳۶۰ درجه</strong><span>از سفارش تا تحویل نهایی</span><div class="about-badge-line"><i></i><i></i><i></i></div></div>
+                    <div class="about-badge"><strong>یک پرونده واحد</strong><span>از سرنخ فروش تا تسویه مالی</span><div class="about-badge-line"><i></i><i></i><i></i></div></div>
                 </div>
                 <div class="about-copy reveal delay-2">
-                    <span class="section-label">درباره ما</span>
-                    <h2 class="section-title">فناوری در کنار تجربه؛<br><span>برای یک مسیر مطمئن‌تر</span></h2>
-                    <p>سپند با شناخت عمیق از نیازهای کسب‌وکارهای فعال در زنجیره تأمین، بستری یکپارچه برای مدیریت عملیات حمل‌ونقل فراهم کرده است. هدف ما ساده است: کاهش ابهام، افزایش کنترل و ساختن تجربه‌ای که در آن هر تصمیم بر پایه اطلاعات دقیق گرفته شود.</p>
+                    <span class="section-label">کاربرد واقعی محصول</span>
+                    <h2 class="section-title">از اولین درخواست مشتری تا<br><span>عملیات، اسناد و سود پرونده</span></h2>
+                    <p>کاربر فروش درخواست مشتری و نرخ را ثبت می‌کند؛ پس از تأیید، همان اطلاعات وارد Booking و پرونده عملیات می‌شود. تیم اسناد و مالی نیز بدون ساخت پرونده جداگانه، وظایف و اطلاعات مرتبط را تکمیل می‌کنند و مدیر وضعیت کل جریان را در گزارش‌ها می‌بیند.</p>
                     <div class="about-list">
-                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>فرایندهای شفاف و قابل‌پیگیری</div>
-                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>ارتباط منسجم در تمام مراحل</div>
-                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>تصمیم‌گیری مبتنی بر داده</div>
-                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>راهکار متناسب با هر کسب‌وکار</div>
+                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>تبدیل پیشنهاد فروش به پرونده حمل</div>
+                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>اتصال اسناد به Booking و عملیات</div>
+                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>محاسبه سود بر پایه هزینه واقعی</div>
+                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>رهگیری کنترل‌شده برای مشتری</div>
                     </div>
-                    <a class="btn btn-primary" href="#why-us">چرا سپند؟ <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                    <a class="btn btn-primary" href="{{ route('modules') }}">مشاهده همه ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                 </div>
             </div>
         </section>
@@ -671,14 +662,14 @@
         <section class="why" id="why-us">
             <div class="container">
                 <div class="why-top reveal">
-                    <div><span class="section-label">چرا سپند؟</span><h2 class="section-title">تفاوتی که در<br><span>تمام مسیر</span> حس می‌کنید</h2></div>
-                    <p class="why-intro">ترکیب فناوری، شفافیت عملیاتی و همراهی یک تیم متخصص باعث می‌شود کنترل بیشتری بر زمان، هزینه و کیفیت فرایند حمل داشته باشید.</p>
+                    <div><span class="section-label">نتیجه قابل اندازه‌گیری</span><h2 class="section-title">مزیت‌های قابل سنجش<br><span>استفاده از سپند</span></h2></div>
+                    <p class="why-intro">شاخص‌های زیر را می‌توان پیش و پس از استقرار برای هر تیم اندازه‌گیری کرد؛ از تعداد ورود تکراری داده تا زمان پیگیری و گزارش‌گیری.</p>
                 </div>
                 <div class="why-grid">
-                    <article class="why-card reveal delay-1"><span class="why-num">۰۱</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>شفافیت واقعی</h3><p>وضعیت عملیات و اسناد را بدون ابهام و در یک نمای یکپارچه دنبال کنید.</p></article>
-                    <article class="why-card reveal delay-2"><span class="why-num">۰۲</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="m17 3 4 1-1 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>سرعت و هماهنگی</h3><p>گردش اطلاعات منسجم، اتلاف زمان و رفت‌وبرگشت‌های غیرضروری را کم می‌کند.</p></article>
-                    <article class="why-card reveal delay-3"><span class="why-num">۰۳</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-3 7-9V5l-7-2-7 2v7c0 6 7 9 7 9Z" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>امنیت و اطمینان</h3><p>اطلاعات حساس کسب‌وکار شما در بستری ساختاریافته و کنترل‌شده مدیریت می‌شود.</p></article>
-                    <article class="why-card reveal delay-4"><span class="why-num">۰۴</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16 20c0 1-1 2-3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>همراهی تخصصی</h3><p>در هر مرحله، تیم سپند برای پاسخ‌گویی و حل سریع چالش‌ها کنار شماست.</p></article>
+                    <article class="why-card reveal delay-1"><span class="why-num">۰۱</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>ورود یک‌باره اطلاعات</h3><p>تعداد دفعات ثبت مجدد اطلاعات مشتری، نرخ و Booking میان فروش، عملیات و مالی کاهش می‌یابد.</p></article>
+                    <article class="why-card reveal delay-2"><span class="why-num">۰۲</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="m17 3 4 1-1 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>پیگیری زمان‌مند</h3><p>وظایف عقب‌افتاده، زمان پاسخ به مشتری و درصد پیگیری‌های انجام‌شده قابل‌اندازه‌گیری می‌شوند.</p></article>
+                    <article class="why-card reveal delay-3"><span class="why-num">۰۳</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.7"/></svg></span><h3>سود هر پرونده</h3><p>درآمد، هزینه و حاشیه سود هر پرونده به‌جای برآورد کلی، از داده‌های متصل عملیاتی دیده می‌شود.</p></article>
+                    <article class="why-card reveal delay-4"><span class="why-num">۰۴</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V5h14v14H5Zm3-4 3-3 2 2 3-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>گزارش بدون تجمیع دستی</h3><p>زمان آماده‌سازی گزارش و تعداد فایل‌های جانبی لازم برای تصمیم‌گیری مدیریتی قابل‌کاهش و سنجش است.</p></article>
                 </div>
             </div>
         </section>
@@ -686,15 +677,17 @@
         <section class="section" id="process">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="section-label">مسیر همکاری</span>
-                    <h2 class="section-title">شروعی ساده برای یک<br><span>همکاری ماندگار</span></h2>
-                    <p class="section-subtitle">فقط در چهار گام، نیازهای شما را به یک فرایند عملیاتی روشن و قابل‌مدیریت تبدیل می‌کنیم.</p>
+                    <span class="section-label">Workflow محصول</span>
+                    <h2 class="section-title">فرایند واقعی کار با<br><span>نرم‌افزار سپند</span></h2>
+                    <p class="section-subtitle">اطلاعات در طول فرایند حمل تکمیل می‌شوند و بدون ساخت پرونده‌های جداگانه، میان تیم‌ها جریان پیدا می‌کنند.</p>
                 </div>
                 <div class="process-grid">
-                    <article class="process-item reveal delay-1"><span class="process-num">۱</span><h3>ثبت درخواست</h3><p>اطلاعات اولیه و نیاز حمل‌ونقل خود را با ما در میان بگذارید.</p></article>
-                    <article class="process-item reveal delay-2"><span class="process-num">۲</span><h3>بررسی و مشاوره</h3><p>تیم ما بهترین سناریو را متناسب با اولویت‌های شما بررسی می‌کند.</p></article>
-                    <article class="process-item reveal delay-3"><span class="process-num">۳</span><h3>طراحی راهکار</h3><p>مسیر اجرایی، زمان‌بندی و نقاط کنترلی به‌صورت شفاف مشخص می‌شود.</p></article>
-                    <article class="process-item reveal delay-4"><span class="process-num">۴</span><h3>شروع و پایش</h3><p>عملیات آغاز می‌شود و شما تمام مسیر را یکپارچه دنبال می‌کنید.</p></article>
+                    <article class="process-item reveal delay-1"><span class="process-num">۱</span><h3>CRM و درخواست مشتری</h3><p>مشتری، نیاز حمل، تعاملات و اقدام بعدی در پرونده CRM ثبت می‌شود.</p></article>
+                    <article class="process-item reveal delay-2"><span class="process-num">۲</span><h3>نرخ‌دهی و پیشنهاد فروش</h3><p>هزینه، قیمت فروش، اعتبار نرخ و حاشیه سود پیشنهادی کنترل می‌شود.</p></article>
+                    <article class="process-item reveal delay-3"><span class="process-num">۳</span><h3>رزرو و Booking</h3><p>پیشنهاد تأییدشده با همان داده‌ها به رزرو و پرونده حمل تبدیل می‌شود.</p></article>
+                    <article class="process-item reveal delay-1"><span class="process-num">۴</span><h3>اجرای عملیات حمل</h3><p>رویدادها، مسئولیت‌ها، مهلت‌ها و وضعیت محموله مرحله‌به‌مرحله ثبت می‌شوند.</p></article>
+                    <article class="process-item reveal delay-2"><span class="process-num">۵</span><h3>اسناد و اطلاع‌رسانی</h3><p>اسناد کنترل می‌شوند و وضعیت مجاز از طریق پرتال در اختیار مشتری قرار می‌گیرد.</p></article>
+                    <article class="process-item reveal delay-3"><span class="process-num">۶</span><h3>مالی، سود و گزارش</h3><p>دریافت، پرداخت و سود پرونده برای گزارش مدیریتی نهایی تکمیل می‌شود.</p></article>
                 </div>
             </div>
         </section>
@@ -702,8 +695,8 @@
         <section class="cta-wrap" id="contact">
             <div class="container">
                 <div class="cta reveal">
-                    <div class="cta-copy"><h2>برای ساختن یک مسیر شفاف‌تر آماده‌اید؟</h2><p>با سپند، مدیریت حمل‌ونقل را ساده‌تر، هوشمندتر و قابل‌اعتمادتر تجربه کنید.</p></div>
-                    <div class="cta-actions"><a class="btn" href="#process">مشاهده مسیر همکاری <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a></div>
+                    <div class="cta-copy"><h2>فرایند واقعی شرکت خود را در سپند ببینید</h2><p>در یک جلسه دمو، سناریوی فروش، عملیات، اسناد و مالی شما را روی نرم‌افزار بررسی می‌کنیم.</p></div>
+                    <div class="cta-actions"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="home_bottom_consultation">درخواست دمو و مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a></div>
                 </div>
             </div>
         </section>
@@ -712,10 +705,10 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand"><a href="#top"><img src="{{ asset('assets/images/brand/sepand-logo.png') }}" alt="سپند"></a><p>سپند، بستری یکپارچه برای مدیریت هوشمند حمل‌ونقل؛ با تمرکز بر شفافیت، کنترل و تجربه‌ای مطمئن در تمام مسیر.</p></div>
+                <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>سپند، نرم‌افزار یکپارچه CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی.</p></div>
                 <div class="footer-col"><h3>دسترسی سریع</h3><a href="{{ route('modules') }}">ماژول‌ها</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('about') }}">درباره ما</a></div>
-                <div class="footer-col"><h3>راهکارها</h3><a href="#services">خدمات حمل</a><a href="{{ route('modules') }}">مدیریت عملیات</a><a href="{{ route('modules') }}">مدیریت مشتریان</a></div>
-                <div class="footer-col"><h3>ارتباط با ما</h3><a class="footer-contact" href="#contact"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 1 8 7 8-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>درخواست همکاری</a><span class="footer-contact"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>پاسخ‌گویی تخصصی</span></div>
+                <div class="footer-col"><h3>راهکارها</h3><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM حمل‌ونقل</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و سود پرونده</a></div>
+                <div class="footer-col"><h3>ارتباط با ما</h3><a class="footer-contact" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 1 8 7 8-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>درخواست دمو و مشاوره</a><a class="footer-contact" href="{{ route('login') }}"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>ورود مشتریان</a></div>
             </div>
             <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span class="footer-status"><i></i>سامانه‌های سپند فعال هستند</span></div>
         </div>
@@ -726,6 +719,21 @@
             const header = document.getElementById('site-header');
             const menu = document.getElementById('main-nav');
             const toggle = document.getElementById('menu-toggle');
+
+            const track = (eventName, eventLabel, url) => {
+                const payload = { event_category: 'marketing', event_label: eventLabel, link_url: url || window.location.href };
+                if (typeof window.gtag === 'function') {
+                    window.gtag('event', eventName, payload);
+                } else {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({ event: eventName, ...payload });
+                }
+            };
+
+            document.addEventListener('click', event => {
+                const link = event.target.closest('[data-ga-event]');
+                if (link) track(link.dataset.gaEvent, link.dataset.gaLabel || link.textContent.trim(), link.href);
+            });
 
             const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 18);
             updateHeader();

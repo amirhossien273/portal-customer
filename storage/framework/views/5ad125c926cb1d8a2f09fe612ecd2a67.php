@@ -6,7 +6,8 @@
     <meta name="theme-color" content="#0f305b">
     <meta name="description" content="سپند؛ راهکار یکپارچه، هوشمند و شفاف مدیریت حمل‌ونقل و زنجیره تأمین">
     <title>سپند | مسیر هوشمند تجارت شما</title>
-    <link rel="icon" type="image/png" href="<?php echo e(asset('assets/images/favicon.png')); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('assets/images/favicon.png')); ?>?v=20260801">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('favicon.ico')); ?>?v=20260801">
     <script>document.documentElement.classList.add('js');</script>
     <style>
         @font-face {
@@ -92,8 +93,11 @@
             backdrop-filter: blur(16px);
         }
         .nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-        .brand { display: inline-flex; width: 66px; height: 50px; align-items: center; justify-content: center; flex: 0 0 66px; }
+        .brand { display: inline-flex; width: auto; height: 50px; align-items: center; justify-content: flex-start; gap: 9px; flex: 0 0 auto; }
         .brand img { width: 64px; height: 48px; object-fit: contain; }
+        .brand-copy { display: flex; min-width: 100px; flex-direction: column; align-items: center; justify-content: center; line-height: 1.35; text-align: center; white-space: nowrap; }
+        .brand-copy strong { color: var(--navy); font-size: 15px; font-weight: 900; }
+        .brand-copy small { margin-top: 2px; color: #6d8298; font-size: 9px; font-weight: 600; }
         .main-nav { display: flex; align-items: center; gap: 27px; margin-right: auto; }
         .main-nav > a {
             position: relative; color: #3f5065; font-size: 14px; font-weight: 500;
@@ -329,7 +333,7 @@
 
         .site-footer { padding: 68px 0 26px; color: rgba(255,255,255,.68); background: var(--navy-900); }
         .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, .8fr); gap: 65px; padding-bottom: 48px; }
-        .footer-brand img { width: 142px; filter: brightness(0) invert(1); opacity: .95; }
+        .footer-brand img { width: 64px; height: 48px; object-fit: contain; filter: brightness(0) invert(1); opacity: .95; }
         .footer-brand p { max-width: 360px; margin: 22px 0 0; font-size: 12px; line-height: 2.15; }
         .footer-col h3 { margin: 0 0 18px; color: #fff; font-size: 13px; }
         .footer-col a { display: block; width: fit-content; margin-bottom: 10px; font-size: 11px; transition: .2s; }
@@ -370,6 +374,8 @@
         @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(49,196,141,.35); } 50% { box-shadow: 0 0 0 6px rgba(49,196,141,0); } }
 
         @media (max-width: 1024px) {
+            .brand-copy { min-width: 0; }
+            .brand-copy small { display: none; }
             .main-nav { gap: 18px; }
             .portal-link { padding-inline: 10px; gap: 6px; }
             .hero-grid { gap: 32px; }
@@ -384,8 +390,11 @@
 
         @media (max-width: 820px) {
             .site-header { height: 74px; }
-            .brand { width: 62px; height: 47px; flex-basis: 62px; }
+            .brand { width: auto; height: 47px; gap: 7px; flex-basis: auto; }
             .brand img { width: 60px; height: 45px; }
+            .brand-copy { min-width: 92px; }
+            .brand-copy strong { font-size: 14px; }
+            .brand-copy small { display: block; font-size: 8px; }
             .menu-toggle { display: flex; }
             .desktop-portals { display: none; }
             .main-nav {
@@ -484,7 +493,11 @@
     <header class="site-header" id="site-header">
         <div class="container nav-wrap">
             <a class="brand" href="#top" aria-label="سپند، صفحه اصلی">
-                <img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt="سپند">
+                <img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt="" aria-hidden="true">
+                <span class="brand-copy" aria-hidden="true">
+                    <strong>سپند</strong>
+                    <small>CRM هوشمند حمل‌ونقل</small>
+                </span>
             </a>
             <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
                 <a href="<?php echo e(route('modules')); ?>">ماژول‌ها</a>
@@ -646,7 +659,7 @@
                 <div class="about-visual reveal">
                     <div class="about-panel">
                         <div class="about-content-card">
-                            <span class="about-logo"><img src="<?php echo e(asset('assets/images/brand/sepand-icon.png')); ?>" alt=""></span>
+                            <span class="about-logo"><img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt=""></span>
                             <p class="about-quote">ما فقط محموله‌ها را جابه‌جا نمی‌کنیم؛ جریان اطلاعات، اعتماد و تصمیم‌گیری را در تمام مسیر به هم متصل می‌کنیم.</p>
                             <div class="about-meta">تفکر یکپارچه سپند</div>
                         </div>
@@ -712,7 +725,7 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand"><a href="#top"><img src="<?php echo e(asset('assets/images/brand/sepand-logo.png')); ?>" alt="سپند"></a><p>سپند، بستری یکپارچه برای مدیریت هوشمند حمل‌ونقل؛ با تمرکز بر شفافیت، کنترل و تجربه‌ای مطمئن در تمام مسیر.</p></div>
+                <div class="footer-brand"><a href="#top"><img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt="سپند"></a><p>سپند، بستری یکپارچه برای مدیریت هوشمند حمل‌ونقل؛ با تمرکز بر شفافیت، کنترل و تجربه‌ای مطمئن در تمام مسیر.</p></div>
                 <div class="footer-col"><h3>دسترسی سریع</h3><a href="<?php echo e(route('modules')); ?>">ماژول‌ها</a><a href="<?php echo e(route('pricing')); ?>">تعرفه‌ها</a><a href="<?php echo e(route('about')); ?>">درباره ما</a></div>
                 <div class="footer-col"><h3>راهکارها</h3><a href="#services">خدمات حمل</a><a href="<?php echo e(route('modules')); ?>">مدیریت عملیات</a><a href="<?php echo e(route('modules')); ?>">مدیریت مشتریان</a></div>
                 <div class="footer-col"><h3>ارتباط با ما</h3><a class="footer-contact" href="#contact"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 1 8 7 8-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>درخواست همکاری</a><span class="footer-contact"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>پاسخ‌گویی تخصصی</span></div>

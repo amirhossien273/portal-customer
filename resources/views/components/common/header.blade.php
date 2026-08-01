@@ -4,15 +4,8 @@
             <div class="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
                 <a href="/" class="main-logo flex items-center gap-2 shrink-0">
                     <img x-show="$store.app.theme !== 'dark'" class="w-[62px] h-10 object-contain flex-none" src="/assets/images/brand/sepand-provided-header.png" alt="سپند"/>
-{{--                    <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline"--}}
-{{--                        src="/assets/images/logo.png"--}}
-{{--                        alt="image" />--}}
                     <img x-show="$store.app.theme === 'dark'" class="w-[62px] h-10 object-contain flex-none" src="/assets/images/brand/sepand-provided-header-dark.png"
                         alt="سپند" />
-                    <span class="flex flex-col leading-tight">
-{{--                        <span class="text-base font-extrabold text-[#0f305b] dark:text-white">سپند</span>--}}
-{{--                        <span class="mt-0.5 text-[10px] font-semibold text-slate-500 dark:text-white-dark">CRM هوشمند حمل و نقل</span>--}}
-                    </span>
                 </a>
 
                 <a href="javascript:;"

@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+    @php
+        $pageTitle = $title ?? 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند';
+        $pageDescription = $description ?? 'سپند؛ نرم‌افزار یکپارچه CRM، فروش، عملیات، اسناد و مالی برای شرکت‌های حمل‌ونقل، فورواردری و لجستیک.';
+        $canonicalUrl = $canonical ?? url()->current();
+    @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f305b">
-    <meta name="description" content="{{ $description ?? 'سپند؛ راهکار یکپارچه مدیریت حمل‌ونقل و ارتباط با مشتریان' }}">
-    <title>{{ $title ?? 'سپند' }}</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="description" content="{{ $pageDescription }}">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:site_name" content="سپند">
+    <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+    <title>{{ $pageTitle }}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
+    @if(config('services.ga4.measurement_id'))
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ rawurlencode(config('services.ga4.measurement_id')) }}"></script>
+        <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',@json(config('services.ga4.measurement_id')));</script>
+    @endif
+    @stack('head')
     <script>document.documentElement.classList.add('js');</script>
     <style>
         @font-face{font-family:IRANSans;src:url("{{ asset('fonts/iransans/woff2/IRANSansWeb(FaNum).woff2') }}") format("woff2");font-weight:400;font-display:swap}
@@ -27,8 +47,10 @@
         .site-footer{padding:60px 0 25px;color:rgba(255,255,255,.65);background:var(--navy-900)}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,.8fr);gap:55px;padding-bottom:42px}.footer-brand img{width:70px;height:54px;object-fit:contain;filter:brightness(0) invert(1)}.footer-brand p{max-width:350px;margin:18px 0 0;font-size:11px;line-height:2.1}.footer-col h3{margin:0 0 17px;color:#fff;font-size:12px}.footer-col a{display:block;width:max-content;margin-bottom:9px;font-size:10px}.footer-col a:hover{color:var(--cyan)}.footer-bottom{display:flex;justify-content:space-between;padding-top:22px;border-top:1px solid rgba(255,255,255,.09);font-size:9px}.reveal{opacity:1;transform:none}.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s,transform .65s}.js .reveal.visible{opacity:1;transform:none}
         /* Slightly larger type scale for improved Persian readability. */
         body{font-size:16px}.main-nav>a{font-size:15px}.portal-link{font-size:12px}.new-badge{font-size:10px}.breadcrumb,.section-label{font-size:13px}.page-hero p{font-size:18px}.art-chip{font-size:11px}.art-desc{font-size:13px}.section-sub{font-size:16px}.content-card p{font-size:14px}.feature-list li,.check{font-size:13px}.tag,.price-name,.popular{font-size:11px}.price-card>p{font-size:13px}.price small{font-size:11px}.faq details p{font-size:14px}.value p{font-size:13px}.cta p{font-size:14px}.footer-brand p{font-size:13px}.footer-col h3{font-size:14px}.footer-col a{font-size:12px}.footer-bottom{font-size:11px}
-        @media(max-width:1050px){.main-nav{gap:18px}.portal-link{padding-inline:9px}.card-grid{grid-template-columns:repeat(2,1fr)}.values{grid-template-columns:repeat(2,1fr)}.value:nth-child(2){border-left:0}.value:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.1)}}
+        .brand{width:auto;justify-content:flex-start;gap:9px;flex:0 0 auto}.brand-copy{display:flex;min-width:100px;flex-direction:column;align-items:center;justify-content:center;line-height:1.35;text-align:center;white-space:nowrap}.brand-copy strong{color:var(--navy);font-size:15px;font-weight:900}.brand-copy small{margin-top:2px;color:#6d8298;font-size:9px;font-weight:600}
+        @media(max-width:1050px){.brand-copy{min-width:0}.brand-copy small{display:none}.main-nav{gap:18px}.portal-link{padding-inline:9px}.card-grid{grid-template-columns:repeat(2,1fr)}.values{grid-template-columns:repeat(2,1fr)}.value:nth-child(2){border-left:0}.value:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.1)}}
         @media(max-width:840px){.site-header{height:74px}.menu-toggle{display:grid}.desktop-portals{display:none}.brand{width:62px;height:47px;flex-basis:62px}.brand img{width:60px;height:45px}.main-nav{position:fixed;inset:74px 16px auto;display:grid;gap:0;padding:15px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(-12px);transition:.25s}.main-nav.open{opacity:1;visibility:visible;transform:none}.main-nav>a{padding:11px 10px;border-bottom:1px solid #edf2f2}.main-nav>a:after{display:none}.mobile-portals{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:14px}.mobile-portals .tracking{grid-column:1/-1}.mobile-portals .portal-link{min-height:46px}.page-hero{padding:130px 0 80px}.hero-inner{grid-template-columns:1fr;gap:45px}.hero-copy{text-align:center}.breadcrumb,.hero-actions{justify-content:center}.page-hero p{margin-inline:auto}.hero-art{width:min(520px,100%);margin:auto}.split{grid-template-columns:1fr;gap:45px}.visual-box{order:2}.pricing-grid{grid-template-columns:1fr;max-width:550px;margin:auto}.price-card .feature-list{min-height:auto}.cta{grid-template-columns:1fr;gap:28px;text-align:center}.cta-action{justify-content:center}.footer-grid{grid-template-columns:1.4fr 1fr 1fr}.footer-brand{grid-column:1/-1}}
+        @media(max-width:840px){.brand{width:auto;gap:7px;flex-basis:auto}.brand-copy{min-width:92px}.brand-copy strong{font-size:14px}.brand-copy small{display:block;font-size:8px}}
         @media(max-width:580px){.container{width:calc(100% - 28px)}.page-hero h1{font-size:35px;letter-spacing:-1px}.page-hero p{font-size:13px}.hero-actions{display:grid}.hero-actions .btn{width:100%}.hero-art{min-height:315px}.art-panel{padding:20px}.section{padding:78px 0}.section-head{margin-bottom:38px}.section-title{font-size:28px}.card-grid,.check-grid{grid-template-columns:1fr}.content-card{padding:24px}.values{grid-template-columns:1fr}.value{border-left:0;border-bottom:1px solid rgba(255,255,255,.1)}.value:nth-child(3){border-bottom:1px solid rgba(255,255,255,.1)}.value:last-child{border-bottom:0}.dark-section{padding:78px 0}.cta-wrap{padding-bottom:78px}.cta{padding:38px 22px;border-radius:23px}.footer-grid{grid-template-columns:1fr 1fr;gap:32px 20px}.footer-brand{grid-column:1/-1}.footer-bottom{gap:10px;flex-direction:column}}
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
         @stack('styles')
@@ -38,22 +60,25 @@
 <a class="skip" href="#main-content">رفتن به محتوای اصلی</a>
 <header class="site-header">
     <div class="container nav-wrap">
-        <a class="brand" href="{{ route('home') }}" aria-label="سپند، صفحه اصلی"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a>
+        <a class="brand" href="{{ route('home') }}" aria-label="سپند، صفحه اصلی">
+            <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" aria-hidden="true">
+            <span class="brand-copy" aria-hidden="true"><strong>سپند</strong><small>CRM هوشمند حمل‌ونقل</small></span>
+        </a>
         <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
-            <a href="{{ route('modules') }}" @class(['active' => request()->routeIs('modules')])>ماژول‌ها</a>
+            <a href="{{ route('modules') }}" @class(['active' => request()->routeIs('modules', 'site.modules.show')])>ماژول‌ها</a>
             <a href="{{ route('pricing') }}" @class(['active' => request()->routeIs('pricing')])>تعرفه‌ها</a>
             <a href="{{ route('about') }}" @class(['active' => request()->routeIs('about')])>درباره ما</a>
             <a href="{{ route('home') }}#why-us">چرا سپند؟</a>
             <div class="portal-actions mobile-portals">
-                <a class="portal-link tracking" href="{{ route('home') }}#contact"><span class="new-badge">جدید</span>رهگیری محموله</a>
+                <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
                 <a class="portal-link" href="{{ route('login') }}">پورتال مشتریان</a>
-                <a class="portal-link primary" href="{{ route('home') }}#contact">پرتال سازمان</a>
+                <a class="portal-link primary" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="mobile_organization_portal">پرتال سازمان</a>
             </div>
         </nav>
         <div class="portal-actions desktop-portals">
-            <a class="portal-link tracking" href="{{ route('home') }}#contact"><span class="new-badge">جدید</span>رهگیری محموله</a>
+            <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="desktop_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
             <a class="portal-link" href="{{ route('login') }}">پورتال مشتریان</a>
-            <a class="portal-link primary" href="{{ route('home') }}#contact">پرتال سازمان</a>
+            <a class="portal-link primary" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">پرتال سازمان</a>
         </div>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="باز کردن منو"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     </div>
@@ -62,16 +87,16 @@
 <footer class="site-footer">
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>راهکار یکپارچه سپند برای مدیریت هوشمند عملیات، ارتباط با مشتریان و حمل‌ونقل شفاف.</p></div>
-            <div class="footer-col"><h3>محصول</h3><a href="{{ route('modules') }}">ماژول‌ها</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('home') }}#services">خدمات</a></div>
-            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('home') }}#why-us">چرا سپند؟</a><a href="{{ route('home') }}#process">مسیر همکاری</a></div>
-            <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('home') }}#contact">درخواست مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('home') }}#contact">پرتال سازمان</a></div>
+            <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، اسناد و مالی شرکت‌های فورواردری و لجستیک.</p></div>
+            <div class="footer-col"><h3>محصول</h3><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
+            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('home') }}#why-us">مزیت‌های قابل سنجش</a><a href="{{ route('home') }}#process">Workflow محصول</a></div>
+            <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('organization.portal') }}">پرتال سازمان</a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span>طراحی‌شده برای تجربه‌ای شفاف‌تر</span></div>
     </div>
 </footer>
 <script>
-(()=>{const menu=document.getElementById('main-nav'),toggle=document.getElementById('menu-toggle');toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}));const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
+(()=>{const menu=document.getElementById('main-nav'),toggle=document.getElementById('menu-toggle');toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}));const track=(eventName,eventLabel,url)=>{const payload={event_category:'marketing',event_label:eventLabel,link_url:url||window.location.href};if(typeof window.gtag==='function')window.gtag('event',eventName,payload);else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:eventName,...payload})}};document.addEventListener('click',event=>{const link=event.target.closest('[data-ga-event]');if(link)track(link.dataset.gaEvent,link.dataset.gaLabel||link.textContent.trim(),link.href)});document.querySelectorAll('[data-ga-form]').forEach(form=>form.addEventListener('submit',()=>track(form.dataset.gaForm,'consultation_form_submit',form.action)));const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
 </script>
 @stack('scripts')
 </body>

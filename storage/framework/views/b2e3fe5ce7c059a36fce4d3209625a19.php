@@ -6,7 +6,8 @@
     <meta name="theme-color" content="#0f305b">
     <meta name="description" content="ورود امن مشتریان به پورتال سپند">
     <title>ورود به پورتال مشتریان | سپند</title>
-    <link rel="icon" type="image/png" href="<?php echo e(asset('assets/images/favicon.png')); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('assets/images/favicon.png')); ?>?v=20260801">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('favicon.ico')); ?>?v=20260801">
     <style>
         @font-face{font-family:IRANSans;src:url("<?php echo e(asset('fonts/iransans/woff2/IRANSansWeb(FaNum).woff2')); ?>") format("woff2");font-weight:400;font-display:swap}
         @font-face{font-family:IRANSans;src:url("<?php echo e(asset('fonts/iransans/woff2/IRANSansWeb(FaNum)_Medium.woff2')); ?>") format("woff2");font-weight:500;font-display:swap}

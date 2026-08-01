@@ -15,7 +15,8 @@
     <meta name="theme-color" content="#f4f9f9">
     <title><?php echo e($errorPageTitle); ?> | سپند</title>
 
-    <link rel="icon" type="image/png" href="<?php echo e(asset('assets/images/brand/sepand-icon.png')); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('assets/images/favicon.png')); ?>?v=20260801">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('favicon.ico')); ?>?v=20260801">
     <link rel="stylesheet" href="<?php echo e(asset('assets/IranSansFont.css')); ?>">
 
     <style>
@@ -324,8 +325,8 @@
             <div class="content">
                 <a class="logo" href="<?php echo e(url('/')); ?>" aria-label="صفحه اصلی سپند">
                     <picture>
-                        <source srcset="<?php echo e(asset('assets/images/brand/sepand-logo-dark.png')); ?>" media="(prefers-color-scheme: dark)">
-                        <img src="<?php echo e(asset('assets/images/brand/sepand-logo.png')); ?>" alt="سپند">
+                        <source srcset="<?php echo e(asset('assets/images/brand/sepand-provided-header-dark.png')); ?>" media="(prefers-color-scheme: dark)">
+                        <img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt="سپند">
                     </picture>
                 </a>
 
