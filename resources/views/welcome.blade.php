@@ -148,16 +148,45 @@
             <div class="container">
                 <div class="section-head reveal">
                     <span class="section-label">محصول سپند</span>
-                    <h2 class="section-title">ماژول‌های نرم‌افزار سپند</h2>
-                    <p class="section-subtitle">ماژول‌های متصل برای مدیریت مشتری، فروش، رزرو، عملیات، اسناد و مالی؛ بدون ورود چندباره اطلاعات و بدون جزیره‌های نرم‌افزاری.</p>
+                    <h2 class="section-title">تمام فرایندهای شرکت حمل‌ونقل در یک سامانه</h2>
+                    <p class="section-subtitle">از اولین استعلام مشتری تا نرخ‌دهی، رزرو، عملیات، اسناد، امور مالی و رهگیری محموله را بدون ثبت تکراری اطلاعات مدیریت کنید.</p>
                 </div>
                 <div class="services-grid">
                     @foreach(config('site_modules') as $slug => $module)
                         <article class="service-card reveal delay-{{ ($loop->index % 4) + 1 }}">
-                            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-                            <h3>{{ $module['name'] }}</h3>
-                            <p>{{ $module['summary'] }}</p>
-                            <a class="service-link" href="{{ route('site.modules.show', ['module' => $slug]) }}">مشاهده ماژول {{ $module['name'] }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                            <span class="service-icon" aria-hidden="true">
+                                @switch($slug)
+                                    @case('crm')
+                                        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19v-1.5A4.5 4.5 0 0 1 8 13h2a4.5 4.5 0 0 1 4.5 4.5V19M16 5.5a3 3 0 0 1 0 5.8M17 14a4.5 4.5 0 0 1 3.5 4.4V19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                                        @break
+                                    @case('pricing-sales')
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="m4 11 7-7h7l2 2v7l-7 7-9-9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="15.5" cy="8.5" r="1.4" stroke="currentColor" stroke-width="1.6"/><path d="M8 13.5h5M9 16h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                                        @break
+                                    @case('booking')
+                                        <svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7.5 3v4M16.5 3v4M3.5 9h17m-12 5 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('transport-operations')
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v10H3V6Zm11 4h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/><path d="M6 10h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                                        @break
+                                    @case('document-management')
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v5h4M10 12h5m-5 3h5m-5 3h3M4 7v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('finance-accounting')
+                                        <svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M6.3 8h3.4M8 6.3v3.4m6.3 6.3h3.4M16 14.3v3.4M13.5 5.5H19v5.5M10.5 18.5H5V13" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('workflow-tasks')
+                                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="6" height="5" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="15" y="15" width="6" height="5" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M9 6.5h4a3 3 0 0 1 3 3V12M15 17.5h-4a3 3 0 0 1-3-3V12m5.5-2 2.5 2 2.5-2M10.5 14 8 12l-2.5 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('customer-portal-tracking')
+                                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h18M8 22h8M12 19v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15.5 11.5c0 2-3 4.5-3 4.5s-3-2.5-3-4.5a3 3 0 1 1 6 0Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12.5" cy="11.5" r=".8" fill="currentColor"/></svg>
+                                        @break
+                                    @default
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                                @endswitch
+                            </span>
+                            <h3>{{ $module['card_title'] ?? $module['name'] }}</h3>
+                            <p>{{ $module['card_summary'] ?? $module['summary'] }}</p>
+                            <a class="service-link" href="{{ route('site.modules.show', ['module' => $slug]) }}">{{ $module['card_cta'] ?? 'مشاهده جزئیات' }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                         </article>
                     @endforeach
                 </div>
