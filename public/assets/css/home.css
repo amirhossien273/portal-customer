@@ -250,7 +250,7 @@ img, svg { display: block; }
 .about-content-card { position: absolute; z-index: 2; top: 62px; right: 38px; left: 38px; padding: 28px; color: #fff; }
 .about-logo { display: grid; width: 72px; height: 72px; margin-bottom: 34px; place-items: center; background: #fff; border-radius: 22px; box-shadow: 0 16px 35px rgba(0,0,0,.18); }
 .about-logo img { width: 48px; height: 48px; object-fit: contain; }
-.about-quote { margin: 0; font-size: 21px; line-height: 2; font-weight: 700; }
+.about-quote { margin: 0; font-size: 21px; line-height: 2; font-weight: 700; text-align: justify; text-align-last: right; text-justify: inter-word; }
 .about-meta { display: flex; align-items: center; gap: 12px; margin-top: 25px; color: rgba(255,255,255,.66); font-size: 11px; }
 .about-meta::before { content: ""; width: 28px; height: 2px; background: var(--cyan); }
 .about-badge { position: absolute; z-index: 3; bottom: 0; left: 0; width: 172px; padding: 20px; color: var(--navy); background: #fff; border: 1px solid #e3ecec; border-radius: 20px; box-shadow: var(--shadow); }
