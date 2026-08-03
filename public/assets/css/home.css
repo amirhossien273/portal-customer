@@ -236,7 +236,7 @@ img, svg { display: block; }
 .transport-head .section-subtitle { margin-top: 22px; }
 .transport-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .transport-card {
-    min-height: 178px; padding: 24px; background: #fff; border: 1px solid #e1e7e8;
+    position: relative; min-height: 260px; padding: 24px 24px 65px; background: #fff; border: 1px solid #e1e7e8;
     border-radius: 17px; transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
 }
 .transport-card:hover { border-color: rgba(47,145,150,.42); transform: translateY(-6px); box-shadow: 0 18px 42px rgba(15,48,91,.09); }
@@ -248,6 +248,10 @@ img, svg { display: block; }
 .transport-card:hover .transport-icon { color: #fff; background: var(--teal); }
 .transport-card h3 { margin: 0 0 8px; color: var(--navy-900); font-size: 16px; font-weight: 800; }
 .transport-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 2; }
+.transport-link { position: absolute; right: 24px; bottom: 22px; display: inline-flex; align-items: center; gap: 7px; color: var(--teal-dark); font-size: 12px; font-weight: 700; }
+.transport-link svg { width: 15px; transition: transform .2s ease; }
+.transport-link:hover { color: var(--navy); }
+.transport-link:hover svg { transform: translateX(-4px); }
 
 .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .audience-card { padding: 24px; background: #fff; border: 1px solid #e3ecec; border-radius: 19px; }
@@ -594,7 +598,7 @@ body { font-size: 17px; }
     .transport-modes { padding-top: 80px; }
     .transport-head { margin-bottom: 40px; }
     .transport-grid { grid-template-columns: 1fr; }
-    .transport-card { min-height: 165px; }
+    .transport-card { min-height: 225px; }
     .audience-grid, .problem-grid { grid-template-columns: 1fr; }
     .problem-card:last-child { grid-column: auto; }
     .about-visual { min-height: 445px; }
