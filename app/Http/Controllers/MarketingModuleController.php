@@ -12,7 +12,11 @@ class MarketingModuleController extends Controller
 
         abort_unless(isset($modules[$module]), 404);
 
-        return view('marketing.module-detail', [
+        $view = $module === 'crm'
+            ? 'marketing.module-crm'
+            : 'marketing.module-detail';
+
+        return view($view, [
             'slug' => $module,
             'module' => $modules[$module],
             'relatedModules' => collect($modules)->except($module)->take(3),
