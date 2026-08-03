@@ -33,7 +33,7 @@
         'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-11">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-12">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
@@ -254,13 +254,41 @@
                     <p class="section-subtitle">سپند تنها مجموعه‌ای از قابلیت‌ها نیست؛ هر چالش عملیاتی را با یک راهکار مشخص و قابل اجرا برطرف می‌کند.</p>
                 </div>
                 <div class="problem-grid">
-                    <article class="problem-card reveal"><h3>اطلاعات مشتریان و پرونده‌ها در Excel، واتساپ و ایمیل پراکنده است.</h3><p><strong>راهکار سپند:</strong> با پرونده یکپارچه مشتری و محموله، تمام اطلاعات، مکاتبات، اسناد و سوابق در یک محل متمرکز و قابل جستجو نگهداری می‌شود.</p></article>
-                    <article class="problem-card reveal"><h3>پیگیری مشتریان فراموش می‌شود یا بین همکاران گم می‌شود.</h3><p><strong>راهکار سپند:</strong>سیستم CRM با یادآوری هوشمند، وظایف زمان‌بندی‌شده و تعیین مسئول هر پیگیری، هیچ فرصت فروشی را بدون اقدام رها نمی‌کند.</p></article>
-                    <article class="problem-card reveal"><h3>وضعیت لحظه‌ای محموله‌ها مشخص نیست.</h3><p><strong>راهکار سپند:</strong>داشبورد عملیات، وضعیت هر پرونده، مرحله جاری، رویدادهای ثبت‌شده و پرونده‌های نیازمند اقدام را به‌صورت لحظه‌ای نمایش می‌دهد.</p></article>
-                    <article class="problem-card reveal"><h3>کنترل و صدور اسناد زمان‌بر و مستعد خطاست.</h3><p><strong>راهکار سپند:</strong>سیستم مدیریت اسناد، نسخه‌های مختلف، وضعیت تأیید، مسئول بررسی و مهلت هر سند را به‌صورت متمرکز مدیریت می‌کند.</p></article>
-                    <article class="problem-card reveal"><h3>سود واقعی هر پرونده یا مشتری مشخص نیست.</h3><p><strong>راهکار سپند:</strong>با اتصال درآمدها و هزینه‌ها به پرونده عملیاتی، سود و زیان هر حمل، هر مشتری و هر پروژه به‌صورت دقیق قابل مشاهده خواهد بود.</p></article>
-                    <article class="problem-card reveal"><h3>انجام کارها به تجربه و حافظه افراد وابسته است.</h3><p><strong>راهکار سپند:</strong>گردش کار هوشمند ، مراحل انجام کار، مسئول هر مرحله و تاریخچه فعالیت‌ها را استاندارد می‌کند تا فرآیندها مستقل از افراد اجرا شوند.</p></article>
-                    <article class="problem-card reveal"><h3>تهیه گزارش‌های مدیریتی زمان زیادی می‌گیرد.</h3><p><strong>راهکار سپند:</strong>با یکپارچه بودن اطلاعات فروش، عملیات و مالی، گزارش‌های مدیریتی و داشبوردهای تحلیلی تنها با چند کلیک در دسترس خواهند بود.</p></article>
+                    <article class="problem-card reveal">
+                        <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h6l2 2h8v10H4V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 13h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۱</span></div>
+                        <h3>اطلاعات مشتریان و پرونده‌ها در Excel، واتساپ و ایمیل پراکنده است.</h3>
+                        <p><strong>راهکار سپند</strong><span>با پرونده یکپارچه مشتری و محموله، تمام اطلاعات، مکاتبات، اسناد و سوابق در یک محل متمرکز و قابل جست‌وجو نگهداری می‌شود.</span></p>
+                    </article>
+                    <article class="problem-card reveal">
+                        <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M17 5v5l3 2m-3-7a5 5 0 1 1-2.2 9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="problem-index">چالش ۰۲</span></div>
+                        <h3>پیگیری مشتریان فراموش می‌شود یا بین همکاران گم می‌شود.</h3>
+                        <p><strong>راهکار سپند</strong><span>سیستم CRM با یادآوری هوشمند، وظایف زمان‌بندی‌شده و تعیین مسئول هر پیگیری، هیچ فرصت فروشی را بدون اقدام رها نمی‌کند.</span></p>
+                    </article>
+                    <article class="problem-card reveal">
+                        <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.7"/><path d="M18.5 5.5 20 4m-2 15 2 1.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۳</span></div>
+                        <h3>وضعیت لحظه‌ای محموله‌ها مشخص نیست.</h3>
+                        <p><strong>راهکار سپند</strong><span>داشبورد عملیات، وضعیت هر پرونده، مرحله جاری، رویدادهای ثبت‌شده و پرونده‌های نیازمند اقدام را به‌صورت لحظه‌ای نمایش می‌دهد.</span></p>
+                    </article>
+                    <article class="problem-card reveal">
+                        <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v5h4m-9 5 2 2 4-4m-6 7h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="problem-index">چالش ۰۴</span></div>
+                        <h3>کنترل و صدور اسناد زمان‌بر و مستعد خطاست.</h3>
+                        <p><strong>راهکار سپند</strong><span>سیستم مدیریت اسناد، نسخه‌های مختلف، وضعیت تأیید، مسئول بررسی و مهلت هر سند را به‌صورت متمرکز مدیریت می‌کند.</span></p>
+                    </article>
+                    <article class="problem-card reveal">
+                        <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V5m0 15h16M8 16l3-4 3 2 5-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="problem-index">چالش ۰۵</span></div>
+                        <h3>سود واقعی هر پرونده یا مشتری مشخص نیست.</h3>
+                        <p><strong>راهکار سپند</strong><span>با اتصال درآمدها و هزینه‌ها به پرونده عملیاتی، سود و زیان هر حمل، هر مشتری و هر پروژه به‌صورت دقیق قابل‌مشاهده خواهد بود.</span></p>
+                    </article>
+                    <article class="problem-card reveal">
+                        <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="6" height="5" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="15" y="15" width="6" height="5" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M9 6.5h4a3 3 0 0 1 3 3V12M15 17.5h-4a3 3 0 0 1-3-3V12m5.5-2 2.5 2 2.5-2M10.5 14 8 12l-2.5 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="problem-index">چالش ۰۶</span></div>
+                        <h3>انجام کارها به تجربه و حافظه افراد وابسته است.</h3>
+                        <p><strong>راهکار سپند</strong><span>گردش کار هوشمند، مراحل انجام کار، مسئول هر مرحله و تاریخچه فعالیت‌ها را استاندارد می‌کند تا فرایندها مستقل از افراد اجرا شوند.</span></p>
+                    </article>
+                    <article class="problem-card reveal">
+                        <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V4h16v16H4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 16v-3m4 3V8m4 8v-5M7 7h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۷</span></div>
+                        <h3>تهیه گزارش‌های مدیریتی زمان زیادی می‌گیرد.</h3>
+                        <p><strong>راهکار سپند</strong><span>با یکپارچه‌بودن اطلاعات فروش، عملیات و مالی، گزارش‌های مدیریتی و داشبوردهای تحلیلی تنها با چند کلیک در دسترس خواهند بود.</span></p>
+                    </article>
                 </div>
             </div>
         </section>
