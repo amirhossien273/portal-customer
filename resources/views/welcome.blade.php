@@ -160,7 +160,7 @@
             <div class="container">
                 <div class="section-head transport-head reveal">
                     <span class="transport-label">حالت‌های حمل</span>
-                    <h2 class="section-title transport-title">یک پلتفرم، چهار حالت حمل</h2>
+                    <h2 class="section-title transport-title">یک پلتفرم، همه حالت حمل</h2>
                     <p class="section-subtitle">مدیریت سفر، کانتینر، پرواز، ULD، واگن، ناوگان زمینی و رویدادهای رهگیری — همگی در یک تجربه منسجم.</p>
                 </div>
                 <div class="transport-grid">
