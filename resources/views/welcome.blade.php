@@ -95,8 +95,8 @@
             <div class="container hero-grid">
                 <div class="hero-copy reveal is-visible">
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
-                    <h1><span class="hero-title-main">تحول دیجیتال در مدیریت</span><span class="hero-title-accent">حمل‌ونقل و لجستیک</span></h1>
-                    <p>یک سامانه متمرکز بر کنترل و هماهنگی تمامی فرآیندهای حمل‌ونقل بین‌المللی، با پشتیبانی از شیوه‌های مختلف حمل، مدیریت هوشمند اطلاعات، اتوماسیون فرآیندها، گزارش‌های مدیریتی و استقرار در زیرساخت‌های داخلی.</p>
+                    <h1><span class="hero-title-main">هوشمند سازی مدیریت</span><span class="hero-title-accent">حمل‌ونقل و لجستیک بین المللی</span></h1>
+                    <p>سامانه‌ای یکپارچه برای مدیریت و هوشمندسازی تمامی فرآیندهای حمل‌ونقل بین‌المللی؛ از ثبت سرنخ‌های فروش و پیگیری فرصت‌های تجاری تا استعلام، رزرو، عملیات اجرایی، مدیریت اسناد، امور مالی و خدمات پس از فروش. با اتوماسیون فرآیندها، مدیریت ارتباط با مشتری (CRM)، گزارش‌های مدیریتی و داشبوردهای تحلیلی، فروش را سیستماتیک کرده و بهره‌وری سازمان را در تمامی بخش‌ها افزایش می‌دهد.</p>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">
                             درخواست دمو و مشاوره
