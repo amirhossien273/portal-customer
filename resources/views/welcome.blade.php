@@ -33,7 +33,7 @@
         'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-8">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-9">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
