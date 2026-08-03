@@ -249,7 +249,7 @@ img, svg { display: block; }
 .problem-icon { display: grid; width: 52px; height: 52px; flex: 0 0 52px; place-items: center; color: var(--teal-dark); background: #e9f6f5; border: 1px solid rgba(47,145,150,.12); border-radius: 16px; }
 .problem-icon svg { width: 27px; height: 27px; }
 .problem-index { display: inline-flex; padding: 5px 10px; color: #708096; background: #f5f8f8; border: 1px solid #e4ecec; border-radius: 999px; font-size: 10px; font-weight: 700; }
-.problem-card h3 { position: relative; z-index: 1; margin: 0 0 12px; color: var(--navy-900); font-size: 17px; line-height: 1.9; font-weight: 800; }
+.problem-card h3 { position: relative; z-index: 1; margin: 0 0 12px; color: #7a3440; font-size: 17px; line-height: 1.9; font-weight: 800; }
 .problem-card p { position: relative; z-index: 1; margin: 0; color: var(--muted); font-size: 13px; line-height: 2.05; }
 .problem-card p strong { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 5px; color: var(--teal-dark); font-size: 12px; font-weight: 800; }
 .problem-card p strong::before { content: ""; width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 0 4px rgba(18,214,210,.1); }
