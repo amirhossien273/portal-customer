@@ -262,7 +262,7 @@ img, svg { display: block; }
 .about-copy .section-label { justify-content: flex-start; }
 .about-copy .section-label::after { display: none; }
 .about-copy .section-title { margin-bottom: 20px; }
-.about-copy > p { margin: 0 0 28px; color: var(--muted); font-size: 14px; line-height: 2.2; }
+.about-copy > p { margin: 0 0 28px; color: var(--muted); font-size: 14px; line-height: 2.2; text-align: justify; text-align-last: right; text-justify: inter-word; }
 .about-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; margin-bottom: 34px; }
 .about-list-item { display: flex; align-items: center; gap: 10px; color: #3d5067; font-size: 12px; font-weight: 600; }
 .about-list-item span { display: grid; flex: 0 0 auto; width: 25px; height: 25px; place-items: center; color: var(--teal-dark); background: #e7f5f4; border-radius: 8px; }
