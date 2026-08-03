@@ -15,6 +15,9 @@ class MarketingModuleController extends Controller
         $view = $module === 'crm'
             ? 'marketing.module-crm'
             : 'marketing.module-detail';
+        $page = config('site_module_pages.'.$module);
+
+        abort_if($module !== 'crm' && ! is_array($page), 404);
 
         return view($view, [
             'slug' => $module,
@@ -22,6 +25,7 @@ class MarketingModuleController extends Controller
             'relatedModules' => collect($modules)->except($module)->take(3),
             'title' => $modules[$module]['seo_title'],
             'description' => $modules[$module]['meta_description'],
+            'page' => $page,
         ]);
     }
 }

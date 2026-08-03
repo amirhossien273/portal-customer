@@ -1,71 +1,150 @@
 @extends('layouts.marketing')
 
+@php
+    $capabilities = $page['capabilities'];
+    $faqs = $page['faqs'];
+@endphp
+
 @push('head')
 <script type="application/ld+json">{!! json_encode([
     '@context' => 'https://schema.org',
-    '@type' => 'SoftwareApplication',
-    'name' => $module['name'].' سپند',
-    'applicationCategory' => 'BusinessApplication',
-    'operatingSystem' => 'Web',
-    'description' => $module['meta_description'],
-    'url' => route('site.modules.show', ['module' => $slug]),
+    '@graph' => [
+        [
+            '@type' => 'SoftwareApplication',
+            'name' => $page['h1'],
+            'applicationCategory' => 'BusinessApplication',
+            'operatingSystem' => 'Web',
+            'description' => $module['meta_description'],
+            'url' => route('site.modules.show', ['module' => $slug]),
+            'featureList' => array_column($capabilities, 'title'),
+            'audience' => [
+                '@type' => 'BusinessAudience',
+                'audienceType' => implode('، ', array_column($page['audiences'], 'title')),
+            ],
+        ],
+        [
+            '@type' => 'FAQPage',
+            'mainEntity' => array_map(static fn (array $faq): array => [
+                '@type' => 'Question',
+                'name' => $faq['question'],
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => $faq['answer'],
+                ],
+            ], $faqs),
+        ],
+    ],
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
 @endpush
 
-@push('styles')
-    .module-problem{padding:24px;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy-900));border-radius:22px}
-    .module-problem strong{display:block;margin-bottom:9px;color:var(--cyan);font-size:13px}.module-problem p{margin:0;color:rgba(255,255,255,.72);line-height:2.1}
-    .module-features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.module-feature{padding:27px;background:#fff;border:1px solid var(--line);border-radius:21px}.module-feature b{display:block;margin-bottom:9px;color:var(--navy);font-size:17px}.module-feature p{margin:0;color:var(--muted);font-size:14px;line-height:2}
-    .benefit-list{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:28px 0 0;padding:0;list-style:none}.benefit-list li{padding:18px;color:#385269;background:#eaf5f5;border-radius:15px;font-weight:700;text-align:center}
-    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.related-card{display:block;padding:23px;background:#fff;border:1px solid var(--line);border-radius:18px;transition:.25s}.related-card:hover{border-color:var(--teal);transform:translateY(-4px)}.related-card b{display:block;color:var(--navy);font-size:16px}.related-card span{color:var(--teal-dark);font-size:12px;font-weight:700}
-    @media(max-width:840px){.module-features,.benefit-list,.related-grid{grid-template-columns:1fr}}
-@endpush
+@include('marketing.partials.module-rich-styles')
 
 @section('content')
 <section class="page-hero">
     <div class="container hero-inner">
-        <div class="hero-copy reveal">
+        <div class="hero-copy crm-hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('modules') }}">ماژول‌ها</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>{{ $module['name'] }}</span></div>
-            <h1>ماژول <span>{{ $module['name'] }}</span> سپند</h1>
-            <p>{{ $module['summary'] }}</p>
+            <h1>{{ $page['h1'] }}</h1>
+            @foreach($page['hero'] as $paragraph)
+                <p class="crm-lead">{{ $paragraph }}</p>
+            @endforeach
             <div class="hero-actions">
-                <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_consultation">درخواست دمو و مشاوره</a>
-                <a class="btn btn-outline" href="{{ route('modules') }}">مشاهده همه ماژول‌ها</a>
+                <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_hero_consultation">{{ $page['cta']['primary'] }}</a>
+                <a class="btn btn-outline" href="#module-features">{{ $page['cta']['secondary'] }}</a>
             </div>
         </div>
-        <div class="hero-art reveal">
-            <div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="art-chip">{{ $module['short_name'] }}</span></div><h2 class="art-title">{{ $module['name'] }}</h2><p class="art-desc">یک بخش متصل از نرم‌افزار یکپارچه سپند</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+        <div class="hero-art crm-hero-art reveal" role="img" aria-label="نمای شماتیک {{ $module['name'] }} در نرم‌افزار سپند">
+            <div class="art-panel">
+                <div class="crm-dashboard">
+                    <div class="crm-dashboard-head"><b>{{ $page['art']['title'] }}</b><span>{{ $module['short_name'] }} سپند</span></div>
+                    @foreach($page['art']['items'] as $item)
+                        <div class="crm-customer"><span class="crm-avatar">{{ $loop->iteration }}</span><div><b>{{ $item['name'] }}</b><small>{{ $item['meta'] }}</small></div><span class="crm-state">{{ $item['state'] }}</span></div>
+                    @endforeach
+                    <div class="crm-pipeline">
+                        @foreach($page['art']['stats'] as $stat)
+                            <div><b>{{ $stat['value'] }}</b><span>{{ $stat['label'] }}</span></div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="section">
+<section class="section" aria-labelledby="module-problems-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">مسئله و راهکار</span><h2 class="section-title">این ماژول چه مسئله‌ای را<br><span>حل می‌کند؟</span></h2></div>
-        <div class="module-problem reveal"><strong>چالش رایج کسب‌وکار</strong><p>{{ $module['problem'] }}</p></div>
-        <div class="module-features" style="margin-top:20px">
-            @foreach($module['features'] as $feature)
-                <article class="module-feature reveal"><b>{{ $feature['title'] }}</b><p>{{ $feature['description'] }}</p></article>
+        <div class="section-head reveal"><span class="section-label">مسئله و راهکار</span><h2 class="section-title" id="module-problems-title">{{ $page['problem_heading'] }}</h2></div>
+        <p class="crm-intro reveal">{{ $page['problem_intro'] }}</p>
+        <div class="crm-problem reveal"><strong>چالش رایج کسب‌وکار</strong><p>{{ $page['problem_summary'] }}</p></div>
+        <div class="crm-problem-grid">
+            @foreach($page['problems'] as $problem)
+                <article class="crm-problem-card reveal"><h3>{{ $problem['title'] }}</h3><p>{{ $problem['description'] }}</p></article>
             @endforeach
         </div>
-        <ul class="benefit-list">
-            @foreach($module['benefits'] as $benefit)
+        <ul class="crm-outcomes">
+            @foreach($page['outcomes'] as $outcome)
+                <li class="reveal">{{ $outcome }}</li>
+            @endforeach
+        </ul>
+    </div>
+</section>
+
+<section class="section soft" id="module-features" aria-labelledby="module-features-title">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">امکانات اصلی</span><h2 class="section-title" id="module-features-title">{{ $page['features_heading'] }}</h2><p class="section-sub">{{ $page['features_intro'] }}</p></div>
+        <div class="crm-capability-grid">
+            @foreach($capabilities as $index => $capability)
+                <article class="crm-capability reveal"><span class="crm-capability-num">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span><h3>{{ $capability['title'] }}</h3><p>{{ $capability['description'] }}</p></article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="section" aria-labelledby="module-integration-title">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="module-integration-title">{{ $page['integration_heading'] }}</h2><p class="section-sub">{{ $page['integration_intro'] }}</p></div>
+        <div class="crm-process-grid">
+            @foreach($page['connections'] as $connection)
+                <article class="crm-process reveal"><span class="crm-process-step">{{ $loop->iteration }}</span><h3>{{ $connection['title'] }}</h3><p>{{ $connection['description'] }}</p><a href="{{ route('site.modules.show', ['module' => $connection['slug']]) }}">مشاهده ماژول {{ config('site_modules.'.$connection['slug'].'.short_name') }}</a></article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="dark-section" aria-labelledby="module-benefits-title">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">مزیت‌های عملیاتی</span><h2 class="section-title" id="module-benefits-title">{{ $page['benefits_heading'] }}</h2></div>
+        <p class="crm-benefit-intro reveal">{{ $page['benefits_intro'] }}</p>
+        <ul class="crm-benefits-grid">
+            @foreach($page['benefits'] as $benefit)
                 <li class="reveal">{{ $benefit }}</li>
             @endforeach
         </ul>
     </div>
 </section>
 
-<section class="section soft">
+<section class="section" aria-labelledby="module-audience-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">ماژول‌های مرتبط</span><h2 class="section-title">فرایندهای متصل در<br><span>نرم‌افزار سپند</span></h2></div>
-        <div class="related-grid">
-            @foreach($relatedModules as $relatedSlug => $relatedModule)
-                <a class="related-card reveal" href="{{ route('site.modules.show', ['module' => $relatedSlug]) }}"><b>{{ $relatedModule['name'] }}</b><span>مشاهده صفحه ماژول</span></a>
+        <div class="section-head reveal"><span class="section-label">مخاطبان ماژول</span><h2 class="section-title" id="module-audience-title">{{ $page['audience_heading'] }}</h2><p class="section-sub">{{ $page['audience_intro'] }}</p></div>
+        <div class="crm-audience-grid">
+            @foreach($page['audiences'] as $audience)
+                <article class="crm-audience reveal"><h3>{{ $audience['title'] }}</h3><p>{{ $audience['description'] }}</p></article>
             @endforeach
         </div>
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>کاربرد این ماژول را در فرایند خودتان ببینید</h2><p>در جلسه دمو، سناریوی واقعی تیم شما را روی نرم‌افزار سپند بررسی می‌کنیم.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_bottom_consultation">درخواست دمو</a></div></div></div></section>
+<section class="section soft" aria-labelledby="module-faq-title">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">سؤالات متداول</span><h2 class="section-title" id="module-faq-title">{{ $page['faq_heading'] }}</h2></div>
+        <p class="crm-faq-intro reveal">{{ $page['faq_intro'] }}</p>
+        <div class="faq">
+            @foreach($faqs as $faq)
+                <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta']['title'] }}</h2><p>{{ $page['cta']['text'] }}</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_bottom_consultation">{{ $page['cta']['primary'] }}</a></div></div></div></section>
 @endsection
