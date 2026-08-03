@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f305b">
+    <meta name="robots" content="noindex,nofollow,noarchive">
     <meta name="description" content="ورود امن مشتریان به پورتال سپند">
     <title>ورود به پورتال مشتریان | سپند</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
