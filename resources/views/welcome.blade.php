@@ -33,7 +33,7 @@
         'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-6">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-8">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
@@ -202,8 +202,8 @@
                 </div>
                 <div class="transport-grid">
                     @foreach(config('site_transport_modes') as $modeSlug => $mode)
-                        <article class="transport-card reveal delay-{{ $loop->iteration }}">
-                            <span class="transport-icon" aria-hidden="true">
+                        <article class="service-card transport-card reveal delay-{{ $loop->iteration }}">
+                            <span class="service-icon transport-icon" aria-hidden="true">
                                 @switch($modeSlug)
                                     @case('sea')
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M4 12 6 7h12l2 5-3 6H7l-3-6Zm2 0 6-3 6 3M12 4v5M9 4h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -221,7 +221,7 @@
                             </span>
                             <h3>{{ $mode['name'] }}</h3>
                             <p>{{ $mode['card_summary'] }}</p>
-                            <a class="transport-link" href="{{ route('site.transport-modes.show', ['mode' => $modeSlug]) }}">مشاهده جزئیات {{ $mode['short_name'] }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                            <a class="service-link transport-link" href="{{ route('site.transport-modes.show', ['mode' => $modeSlug]) }}">مشاهده جزئیات {{ $mode['short_name'] }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                         </article>
                     @endforeach
                 </div>
