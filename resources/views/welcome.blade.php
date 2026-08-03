@@ -33,7 +33,7 @@
         'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-5">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-6">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
@@ -201,26 +201,29 @@
                     <p class="section-subtitle">مدیریت سفر، کانتینر، پرواز، ULD، واگن، ناوگان زمینی و رویدادهای رهگیری — همگی در یک تجربه منسجم.</p>
                 </div>
                 <div class="transport-grid">
-                    <article class="transport-card reveal delay-1">
-                        <span class="transport-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12 6 7h12l2 5-3 6H7l-3-6Zm2 0 6-3 6 3M12 4v5M9 4h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                        <h3>حمل دریایی</h3>
-                        <p>D&amp;D، VGM، HBL/MBL و رادار ناوگان.</p>
-                    </article>
-                    <article class="transport-card reveal delay-2">
-                        <span class="transport-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m3 11 7.5 1.5L14 21l2-1-1-7 5-2.5a2.5 2.5 0 0 0 1.3-3.1 2.5 2.5 0 0 0-3.2-1.2L13 8.5 7 3 5 4l4 6-5.5-1L3 11Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                        <h3>حمل هوایی</h3>
-                        <p>ULD، MAWB/HAWB و وزن قابل وصول.</p>
-                    </article>
-                    <article class="transport-card reveal delay-3">
-                        <span class="transport-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v11H3V6Zm11 4h4l3 4v3h-7v-7ZM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                        <h3>حمل زمینی</h3>
-                        <p>ناوگان، راننده، برنامه و مسیر.</p>
-                    </article>
-                    <article class="transport-card reveal delay-4">
-                        <span class="transport-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h10a2 2 0 0 1 2 2v10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2Zm-2 7h14M8 21l2-3m6 0 2 3M8.5 14h.01m6.99 0h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                        <h3>حمل ریلی</h3>
-                        <p>واگن، ایستگاه و کنترل اسناد.</p>
-                    </article>
+                    @foreach(config('site_transport_modes') as $modeSlug => $mode)
+                        <article class="transport-card reveal delay-{{ $loop->iteration }}">
+                            <span class="transport-icon" aria-hidden="true">
+                                @switch($modeSlug)
+                                    @case('sea')
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12 6 7h12l2 5-3 6H7l-3-6Zm2 0 6-3 6 3M12 4v5M9 4h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('air')
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="m3 11 7.5 1.5L14 21l2-1-1-7 5-2.5a2.5 2.5 0 0 0 1.3-3.1 2.5 2.5 0 0 0-3.2-1.2L13 8.5 7 3 5 4l4 6-5.5-1L3 11Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('road')
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v11H3V6Zm11 4h4l3 4v3h-7v-7ZM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('rail')
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h10a2 2 0 0 1 2 2v10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2Zm-2 7h14M8 21l2-3m6 0 2 3M8.5 14h.01m6.99 0h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                @endswitch
+                            </span>
+                            <h3>{{ $mode['name'] }}</h3>
+                            <p>{{ $mode['card_summary'] }}</p>
+                            <a class="transport-link" href="{{ route('site.transport-modes.show', ['mode' => $modeSlug]) }}">مشاهده جزئیات {{ $mode['short_name'] }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                        </article>
+                    @endforeach
                 </div>
             </div>
         </section>

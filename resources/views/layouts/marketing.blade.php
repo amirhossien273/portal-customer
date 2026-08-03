@@ -65,7 +65,7 @@
             <span class="brand-copy" aria-hidden="true"><strong>سپند</strong><small>CRM هوشمند حمل‌ونقل</small></span>
         </a>
         <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
-            <a href="{{ route('modules') }}" @class(['active' => request()->routeIs('modules', 'site.modules.show')])>ماژول‌ها</a>
+            <a href="{{ route('modules') }}" @class(['active' => request()->routeIs('modules', 'site.modules.show', 'site.transport-modes.show')])>ماژول‌ها</a>
             <a href="{{ route('pricing') }}" @class(['active' => request()->routeIs('pricing')])>تعرفه‌ها</a>
             <a href="{{ route('about') }}" @class(['active' => request()->routeIs('about')])>درباره ما</a>
             <a href="{{ route('home') }}#why-us">چرا سپند؟</a>

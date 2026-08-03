@@ -25,6 +25,14 @@ class MarketingSitemapController extends Controller
             ];
         }
 
+        foreach (array_keys(config('site_transport_modes', [])) as $slug) {
+            $urls[] = [
+                'loc' => $baseUrl.'/transport-modes/'.rawurlencode($slug),
+                'changefreq' => 'monthly',
+                'priority' => '0.8',
+            ];
+        }
+
         return response()
             ->view('marketing.sitemap', ['urls' => $urls])
             ->header('Content-Type', 'application/xml; charset=UTF-8');
