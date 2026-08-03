@@ -33,25 +33,25 @@
         'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-2">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-4">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
 
     <header class="site-header" id="site-header">
         <div class="container nav-wrap">
-            <a class="brand" href="{{ route('home') }}" aria-label="سپند، صفحه اصلی">
-                <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" aria-hidden="true">
-                <span class="brand-copy" aria-hidden="true">
-                    <strong>سپند</strong>
-                    <small>CRM هوشمند حمل‌ونقل</small>
-                </span>
+            <a class="brand" href="{{ route('home') }}" aria-label="سپند CRM، صفحه اصلی">
+                <img src="{{ asset('assets/images/brand/sepand-icon.png') }}" alt="" aria-hidden="true">
+                <span class="brand-copy" aria-hidden="true"><strong><span dir="ltr">CRM</span> سپند</strong></span>
             </a>
             <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
-                <a href="{{ route('modules') }}">ماژول‌ها</a>
-                <a href="{{ route('pricing') }}">تعرفه‌ها</a>
+                <a class="active" href="#top">خانه</a>
+                <a href="#software-modules">امکانات</a>
+                <a href="#problems">راهکارها</a>
+                <a href="#audiences">مشتریان</a>
+                <a href="#transport-modes">حالت‌های حمل</a>
                 <a href="{{ route('about') }}">درباره ما</a>
-                <a href="#why-us">چرا سپند؟</a>
+                <a href="#contact">تماس با ما</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
                     <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking">
                         <span class="portal-new">جدید</span>
@@ -68,20 +68,8 @@
                     </a>
                 </div>
             </nav>
-            <div class="portal-actions desktop-portals" aria-label="ورود به سامانه‌های سپند">
-                <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="desktop_tracking">
-                    <span class="portal-new">جدید</span>
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
-                    رهگیری محموله
-                </a>
-                <a class="portal-link" href="{{ route('login') }}">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    پورتال مشتریان
-                </a>
-                <a class="portal-link organization" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V4h10v16M15 9h4v11M3 20h18M8 8h4m-4 4h4m-4 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    پرتال سازمان
-                </a>
+            <div class="desktop-portals header-demo-wrap">
+                <a class="header-demo" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="header_demo">درخواست دمو</a>
             </div>
             <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="باز کردن منو">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -95,8 +83,11 @@
             <div class="container hero-grid">
                 <div class="hero-copy reveal is-visible">
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
-                    <h1><span class="hero-title-main">هوشمند سازی مدیریت</span><span class="hero-title-accent">حمل‌ونقل و لجستیک بین المللی</span></h1>
-                    <p>سامانه‌ای یکپارچه برای مدیریت و هوشمندسازی تمامی فرآیندهای حمل‌ونقل بین‌المللی؛ از ثبت سرنخ‌های فروش و پیگیری فرصت‌های تجاری تا استعلام، رزرو، عملیات اجرایی، مدیریت اسناد، امور مالی و خدمات پس از فروش. با اتوماسیون فرآیندها، مدیریت ارتباط با مشتری (CRM)، گزارش‌های مدیریتی و داشبوردهای تحلیلی، فروش را سیستماتیک کرده و بهره‌وری سازمان را در تمامی بخش‌ها افزایش می‌دهد.</p>
+                    <h1><span class="hero-title-main">هوشمندسازی مدیریت</span><span class="hero-title-accent">حمل‌ونقل و لجستیک بین‌المللی</span></h1>
+                    <div class="hero-description">
+                        <p>سامانه‌ای یکپارچه برای مدیریت و هوشمندسازی تمام فرایندهای حمل‌ونقل بین‌المللی؛ از ثبت سرنخ و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد، امور مالی و خدمات پس از فروش.</p>
+                        <p>سپند با اتصال CRM، اتوماسیون فرایندها، گزارش‌های مدیریتی و داشبوردهای تحلیلی، فروش را سیستماتیک می‌کند و هماهنگی و بهره‌وری را در تمام واحدهای سازمان افزایش می‌دهد.</p>
+                    </div>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">
                             درخواست دمو و مشاوره
@@ -106,11 +97,6 @@
                             مشاهده ماژول‌های نرم‌افزار
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </a>
-                    </div>
-                    <div class="hero-points" aria-label="مزیت‌های کلیدی">
-                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>CRM و پیگیری فروش</span>
-                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>عملیات و اسناد</span>
-                        <span class="hero-point"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>مالی و سود هر پرونده</span>
                     </div>
                 </div>
 
@@ -125,14 +111,24 @@
             </div>
         </section>
 
-        <div class="trust-bar reveal">
+        <div class="trust-bar reveal" aria-label="مزیت‌های کلیدی سپند">
             <div class="container trust-inner">
-                <div class="trust-copy"><strong>یک نرم‌افزار برای تمام فرایند</strong><span>از اولین تماس مشتری تا سود و گزارش پرونده</span></div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8" stroke="currentColor" stroke-width="1.6"/></svg>CRM و فروش</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.6"/></svg>Booking و عملیات</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5V4Zm4 4h6m-6 4h6" stroke="currentColor" stroke-width="1.6"/></svg>اسناد و مالی</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3 3m-3-3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>حسابداری چند ارزی</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3 1.5-4.5A7 7 0 0 1 3 13V9a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6v6Z" stroke="currentColor" stroke-width="1.6"/></svg>پرتال مشتری</div>
+                <article class="trust-item">
+                    <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="19" cy="19" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.7"/><path d="m7 12 3 0m3.4-1.4 4.2-4.2m-4.2 7 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                    <span class="trust-text"><strong>مدیریت یکپارچه</strong><small>فرایندها و حسابداری چندارزی در یک سامانه متمرکز</small></span>
+                </article>
+                <article class="trust-item">
+                    <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.7 3.5h4.6l.6 2.1 1.4.8 2.1-.6 2.3 4-1.5 1.5v1.6l1.5 1.5-2.3 4-2.1-.6-1.4.8-.6 2.1H9.7l-.6-2.1-1.4-.8-2.1.6-2.3-4 1.5-1.5v-1.6L3.3 9.8l2.3-4 2.1.6 1.4-.8.6-2.1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg></span>
+                    <span class="trust-text"><strong>اتوماسیون هوشمند</strong><small>کاهش خطاهای انسانی و افزایش سرعت عملیات</small></span>
+                </article>
+                <article class="trust-item">
+                    <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16v16H4V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m7 16 3.3-3.5 2.8 2 4.2-6M16 8.5h1.5V10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="trust-text"><strong>گزارش‌های تحلیلی</strong><small>داشبوردهای هوشمند برای تصمیم‌گیری بهتر</small></span>
+                </article>
+                <article class="trust-item">
+                    <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5c0 5.2-3.2 8.3-8 10-4.8-1.7-8-4.8-8-10V6l8-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="trust-text"><strong>امنیت و استقرار داخلی</strong><small>استقرار امن در زیرساخت‌های داخلی سازمان</small></span>
+                </article>
             </div>
         </div>
 
