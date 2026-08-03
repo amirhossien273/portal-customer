@@ -33,25 +33,25 @@
         'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-4">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-5">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
 
     <header class="site-header" id="site-header">
         <div class="container nav-wrap">
-            <a class="brand" href="{{ route('home') }}" aria-label="سپند CRM، صفحه اصلی">
-                <img src="{{ asset('assets/images/brand/sepand-icon.png') }}" alt="" aria-hidden="true">
-                <span class="brand-copy" aria-hidden="true"><strong><span dir="ltr">CRM</span> سپند</strong></span>
+            <a class="brand" href="{{ route('home') }}" aria-label="سپند، صفحه اصلی">
+                <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" aria-hidden="true">
+                <span class="brand-copy" aria-hidden="true">
+                    <strong>سپند</strong>
+                    <small>CRM هوشمند حمل‌ونقل</small>
+                </span>
             </a>
             <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
-                <a class="active" href="#top">خانه</a>
-                <a href="#software-modules">امکانات</a>
-                <a href="#problems">راهکارها</a>
-                <a href="#audiences">مشتریان</a>
-                <a href="#transport-modes">حالت‌های حمل</a>
+                <a href="{{ route('modules') }}">ماژول‌ها</a>
+                <a href="{{ route('pricing') }}">تعرفه‌ها</a>
                 <a href="{{ route('about') }}">درباره ما</a>
-                <a href="#contact">تماس با ما</a>
+                <a href="#why-us">چرا سپند؟</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
                     <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking">
                         <span class="portal-new">جدید</span>
@@ -68,8 +68,20 @@
                     </a>
                 </div>
             </nav>
-            <div class="desktop-portals header-demo-wrap">
-                <a class="header-demo" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="header_demo">درخواست دمو</a>
+            <div class="portal-actions desktop-portals" aria-label="ورود به سامانه‌های سپند">
+                <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="desktop_tracking">
+                    <span class="portal-new">جدید</span>
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
+                    رهگیری محموله
+                </a>
+                <a class="portal-link" href="{{ route('login') }}">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    پورتال مشتریان
+                </a>
+                <a class="portal-link organization" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V4h10v16M15 9h4v11M3 20h18M8 8h4m-4 4h4m-4 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    پرتال سازمان
+                </a>
             </div>
             <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="باز کردن منو">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
