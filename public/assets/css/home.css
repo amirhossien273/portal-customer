@@ -224,11 +224,6 @@ p { text-align: justify !important; text-align-last: right !important; text-just
 
 .transport-modes { padding-top: 110px; border-top: 1px solid #edf2f2; }
 .transport-head { max-width: 780px; margin-bottom: 52px; }
-.transport-label {
-    display: inline-flex; align-items: center; min-height: 31px; margin-bottom: 12px; padding: 4px 14px;
-    color: var(--navy); background: #f7f9f9; border: 1px solid #d9e1e2; border-radius: 999px;
-    font-size: 11px; font-weight: 700;
-}
 .transport-title { position: relative; padding-bottom: 17px; font-size: clamp(29px, 3.2vw, 38px); }
 .transport-title::after {
     content: ""; position: absolute; right: 50%; bottom: 0; width: 48px; height: 3px;
