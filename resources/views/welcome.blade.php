@@ -29,11 +29,11 @@
         'operatingSystem' => 'Web',
         'url' => route('home'),
         'description' => 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردرینگ و لجستیک.',
-        'featureList' => ['CRM و مدیریت مشتریان', 'نرخ‌دهی و فروش', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی چند ارزی', 'Workflow و وظایف', 'پرتال و رهگیری مشتری'],
+        'featureList' => ['CRM و مدیریت مشتریان', 'نرخ‌دهی و فروش', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی', 'Workflow و وظایف', 'پرتال و رهگیری مشتری'],
         'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-2">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
@@ -95,8 +95,8 @@
             <div class="container hero-grid">
                 <div class="hero-copy reveal is-visible">
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
-                    <h1>تحول دیجیتال در مدیریت <br><span>حمل‌ونقل و لجستیک</span></h1>
-                    <p>یک سامانه متمرکز برای کنترل و هماهنگی تمامی فرآیندهای حمل‌ونقل بین‌المللی، با پشتیبانی از شیوه‌های مختلف حمل، مدیریت هوشمند اطلاعات، اتوماسیون فرآیندها، گزارش‌های مدیریتی و استقرار در زیرساخت‌های داخلی.</p>
+                    <h1><span class="hero-title-main">تحول دیجیتال در مدیریت</span><span class="hero-title-accent">حمل‌ونقل و لجستیک</span></h1>
+                    <p>یک سامانه متمرکز بر کنترل و هماهنگی تمامی فرآیندهای حمل‌ونقل بین‌المللی، با پشتیبانی از شیوه‌های مختلف حمل، مدیریت هوشمند اطلاعات، اتوماسیون فرآیندها، گزارش‌های مدیریتی و استقرار در زیرساخت‌های داخلی.</p>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">
                             درخواست دمو و مشاوره
@@ -131,7 +131,7 @@
                 <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8" stroke="currentColor" stroke-width="1.6"/></svg>CRM و فروش</div>
                 <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.6"/></svg>Booking و عملیات</div>
                 <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5V4Zm4 4h6m-6 4h6" stroke="currentColor" stroke-width="1.6"/></svg>اسناد و مالی</div>
-                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3 3m-3-3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>حساب چند ارزی</div>
+                <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3 3m-3-3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>حسابداری چند ارزی</div>
                 <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3 1.5-4.5A7 7 0 0 1 3 13V9a6 6 0 0 1 6-6h6a6 6 0 0 1 6 6v6Z" stroke="currentColor" stroke-width="1.6"/></svg>پرتال مشتری</div>
             </div>
         </div>
