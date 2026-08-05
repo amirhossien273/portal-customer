@@ -1,9 +1,7 @@
 @extends('layouts.marketing')
 
 @push('styles')
-    .consultation-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:55px;align-items:start}.consultation-copy{padding:30px;color:#fff;background:var(--navy-900);border-radius:25px}.consultation-copy h2{margin:0 0 12px;font-size:25px}.consultation-copy p{margin:0;color:rgba(255,255,255,.68)}.consultation-copy ul{display:grid;gap:13px;margin:26px 0 0;padding:0;list-style:none}.consultation-copy li{display:flex;gap:9px;align-items:flex-start}.consultation-copy li:before{content:'✓';display:grid;flex:0 0 23px;height:23px;place-items:center;color:var(--navy);background:var(--cyan);border-radius:7px;font-weight:900}
-    .consultation-form{padding:31px;background:#fff;border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{color:var(--navy);font-size:13px;font-weight:700}.field input,.field select,.field textarea{width:100%;padding:12px 14px;color:var(--ink);background:#fbfdfd;border:1px solid #d8e5e5;border-radius:12px;outline:0}.field textarea{min-height:120px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(47,145,150,.1)}.form-error{color:#b42318;font-size:11px}.form-status{margin-bottom:20px;padding:14px 17px;color:#126746;background:#e7f7ef;border:1px solid #b8e6d0;border-radius:13px}.form-help{margin:15px 0 0;color:var(--muted);font-size:11px}.honeypot{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
-    @media(max-width:840px){.consultation-layout{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-consultation.css') }}?v=20260805-1">
 @endpush
 
 @section('content')

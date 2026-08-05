@@ -40,7 +40,7 @@
 <section class="section soft">
     <div class="container split">
         <div class="split-copy reveal"><span class="section-label">یکپارچگی واقعی</span><h2 class="section-title">داده فقط یک‌بار ثبت می‌شود؛<br><span>همه‌جا در دسترس است</span></h2><p>ماژول‌های سپند جزیره‌های جدا از هم نیستند. هر تغییر در پرونده مشتری، عملیات، وظایف و امور مالی به‌صورت ساختاریافته در کل سامانه جریان پیدا می‌کند.</p><div class="check-grid"><span class="check"><i>✓</i>کاهش ورود اطلاعات تکراری</span><span class="check"><i>✓</i>گزارش‌های مدیریتی دقیق</span><span class="check"><i>✓</i>تاریخچه کامل فعالیت‌ها</span><span class="check"><i>✓</i>سطوح دسترسی منعطف</span></div></div>
-        <div class="visual-box reveal"><span class="section-label">نتیجه یکپارچگی</span><h2 style="margin:12px 0 30px;font-size:28px;line-height:1.7">یک منبع قابل‌اعتماد<br>برای تمام تصمیم‌ها</h2><div class="feature-list"><li style="color:#fff">دید کامل بر عملکرد تیم‌ها</li><li style="color:#fff">کاهش خطا و دوباره‌کاری</li><li style="color:#fff">پاسخ‌گویی سریع‌تر به مشتری</li><li style="color:#fff">آمادگی برای رشد سازمان</li></div></div>
+        <div class="visual-box reveal"><span class="section-label">نتیجه یکپارچگی</span><h2 class="marketing-visual-heading">یک منبع قابل‌اعتماد<br>برای تمام تصمیم‌ها</h2><div class="feature-list marketing-visual-list"><li>دید کامل بر عملکرد تیم‌ها</li><li>کاهش خطا و دوباره‌کاری</li><li>پاسخ‌گویی سریع‌تر به مشتری</li><li>آمادگی برای رشد سازمان</li></div></div>
     </div>
 </section>
 
