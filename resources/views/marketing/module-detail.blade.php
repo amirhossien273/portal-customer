@@ -44,7 +44,10 @@
     <div class="container hero-inner">
         <div class="hero-copy crm-hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('modules') }}">ماژول‌ها</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>{{ $module['name'] }}</span></div>
-            <h1>{{ $page['h1'] }}</h1>
+            <h1 class="module-hero-title">
+                <span class="module-hero-title-main">{{ $page['h1_main'] }}</span>
+                <span class="module-hero-title-accent">{{ $page['h1_accent'] }}</span>
+            </h1>
             @foreach($page['hero'] as $paragraph)
                 <p class="crm-lead">{{ $paragraph }}</p>
             @endforeach
