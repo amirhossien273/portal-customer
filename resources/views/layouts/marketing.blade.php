@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f305b">
     <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <meta name="description" content="{{ $pageDescription }}">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:type" content="website">
@@ -18,6 +19,11 @@
     <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:site_name" content="سپند">
     <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
+    <meta property="og:image:alt" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $pageDescription }}">
+    <meta name="twitter:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <link rel="canonical" href="{{ $canonicalUrl }}">
     <title>{{ $pageTitle }}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
@@ -43,6 +49,7 @@
             <a href="{{ route('modules') }}" @class(['active' => request()->routeIs('modules', 'site.modules.show', 'site.transport-modes.show')])>ماژول‌ها</a>
             <a href="{{ route('pricing') }}" @class(['active' => request()->routeIs('pricing')])>تعرفه‌ها</a>
             <a href="{{ route('about') }}" @class(['active' => request()->routeIs('about')])>درباره ما</a>
+            <a href="{{ route('faq') }}" @class(['active' => request()->routeIs('faq')])>سؤالات متداول</a>
             <a href="{{ route('home') }}#why-us">چرا سپند؟</a>
             <div class="portal-actions mobile-portals">
                 <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
@@ -64,7 +71,7 @@
         <div class="footer-grid">
             <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، اسناد و مالی شرکت‌های فورواردری و لجستیک.</p></div>
             <div class="footer-col"><h3>محصول</h3><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
-            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('home') }}#why-us">مزیت‌های قابل سنجش</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
+            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('home') }}#why-us">مزیت‌های قابل سنجش</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
             <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('organization.portal') }}">پرتال سازمان</a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span>طراحی‌شده برای تجربه‌ای شفاف‌تر</span></div>
