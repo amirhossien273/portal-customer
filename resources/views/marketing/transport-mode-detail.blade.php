@@ -32,9 +32,6 @@
 
 @include('marketing.partials.module-rich-styles')
 
-@push('styles')
-    .mode-related{display:block;height:100%;transition:.25s}.mode-related:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:var(--shadow)}.mode-related .mode-related-link{display:inline-flex;margin-top:13px;color:var(--teal-dark);font-size:12px;font-weight:700}
-@endpush
 
 @section('content')
 <section class="page-hero">
@@ -47,7 +44,10 @@
                 <svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                 <span>{{ $mode['name'] }}</span>
             </div>
-            <h1>{{ $mode['h1'] }}</h1>
+            <h1 class="module-hero-title">
+                <span class="module-hero-title-main">{{ $mode['h1_main'] }}</span>
+                <span class="module-hero-title-accent">{{ $mode['h1_accent'] }}</span>
+            </h1>
             @foreach($mode['hero'] as $paragraph)
                 <p class="crm-lead">{{ $paragraph }}</p>
             @endforeach
@@ -56,19 +56,24 @@
                 <a class="btn btn-outline" href="#transport-features">{{ $mode['cta']['secondary'] }}</a>
             </div>
         </div>
-        <div class="hero-art crm-hero-art reveal" role="img" aria-label="نمای شماتیک پرونده‌های {{ $mode['name'] }} در نرم‌افزار سپند">
-            <div class="art-panel">
-                <div class="crm-dashboard">
-                    <div class="crm-dashboard-head"><b>{{ $mode['art']['title'] }}</b><span>{{ $mode['short_name'] }} سپند</span></div>
-                    @foreach($mode['art']['items'] as $item)
-                        <div class="crm-customer"><span class="crm-avatar">{{ $loop->iteration }}</span><div><b>{{ $item['name'] }}</b><small>{{ $item['meta'] }}</small></div><span class="crm-state">{{ $item['state'] }}</span></div>
-                    @endforeach
-                    <div class="crm-pipeline">
-                        @foreach($mode['art']['stats'] as $stat)
-                            <div><b>{{ $stat['value'] }}</b><span>{{ $stat['label'] }}</span></div>
-                        @endforeach
-                    </div>
-                </div>
+        <div class="hero-art crm-hero-art reveal">
+            <div class="art-panel module-hero-image-panel">
+                <img
+                    class="module-hero-image"
+                    src="{{ asset('assets/images/marketing/transport-modes/'.$slug.'-hero.webp') }}"
+                    alt="تصویر سه‌بعدی {{ $mode['name'] }} در نرم‌افزار سپند"
+                    width="1536"
+                    height="1024"
+                    loading="eager"
+                    fetchpriority="high"
+                >
+                <span class="module-hero-brand" aria-label="سپند، CRM هوشمند حمل‌ونقل">
+                    <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" width="45" height="30">
+                    <span>
+                        <strong>سپند</strong>
+                        <small>CRM هوشمند حمل‌ونقل</small>
+                    </span>
+                </span>
             </div>
         </div>
     </div>
