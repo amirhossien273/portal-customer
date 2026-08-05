@@ -53,19 +53,24 @@
                 <a class="btn btn-outline" href="#module-features">{{ $page['cta']['secondary'] }}</a>
             </div>
         </div>
-        <div class="hero-art crm-hero-art reveal" role="img" aria-label="نمای شماتیک {{ $module['name'] }} در نرم‌افزار سپند">
-            <div class="art-panel">
-                <div class="crm-dashboard">
-                    <div class="crm-dashboard-head"><b>{{ $page['art']['title'] }}</b><span>{{ $module['short_name'] }} سپند</span></div>
-                    @foreach($page['art']['items'] as $item)
-                        <div class="crm-customer"><span class="crm-avatar">{{ $loop->iteration }}</span><div><b>{{ $item['name'] }}</b><small>{{ $item['meta'] }}</small></div><span class="crm-state">{{ $item['state'] }}</span></div>
-                    @endforeach
-                    <div class="crm-pipeline">
-                        @foreach($page['art']['stats'] as $stat)
-                            <div><b>{{ $stat['value'] }}</b><span>{{ $stat['label'] }}</span></div>
-                        @endforeach
-                    </div>
-                </div>
+        <div class="hero-art crm-hero-art reveal">
+            <div class="art-panel module-hero-image-panel">
+                <img
+                    class="module-hero-image"
+                    src="{{ asset('assets/images/marketing/modules/'.$slug.'-hero.webp') }}"
+                    alt="تصویر سه‌بعدی ماژول {{ $module['name'] }} سپند"
+                    width="1536"
+                    height="1024"
+                    loading="eager"
+                    fetchpriority="high"
+                >
+                <span class="module-hero-brand" aria-label="سپند، CRM هوشمند حمل‌ونقل">
+                    <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" width="45" height="30">
+                    <span>
+                        <strong>سپند</strong>
+                        <small>CRM هوشمند حمل‌ونقل</small>
+                    </span>
+                </span>
             </div>
         </div>
     </div>

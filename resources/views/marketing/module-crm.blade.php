@@ -123,15 +123,24 @@
                 <a class="btn btn-outline" href="#crm-features">مشاهده امکانات ماژول CRM</a>
             </div>
         </div>
-        <div class="hero-art crm-hero-art reveal" role="img" aria-label="نمای شماتیک پرونده مشتری و قیف فروش در نرم افزار CRM حمل و نقل سپند">
-            <div class="art-panel">
-                <div class="crm-dashboard">
-                    <div class="crm-dashboard-head"><b>پرونده‌های مشتریان</b><span>CRM سپند</span></div>
-                    <div class="crm-customer"><span class="crm-avatar">آ</span><div><b>شرکت آریا ترابر</b><small>درخواست حمل دریایی</small></div><span class="crm-state">پیگیری امروز</span></div>
-                    <div class="crm-customer"><span class="crm-avatar">پ</span><div><b>بازرگانی پارس</b><small>پیشنهاد قیمت ارسال‌شده</small></div><span class="crm-state">در مذاکره</span></div>
-                    <div class="crm-customer"><span class="crm-avatar">ر</span><div><b>راهکار لجستیک</b><small>تبدیل‌شده به Booking</small></div><span class="crm-state">تأییدشده</span></div>
-                    <div class="crm-pipeline"><div><b>۲۴</b><span>سرنخ فعال</span></div><div><b>۱۱</b><span>فرصت باز</span></div><div><b>۷</b><span>پیگیری امروز</span></div></div>
-                </div>
+        <div class="hero-art crm-hero-art reveal">
+            <div class="art-panel module-hero-image-panel">
+                <img
+                    class="module-hero-image"
+                    src="{{ asset('assets/images/marketing/modules/crm-hero.webp') }}"
+                    alt="تصویر سه‌بعدی ماژول CRM و مدیریت مشتریان سپند"
+                    width="1536"
+                    height="1024"
+                    loading="eager"
+                    fetchpriority="high"
+                >
+                <span class="module-hero-brand" aria-label="سپند، CRM هوشمند حمل‌ونقل">
+                    <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" width="45" height="30">
+                    <span>
+                        <strong>سپند</strong>
+                        <small>CRM هوشمند حمل‌ونقل</small>
+                    </span>
+                </span>
             </div>
         </div>
     </div>
