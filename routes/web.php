@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 Route::get('/sitemap.xml', MarketingSitemapController::class)->name('sitemap');
+Route::view('/faq', 'marketing.faq')->name('faq');
 Route::view('/modules', 'marketing.modules')->name('modules');
 Route::get('/modules/{module}', [MarketingModuleController::class, 'show'])
     ->whereIn('module', array_keys(config('site_modules')))

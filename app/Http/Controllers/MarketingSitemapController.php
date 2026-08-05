@@ -9,32 +9,45 @@ class MarketingSitemapController extends Controller
     public function __invoke(): Response
     {
         $baseUrl = config('marketing.site_url');
+        $lastModified = config('marketing.content_last_modified');
         $urls = [
-            ['loc' => $baseUrl.'/', 'changefreq' => 'weekly', 'priority' => '1.0'],
-            ['loc' => $baseUrl.'/modules', 'changefreq' => 'weekly', 'priority' => '0.9'],
-            ['loc' => $baseUrl.'/pricing', 'changefreq' => 'monthly', 'priority' => '0.8'],
-            ['loc' => $baseUrl.'/about', 'changefreq' => 'monthly', 'priority' => '0.7'],
-            ['loc' => $baseUrl.'/consultation', 'changefreq' => 'monthly', 'priority' => '0.6'],
+            [
+                'loc' => $baseUrl.'/',
+                'lastmod' => $lastModified,
+                'images' => [['loc' => $baseUrl.'/assets/images/marketing/sepand-cargo-details.webp', 'title' => 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند']],
+            ],
+            ['loc' => $baseUrl.'/faq', 'lastmod' => $lastModified],
+            ['loc' => $baseUrl.'/modules', 'lastmod' => $lastModified],
+            ['loc' => $baseUrl.'/pricing', 'lastmod' => $lastModified],
+            ['loc' => $baseUrl.'/about', 'lastmod' => $lastModified],
+            ['loc' => $baseUrl.'/consultation', 'lastmod' => $lastModified],
         ];
 
-        foreach (array_keys(config('site_modules', [])) as $slug) {
+        foreach (config('site_modules', []) as $slug => $module) {
             $urls[] = [
                 'loc' => $baseUrl.'/modules/'.rawurlencode($slug),
-                'changefreq' => 'monthly',
-                'priority' => '0.8',
+                'lastmod' => $lastModified,
+                'images' => [[
+                    'loc' => $baseUrl.'/assets/images/marketing/modules/'.rawurlencode($slug).'-hero.webp',
+                    'title' => $module['seo_title'],
+                ]],
             ];
         }
 
-        foreach (array_keys(config('site_transport_modes', [])) as $slug) {
+        foreach (config('site_transport_modes', []) as $slug => $mode) {
             $urls[] = [
                 'loc' => $baseUrl.'/transport-modes/'.rawurlencode($slug),
-                'changefreq' => 'monthly',
-                'priority' => '0.8',
+                'lastmod' => $lastModified,
+                'images' => [[
+                    'loc' => $baseUrl.'/assets/images/marketing/transport-modes/'.rawurlencode($slug).'-hero.webp',
+                    'title' => $mode['seo_title'],
+                ]],
             ];
         }
 
         return response()
             ->view('marketing.sitemap', ['urls' => $urls])
-            ->header('Content-Type', 'application/xml; charset=UTF-8');
+            ->header('Content-Type', 'application/xml; charset=UTF-8')
+            ->header('Cache-Control', 'public, max-age=3600');
     }
 }

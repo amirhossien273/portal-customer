@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f305b">
     <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <meta name="description" content="سپند نرم‌افزار یکپارچه CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی است؛ از نرخ‌دهی تا اسناد، مالی و رهگیری.">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:type" content="website">
@@ -12,7 +13,12 @@
     <meta property="og:description" content="مدیریت مشتریان، نرخ‌دهی، Booking، عملیات حمل، اسناد، مالی و رهگیری مشتری در یک نرم‌افزار تخصصی.">
     <meta property="og:url" content="{{ route('home') }}">
     <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
+    <meta property="og:image:alt" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند">
     <meta property="og:site_name" content="سپند">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند">
+    <meta name="twitter:description" content="مدیریت مشتریان، نرخ‌دهی، Booking، عملیات حمل، اسناد، مالی و رهگیری مشتری در یک نرم‌افزار تخصصی.">
+    <meta name="twitter:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <link rel="canonical" href="{{ route('home') }}">
     <title>نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل فورواردینگ | سپند</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
@@ -23,14 +29,37 @@
     @endif
     <script type="application/ld+json">{!! json_encode([
         '@context' => 'https://schema.org',
-        '@type' => 'SoftwareApplication',
-        'name' => 'نرم‌افزار سپند',
-        'applicationCategory' => 'BusinessApplication',
-        'operatingSystem' => 'Web',
-        'url' => route('home'),
-        'description' => 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردرینگ و لجستیک.',
-        'featureList' => ['CRM و مدیریت مشتریان', 'نرخ‌دهی و فروش', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی', 'گردش کار هوشمند و وظایف', 'پرتال و رهگیری مشتری'],
-        'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
+        '@graph' => [
+            [
+                '@type' => 'Organization',
+                '@id' => route('home').'#organization',
+                'name' => 'سپند',
+                'url' => route('home'),
+                'logo' => asset('assets/images/brand/sepand-provided-header.png'),
+            ],
+            [
+                '@type' => 'WebSite',
+                '@id' => route('home').'#website',
+                'url' => route('home'),
+                'name' => 'سپند',
+                'alternateName' => ['Sepand', 'SepandCRM'],
+                'inLanguage' => 'fa-IR',
+                'publisher' => ['@id' => route('home').'#organization'],
+            ],
+            [
+                '@type' => 'SoftwareApplication',
+                '@id' => route('home').'#software',
+                'name' => 'نرم‌افزار سپند',
+                'applicationCategory' => 'BusinessApplication',
+                'operatingSystem' => 'Web',
+                'url' => route('home'),
+                'image' => asset('assets/images/marketing/sepand-cargo-details.webp'),
+                'description' => 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردرینگ و لجستیک.',
+                'featureList' => ['CRM و مدیریت مشتریان', 'نرخ‌دهی و فروش', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی', 'گردش کار هوشمند و وظایف', 'پرتال و رهگیری مشتری'],
+                'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
+                'publisher' => ['@id' => route('home').'#organization'],
+            ],
+        ],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-13">
@@ -51,6 +80,7 @@
                 <a href="{{ route('modules') }}">ماژول‌ها</a>
                 <a href="{{ route('pricing') }}">تعرفه‌ها</a>
                 <a href="{{ route('about') }}">درباره ما</a>
+                <a href="{{ route('faq') }}">سؤالات متداول</a>
                 <a href="#why-us">چرا سپند؟</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
                     <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking">
@@ -367,7 +397,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>سپند، نرم‌افزار یکپارچه CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی.</p></div>
-                <div class="footer-col"><h3>دسترسی سریع</h3><a href="{{ route('modules') }}">ماژول‌ها</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('about') }}">درباره ما</a></div>
+                <div class="footer-col"><h3>دسترسی سریع</h3><a href="{{ route('modules') }}">ماژول‌ها</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('faq') }}">سؤالات متداول</a><a href="{{ route('about') }}">درباره ما</a></div>
                 <div class="footer-col"><h3>راهکارها</h3><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM حمل‌ونقل</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و سود پرونده</a></div>
                 <div class="footer-col"><h3>ارتباط با ما</h3><a class="footer-contact" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 1 8 7 8-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>درخواست دمو و مشاوره</a><a class="footer-contact" href="{{ route('login') }}"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>ورود مشتریان</a></div>
             </div>
