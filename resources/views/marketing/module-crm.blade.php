@@ -115,7 +115,10 @@
     <div class="container hero-inner">
         <div class="hero-copy crm-hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('modules') }}">ماژول‌ها</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>CRM حمل‌ونقل</span></div>
-            <h1>نرم‌افزار CRM حمل‌ونقل و <span>مدیریت مشتریان سپند</span></h1>
+            <h1 class="module-hero-title">
+                <span class="module-hero-title-main">نرم‌افزار CRM حمل‌ونقل</span>
+                <span class="module-hero-title-accent">و مدیریت مشتریان سپند</span>
+            </h1>
             <p class="crm-lead">ماژول CRM نرم‌افزار سپند، راهکاری تخصصی برای مدیریت ارتباط با مشتریان در شرکت‌های حمل‌ونقل، لجستیک، فورواردری و بازرگانی است. اطلاعات مشتریان، سرنخ‌های فروش، استعلام‌ها، درخواست‌های حمل، مذاکرات و سوابق پیگیری در یک سیستم یکپارچه ثبت و مدیریت می‌شوند.</p>
             <p class="crm-lead">اتصال مستقیم اطلاعات مشتری به فروش، قرارداد، Booking و عملیات حمل باعث می‌شود تیم‌های مختلف بدون اطلاعات پراکنده و ورود دوباره داده، فرایند ارائه خدمات به مشتری را هماهنگ‌تر پیگیری کنند.</p>
             <div class="hero-actions">
