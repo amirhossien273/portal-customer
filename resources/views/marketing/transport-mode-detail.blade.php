@@ -26,6 +26,14 @@
                 'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['answer']],
             ], $faqs),
         ],
+        [
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'حالت‌های حمل', 'item' => route('home').'#transport-modes'],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => $mode['name'], 'item' => route('site.transport-modes.show', ['mode' => $slug])],
+            ],
+        ],
     ],
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
 @endpush
@@ -37,13 +45,13 @@
 <section class="page-hero">
     <div class="container hero-inner">
         <div class="hero-copy crm-hero-copy reveal">
-            <div class="breadcrumb">
+            <nav class="breadcrumb" aria-label="مسیر راهنما">
                 <a href="{{ route('home') }}">صفحه اصلی</a>
                 <svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                 <a href="{{ route('home') }}#transport-modes">حالت‌های حمل</a>
                 <svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                 <span>{{ $mode['name'] }}</span>
-            </div>
+            </nav>
             <h1 class="module-hero-title">
                 <span class="module-hero-title-main">{{ $mode['h1_main'] }}</span>
                 <span class="module-hero-title-accent">{{ $mode['h1_accent'] }}</span>
@@ -115,7 +123,7 @@
 
 <section class="section" aria-labelledby="related-transport-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">سایر حالت‌های حمل</span><h2 class="section-title" id="related-transport-title">مدیریت حمل چندوجهی در سپند</h2><p class="section-sub">پرونده‌های دریایی، هوایی، زمینی و ریلی در یک ساختار مشترک به فروش، عملیات، اسناد و مالی متصل می‌شوند.</p></div>
+        <div class="section-head reveal"><span class="section-label">سایر حالت‌های حمل</span><h2 class="section-title" id="related-transport-title">مدیریت حمل چندوجهی در سپند</h2><p class="section-sub">پرونده‌های دریایی، هوایی، زمینی و ریلی در یک ساختار مشترک به فروش، <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a>، اسناد و مالی متصل می‌شوند.</p></div>
         <div class="crm-process-grid">
             @foreach($relatedModes as $relatedSlug => $relatedMode)
                 <a class="crm-process mode-related reveal" href="{{ route('site.transport-modes.show', ['mode' => $relatedSlug]) }}"><span class="crm-process-step">{{ $loop->iteration }}</span><h3>{{ $relatedMode['name'] }}</h3><p>{{ $relatedMode['card_summary'] }}</p><span class="mode-related-link">مشاهده جزئیات ←</span></a>

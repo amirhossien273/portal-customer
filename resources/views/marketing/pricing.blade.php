@@ -1,14 +1,14 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'تعرفه‌های سپند | پلن مناسب کسب‌وکار شما';
-    $description = 'پلن‌های منعطف سپند برای تیم‌های در حال رشد، شرکت‌های حرفه‌ای و سازمان‌های بزرگ.';
+    $title = 'قیمت نرم‌افزار حمل‌ونقل بین‌المللی | سپند';
+    $description = 'قیمت نرم‌افزار حمل‌ونقل بین‌المللی سپند بر اساس ماژول‌ها، تعداد کاربران، استقرار، آموزش و سطح پشتیبانی موردنیاز شرکت تعیین می‌شود.';
 @endphp
 
 @section('content')
 <section class="page-hero">
     <div class="container hero-inner">
-        <div class="hero-copy reveal"><div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>تعرفه‌ها</span></div><h1>تعرفه‌ای متناسب با<br><span>اندازه و مسیر رشد شما</span></h1><p>از یک تیم کوچک تا یک سازمان چندواحدی، ساختار تعرفه سپند بر اساس ماژول‌ها، تعداد کاربران و سطح خدمات موردنیاز شما تنظیم می‌شود.</p><div class="hero-actions"><a class="btn btn-primary" href="#plans">مقایسه پلن‌ها</a><a class="btn btn-outline" href="{{ route('modules') }}">مشاهده ماژول‌ها</a></div></div>
+        <div class="hero-copy reveal"><div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>تعرفه‌ها</span></div><h1>قیمت و تعرفه<br><span>نرم‌افزار حمل‌ونقل</span></h1><p>قیمت نرم‌افزار حمل‌ونقل بین‌المللی سپند بر اساس ماژول‌ها، تعداد کاربران، روش استقرار و سطح خدمات موردنیاز شرکت شما تعیین می‌شود.</p><div class="hero-actions"><a class="btn btn-primary" href="#plans">مقایسه پلن‌ها</a><a class="btn btn-outline" href="{{ route('modules') }}">مشاهده ماژول‌ها</a></div></div>
         <div class="hero-art reveal"><div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16v12H4V7Zm3-3h10v3H7V4Zm2 8h6m-3-3v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="art-chip">تعرفه منعطف</span></div><h2 class="art-title">فقط برای آنچه نیاز دارید</h2><p class="art-desc">ترکیب ماژول و خدمات بر اساس ساختار واقعی سازمان شما</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
     </div>
 </section>

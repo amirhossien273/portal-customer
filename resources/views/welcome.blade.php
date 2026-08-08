@@ -6,21 +6,21 @@
     <meta name="theme-color" content="#0f305b">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <meta name="description" content="سپند نرم‌افزار یکپارچه CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی است؛ از نرخ‌دهی تا اسناد، مالی و رهگیری.">
+    <meta name="description" content="سپند راهکار مدیریت شرکت‌های حمل‌ونقل بین‌المللی و فورواردری است و CRM، نرخ‌دهی، عملیات، اسناد، مالی و رهگیری را یکپارچه می‌کند.">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند">
-    <meta property="og:description" content="مدیریت مشتریان، نرخ‌دهی، Booking، عملیات حمل، اسناد، مالی و رهگیری مشتری در یک نرم‌افزار تخصصی.">
+    <meta property="og:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
+    <meta property="og:description" content="سامانه جامع مدیریت شرکت‌های حمل‌ونقل، فورواردری و لجستیک؛ از CRM و نرخ‌دهی تا عملیات، اسناد، مالی و رهگیری.">
     <meta property="og:url" content="{{ route('home') }}">
     <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <meta property="og:image:alt" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند">
     <meta property="og:site_name" content="سپند">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند">
-    <meta name="twitter:description" content="مدیریت مشتریان، نرخ‌دهی، Booking، عملیات حمل، اسناد، مالی و رهگیری مشتری در یک نرم‌افزار تخصصی.">
+    <meta name="twitter:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
+    <meta name="twitter:description" content="سامانه جامع مدیریت شرکت‌های حمل‌ونقل، فورواردری و لجستیک؛ از CRM و نرخ‌دهی تا عملیات، اسناد، مالی و رهگیری.">
     <meta name="twitter:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <link rel="canonical" href="{{ route('home') }}">
-    <title>نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل فورواردینگ | سپند</title>
+    <title>نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
     @if(config('services.ga4.measurement_id'))
@@ -125,10 +125,10 @@
             <div class="container hero-grid">
                 <div class="hero-copy reveal is-visible">
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
-                    <h1><span class="hero-title-main">هوشمندسازی مدیریت</span><span class="hero-title-accent">حمل‌ونقل و لجستیک بین‌المللی</span></h1>
+                    <h1><span class="hero-title-main">نرم‌افزار مدیریت حمل‌ونقل بین‌المللی</span><span class="hero-title-accent">و فورواردری سپند</span></h1>
                     <div class="hero-description">
-                        <p>سامانه‌ای یکپارچه برای مدیریت و هوشمندسازی تمام فرایندهای حمل‌ونقل بین‌المللی؛ از ثبت سرنخ و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد، امور مالی و خدمات پس از فروش.</p>
-                        <p>سپند با اتصال CRM، اتوماسیون فرایندها، گزارش‌های مدیریتی و داشبوردهای تحلیلی، فروش را سیستماتیک می‌کند و هماهنگی و بهره‌وری را در تمام واحدهای سازمان افزایش می‌دهد.</p>
+                        <p>سپند فرایندهای شرکت حمل‌ونقل بین‌المللی را از ثبت سرنخ و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد، امور مالی و خدمات پس از فروش در یک جریان واحد مدیریت می‌کند.</p>
+                        <p>این راهکار برای شرکت‌های فورواردری و حمل‌ونقل طراحی شده و با اتصال CRM، اتوماسیون فرایندها و گزارش‌های مدیریتی، همکاری واحدهای فروش، عملیات و مالی را منسجم‌تر می‌کند.</p>
                     </div>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">

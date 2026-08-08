@@ -18,6 +18,7 @@ class MarketingTransportModeController extends Controller
             'relatedModes' => collect($modes)->except($mode)->take(3),
             'title' => $modes[$mode]['seo_title'],
             'description' => $modes[$mode]['meta_description'],
+            'canonical' => route('site.transport-modes.show', ['mode' => $mode]),
         ]);
     }
 }

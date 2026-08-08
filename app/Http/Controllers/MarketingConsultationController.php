@@ -12,8 +12,8 @@ class MarketingConsultationController extends Controller
     public function create(): View
     {
         return view('marketing.consultation', [
-            'title' => 'درخواست مشاوره نرم‌افزار سپند | دمو و نیازسنجی',
-            'description' => 'برای دریافت دمو و مشاوره نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند، اطلاعات شرکت و نیازهای خود را ثبت کنید.',
+            'title' => 'مشاوره خرید و دموی نرم‌افزار حمل‌ونقل | سپند',
+            'description' => 'برای ارزیابی نرم‌افزار حمل‌ونقل سپند، جلسه دمو و نیازسنجی ماژول‌های متناسب با فرایندهای شرکت خود را درخواست کنید.',
         ]);
     }
 

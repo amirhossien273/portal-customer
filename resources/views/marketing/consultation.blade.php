@@ -9,8 +9,8 @@
     <div class="container hero-inner">
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>درخواست مشاوره</span></div>
-            <h1>دموی واقعی نرم‌افزار سپند<br><span>برای فرایند شرکت شما</span></h1>
-            <p>اطلاعات کوتاهی از شرکت و نیازتان ثبت کنید تا جلسه دمو و نیازسنجی ماژول‌های مناسب هماهنگ شود.</p>
+            <h1>مشاوره خرید نرم‌افزار سپند؛<br><span>درخواست دمو و نیازسنجی</span></h1>
+            <p>برای ارزیابی نرم‌افزار حمل‌ونقل سپند، اطلاعات کوتاهی از شرکت و نیازتان ثبت کنید تا جلسه دمو و نیازسنجی ماژول‌های مناسب هماهنگ شود.</p>
         </div>
         <div class="hero-art reveal"><div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="art-chip">نیازسنجی تخصصی</span></div><h2 class="art-title">از نیاز واقعی تا پیشنهاد دقیق</h2><p class="art-desc">بدون تعهد؛ متناسب با ساختار فروش، عملیات و مالی شما</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
     </div>
