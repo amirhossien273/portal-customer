@@ -187,16 +187,25 @@ class MarketingSeoTest extends TestCase
         $this->get('/modules/document-management')
             ->assertOk()
             ->assertSee('<title>نرم‌افزار مدیریت اسناد حمل‌ونقل | سپند</title>', false)
-            ->assertSee('کنترل نسخه اسناد', false);
+            ->assertSee('<meta name="description" content="مدیریت، کنترل نسخه، تأیید و آرشیو اسناد حمل در سپند؛ متصل به مشتری، Booking و پرونده عملیاتی.">', false)
+            ->assertSee('<span class="module-hero-title-main">نرم‌افزار مدیریت اسناد</span>', false)
+            ->assertSee('در پرونده‌های حمل دریایی، اسنادی مانند HBL و MBL نیز می‌توانند در همین چرخه کنترل نسخه، تأیید و آرشیو مدیریت شوند.', false)
+            ->assertDontSee('نرم افزار صدور بارنامه', false);
     }
 
     public function test_transport_pages_and_operations_page_have_contextual_html_links(): void
     {
-        foreach (['air', 'sea', 'road'] as $mode) {
-            $this->get('/transport-modes/'.$mode)
+        $modes = ['air', 'sea', 'road', 'rail'];
+
+        foreach ($modes as $mode) {
+            $response = $this->get('/transport-modes/'.$mode)
                 ->assertOk()
                 ->assertSee('href="'.self::SITE_URL.'/modules/transport-operations"', false)
                 ->assertSee('مدیریت عملیات حمل', false);
+
+            foreach (array_diff($modes, [$mode]) as $relatedMode) {
+                $response->assertSee('href="'.self::SITE_URL.'/transport-modes/'.$relatedMode.'"', false);
+            }
         }
 
         $operations = $this->get('/modules/transport-operations')->assertOk();
