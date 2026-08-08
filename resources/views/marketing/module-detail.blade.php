@@ -33,6 +33,14 @@
                 ],
             ], $faqs),
         ],
+        [
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'ماژول‌ها', 'item' => route('modules')],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => $module['name'], 'item' => route('site.modules.show', ['module' => $slug])],
+            ],
+        ],
     ],
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
 @endpush
@@ -43,7 +51,7 @@
 <section class="page-hero">
     <div class="container hero-inner">
         <div class="hero-copy crm-hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('modules') }}">ماژول‌ها</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>{{ $module['name'] }}</span></div>
+            <nav class="breadcrumb" aria-label="مسیر راهنما"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('modules') }}">ماژول‌ها</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>{{ $module['name'] }}</span></nav>
             <h1 class="module-hero-title">
                 <span class="module-hero-title-main">{{ $page['h1_main'] }}</span>
                 <span class="module-hero-title-accent">{{ $page['h1_accent'] }}</span>
@@ -111,6 +119,9 @@
 <section class="section" aria-labelledby="module-integration-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="module-integration-title">{{ $page['integration_heading'] }}</h2><p class="section-sub">{{ $page['integration_intro'] }}</p></div>
+        @if($slug === 'transport-operations')
+            <nav class="section-sub reveal" aria-label="روش‌های حمل مرتبط">مدیریت عملیات در سپند برای <a href="{{ route('site.transport-modes.show', ['mode' => 'air']) }}">حمل هوایی</a>، <a href="{{ route('site.transport-modes.show', ['mode' => 'sea']) }}">حمل دریایی</a>، <a href="{{ route('site.transport-modes.show', ['mode' => 'road']) }}">حمل زمینی</a> و <a href="{{ route('site.transport-modes.show', ['mode' => 'rail']) }}">حمل ریلی</a> در دسترس است.</nav>
+        @endif
         <div class="crm-process-grid">
             @foreach($page['connections'] as $connection)
                 <article class="crm-process reveal"><span class="crm-process-step">{{ $loop->iteration }}</span><h3>{{ $connection['title'] }}</h3><p>{{ $connection['description'] }}</p><a href="{{ route('site.modules.show', ['module' => $connection['slug']]) }}">مشاهده ماژول {{ config('site_modules.'.$connection['slug'].'.short_name') }}</a></article>

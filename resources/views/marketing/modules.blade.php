@@ -1,8 +1,8 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'ماژول‌های سپند | یک پلتفرم، تمام فرایندها';
-    $description = 'ماژول‌های یکپارچه سپند برای مدیریت مشتریان، عملیات حمل، مالی، گردش کار و ارتباطات سازمانی.';
+    $title = 'ماژول‌های یکپارچه نرم‌افزار حمل‌ونقل | سپند';
+    $description = 'ماژول‌های سپند، CRM، نرخ‌دهی، Booking، عملیات، اسناد، مالی و گردش کار شرکت حمل‌ونقل را روی داده مشترک به هم متصل می‌کنند.';
 @endphp
 
 @section('content')
@@ -10,8 +10,8 @@
     <div class="container hero-inner">
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ماژول‌ها</span></div>
-            <h1>هر فرایند، یک ماژول؛<br><span>همه در یک پلتفرم</span></h1>
-            <p>از اولین ارتباط با مشتری تا آخرین مرحله تحویل و تسویه، ماژول‌های سپند کنار هم یک جریان کاری منسجم، شفاف و قابل‌اندازه‌گیری می‌سازند.</p>
+            <h1>ماژول‌های یکپارچه سپند؛<br><span>از فروش تا مالی</span></h1>
+            <p>ماژول‌های سپند، فرایند شرکت حمل‌ونقل را از اولین ارتباط با مشتری تا تحویل و تسویه پوشش می‌دهند و با داده مشترک به هم متصل‌اند؛ بدون اینکه هر واحد در یک سیستم جزیره‌ای کار کند.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#all-modules">مشاهده ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a><a class="btn btn-outline" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a></div>
         </div>
         <div class="hero-art reveal">

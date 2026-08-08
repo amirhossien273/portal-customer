@@ -25,6 +25,7 @@ class MarketingModuleController extends Controller
             'relatedModules' => collect($modules)->except($module)->take(3),
             'title' => $modules[$module]['seo_title'],
             'description' => $modules[$module]['meta_description'],
+            'canonical' => route('site.modules.show', ['module' => $module]),
             'page' => $page,
         ]);
     }
