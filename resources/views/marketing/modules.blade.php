@@ -11,7 +11,7 @@
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ماژول‌ها</span></div>
             <h1>ماژول‌های یکپارچه سپند؛<br><span>از فروش تا مالی</span></h1>
-            <p>ماژول‌های سپند، فرایند شرکت حمل‌ونقل را از اولین ارتباط با مشتری تا تحویل و تسویه پوشش می‌دهند و با داده مشترک به هم متصل‌اند؛ بدون اینکه هر واحد در یک سیستم جزیره‌ای کار کند.</p>
+            <p>در نرم افزار یکپارچه حمل و نقل سپند، CRM، نرخ‌دهی، Booking، عملیات، اسناد، گردش کار و مالی با داده مشترک به هم متصل‌اند؛ بنابراین هر واحد ادامه همان فرایند را بدون کار در یک سیستم جزیره‌ای پیش می‌برد.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#all-modules">مشاهده ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a><a class="btn btn-outline" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a></div>
         </div>
         <div class="hero-art reveal">
@@ -39,7 +39,7 @@
 
 <section class="section soft">
     <div class="container split">
-        <div class="split-copy reveal"><span class="section-label">یکپارچگی واقعی</span><h2 class="section-title">داده فقط یک‌بار ثبت می‌شود؛<br><span>همه‌جا در دسترس است</span></h2><p>ماژول‌های سپند جزیره‌های جدا از هم نیستند. هر تغییر در پرونده مشتری، عملیات، وظایف و امور مالی به‌صورت ساختاریافته در کل سامانه جریان پیدا می‌کند.</p><div class="check-grid"><span class="check"><i>✓</i>کاهش ورود اطلاعات تکراری</span><span class="check"><i>✓</i>گزارش‌های مدیریتی دقیق</span><span class="check"><i>✓</i>تاریخچه کامل فعالیت‌ها</span><span class="check"><i>✓</i>سطوح دسترسی منعطف</span></div></div>
+        <div class="split-copy reveal"><span class="section-label">یکپارچگی واقعی</span><h2 class="section-title">داده فقط یک‌بار ثبت می‌شود؛<br><span>همه‌جا در دسترس است</span></h2><p>ماژول‌های سپند جزیره‌های جدا از هم نیستند. این پیوستگی، اتوماسیون شرکت حمل و نقل را از ثبت مشتری و نرخ‌دهی تا Booking، عملیات، کنترل اسناد، گردش کار و امور مالی روی یک جریان مشترک نگه می‌دارد.</p><div class="check-grid"><span class="check"><i>✓</i>کاهش ورود اطلاعات تکراری</span><span class="check"><i>✓</i>گزارش‌های مدیریتی دقیق</span><span class="check"><i>✓</i>تاریخچه کامل فعالیت‌ها</span><span class="check"><i>✓</i>سطوح دسترسی منعطف</span></div></div>
         <div class="visual-box reveal"><span class="section-label">نتیجه یکپارچگی</span><h2 class="marketing-visual-heading">یک منبع قابل‌اعتماد<br>برای تمام تصمیم‌ها</h2><div class="feature-list marketing-visual-list"><li>دید کامل بر عملکرد تیم‌ها</li><li>کاهش خطا و دوباره‌کاری</li><li>پاسخ‌گویی سریع‌تر به مشتری</li><li>آمادگی برای رشد سازمان</li></div></div>
     </div>
 </section>

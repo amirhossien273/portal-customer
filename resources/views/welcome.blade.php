@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+    @include('layouts.partials.google-analytics')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f305b">
@@ -23,10 +24,6 @@
     <title>نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
-    @if(config('services.ga4.measurement_id'))
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ rawurlencode(config('services.ga4.measurement_id')) }}"></script>
-        <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',@json(config('services.ga4.measurement_id')));</script>
-    @endif
     <script type="application/ld+json">{!! json_encode([
         '@context' => 'https://schema.org',
         '@graph' => [
@@ -127,8 +124,8 @@
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
                     <h1><span class="hero-title-main">نرم‌افزار مدیریت حمل‌ونقل بین‌المللی</span><span class="hero-title-accent">و فورواردری سپند</span></h1>
                     <div class="hero-description">
-                        <p>سپند فرایندهای شرکت حمل‌ونقل بین‌المللی را از ثبت سرنخ و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد، امور مالی و خدمات پس از فروش در یک جریان واحد مدیریت می‌کند.</p>
-                        <p>این راهکار برای شرکت‌های فورواردری و حمل‌ونقل طراحی شده و با اتصال CRM، اتوماسیون فرایندها و گزارش‌های مدیریتی، همکاری واحدهای فروش، عملیات و مالی را منسجم‌تر می‌کند.</p>
+                        <p>سپند یک نرم افزار حمل و نقل بین المللی برای مدیریت فرایندهای شرکت‌های حمل، فورواردری و لجستیک است؛ از ثبت سرنخ و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد، امور مالی و خدمات پس از فروش.</p>
+                        <p>با اتصال CRM، اتوماسیون فرایندها و گزارش‌های مدیریتی، همکاری واحدهای فروش، عملیات و مالی در یک جریان واحد منسجم‌تر می‌شود.</p>
                     </div>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">
@@ -178,8 +175,8 @@
             <div class="container">
                 <div class="section-head reveal">
                     <span class="section-label">محصول سپند</span>
-                    <h2 class="section-title">تمام فرایندهای شرکت حمل‌ونقل در یک سامانه</h2>
-                    <p class="section-subtitle">از اولین استعلام مشتری تا نرخ‌دهی، رزرو، عملیات، اسناد، امور مالی و رهگیری محموله را بدون ثبت تکراری اطلاعات مدیریت کنید.</p>
+                    <h2 class="section-title">سامانه جامع حمل و نقل بین المللی برای فرایندهای یکپارچه</h2>
+                    <p class="section-subtitle">CRM، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و سایر ماژول‌های سپند روی داده‌ای مشترک کار می‌کنند تا اطلاعات بدون ثبت تکراری میان واحدها جریان داشته باشد.</p>
                 </div>
                 <div class="services-grid">
                     @foreach(config('site_modules') as $slug => $module)
@@ -263,14 +260,14 @@
                 <div class="section-head reveal">
                     <span class="section-label">مخاطبان نرم‌افزار</span>
                     <h2 class="section-title">سپند برای چه کسب‌وکارهایی طراحی شده است؟</h2>
-                    <p class="section-subtitle">سپند برای سازمان‌هایی ساخته شده که فروش، عملیات حمل، اسناد و مالی آن‌ها باید روی یک داده مشترک کار کنند.</p>
+                    <p class="section-subtitle">سپند به‌عنوان نرم افزار شرکت های حمل و نقل، فورواردری و لجستیک برای سازمان‌هایی ساخته شده که فروش، عملیات حمل، اسناد و مالی آن‌ها باید روی یک داده مشترک کار کنند.</p>
                 </div>
                 <div class="audience-grid">
                     <article class="audience-card reveal"><h3>شرکت‌های حمل‌ونقل بین‌المللی</h3><p>برای یکپارچه‌کردن پرونده‌های حمل، مشتریان، اسناد، هزینه‌ها و گزارش‌های مدیریتی.</p></article>
-                    <article class="audience-card reveal"><h3>شرکت‌های فورواردری</h3><p>برای مدیریت نرخ‌دهی، Booking، تأمین‌کنندگان و هماهنگی عملیات چندوجهی.</p></article>
+                    <article class="audience-card reveal"><h3>نرم افزار فورواردری برای شرکت‌های بین‌المللی</h3><p>سپند به‌عنوان نرم افزار مدیریت شرکت فورواردری، مشتریان، نرخ‌دهی و پرونده‌های حمل را به Booking، اسناد، عملیات و امور مالی مرتبط می‌کند.</p></article>
                     <article class="audience-card reveal"><h3>NVOCCها</h3><p>برای کنترل رزرو، ظرفیت، اسناد و ارتباط منظم میان نمایندگان و مشتریان.</p></article>
                     <article class="audience-card reveal"><h3>نمایندگان خطوط حمل</h3><p>برای ثبت ساختاریافته درخواست‌ها، پیگیری تعهدات و پاسخ‌گویی سریع‌تر به مشتری.</p></article>
-                    <article class="audience-card reveal"><h3>شرکت‌های لجستیک</h3><p>برای داشتن دید یکپارچه از مشتری، عملیات، مالی و کیفیت اجرای خدمات.</p></article>
+                    <article class="audience-card reveal"><h3>نرم افزار لجستیک برای عملیات یکپارچه</h3><p>سپند به‌عنوان نرم افزار مدیریت شرکت لجستیک، دیدی یکپارچه از مشتریان، پرونده‌های حمل، عملیات، امور مالی و کیفیت اجرای خدمات فراهم می‌کند.</p></article>
                     <article class="audience-card reveal"><h3>تیم‌های فروش، عملیات و مالی</h3><p>برای کار روی یک پرونده مشترک با مسئولیت، مهلت و داده‌های قابل‌اعتماد.</p></article>
                 </div>
             </div>
