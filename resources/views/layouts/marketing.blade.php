@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+    @include('layouts.partials.google-analytics')
     @php
         $pageTitle = $title ?? 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند';
         $pageDescription = $description ?? 'سپند؛ نرم‌افزار یکپارچه CRM، فروش، عملیات، اسناد و مالی برای شرکت‌های حمل‌ونقل، فورواردری و لجستیک.';
@@ -28,10 +29,6 @@
     <title>{{ $pageTitle }}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
-    @if(config('services.ga4.measurement_id'))
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ rawurlencode(config('services.ga4.measurement_id')) }}"></script>
-        <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',@json(config('services.ga4.measurement_id')));</script>
-    @endif
     @stack('head')
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20260805-1">

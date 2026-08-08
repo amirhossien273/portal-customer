@@ -123,7 +123,7 @@
 
 <section class="section" aria-labelledby="related-transport-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">سایر حالت‌های حمل</span><h2 class="section-title" id="related-transport-title">مدیریت حمل چندوجهی در سپند</h2><p class="section-sub">پرونده‌های دریایی، هوایی، زمینی و ریلی در یک ساختار مشترک به فروش، <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a>، اسناد و مالی متصل می‌شوند.</p></div>
+        <div class="section-head reveal"><span class="section-label">سایر حالت‌های حمل</span><h2 class="section-title" id="related-transport-title">مدیریت حمل چندوجهی در سپند</h2><p class="section-sub">پرونده‌های دریایی، هوایی، زمینی و ریلی در یک ساختار مشترک به فروش، <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a>، @if($slug === 'sea')<a href="{{ route('site.modules.show', ['module' => 'document-management']) }}">مدیریت اسناد حمل</a>@else اسناد @endif و مالی متصل می‌شوند.</p></div>
         <div class="crm-process-grid">
             @foreach($relatedModes as $relatedSlug => $relatedMode)
                 <a class="crm-process mode-related reveal" href="{{ route('site.transport-modes.show', ['mode' => $relatedSlug]) }}"><span class="crm-process-step">{{ $loop->iteration }}</span><h3>{{ $relatedMode['name'] }}</h3><p>{{ $relatedMode['card_summary'] }}</p><span class="mode-related-link">مشاهده جزئیات ←</span></a>

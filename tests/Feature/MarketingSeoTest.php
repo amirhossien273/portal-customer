@@ -189,7 +189,7 @@ class MarketingSeoTest extends TestCase
             ->assertSee('<title>نرم‌افزار مدیریت اسناد حمل‌ونقل | سپند</title>', false)
             ->assertSee('<meta name="description" content="مدیریت، کنترل نسخه، تأیید و آرشیو اسناد حمل در سپند؛ متصل به مشتری، Booking و پرونده عملیاتی.">', false)
             ->assertSee('<span class="module-hero-title-main">نرم‌افزار مدیریت اسناد</span>', false)
-            ->assertSee('در پرونده‌های حمل دریایی، اسنادی مانند HBL و MBL نیز می‌توانند در همین چرخه کنترل نسخه، تأیید و آرشیو مدیریت شوند.', false)
+            ->assertSee('در پرونده‌های حمل دریایی، نرم افزار مدیریت HBL و MBL سپند، اطلاعات این اسناد را در همین چرخه کنترل نسخه، تأیید و آرشیو نگهداری می‌کند.', false)
             ->assertDontSee('نرم افزار صدور بارنامه', false);
     }
 
