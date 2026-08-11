@@ -47,6 +47,8 @@ Route::post('/login/resend', [CustomerPortalAuthController::class, 'resend'])
     ->name('login.resend');
 
 Route::middleware('portal.auth')->prefix('portal')->name('portal.')->group(function (): void {
+    Route::get('/accounts', [CustomerPortalAuthController::class, 'showAccounts'])->name('accounts.index');
+    Route::post('/accounts', [CustomerPortalAuthController::class, 'selectAccount'])->name('accounts.select');
     Route::get('/', [CustomerPortalController::class, 'dashboard'])->name('dashboard');
     Route::get('/inquiries', [CustomerPortalController::class, 'inquiries'])->name('inquiries.index');
     Route::get('/inquiries/{inquiry}', [CustomerPortalController::class, 'inquiry'])->name('inquiries.show');

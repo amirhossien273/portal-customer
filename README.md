@@ -38,6 +38,8 @@ php artisan portal:check-databases
 
 `portal:check-databases` rejects a configuration where both connections resolve to the same database and checks the required tables on both sides. The portal never runs migrations against the CRM connection.
 
+Customer login is multi-tenant: the mobile number is searched across every active CRM tenant. After one OTP, customers with more than one active account choose the organization they want to view and can switch organizations without signing in again. Every dashboard query remains scoped to the selected `tenant_id` and `customer_id`.
+
 OTP codes are temporarily displayed on the verification screen as requested for the first release. After connecting an SMS provider, deliver the generated code in `CustomerPortalAuthController::issueOtp()` and disable the preview:
 
 ```dotenv

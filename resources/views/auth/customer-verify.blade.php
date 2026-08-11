@@ -12,6 +12,13 @@
         <h1>{{ $customerName }}، کد را وارد کنید</h1>
         <p class="auth-lead">کد ۶ رقمی ورود برای شماره <b dir="ltr">{{ $maskedMobile }}</b> ایجاد شد. این کد تا دو دقیقه معتبر است.</p>
 
+        @if($accountCount > 1)
+            <div class="multi-account-note">
+                <svg viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12M8 20v-7h8v7"/><path d="M2 20h20"/></svg>
+                <p><strong>{{ $accountCount }} سازمان به این شماره متصل است</strong><span>بعد از تأیید کد، سازمان موردنظر را انتخاب می‌کنید.</span></p>
+            </div>
+        @endif
+
         @if($previewOtp)
             <div class="otp-preview" role="status">
                 <span class="preview-lock"><svg viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5V10Z"/></svg></span>

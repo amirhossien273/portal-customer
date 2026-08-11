@@ -18,6 +18,7 @@ return [
     ],
 
     'crm_required_tables' => [
+        'tenants',
         'customers',
         'customer_personal',
         'transactions',

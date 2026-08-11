@@ -13,6 +13,8 @@
 @php
     $personName = $portalPersonal->full_name ?: 'مشتری سپند';
     $initials = mb_substr($portalPersonal->first_name ?: $portalPersonal->last_name ?: 'م', 0, 1);
+    $activeTenantName = $portalActiveAccount['tenant_name'] ?? 'سازمان سپند';
+    $accountCount = $portalAccounts->count();
 @endphp
 <div class="portal-shell">
     <aside class="portal-sidebar" id="portal-sidebar">
@@ -26,8 +28,12 @@
 
         <div class="sidebar-customer">
             <span class="customer-avatar">{{ $initials }}</span>
-            <p><strong>{{ $personName }}</strong><small>{{ $portalCustomer->company ?: 'مشتری حقیقی سپند' }}</small></p>
-            <span class="verified-mark" title="هویت تأییدشده"><x-portal.icon name="check" /></span>
+            <p><strong>{{ $personName }}</strong><small>{{ $activeTenantName }}</small></p>
+            @if($accountCount > 1)
+                <a class="sidebar-account-switch" href="{{ route('portal.accounts.index') }}" title="تغییر سازمان" aria-label="تغییر سازمان فعال"><x-portal.icon name="organization" /></a>
+            @else
+                <span class="verified-mark" title="هویت تأییدشده"><x-portal.icon name="check" /></span>
+            @endif
         </div>
 
         <nav class="sidebar-nav" aria-label="منوی اصلی پورتال">
@@ -71,6 +77,18 @@
             </div>
             <div class="header-actions">
                 <span class="system-online"><i></i><b>سامانه آنلاین است</b></span>
+                @if($accountCount > 1)
+                    <a class="header-tenant-switch" href="{{ route('portal.accounts.index') }}" aria-label="تغییر سازمان فعال">
+                        <span><x-portal.icon name="organization" /></span>
+                        <p><small>سازمان فعال</small><strong>{{ $activeTenantName }}</strong></p>
+                        <x-portal.icon name="chevron-left" />
+                    </a>
+                @else
+                    <span class="header-tenant-switch is-static">
+                        <span><x-portal.icon name="organization" /></span>
+                        <p><small>سازمان فعال</small><strong>{{ $activeTenantName }}</strong></p>
+                    </span>
+                @endif
                 <a class="header-notification" href="{{ route('portal.shipments.index') }}" aria-label="رویدادهای محموله">
                     <x-portal.icon name="bell" /><i></i>
                 </a>
