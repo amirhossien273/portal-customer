@@ -11,15 +11,21 @@ use App\Models\Crm\Shipment;
 use App\Models\Crm\Tracking;
 use App\Support\MobileNumber;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class CustomerPortalRepository
 {
     public function findPersonalByMobile(string $mobile): ?CustomerPersonal
     {
+        return $this->findPersonalsByMobile($mobile)->first();
+    }
+
+    /** @return Collection<int, CustomerPersonal> */
+    public function findPersonalsByMobile(string $mobile): Collection
+    {
         return CustomerPersonal::query()
-            ->with('customer')
-            ->where('tenant_id', $this->tenantId())
+            ->with(['customer', 'tenant'])
             ->where(function ($query) use ($mobile): void {
                 $variants = MobileNumber::databaseVariants($mobile);
                 $normalizedColumn = "REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(mobile, ' ', ''), '-', ''), '(', ''), ')', ''), '.', '')";
@@ -28,23 +34,46 @@ class CustomerPortalRepository
                     ->orWhereIn(DB::raw($normalizedColumn), $variants);
             })
             ->whereHas('customer', fn ($query) => $query
-                ->where('tenant_id', $this->tenantId())
                 ->where('status', 'actual'))
+            ->whereHas('tenant', fn ($query) => $query->where('is_active', true))
             ->oldest('created_at')
-            ->first();
+            ->get()
+            ->filter(fn (CustomerPersonal $personal): bool =>
+                (string) $personal->customer?->tenant_id === (string) $personal->tenant_id)
+            ->unique(fn (CustomerPersonal $personal): string =>
+                $personal->tenant_id.'|'.$personal->customer_id)
+            ->sortBy(fn (CustomerPersonal $personal): string =>
+                (string) ($personal->tenant?->name ?: $personal->customer?->company))
+            ->values();
     }
 
     public function authenticatedPersonal(array $identity): ?CustomerPersonal
     {
         return CustomerPersonal::query()
-            ->with('customer')
+            ->with(['customer', 'tenant'])
             ->whereKey($identity['personal_id'] ?? null)
             ->where('customer_id', $identity['customer_id'] ?? null)
             ->where('tenant_id', $identity['tenant_id'] ?? null)
             ->whereHas('customer', fn ($query) => $query
                 ->where('tenant_id', $identity['tenant_id'] ?? null)
                 ->where('status', 'actual'))
+            ->whereHas('tenant', fn ($query) => $query
+                ->whereKey($identity['tenant_id'] ?? null)
+                ->where('is_active', true))
             ->first();
+    }
+
+    /** @return array<string, string> */
+    public function accountSummary(CustomerPersonal $personal): array
+    {
+        return [
+            'personal_id' => (string) $personal->getKey(),
+            'customer_id' => (string) $personal->customer_id,
+            'tenant_id' => (string) $personal->tenant_id,
+            'tenant_name' => (string) ($personal->tenant?->name ?: 'سازمان سپند'),
+            'customer_name' => (string) ($personal->customer?->company ?: 'مشتری حقیقی'),
+            'person_name' => (string) ($personal->full_name ?: 'مشتری سپند'),
+        ];
     }
 
     /** @return array<string, mixed> */
@@ -175,8 +204,4 @@ class CustomerPortalRepository
                 ->where('customer_id', $customer->getKey()));
     }
 
-    private function tenantId(): string
-    {
-        return (string) config('customer_portal.tenant_id');
-    }
 }

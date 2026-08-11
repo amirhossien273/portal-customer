@@ -6,6 +6,7 @@
     @case('shipments')<svg {{ $attributes }} viewBox="0 0 24 24"><path d="M3 7h11v10H3V7Zm11 3h4l3 3v4h-7v-7ZM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 0 4Z"/></svg>@break
     @case('financials')<svg {{ $attributes }} viewBox="0 0 24 24"><path d="M4 7h16v12H4V7Zm0 4h16M8 16h3"/><path d="m6 7 2-3h8l2 3"/></svg>@break
     @case('profile')<svg {{ $attributes }} viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>@break
+    @case('organization')<svg {{ $attributes }} viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M8 21v-8h8v8M2 21h20"/><path d="M9 9h.01M12 9h.01M15 9h.01"/></svg>@break
     @case('logout')<svg {{ $attributes }} viewBox="0 0 24 24"><path d="M14 8V4H4v16h10v-4m-3-4h10m-3-3 3 3-3 3"/></svg>@break
     @case('menu')<svg {{ $attributes }} viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>@break
     @case('close')<svg {{ $attributes }} viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></svg>@break

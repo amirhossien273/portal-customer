@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Crm\CustomerPersonal;
 use App\Repositories\CustomerPortalRepository;
 use App\Support\MobileNumber;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
@@ -51,7 +51,7 @@ class CustomerPortalAuthController extends Controller
         // RateLimiter::hit($rateKey, config('customer_portal.otp.request_decay_seconds'));
 
         try {
-            $personal = $this->customers->findPersonalByMobile($mobile);
+            $personals = $this->customers->findPersonalsByMobile($mobile);
         } catch (Throwable $exception) {
             Log::error('Customer portal could not query CRM.', ['exception' => $exception]);
 
@@ -60,13 +60,13 @@ class CustomerPortalAuthController extends Controller
             ]);
         }
 
-        if (! $personal) {
+        if ($personals->isEmpty()) {
             return back()->withInput()->withErrors([
                 'mobile' => 'برای این شماره موبایل، مشتری فعالی در سپند پیدا نشد.',
             ]);
         }
 
-        return $this->issueOtp($request, $personal, $mobile);
+        return $this->issueOtp($request, $personals, $mobile);
     }
 
     public function showVerify(Request $request): View|RedirectResponse
@@ -82,6 +82,7 @@ class CustomerPortalAuthController extends Controller
             'expiresAt' => $pending['expires_at'],
             'resendAt' => $pending['resend_at'],
             'previewOtp' => $request->session()->get('preview_otp'),
+            'accountCount' => count($pending['accounts'] ?? []),
         ]);
     }
 
@@ -118,20 +119,71 @@ class CustomerPortalAuthController extends Controller
             return back()->withErrors(['otp' => 'کد واردشده صحیح نیست. دوباره بررسی کنید.']);
         }
 
-        $identity = [
-            'customer_id' => $pending['customer_id'],
-            'personal_id' => $pending['personal_id'],
-            'tenant_id' => $pending['tenant_id'],
-            'mobile' => $pending['mobile'],
-            'authenticated_at' => now()->timestamp,
-        ];
+        $accounts = collect($pending['accounts'] ?? [])
+            ->filter(fn ($account): bool => is_array($account))
+            ->values();
+
+        if ($accounts->isEmpty()) {
+            $request->session()->forget(self::OTP_SESSION_KEY);
+
+            return redirect()->route('login')->with('auth_error', 'حساب‌های قابل دسترس شما تغییر کرده‌اند؛ دوباره وارد شوید.');
+        }
+
+        $identity = $this->identityFromAccount($accounts->first(), $pending['mobile']);
 
         $request->session()->forget(self::OTP_SESSION_KEY);
         $request->session()->regenerate();
         $request->session()->put('customer_portal', $identity);
+        $request->session()->put('customer_portal_accounts', $accounts->all());
+
+        if ($accounts->count() > 1) {
+            return redirect()->route('portal.accounts.index')
+                ->with('success', 'هویت شما تأیید شد؛ سازمان موردنظر را برای ادامه انتخاب کنید.');
+        }
 
         return redirect()->intended(route('portal.dashboard'))
             ->with('success', 'با موفقیت وارد پورتال مشتریان شدید.');
+    }
+
+    public function showAccounts(Request $request): View|RedirectResponse
+    {
+        $accounts = collect($request->session()->get('customer_portal_accounts', []))
+            ->filter(fn ($account): bool => is_array($account))
+            ->values();
+
+        if ($accounts->count() < 2) {
+            return redirect()->route('portal.dashboard');
+        }
+
+        return view('auth.customer-account-select', [
+            'accounts' => $accounts,
+            'activePersonalId' => (string) $request->session()->get('customer_portal.personal_id'),
+        ]);
+    }
+
+    public function selectAccount(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'account' => ['required', 'string', 'max:64'],
+        ]);
+        $accounts = collect($request->session()->get('customer_portal_accounts', []));
+        $selected = $accounts->first(fn ($account): bool =>
+            is_array($account) && hash_equals((string) ($account['personal_id'] ?? ''), $validated['account']));
+
+        if (! is_array($selected)) {
+            return back()->withErrors(['account' => 'این سازمان در فهرست حساب‌های مجاز شما نیست.']);
+        }
+
+        $personal = $this->customers->authenticatedPersonal($selected);
+        if (! $personal) {
+            return redirect()->route('login')->with('auth_error', 'دسترسی شما به این سازمان فعال نیست؛ دوباره وارد شوید.');
+        }
+
+        $mobile = (string) $request->session()->get('customer_portal.mobile', $personal->mobile);
+        $request->session()->put('customer_portal', $this->identityFromAccount($selected, $mobile));
+
+        return redirect()->intended(route('portal.dashboard'))
+            ->with('success', 'اکنون اطلاعات '.$selected['tenant_name'].' را مشاهده می‌کنید.');
     }
 
     public function resend(Request $request): RedirectResponse
@@ -146,42 +198,45 @@ class CustomerPortalAuthController extends Controller
         }
 
         try {
-            $personal = CustomerPersonal::query()
-                ->whereKey($pending['personal_id'])
-                ->where('customer_id', $pending['customer_id'])
-                ->where('tenant_id', $pending['tenant_id'])
-                ->firstOrFail();
+            $personals = $this->customers->findPersonalsByMobile((string) $pending['mobile']);
+            if ($personals->isEmpty()) {
+                throw new \RuntimeException('No active portal account exists for this mobile number.');
+            }
         } catch (Throwable $exception) {
             Log::warning('Customer portal OTP resend failed.', ['exception' => $exception]);
 
             return redirect()->route('login')->with('auth_error', 'امکان ارسال مجدد کد وجود ندارد.');
         }
 
-        return $this->issueOtp($request, $personal, $pending['mobile']);
+        return $this->issueOtp($request, $personals, $pending['mobile']);
     }
 
     public function logout(Request $request): RedirectResponse
     {
-        $request->session()->forget(['customer_portal', self::OTP_SESSION_KEY]);
+        $request->session()->forget(['customer_portal', 'customer_portal_accounts', self::OTP_SESSION_KEY]);
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route('login')->with('logged_out', 'با امنیت کامل از حساب خود خارج شدید.');
     }
 
-    private function issueOtp(Request $request, CustomerPersonal $personal, string $mobile): RedirectResponse
+    /** @param Collection<int, \App\Models\Crm\CustomerPersonal> $personals */
+    private function issueOtp(Request $request, Collection $personals, string $mobile): RedirectResponse
     {
+        $personal = $personals->first();
+        $accounts = $personals
+            ->map(fn ($item): array => $this->customers->accountSummary($item))
+            ->values()
+            ->all();
         $otp = (string) random_int(100000, 999999);
         $expiresAt = now()->addSeconds(config('customer_portal.otp.expires_in_seconds'))->timestamp;
         $resendAt = now()->addSeconds(config('customer_portal.otp.resend_after_seconds'))->timestamp;
 
         $request->session()->put(self::OTP_SESSION_KEY, [
             'hash' => Hash::make($otp),
-            'customer_id' => (string) $personal->customer_id,
-            'personal_id' => (string) $personal->getKey(),
-            'tenant_id' => (string) $personal->tenant_id,
             'mobile' => $mobile,
             'name' => $personal->full_name ?: 'مشتری سپند',
+            'accounts' => $accounts,
             'attempts' => 0,
             'expires_at' => $expiresAt,
             'resend_at' => $resendAt,
@@ -192,6 +247,21 @@ class CustomerPortalAuthController extends Controller
         }
 
         return redirect()->route('login.verify');
+    }
+
+    /**
+     * @param  array<string, string>  $account
+     * @return array<string, string|int>
+     */
+    private function identityFromAccount(array $account, string $mobile): array
+    {
+        return [
+            'customer_id' => $account['customer_id'],
+            'personal_id' => $account['personal_id'],
+            'tenant_id' => $account['tenant_id'],
+            'mobile' => $mobile,
+            'authenticated_at' => now()->timestamp,
+        ];
     }
 
     private function rateKey(Request $request, string $mobile): string

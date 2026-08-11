@@ -27,8 +27,23 @@ class EnsureCustomerPortalAuthenticated
 
         $request->attributes->set('portalPersonal', $personal);
         $request->attributes->set('portalCustomer', $personal->customer);
+        $accounts = collect($request->session()->get('customer_portal_accounts', []))
+            ->filter(fn ($account): bool => is_array($account))
+            ->values();
+
+        if ($accounts->isEmpty()) {
+            $accounts = collect([$this->customers->accountSummary($personal)]);
+            $request->session()->put('customer_portal_accounts', $accounts->all());
+        }
+
+        $activeAccount = $accounts->first(fn (array $account): bool =>
+            (string) ($account['personal_id'] ?? '') === (string) $personal->getKey())
+            ?? $this->customers->accountSummary($personal);
+
         View::share('portalPersonal', $personal);
         View::share('portalCustomer', $personal->customer);
+        View::share('portalAccounts', $accounts);
+        View::share('portalActiveAccount', $activeAccount);
 
         return $next($request);
     }

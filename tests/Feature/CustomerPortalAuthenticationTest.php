@@ -11,6 +11,8 @@ class CustomerPortalAuthenticationTest extends TestCase
 {
     private string $tenantId = '00000000-0000-0000-0000-000000000001';
 
+    private string $secondTenantId = '00000000-0000-0000-0000-000000000002';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -57,6 +59,57 @@ class CustomerPortalAuthenticationTest extends TestCase
             ->assertRedirect()
             ->assertSessionHasErrors('mobile')
             ->assertSessionMissing('customer_portal_otp');
+    }
+
+    public function test_customer_can_choose_between_all_tenants_connected_to_the_same_mobile(): void
+    {
+        $this->seedCustomer('customer-a', 'personal-a', '09121234567', $this->tenantId, 'سپند مرکزی', 'شرکت آلفا');
+        $this->seedCustomer('customer-b', 'personal-b', '09121234567', $this->secondTenantId, 'نمایندگی جنوب', 'شرکت بتا');
+
+        $request = $this->post(route('login.otp'), ['mobile' => '09121234567']);
+        $otp = $request->getSession()->get('preview_otp');
+
+        $this->assertCount(2, $request->getSession()->get('customer_portal_otp.accounts'));
+
+        $this->post(route('login.verify.submit'), ['digits' => str_split($otp)])
+            ->assertRedirect(route('portal.accounts.index'))
+            ->assertSessionHas('customer_portal_accounts', fn (array $accounts): bool => count($accounts) === 2);
+
+        $this->get(route('portal.accounts.index'))
+            ->assertOk()
+            ->assertSee('سپند مرکزی')
+            ->assertSee('نمایندگی جنوب')
+            ->assertSee('شرکت آلفا')
+            ->assertSee('شرکت بتا');
+
+        $this->post(route('portal.accounts.select'), ['account' => 'personal-b'])
+            ->assertRedirect(route('portal.dashboard'))
+            ->assertSessionHas('customer_portal.tenant_id', $this->secondTenantId)
+            ->assertSessionHas('customer_portal.customer_id', 'customer-b');
+
+        $this->get(route('portal.dashboard'))
+            ->assertOk()
+            ->assertSee('نمایندگی جنوب');
+    }
+
+    public function test_customer_cannot_switch_to_an_account_that_was_not_verified_by_otp(): void
+    {
+        $this->seedCustomer('customer-a', 'personal-a', '09121234567');
+        $this->seedCustomer('customer-b', 'personal-b', '09123334444', $this->secondTenantId);
+
+        $this->withSession([
+            'customer_portal' => [
+                'customer_id' => 'customer-a', 'personal_id' => 'personal-a', 'tenant_id' => $this->tenantId,
+                'mobile' => '09121234567', 'authenticated_at' => now()->timestamp,
+            ],
+            'customer_portal_accounts' => [[
+                'customer_id' => 'customer-a', 'personal_id' => 'personal-a', 'tenant_id' => $this->tenantId,
+                'tenant_name' => 'سپند مرکزی', 'customer_name' => 'شرکت آلفا', 'person_name' => 'علی رضایی',
+            ]],
+        ])->post(route('portal.accounts.select'), ['account' => 'personal-b'])
+            ->assertRedirect()
+            ->assertSessionHasErrors('account')
+            ->assertSessionHas('customer_portal.customer_id', 'customer-a');
     }
 
     public function test_customer_cannot_open_another_customers_inquiry(): void
@@ -120,14 +173,33 @@ class CustomerPortalAuthenticationTest extends TestCase
             ->assertDontSee('یادداشت محرمانه عملیات');
     }
 
-    private function seedCustomer(string $customerId, string $personalId, string $mobile): void
+    private function seedCustomer(
+        string $customerId,
+        string $personalId,
+        string $mobile,
+        ?string $tenantId = null,
+        string $tenantName = 'سپند مرکزی',
+        string $company = 'شرکت نمونه'
+    ): void
     {
+        $tenantId ??= $this->tenantId;
+        DB::connection('crm')->table('tenants')->updateOrInsert(
+            ['id' => $tenantId],
+            [
+                'name' => $tenantName,
+                'subdomain' => 'tenant-'.substr($tenantId, -4),
+                'is_active' => true,
+                'is_default' => $tenantId === $this->tenantId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
         DB::connection('crm')->table('customers')->insert([
-            'id' => $customerId, 'tenant_id' => $this->tenantId, 'company' => 'شرکت نمونه',
+            'id' => $customerId, 'tenant_id' => $tenantId, 'company' => $company,
             'status' => 'actual', 'type' => 'company', 'created_at' => now(), 'updated_at' => now(),
         ]);
         DB::connection('crm')->table('customer_personal')->insert([
-            'id' => $personalId, 'tenant_id' => $this->tenantId, 'customer_id' => $customerId,
+            'id' => $personalId, 'tenant_id' => $tenantId, 'customer_id' => $customerId,
             'first_name' => 'علی', 'last_name' => 'رضایی', 'mobile' => $mobile,
             'created_at' => now(), 'updated_at' => now(),
         ]);
@@ -146,6 +218,10 @@ class CustomerPortalAuthenticationTest extends TestCase
     {
         $schema = Schema::connection('crm');
 
+        $schema->create('tenants', function (Blueprint $table): void {
+            $table->string('id')->primary(); $table->string('name'); $table->string('subdomain')->unique();
+            $table->boolean('is_active')->default(true); $table->boolean('is_default')->default(false); $table->timestamps();
+        });
         $schema->create('customers', function (Blueprint $table): void {
             $table->string('id')->primary(); $table->string('tenant_id'); $table->string('company')->nullable();
             $table->string('company_phone')->nullable(); $table->text('address')->nullable(); $table->string('status')->default('actual');
