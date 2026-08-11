@@ -2,19 +2,41 @@
 
 The customer portal authenticates CRM customers by mobile number and OTP, then exposes their inquiries, customer-visible shipment tracking, invoices, receipts, and profile data.
 
-## CRM and OTP configuration
+## Portal and CRM database configuration
 
-The portal uses the named `crm` database connection. When the CRM and portal share a database, the regular `DB_*` variables are used automatically. For a separate CRM database, set:
+The application uses two independent database connections:
+
+- `DB_*` is the database owned by `portal-customer`. Laravel migrations, consultation requests and any future portal-owned data are written here.
+- `CRM_DB_*` is the named `crm` connection used by every model under `App\Models\Crm`. Customer identity, inquiries, shipments, customer-visible tracking events, invoices and receipts are read from `sepand-crm` through this connection.
+
+The two databases may be hosted on the same MySQL server, but `DB_DATABASE` and `CRM_DB_DATABASE` must be different. Use a read-only CRM user with access only to the tables required by the portal.
 
 ```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sepand_portal
+DB_USERNAME=sepand_portal
+DB_PASSWORD=...
+
+CUSTOMER_PORTAL_DB_CONNECTION=crm
 CRM_DB_CONNECTION=mysql
 CRM_DB_HOST=127.0.0.1
 CRM_DB_PORT=3306
 CRM_DB_DATABASE=sepand_crm
-CRM_DB_USERNAME=...
+CRM_DB_USERNAME=sepand_portal_readonly
 CRM_DB_PASSWORD=...
 CUSTOMER_PORTAL_TENANT_ID=00000000-0000-0000-0000-000000000001
 ```
+
+Run migrations only against the portal's default database, then verify both connections:
+
+```bash
+php artisan migrate
+php artisan portal:check-databases
+```
+
+`portal:check-databases` rejects a configuration where both connections resolve to the same database and checks the required tables on both sides. The portal never runs migrations against the CRM connection.
 
 OTP codes are temporarily displayed on the verification screen as requested for the first release. After connecting an SMS provider, deliver the generated code in `CustomerPortalAuthController::issueOtp()` and disable the preview:
 

@@ -201,7 +201,7 @@ class MarketingSeoTest extends TestCase
         $pages = [
             '/' => config('marketing.page_keywords.home'),
             '/modules' => config('marketing.page_keywords.modules'),
-            '/compare/transport-software-vs-excel' => config('marketing.page_keywords.transport_software_vs_excel'),
+            '/compare/sepand-vs-other-transport-software' => config('marketing.page_keywords.sepand_vs_other_transport_software'),
             '/modules/crm' => config('site_modules.crm.keywords'),
             '/modules/pricing-sales' => config('site_modules.pricing-sales.keywords'),
             '/modules/booking' => config('site_modules.booking.keywords'),
