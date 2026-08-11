@@ -13,6 +13,7 @@ return [
     */
     'site_required_tables' => [
         'migrations',
+        'activity_log',
         'consultation_requests',
     ],
 

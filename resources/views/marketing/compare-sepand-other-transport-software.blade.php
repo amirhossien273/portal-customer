@@ -1,21 +1,21 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'سپند یا نرم‌افزارهای دیگر حمل‌ونقل؟ مقایسه | سپند';
-    $description = 'مقایسه سپند با نرم‌افزارهای دیگر بازار از نظر تخصص حمل، یکپارچگی CRM تا مالی، بازاریابی پیامکی، پرتال مشتریان و استقرار.';
+    $title = 'مقایسه سپند با رویان، سبا سیستم و زمزم رایانه گستر';
+    $description = 'مقایسه نرم‌افزار حمل‌ونقل سپند با رویان، سبا سیستم و زمزم رایانه گستر از نظر CRM، عملیات، مالی، رهگیری، پرتال مشتری و استقرار.';
     $canonical = route('compare.sepand-other-transport-software');
     $faqs = [
         [
-            'question' => 'آیا همه نرم‌افزارهای دیگر بازار امکانات کمتری از سپند دارند؟',
-            'answer' => 'خیر. نرم‌افزارهای بازار دامنه‌های متفاوتی دارند و بعضی از آن‌ها در یک حوزه مشخص مانند CRM عمومی، حسابداری، مدیریت ناوگان یا رهگیری تخصص بیشتری ارائه می‌کنند. مقایسه درست باید بر اساس فرایندهای موردنیاز شرکت شما انجام شود.',
+            'question' => 'آیا سپند از رویان، سبا سیستم و زمزم رایانه گستر بهتر است؟',
+            'answer' => 'هیچ پاسخ یکسانی برای همه شرکت‌ها وجود ندارد. سپند، رویان، سبا سیستم و زمزم رایانه گستر دامنه محصول، شیوه استقرار و ساختار ماژول متفاوتی دارند. انتخاب درست باید با اجرای سناریوی واقعی شرکت شما در دموی هر محصول انجام شود.',
         ],
         [
-            'question' => 'چطور سپند را منصفانه با نرم‌افزارهای دیگر مقایسه کنیم؟',
+            'question' => 'چطور سپند را منصفانه با رویان، سبا سیستم و زمزم رایانه گستر مقایسه کنیم؟',
             'answer' => 'یک سناریوی واقعی و یکسان—از ثبت لید و استعلام تا Booking، عملیات، اسناد، مالی و پرتال مشتری—را در دموی هر گزینه اجرا کنید. سپس تعداد ورود دوباره اطلاعات، پوشش فرایند، دسترسی‌ها و گزارش نهایی را مقایسه کنید.',
         ],
         [
-            'question' => 'اگر فقط CRM یا حسابداری نیاز داشته باشیم، سپند انتخاب مناسبی است؟',
-            'answer' => 'اگر نیاز شما فقط یک ابزار عمومی و مستقل است، یک نرم‌افزار تخصصی همان حوزه ممکن است انتخاب ساده‌تری باشد. مزیت اصلی سپند زمانی روشن می‌شود که CRM، فروش، عملیات حمل، اسناد، مالی و خدمات مشتری باید به یکدیگر متصل باشند.',
+            'question' => 'اطلاعات این مقایسه از کجا آمده است؟',
+            'answer' => 'اطلاعات رقبا از توضیحات عمومی وب‌سایت رسمی آن‌ها در مرداد ۱۴۰۵ گردآوری شده است. چون امکانات، پلن‌ها و شرایط استقرار ممکن است تغییر کنند، وضعیت نهایی هر قابلیت باید در دمو و پیشنهاد رسمی همان شرکت تأیید شود.',
         ],
         [
             'question' => 'برای انتخاب نرم‌افزار حمل‌ونقل چه هزینه‌هایی را باید مقایسه کرد؟',
@@ -39,7 +39,9 @@
             'isPartOf' => ['@id' => route('home').'#website'],
             'about' => [
                 ['@type' => 'SoftwareApplication', 'name' => 'نرم‌افزار مدیریت حمل‌ونقل سپند', 'url' => route('home')],
-                ['@type' => 'Thing', 'name' => 'نرم‌افزارهای مدیریت حمل‌ونقل و فورواردری بازار'],
+                ['@type' => 'SoftwareApplication', 'name' => 'رویان TMS', 'url' => 'https://royantms.com/'],
+                ['@type' => 'SoftwareApplication', 'name' => 'سبا سیستم', 'url' => 'https://sabanetsystem.com/'],
+                ['@type' => 'SoftwareApplication', 'name' => 'نرم‌افزار جامع مدیریت حمل‌ونقل بین‌المللی زمزم رایانه گستر', 'url' => 'https://zrgco.ir/zrgtransport/'],
             ],
             'significantLink' => [
                 route('modules'),
@@ -53,7 +55,7 @@
             '@id' => $canonical.'#breadcrumb',
             'itemListElement' => [
                 ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => 'مقایسه سپند با نرم‌افزارهای دیگر', 'item' => $canonical],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'مقایسه سپند با رویان، سبا سیستم و زمزم رایانه گستر', 'item' => $canonical],
             ],
         ],
         [
@@ -70,23 +72,23 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-comparison.css') }}?v=20260811-2">
+<link rel="stylesheet" href="{{ asset('assets/css/marketing-comparison.css') }}?v=20260811-3">
 @endpush
 
 @section('content')
 <section class="page-hero comparison-hero">
     <div class="container hero-inner">
         <div class="hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مقایسه سپند با نرم‌افزارهای دیگر</span></div>
-            <h1>سپند یا نرم‌افزارهای دیگر؛<br><span>کدام مناسب‌تر است؟</span></h1>
-            <p>این صفحه سپند را با الگوی رایج نرم‌افزارهای دیگر بازار مقایسه می‌کند، نه با یک برند مشخص. نتیجه هر معیار ممکن است در محصولات مختلف متفاوت باشد.</p>
+            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مقایسه نرم‌افزارهای حمل‌ونقل</span></div>
+            <h1>سپند در مقایسه با<br><span>رویان، سبا سیستم و زمزم رایانه گستر</span></h1>
+            <p>در این صفحه سپند را با سه نرم‌افزار نام‌دار بازار ایران مقایسه می‌کنیم. مبنا، امکانات اعلام‌شده در وب‌سایت رسمی هر محصول در مرداد ۱۴۰۵ است؛ جزئیات نهایی هر قابلیت، پلن و استقرار را در دموی همان محصول بررسی کنید.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول مقایسه</a><a class="btn btn-outline" href="#decision">انتخاب بر اساس نیاز</a></div>
         </div>
-        <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با نرم‌افزارهای دیگر بازار">
+        <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با رویان، سبا سیستم و زمزم رایانه گستر">
             <div class="comparison-visual">
                 <div class="comparison-visual-option is-product"><span>راهکار تخصصی</span><strong>سپند</strong><small>از CRM تا عملیات و مالی</small></div>
                 <div class="comparison-visual-vs">یا</div>
-                <div class="comparison-visual-option is-market"><span>گزینه‌های بازار</span><strong>نرم‌افزارهای<br>دیگر</strong><small>عمومی یا متمرکز بر یک حوزه</small></div>
+                <div class="comparison-visual-option is-market"><span>گزینه‌های بازار</span><strong>رویان، سبا سیستم<br>و زمزم رایانه گستر</strong><small>سه راهکار تخصصی حمل‌ونقل</small></div>
             </div>
         </div>
     </div>
@@ -96,16 +98,16 @@
     <div class="container">
         <div class="quick-verdict reveal">
             <span class="quick-verdict-label">پاسخ کوتاه</span>
-            <h2 id="quick-comparison-title">تفاوت اصلی در دامنه تخصص و میزان یکپارچگی است</h2>
-            <p>سپند برای اتصال فرایندهای شرکت‌های حمل‌ونقل بین‌المللی و فورواردری، از CRM و نرخ‌دهی تا Booking، عملیات، اسناد، مالی و پرتال مشتری طراحی شده است. نرم‌افزارهای دیگر بازار ممکن است عمومی باشند یا فقط روی CRM، حسابداری، ناوگان یا یک بخش عملیاتی تمرکز کنند. اگر پوشش یکپارچه می‌خواهید سپند را بررسی کنید؛ اگر نیازتان محدود و تخصصی است، گزینه متمرکزتر می‌تواند مناسب‌تر باشد.</p>
+            <h2 id="quick-comparison-title">هر چهار محصول تخصصی‌اند؛ تفاوت در ترکیب ماژول‌ها و شیوه ارائه است</h2>
+            <p>سپند، رویان، سبا سیستم و زمزم رایانه گستر همگی برای فرایندهای حمل‌ونقل بین‌المللی معرفی شده‌اند، اما روی یک معماری و مدل ارائه یکسان بنا نشده‌اند. سپند بر اتصال CRM، فروش، عملیات، مالی، پیامک و پرتال مشتری در یک جریان مشترک تأکید دارد؛ رویان محصولی تحت وب برای عملیات بین‌المللی است؛ سبا سیستم مجموعه‌ای ماژولار برای فورواردری و حمل ترکیبی ارائه می‌کند؛ و راهکار زمزم رایانه گستر با سابقه طولانی‌تر، عملیات چهار شیوه حمل و زیرسیستم‌های قابل‌افزودن را پوشش می‌دهد.</p>
         </div>
     </div>
 </section>
 
 <section class="section" aria-labelledby="options-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">دو گزینه در یک نگاه</span><h2 class="section-title" id="options-title">هر گزینه برای چه شرایطی<br><span>طراحی شده است؟</span></h2></div>
-        <div class="option-grid">
+        <div class="section-head reveal"><span class="section-label">چهار گزینه در یک نگاه</span><h2 class="section-title" id="options-title">هر نرم‌افزار چگونه<br><span>خود را معرفی می‌کند؟</span></h2></div>
+        <div class="option-grid named-option-grid">
             <article class="option-card is-product reveal">
                 <span class="option-badge">گزینه فرایندمحور</span>
                 <h3>نرم‌افزار تخصصی حمل‌ونقل سپند</h3>
@@ -116,13 +118,34 @@
                 </dl>
             </article>
             <article class="option-card is-market reveal">
-                <span class="option-badge">گزینه‌های متنوع بازار</span>
-                <h3>نرم‌افزارهای دیگر</h3>
+                <span class="option-badge">راهکار تحت وب</span>
+                <h3>رویان TMS</h3>
                 <dl>
-                    <div><dt>تعریف کوتاه</dt><dd>مجموعه‌ای از CRMهای عمومی، نرم‌افزارهای مالی، مدیریت ناوگان و سامانه‌های حمل با دامنه‌های متفاوت.</dd></div>
-                    <div><dt>مناسب برای</dt><dd>شرکت‌هایی که یک نیاز مشخص دارند یا قبلاً چند ابزار تخصصی را به هم متصل کرده‌اند.</dd></div>
-                    <div><dt>مهم‌ترین مزیت</dt><dd>تنوع انتخاب و امکان تمرکز بر یک حوزه خاص.</dd></div>
+                    <div><dt>تعریف رسمی</dt><dd>سامانه تحت وب برای فرایندهای حمل بین‌المللی، اسناد، ارتباط مشتری، گزارش‌گیری، امور مالی و رهگیری.</dd></div>
+                    <div><dt>دامنه اعلام‌شده</dt><dd>حمل هوایی، زمینی و دریایی برای فورواردرها و کریرها.</dd></div>
+                    <div><dt>ارائه</dt><dd>پلن اختصاصی، ابری اشتراکی و ابری اختصاصی.</dd></div>
                 </dl>
+                <a class="option-source" href="https://royantms.com/" target="_blank" rel="nofollow noopener noreferrer">اطلاعات رسمی رویان</a>
+            </article>
+            <article class="option-card is-market reveal">
+                <span class="option-badge">راهکار ماژولار</span>
+                <h3>سبا سیستم</h3>
+                <dl>
+                    <div><dt>تعریف رسمی</dt><dd>نرم‌افزار فورواردری و حمل ترکیبی با ماژول‌های CRM، رهگیری، مالی، هوش تجاری و باشگاه مشتریان.</dd></div>
+                    <div><dt>دامنه اعلام‌شده</dt><dd>عملیات فورواردری و حمل چندوجهی، همراه با محصولات تخصصی کریری و نمایندگی کشتیرانی.</dd></div>
+                    <div><dt>ارائه</dt><dd>تحت وب، ماژولار و قابل‌اتصال به سامانه‌های دیگر از طریق API.</dd></div>
+                </dl>
+                <a class="option-source" href="https://sabanetsystem.com/" target="_blank" rel="nofollow noopener noreferrer">اطلاعات رسمی سبا سیستم</a>
+            </article>
+            <article class="option-card is-market reveal">
+                <span class="option-badge">راهکار باسابقه</span>
+                <h3>زمزم رایانه گستر</h3>
+                <dl>
+                    <div><dt>تعریف رسمی</dt><dd>سیستم جامع مدیریت حمل‌ونقل بین‌المللی برای شرکت‌های فورواردری، کریری یا ترکیبی.</dd></div>
+                    <div><dt>دامنه اعلام‌شده</dt><dd>حمل زمینی، هوایی، دریایی و ریلی، اسناد، مانیفست، هزینه‌ها و رهگیری.</dd></div>
+                    <div><dt>ارائه</dt><dd>محیط شبکه؛ دسترسی اینترنتی، استقرار ابری و زیرسیستم‌ها با برآورد جداگانه.</dd></div>
+                </dl>
+                <a class="option-source" href="https://zrgco.ir/zrgtransport/" target="_blank" rel="nofollow noopener noreferrer">اطلاعات رسمی زمزم رایانه گستر</a>
             </article>
         </div>
     </div>
@@ -130,24 +153,21 @@
 
 <section class="section soft" id="comparison-table" aria-labelledby="comparison-table-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">جدول تصمیم‌گیری</span><h2 class="section-title" id="comparison-table-title">مقایسه سپند با<br><span>نرم‌افزارهای دیگر بازار</span></h2><p class="section-sub">ستون «نرم‌افزارهای دیگر» یک الگوی عمومی است؛ برای تصمیم نهایی باید همان معیارها را در دموی محصول موردنظر خود بررسی کنید.</p></div>
+        <div class="section-head reveal"><span class="section-label">جدول تصمیم‌گیری</span><h2 class="section-title" id="comparison-table-title">سپند، رویان، سبا سیستم و<br><span>زمزم رایانه گستر در یک جدول</span></h2><p class="section-sub">اطلاعات ستون رقبا از وب‌سایت رسمی آن‌ها در مرداد ۱۴۰۵ استخراج شده است. عبارت «اعلام نشده» به معنی نبود قابلیت نیست؛ یعنی در صفحه عمومی بررسی‌شده، تصریح روشنی برای آن پیدا نشد.</p></div>
         <div class="comparison-table-wrap reveal">
             <table class="comparison-table">
-                <caption>مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند و نرم‌افزارهای دیگر بازار بر اساس معیارهای مؤثر در انتخاب</caption>
-                <thead><tr><th scope="col">معیار</th><th scope="col">سپند</th><th scope="col">نرم‌افزارهای دیگر</th></tr></thead>
+                <caption>مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با رویان، سبا سیستم و زمزم رایانه گستر بر اساس اطلاعات عمومی محصولات</caption>
+                <thead><tr><th scope="col">معیار</th><th scope="col">سپند</th><th scope="col">رویان</th><th scope="col">سبا سیستم</th><th scope="col">زمزم رایانه گستر</th></tr></thead>
                 <tbody>
-                    <tr><th scope="row">تمرکز اصلی</th><td class="is-strong">حمل بین‌المللی و فورواردری</td><td>عمومی یا حوزه‌محور</td></tr>
-                    <tr><th scope="row">CRM، لید و استعلام</th><td class="is-strong">متصل به پرونده حمل</td><td>بسته به محصول</td></tr>
-                    <tr><th scope="row">نرخ‌دهی و Booking</th><td class="is-strong">در جریان مشترک فروش</td><td>بسته به محصول</td></tr>
-                    <tr><th scope="row">حمل دریایی، هوایی، زمینی و ریلی</th><td class="is-strong">در یک پلتفرم</td><td>ممکن است تفکیک‌شده باشد</td></tr>
-                    <tr><th scope="row">عملیات، اسناد و وظایف</th><td class="is-strong">فرایند متصل و قابل‌ردیابی</td><td>بسته به دامنه محصول</td></tr>
-                    <tr><th scope="row">مالی چندارزی و سود پرونده</th><td class="is-strong">متصل به عملیات حمل</td><td>عمومی یا نیازمند اتصال</td></tr>
-                    <tr><th scope="row">پیامک و سابقه ارتباطات</th><td class="is-strong">ارسال و لاگ در پرونده</td><td>بسته به محصول یا افزونه</td></tr>
-                    <tr><th scope="row">پرتال مشتری و رهگیری</th><td class="is-strong">استعلام، محموله و مالی</td><td>بسته به محصول</td></tr>
-                    <tr><th scope="row">گردش کار و سطح دسترسی</th><td class="is-strong">قابل‌تعریف بر اساس نقش</td><td>بسته به معماری محصول</td></tr>
-                    <tr><th scope="row">استقرار و سفارشی‌سازی</th><td>پس از تحلیل فرایند شرکت</td><td>از آماده تا سفارشی</td></tr>
-                    <tr><th scope="row">تمرکز عمیق روی یک نیاز مستقل</th><td>در چارچوب پلتفرم</td><td class="is-strong">ممکن است قوی‌تر باشد</td></tr>
-                    <tr><th scope="row">تعرفه و زمان راه‌اندازی</th><td>متناسب با ماژول و استقرار</td><td>بسته به محصول و قرارداد</td></tr>
+                    <tr><th scope="row">تمرکز اصلی</th><td class="is-strong">فورواردری و حمل بین‌المللی یکپارچه</td><td>حمل بین‌المللی برای فورواردر و کریر</td><td>فورواردری، حمل ترکیبی و راهکارهای کریری</td><td>حمل بین‌المللی برای فورواردر و کریر</td></tr>
+                    <tr><th scope="row">شیوه‌های حمل اعلام‌شده</th><td class="is-strong">دریایی، هوایی، زمینی و ریلی</td><td>هوایی، زمینی و دریایی</td><td>حمل ترکیبی؛ دریایی، زمینی و هوایی</td><td>زمینی، هوایی، دریایی و ریلی</td></tr>
+                    <tr><th scope="row">CRM، فروش و استعلام</th><td class="is-strong">CRM، لید و استعلام متصل به پرونده حمل</td><td>ارتباط مشتری و فرایند استعلام</td><td>CRM و مدیریت بازاریابی و فروش</td><td>ثبت استعلام؛ اتصال Microsoft CRM با هزینه جداگانه</td></tr>
+                    <tr><th scope="row">عملیات و اسناد حمل</th><td class="is-strong">Booking، پرونده، اسناد و وظایف در یک جریان</td><td>عملیات صادرات و واردات و اتوماسیون اسناد</td><td>عملیات فورواردری، بارنامه و مستندسازی</td><td>سفر، مانیفست، بارنامه، راه‌نامه و بایگانی اسناد</td></tr>
+                    <tr><th scope="row">مالی و هزینه پرونده</th><td class="is-strong">مالی چندارزی، دریافت‌وپرداخت و سود پرونده</td><td>امور مالی و اتصال به سیستم‌های مالی</td><td>کنترل مالی چندارزی و مدیریت یکپارچه مالی</td><td>هزینه و صورتحساب حمل؛ اتصال به سیستم مالی به‌صورت زیرسیستم</td></tr>
+                    <tr><th scope="row">رهگیری و پرتال مشتری</th><td class="is-strong">پرتال استعلام، محموله، رهگیری و مالی</td><td>رهگیری محموله و اطلاع‌رسانی خودکار</td><td>رهگیری و پرتال متمرکز مشتریان</td><td>رهگیری عملیاتی؛ اطلاع‌رسانی وب‌سایت به‌صورت زیرسیستم</td></tr>
+                    <tr><th scope="row">پیامک و ارتباطات</th><td class="is-strong">ارسال پیامک و ثبت سابقه در پرونده</td><td>پیام‌رسانی داخلی و پیام‌های خودکار</td><td>اطلاع‌رسانی خودکار و ماژول‌های ارتباط با مشتری</td><td>اطلاع‌رسانی پیامکی با برآورد هزینه جداگانه</td></tr>
+                    <tr><th scope="row">نوع استقرار اعلام‌شده</th><td>متناسب با تحلیل و قرارداد استقرار</td><td>اختصاصی، ابری اشتراکی یا ابری اختصاصی</td><td>تحت وب و ماژولار</td><td>شبکه داخلی؛ اینترنت و ابر با برآورد جداگانه</td></tr>
+                    <tr><th scope="row">سفارشی‌سازی و اتصال</th><td>ترکیب ماژول‌ها و استقرار متناسب با فرایند</td><td>ماژول‌های قابل تنظیم و API؛ توسعه اختصاصی مشتری اعلام نشده</td><td>ساختار ماژولار، قابل توسعه و دارای API</td><td>گزارش‌ها و زیرسیستم‌های درخواستی با برآورد جداگانه</td></tr>
                 </tbody>
             </table>
         </div>
@@ -158,10 +178,10 @@
     <div class="container">
         <div class="section-head reveal"><span class="section-label">تفاوت‌های کلیدی</span><h2 class="section-title" id="differences-title">چه چیزی نتیجه انتخاب را<br><span>تغییر می‌دهد؟</span></h2></div>
         <div class="difference-grid">
-            <article class="difference-card reveal"><span>۰۱</span><h3>تخصص حمل بین‌المللی</h3><p>سپند برای پیوند مشتری، نرخ، Booking و پرونده حمل طراحی شده است؛ برخی گزینه‌های بازار عمومی‌اند یا روی نوع دیگری از حمل تمرکز دارند.</p></article>
-            <article class="difference-card reveal"><span>۰۲</span><h3>یکپارچگی در برابر ابزارهای مجزا</h3><p>مزیت سپند جریان مشترک CRM تا مالی و پرتال مشتری است؛ گزینه‌های دیگر ممکن است در یک ماژول مستقل عمیق‌تر باشند.</p></article>
-            <article class="difference-card reveal"><span>۰۳</span><h3>ارتباط مستقیم با مشتری</h3><p>پیامک، سوابق ارتباط، استعلام و رهگیری در کنار پرونده مشتری قرار می‌گیرند؛ در سایر محصولات این پوشش به امکانات یا افزونه‌ها بستگی دارد.</p></article>
-            <article class="difference-card reveal"><span>۰۴</span><h3>استقرار متناسب با فرایند</h3><p>سپند پس از شناخت ساختار شرکت و ترکیب ماژول‌ها پیشنهاد می‌شود؛ بعضی گزینه‌ها سریع‌تر و با فرایند ازپیش‌تعریف‌شده راه‌اندازی می‌شوند.</p></article>
+            <article class="difference-card reveal"><span>۰۱</span><h3>دامنه حمل</h3><p>سپند و زمزم رایانه گستر هر چهار شیوه دریایی، هوایی، زمینی و ریلی را صریحاً معرفی کرده‌اند؛ رویان سه شیوه هوایی، زمینی و دریایی و سبا سیستم حمل ترکیبی را برجسته می‌کند.</p></article>
+            <article class="difference-card reveal"><span>۰۲</span><h3>معماری CRM تا مالی</h3><p>سپند این مسیر را در یک پرونده مشترک عرضه می‌کند. سبا سیستم نیز مجموعه ماژولار گسترده دارد؛ رویان بر عملیات تحت وب و زمزم بر زیرسیستم‌های قابل‌افزودن تکیه دارند.</p></article>
+            <article class="difference-card reveal"><span>۰۳</span><h3>تجربه مشتری</h3><p>سپند و سبا سیستم پرتال مشتری را صریح معرفی کرده‌اند. رویان رهگیری و اطلاع‌رسانی را پوشش می‌دهد و زمزم، اطلاع‌رسانی از طریق وب‌سایت و پیامک را به‌صورت زیرسیستم ارائه می‌کند.</p></article>
+            <article class="difference-card reveal"><span>۰۴</span><h3>شیوه استقرار</h3><p>رویان سه مدل اختصاصی و ابری را اعلام کرده است؛ سبا سیستم تحت وب است؛ زمزم شبکه داخلی را مبنا قرار داده و اینترنت یا ابر را جداگانه ارائه می‌کند؛ استقرار سپند پس از تحلیل فرایند پیشنهاد می‌شود.</p></article>
         </div>
     </div>
 </section>
@@ -181,13 +201,13 @@
                 </ul>
             </article>
             <article class="decision-card is-market reveal">
-                <h3>نرم‌افزارهای دیگر مناسب‌ترند اگر:</h3>
+                <h3>رویان، سبا سیستم یا زمزم رایانه گستر را جدی‌تر بررسی کنید اگر:</h3>
                 <ul>
-                    <li>فقط یک CRM، حسابداری یا ابزار مستقل نیاز دارید.</li>
-                    <li>تمرکز اصلی شما مدیریت ناوگان، GPS یا حمل داخلی است.</li>
-                    <li>اکوسیستم فعلی شرکت با محصول دیگری یکپارچه شده است.</li>
-                    <li>به قابلیت بسیار تخصصی خارج از دامنه فعلی سپند نیاز دارید.</li>
-                    <li>راه‌اندازی آماده و بدون تحلیل فرایند، اولویت اصلی شماست.</li>
+                    <li>مدل ابری پلن‌بندی‌شده و قیمت عمومی رویان با نیازتان هم‌راستاست.</li>
+                    <li>سبد ماژولار و راهکارهای تخصصی کریری یا نمایندگی کشتیرانی سبا سیستم برایتان مهم است.</li>
+                    <li>ساختار شبکه داخلی و زیرسیستم‌های جداگانه زمزم با زیرساخت سازمانتان هماهنگ‌تر است.</li>
+                    <li>اکوسیستم فعلی شرکت شما از قبل با یکی از این محصولات یکپارچه شده است.</li>
+                    <li>دموی یکی از رقبا سناریوی واقعی شما را با تغییر فرایند کمتر پوشش می‌دهد.</li>
                 </ul>
             </article>
         </div>
@@ -199,7 +219,7 @@
         <div class="final-decision reveal">
             <span class="section-label">نتیجه مقایسه</span>
             <h2 id="final-decision-title">در نهایت کدام را انتخاب کنیم؟</h2>
-            <p>اگر به یک مسیر یکپارچه و تخصصی از جذب مشتری تا عملیات، مالی و خدمات مشتری نیاز دارید، سپند گزینه قابل‌بررسی‌تری است. اگر فقط یک نیاز مستقل دارید یا زیرساخت فعلی شما با محصول دیگری هماهنگ شده، نرم‌افزار دیگری می‌تواند انتخاب بهتری باشد. تصمیم نهایی را با اجرای یک سناریوی واقعی در دموی هر گزینه و مقایسه هزینه کل استقرار بگیرید.</p>
+            <p>سپند زمانی گزینه جدی‌تری است که اتصال CRM، فروش، عملیات، مالی، پیامک و پرتال مشتری برایتان معیار اصلی باشد. رویان را برای تجربه تحت وب و مدل‌های استقرار اعلام‌شده، سبا سیستم را برای سبد ماژولار فورواردری و کریری، و زمزم رایانه گستر را برای فرایندهای باسابقه چهار شیوه حمل و استقرار شبکه‌ای بررسی کنید. تصمیم نهایی را با اجرای یک سناریوی واقعی و یکسان در دموی هر چهار محصول و مقایسه هزینه کل استقرار بگیرید.</p>
         </div>
     </div>
 </section>
@@ -227,5 +247,5 @@
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>هنوز مطمئن نیستید کدام نرم‌افزار مناسب شماست؟</h2><p>فرایند فعلی، ابزارهای موجود و نیازهای تیم شما را بررسی می‌کنیم تا معیارهای انتخاب و تناسب سپند با سازمانتان روشن شود.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="comparison_other_software_consultation">درخواست مشاوره</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>هنوز بین سپند، رویان، سبا سیستم و زمزم رایانه گستر مردد هستید؟</h2><p>سناریوی واقعی، ابزارهای موجود و نیازهای تیم شما را بررسی می‌کنیم تا معیارهای انتخاب و تناسب سپند با سازمانتان روشن شود.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="comparison_named_software_consultation">درخواست مشاوره</a></div></div></div></section>
 @endsection

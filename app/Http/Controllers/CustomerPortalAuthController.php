@@ -40,13 +40,15 @@ class CustomerPortalAuthController extends Controller
             ]);
         }
 
-        $rateKey = $this->rateKey($request, $mobile);
-        if (RateLimiter::tooManyAttempts($rateKey, config('customer_portal.otp.max_requests'))) {
-            return back()->withInput()->withErrors([
-                'mobile' => 'تعداد درخواست‌ها بیش از حد مجاز است. چند دقیقه دیگر دوباره تلاش کنید.',
-            ]);
-        }
-        RateLimiter::hit($rateKey, config('customer_portal.otp.request_decay_seconds'));
+        // TODO: Re-enable the per-mobile OTP limiter after the temporary
+        // preview/testing phase is finished.
+        // $rateKey = $this->rateKey($request, $mobile);
+        // if (RateLimiter::tooManyAttempts($rateKey, config('customer_portal.otp.max_requests'))) {
+        //     return back()->withInput()->withErrors([
+        //         'mobile' => 'تعداد درخواست‌ها بیش از حد مجاز است. چند دقیقه دیگر دوباره تلاش کنید.',
+        //     ]);
+        // }
+        // RateLimiter::hit($rateKey, config('customer_portal.otp.request_decay_seconds'));
 
         try {
             $personal = $this->customers->findPersonalByMobile($mobile);
