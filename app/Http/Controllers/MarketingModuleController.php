@@ -26,6 +26,10 @@ class MarketingModuleController extends Controller
             'title' => $modules[$module]['seo_title'],
             'description' => $modules[$module]['meta_description'],
             'canonical' => route('site.modules.show', ['module' => $module]),
+            'image' => asset('assets/images/marketing/modules/'.$module.'-hero.webp'),
+            'imageAlt' => 'نمای ماژول '.$modules[$module]['name'].' نرم‌افزار سپند',
+            'imageWidth' => 1536,
+            'imageHeight' => 1024,
             'page' => $page,
         ]);
     }

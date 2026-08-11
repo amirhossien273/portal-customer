@@ -94,11 +94,114 @@ class MarketingSeoTest extends TestCase
         }
     }
 
+    public function test_priority_product_pages_describe_the_current_product_capabilities(): void
+    {
+        $home = $this->get('/')->assertOk();
+        $homeContent = $home->getContent();
+
+        $home
+            ->assertSee('<meta name="description" content="سپند، نرم‌افزار مدیریت حمل‌ونقل با CRM، تحلیل مشتری، مقایسه تأمین‌کننده، هشدار نرخ، عملیات، مالی و پرتال مشتریان برای رهگیری محموله.">', false)
+            ->assertSee('بازاریابی پیامکی و ارتباط با مشتری', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/crm#crm-sms"', false)
+            ->assertSee('ارسال پیامک از CRM', false)
+            ->assertSee('پرتال مشتریان سپند همین جریان را تا خدمات پس از فروش ادامه می‌دهد', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/customer-portal-tracking"', false)
+            ->assertSee('سود و ارزش هر مشتری', false)
+            ->assertSee('مقایسه تأمین‌کنندگان', false)
+            ->assertSee('هشدار پیش از انقضا', false)
+            ->assertSee('پیش‌فاکتورهای ۴۸ ساعته', false);
+        $this->assertSame(1, substr_count($homeContent, '<h1'));
+
+        $modules = $this->get('/modules')->assertOk();
+        $modulesContent = $modules->getContent();
+
+        $modules
+            ->assertSee('<title>ماژول‌های نرم‌افزار حمل‌ونقل و لجستیک | سپند</title>', false)
+            ->assertSee('<meta name="description" content="ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM و تحلیل مشتری تا مقایسه تأمین‌کننده، هشدار نرخ، Booking، عملیات، مالی و پرتال مشتریان.">', false)
+            ->assertSee('از جذب مشتری تا تصمیم‌گیری و عملیات', false)
+            ->assertSee('تنظیمات مستقل پنل برای هر سازمان', false)
+            ->assertSee('خدمات سلف‌سرویس مشتری', false)
+            ->assertSee('گزارش‌هایی که فقط عدد نشان نمی‌دهند', false)
+            ->assertSee('تحلیل درآمد و سود مشتریان', false)
+            ->assertSee('مقایسه چندمعیاره تأمین‌کنندگان', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/crm#crm-sms"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/customer-portal-tracking"', false)
+            ->assertSee('"@type":"CollectionPage"', false)
+            ->assertSee('"@type":"ItemList"', false)
+            ->assertSee('"@type":"BreadcrumbList"', false);
+        $this->assertSame(1, substr_count($modulesContent, '<h1'));
+
+        $crm = $this->get('/modules/crm')->assertOk();
+        $crmContent = $crm->getContent();
+
+        $crm
+            ->assertSee('<meta name="description" content="'.e(config('site_modules.crm.meta_description')).'">', false)
+            ->assertSee('id="crm-sms"', false)
+            ->assertSee('ارسال پیامک و مشاهده سوابق', false)
+            ->assertSee('در صفحه مشتری، لید یا استعلام', false)
+            ->assertSee('کلید API و شماره خط فراز اس‌ام‌اس', false)
+            ->assertSee('id="crm-analytics"', false)
+            ->assertSee('دریافت‌های تأییدشده منهای پرداخت‌های انجام‌شده', false)
+            ->assertSee('پیگیری پیش‌فاکتورهای ۴۸ ساعته', false)
+            ->assertSee('راهنمای تعاملی لید و مشتری', false)
+            ->assertSee('"@type":"FAQPage"', false)
+            ->assertSee('"@type":"BreadcrumbList"', false);
+        $this->assertSame(1, substr_count($crmContent, '<h1'));
+
+        $pricingSales = $this->get('/modules/pricing-sales')->assertOk();
+        $pricingSalesContent = $pricingSales->getContent();
+
+        $pricingSales
+            ->assertSee('<meta name="description" content="'.e(config('site_modules.pricing-sales.meta_description')).'">', false)
+            ->assertSee('id="pricing-intelligence"', false)
+            ->assertSee('مقایسه تأمین‌کننده فراتر از ارزان‌ترین نرخ', false)
+            ->assertSee('هشدار انقضای نرخ در بازه هفت‌روزه', false)
+            ->assertSee('پیش‌فاکتور ۴۸ ساعته با مسئول مشخص', false)
+            ->assertSee('دسترسی درست برای هر کاربر', false)
+            ->assertSee('assets/images/marketing/modules/pricing-sales-hero.webp', false)
+            ->assertSee('<meta property="og:image:width" content="1536">', false)
+            ->assertSee('"@type":"FAQPage"', false)
+            ->assertSee('"@type":"BreadcrumbList"', false);
+        $this->assertSame(1, substr_count($pricingSalesContent, '<h1'));
+
+        $portal = $this->get('/modules/customer-portal-tracking')->assertOk();
+        $portalContent = $portal->getContent();
+
+        $portal
+            ->assertSee('<title>پرتال مشتریان حمل‌ونقل و رهگیری محموله | سپند</title>', false)
+            ->assertSee('<meta name="description" content="پرتال مشتریان سپند با ورود امن OTP، وضعیت استعلام، محموله و رویدادهای مجاز رهگیری را همراه صورتحساب و رسید از اطلاعات یکپارچه CRM نمایش می‌دهد.">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/customer-portal-tracking">', false)
+            ->assertSee('از استعلام تا رهگیری و امور مالی', false)
+            ->assertSee('ورود با شماره موبایل و OTP', false)
+            ->assertSee('مشاهده استعلام‌ها', false)
+            ->assertSee('رهگیری محموله و timeline رویدادها', false)
+            ->assertSee('صورتحساب‌ها و رسیدها', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/transport-operations"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/finance-accounting"', false)
+            ->assertSee('"@type":"SoftwareApplication"', false)
+            ->assertSee('"@type":"FAQPage"', false)
+            ->assertSee('"@type":"BreadcrumbList"', false)
+            ->assertDontSee('اسناد قابل انتشار', false);
+        $this->assertSame(1, substr_count($portalContent, '<h1'));
+
+        foreach ([$homeContent, $modulesContent, $crmContent, $pricingSalesContent, $portalContent] as $content) {
+            preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $content, $structuredData);
+            $this->assertNotEmpty($structuredData[1]);
+
+            foreach ($structuredData[1] as $json) {
+                $this->assertIsArray(json_decode($json, true, 512, JSON_THROW_ON_ERROR));
+            }
+        }
+    }
+
     public function test_keyword_map_remains_internal_and_meta_keywords_are_not_rendered(): void
     {
         $pages = [
             '/' => config('marketing.page_keywords.home'),
             '/modules' => config('marketing.page_keywords.modules'),
+            '/compare/transport-software-vs-excel' => config('marketing.page_keywords.transport_software_vs_excel'),
             '/modules/crm' => config('site_modules.crm.keywords'),
             '/modules/pricing-sales' => config('site_modules.pricing-sales.keywords'),
             '/modules/booking' => config('site_modules.booking.keywords'),
@@ -115,8 +218,8 @@ class MarketingSeoTest extends TestCase
             '/consultation' => config('marketing.page_keywords.consultation'),
         ];
 
-        $this->assertCount(16, $pages);
-        $this->assertSame(45, array_sum(array_map('count', $pages)));
+        $this->assertCount(17, $pages);
+        $this->assertSame(54, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
@@ -161,7 +264,7 @@ class MarketingSeoTest extends TestCase
         }
 
         $this->assertSame(
-            ['پرتال مشتریان حمل و نقل', 'رهگیری وضعیت محموله'],
+            ['پرتال مشتریان حمل و نقل', 'نرم افزار رهگیری محموله برای مشتریان'],
             config('site_modules.customer-portal-tracking.keywords')
         );
     }

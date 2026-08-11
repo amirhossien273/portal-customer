@@ -4,8 +4,12 @@
     @include('layouts.partials.google-analytics')
     @php
         $pageTitle = $title ?? 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل | سپند';
-        $pageDescription = $description ?? 'سپند؛ نرم‌افزار یکپارچه CRM، فروش، عملیات، اسناد و مالی برای شرکت‌های حمل‌ونقل، فورواردری و لجستیک.';
+        $pageDescription = $description ?? 'سپند؛ نرم‌افزار یکپارچه CRM، فروش، عملیات، مالی و پرتال مشتریان برای شرکت‌های حمل‌ونقل، فورواردری و لجستیک.';
         $canonicalUrl = $canonical ?? url()->current();
+        $pageImage = $image ?? asset('assets/images/marketing/sepand-cargo-details.webp');
+        $pageImageAlt = $imageAlt ?? 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند';
+        $pageImageWidth = $imageWidth ?? null;
+        $pageImageHeight = $imageHeight ?? null;
     @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,12 +23,17 @@
     <meta property="og:description" content="{{ $pageDescription }}">
     <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:site_name" content="سپند">
-    <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
-    <meta property="og:image:alt" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند">
+    <meta property="og:image" content="{{ $pageImage }}">
+    <meta property="og:image:alt" content="{{ $pageImageAlt }}">
+    @if($pageImageWidth && $pageImageHeight)
+        <meta property="og:image:width" content="{{ $pageImageWidth }}">
+        <meta property="og:image:height" content="{{ $pageImageHeight }}">
+    @endif
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $pageTitle }}">
     <meta name="twitter:description" content="{{ $pageDescription }}">
-    <meta name="twitter:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
+    <meta name="twitter:image" content="{{ $pageImage }}">
+    <meta name="twitter:image:alt" content="{{ $pageImageAlt }}">
     <link rel="canonical" href="{{ $canonicalUrl }}">
     <title>{{ $pageTitle }}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
@@ -66,9 +75,9 @@
 <footer class="site-footer">
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، اسناد و مالی شرکت‌های فورواردری و لجستیک.</p></div>
-            <div class="footer-col"><h3>محصول</h3><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
-            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('home') }}#why-us">مزیت‌های قابل سنجش</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
+            <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، مالی و پرتال مشتریان شرکت‌های فورواردری و لجستیک.</p></div>
+            <div class="footer-col"><h3>محصول</h3><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
+            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('compare.transport-software-excel') }}">مقایسه نرم‌افزار با Excel</a><a href="{{ route('home') }}#why-us">مزیت‌های قابل سنجش</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
             <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('organization.portal') }}">پرتال سازمان</a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span>طراحی‌شده برای تجربه‌ای شفاف‌تر</span></div>

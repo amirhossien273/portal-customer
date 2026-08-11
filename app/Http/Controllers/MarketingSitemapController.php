@@ -18,6 +18,7 @@ class MarketingSitemapController extends Controller
             ],
             ['loc' => $baseUrl.'/faq', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/modules', 'lastmod' => $lastModified],
+            ['loc' => $baseUrl.'/compare/transport-software-vs-excel', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/pricing', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/about', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/consultation', 'lastmod' => $lastModified],
