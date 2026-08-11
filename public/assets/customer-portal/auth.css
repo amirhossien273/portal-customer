@@ -184,4 +184,24 @@ svg{display:block;width:24px;height:24px;fill:none;stroke:currentColor;stroke-wi
     .otp-preview{align-items:flex-start}.preview-badge{display:none}.back-step{position:static;width:max-content;margin:0 0 15px}
     .auth-support{flex-wrap:wrap}.auth-card h1{font-size:27px}.account-select-card h1{font-size:24px}.account-option{min-height:80px;padding:11px}.account-logo{width:42px;height:42px;border-radius:12px}.account-action b{display:none}.account-options{max-height:none}
 }
+
+/* Desktop typography: supporting copy must stay readable on large displays. */
+@media(min-width:821px){
+    .auth-brand small{font-size:11px}.home-link{font-size:12px}.portal-pill{font-size:11px}
+    .auth-lead{font-size:14px}.alert{font-size:12px}
+    .form-field label,.otp-fieldset legend{font-size:13px}.input-shell input{font-size:15px}
+    .field-error{font-size:11px}.field-help{font-size:10px}.primary-button{font-size:13px}
+    .secure-note strong{font-size:11px}.secure-note span{font-size:10px}.auth-support{font-size:11px}
+    .eyebrow{font-size:11px}.visual-copy p{font-size:13px}
+    .preview-head strong{font-size:12px}.preview-head small{font-size:10px}.preview-head>b{font-size:10px}
+    .route-points strong{font-size:11px}.route-points small{font-size:10px}
+    .preview-stats small{font-size:9px}.preview-stats strong{font-size:11px}
+    .preview-notice strong{font-size:10px}.preview-notice small{font-size:9px}.visual-trust{font-size:10px}
+    .back-step{font-size:11px}.otp-preview small{font-size:10px}.preview-badge{font-size:9px}
+    .otp-timer{font-size:11px}.otp-timer strong{font-size:12px}.resend-form,.resend-form button{font-size:10px}
+    .multi-account-note strong{font-size:11px}.multi-account-note span{font-size:10px}
+    .account-copy small{font-size:10px}.account-copy strong{font-size:14px}.account-copy em{font-size:11px}.account-action b{font-size:10px}
+    .account-security-note strong{font-size:11px}.account-security-note span{font-size:10px}
+}
+
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
