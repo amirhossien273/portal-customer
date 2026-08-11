@@ -1,3 +1,29 @@
+# Sepand customer portal
+
+The customer portal authenticates CRM customers by mobile number and OTP, then exposes their inquiries, customer-visible shipment tracking, invoices, receipts, and profile data.
+
+## CRM and OTP configuration
+
+The portal uses the named `crm` database connection. When the CRM and portal share a database, the regular `DB_*` variables are used automatically. For a separate CRM database, set:
+
+```dotenv
+CRM_DB_CONNECTION=mysql
+CRM_DB_HOST=127.0.0.1
+CRM_DB_PORT=3306
+CRM_DB_DATABASE=sepand_crm
+CRM_DB_USERNAME=...
+CRM_DB_PASSWORD=...
+CUSTOMER_PORTAL_TENANT_ID=00000000-0000-0000-0000-000000000001
+```
+
+OTP codes are temporarily displayed on the verification screen as requested for the first release. After connecting an SMS provider, deliver the generated code in `CustomerPortalAuthController::issueOtp()` and disable the preview:
+
+```dotenv
+CUSTOMER_PORTAL_PREVIEW_OTP=false
+CUSTOMER_PORTAL_OTP_EXPIRES=120
+CUSTOMER_PORTAL_OTP_RESEND_AFTER=45
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

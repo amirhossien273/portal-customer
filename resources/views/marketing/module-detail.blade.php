@@ -116,6 +116,27 @@
     </div>
 </section>
 
+@if(! empty($page['insights']))
+<section class="section" id="{{ $slug === 'pricing-sales' ? 'pricing-intelligence' : 'module-insights' }}" aria-labelledby="module-insights-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">داشبورد تصمیم‌گیری</span>
+            <h2 class="section-title" id="module-insights-title">{{ $page['insights_heading'] }}</h2>
+            <p class="section-sub">{{ $page['insights_intro'] }}</p>
+        </div>
+        <div class="crm-capability-grid">
+            @foreach($page['insights'] as $index => $insight)
+                <article class="crm-capability reveal">
+                    <span class="crm-capability-num">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                    <h3>{{ $insight['title'] }}</h3>
+                    <p>{{ $insight['description'] }}</p>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 <section class="section" aria-labelledby="module-integration-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="module-integration-title">{{ $page['integration_heading'] }}</h2><p class="section-sub">{{ $page['integration_intro'] }}</p></div>

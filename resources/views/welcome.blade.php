@@ -7,18 +7,18 @@
     <meta name="theme-color" content="#0f305b">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <meta name="description" content="سپند راهکار مدیریت شرکت‌های حمل‌ونقل بین‌المللی و فورواردری است و CRM، نرخ‌دهی، عملیات، اسناد، مالی و رهگیری را یکپارچه می‌کند.">
+    <meta name="description" content="سپند، نرم‌افزار مدیریت حمل‌ونقل با CRM، تحلیل مشتری، مقایسه تأمین‌کننده، هشدار نرخ، عملیات، مالی و پرتال مشتریان برای رهگیری محموله.">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:type" content="website">
     <meta property="og:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
-    <meta property="og:description" content="سامانه جامع مدیریت شرکت‌های حمل‌ونقل، فورواردری و لجستیک؛ از CRM و نرخ‌دهی تا عملیات، اسناد، مالی و رهگیری.">
+    <meta property="og:description" content="سامانه یکپارچه شرکت‌های حمل‌ونقل؛ از CRM، تحلیل مشتری و تأمین‌کننده تا عملیات، مالی و پرتال مشتریان با ورود OTP و رهگیری محموله.">
     <meta property="og:url" content="{{ route('home') }}">
     <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <meta property="og:image:alt" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند">
     <meta property="og:site_name" content="سپند">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
-    <meta name="twitter:description" content="سامانه جامع مدیریت شرکت‌های حمل‌ونقل، فورواردری و لجستیک؛ از CRM و نرخ‌دهی تا عملیات، اسناد، مالی و رهگیری.">
+    <meta name="twitter:description" content="سامانه یکپارچه شرکت‌های حمل‌ونقل؛ از CRM، تحلیل مشتری و تأمین‌کننده تا عملیات، مالی و پرتال مشتریان با ورود OTP و رهگیری محموله.">
     <meta name="twitter:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <link rel="canonical" href="{{ route('home') }}">
     <title>نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند</title>
@@ -51,15 +51,15 @@
                 'operatingSystem' => 'Web',
                 'url' => route('home'),
                 'image' => asset('assets/images/marketing/sepand-cargo-details.webp'),
-                'description' => 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردرینگ و لجستیک.',
-                'featureList' => ['CRM و مدیریت مشتریان', 'نرخ‌دهی و فروش', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی', 'گردش کار هوشمند و وظایف', 'پرتال و رهگیری مشتری'],
+                'description' => 'نرم‌افزار یکپارچه CRM، تحلیل مشتری، نرخ‌دهی، عملیات، مالی و پرتال مشتریان برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردرینگ و لجستیک.',
+                'featureList' => ['CRM و مدیریت مشتریان', 'تحلیل درآمد و سود مشتریان', 'بازاریابی و ارسال پیامک از CRM', 'مقایسه تأمین‌کنندگان', 'هشدار انقضای نرخ', 'پیگیری پیش‌فاکتورهای ۴۸ ساعته', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی', 'گردش کار هوشمند و وظایف', 'ورود OTP پرتال مشتریان', 'مشاهده وضعیت استعلام', 'رهگیری رویدادهای مجاز محموله', 'صورتحساب و رسید مشتری'],
                 'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
                 'publisher' => ['@id' => route('home').'#organization'],
             ],
         ],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260803-13">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260811-1">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
@@ -124,8 +124,8 @@
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
                     <h1><span class="hero-title-main">نرم‌افزار مدیریت حمل‌ونقل بین‌المللی</span><span class="hero-title-accent">و فورواردری سپند</span></h1>
                     <div class="hero-description">
-                        <p>سپند یک نرم افزار حمل و نقل بین المللی برای مدیریت فرایندهای شرکت‌های حمل، فورواردری و لجستیک است؛ از ثبت سرنخ و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد، امور مالی و خدمات پس از فروش.</p>
-                        <p>با اتصال CRM، اتوماسیون فرایندها و گزارش‌های مدیریتی، همکاری واحدهای فروش، عملیات و مالی در یک جریان واحد منسجم‌تر می‌شود.</p>
+                        <p>سپند یک نرم افزار حمل و نقل بین المللی برای مدیریت فرایندهای شرکت‌های حمل، فورواردری و لجستیک است؛ از ثبت لید، ارتباط پیامکی و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد و امور مالی.</p>
+                        <p>پرتال مشتریان سپند همین جریان را تا خدمات پس از فروش ادامه می‌دهد؛ مشتری با کد یک‌بارمصرف وارد می‌شود و وضعیت استعلام، محموله، رویدادهای مجاز رهگیری، صورتحساب و رسیدهای خود را مشاهده می‌کند.</p>
                     </div>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">
@@ -176,7 +176,7 @@
                 <div class="section-head reveal">
                     <span class="section-label">محصول سپند</span>
                     <h2 class="section-title">سامانه جامع حمل و نقل بین المللی برای فرایندهای یکپارچه</h2>
-                    <p class="section-subtitle">CRM، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و سایر ماژول‌های سپند روی داده‌ای مشترک کار می‌کنند تا اطلاعات بدون ثبت تکراری میان واحدها جریان داشته باشد.</p>
+                    <p class="section-subtitle">CRM، بازاریابی پیامکی، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا اطلاعات بدون ثبت تکراری از تیم داخلی تا حساب مشتری جریان داشته باشد.</p>
                 </div>
                 <div class="services-grid">
                     @foreach(config('site_modules') as $slug => $module)
@@ -215,6 +215,14 @@
                             <p>{{ $module['card_summary'] ?? $module['summary'] }}</p>
                             <a class="service-link" href="{{ route('site.modules.show', ['module' => $slug]) }}">{{ $module['card_cta'] ?? 'مشاهده جزئیات' }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                         </article>
+                        @if($slug === 'crm')
+                            <article class="service-card reveal delay-2">
+                                <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                                <h3>بازاریابی پیامکی و ارتباط با مشتری</h3>
+                                <p>از پرونده مشتری، لید یا استعلام پیامک بفرستید و متن، زمان، فرستنده و وضعیت هر ارسال را در سابقه ارتباطات نگه دارید.</p>
+                                <a class="service-link" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-sms">مشاهده امکانات پیامکی CRM <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                            </article>
+                        @endif
                     @endforeach
                 </div>
             </div>
@@ -260,7 +268,7 @@
                 <div class="section-head reveal">
                     <span class="section-label">مخاطبان نرم‌افزار</span>
                     <h2 class="section-title">سپند برای چه کسب‌وکارهایی طراحی شده است؟</h2>
-                    <p class="section-subtitle">سپند به‌عنوان نرم افزار شرکت های حمل و نقل، فورواردری و لجستیک برای سازمان‌هایی ساخته شده که فروش، عملیات حمل، اسناد و مالی آن‌ها باید روی یک داده مشترک کار کنند.</p>
+                    <p class="section-subtitle">سپند به‌عنوان نرم افزار شرکت های حمل و نقل، فورواردری و لجستیک برای سازمان‌هایی ساخته شده که بازاریابی، فروش، عملیات حمل، اسناد و مالی آن‌ها باید روی یک داده مشترک کار کنند.</p>
                 </div>
                 <div class="audience-grid">
                     <article class="audience-card reveal"><h3>شرکت‌های حمل‌ونقل بین‌المللی</h3><p>برای یکپارچه‌کردن پرونده‌های حمل، مشتریان، اسناد، هزینه‌ها و گزارش‌های مدیریتی.</p></article>
@@ -283,18 +291,18 @@
                 <div class="problem-grid">
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h6l2 2h8v10H4V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 13h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۱</span></div>
-                        <h3>اطلاعات مشتریان و پرونده‌ها در Excel، واتساپ و ایمیل پراکنده است.</h3>
-                        <p><strong>راهکار سپند</strong><span>با پرونده یکپارچه مشتری و محموله، تمام اطلاعات، مکاتبات، اسناد و سوابق در یک محل متمرکز و قابل جست‌وجو نگهداری می‌شود.</span></p>
+                        <h3>اطلاعات مشتریان و ارتباطات در Excel، واتساپ، پیامک و ایمیل پراکنده است.</h3>
+                        <p><strong>راهکار سپند</strong><span>با پرونده یکپارچه مشتری، اطلاعات، مکاتبات، پیامک‌ها، اسناد و سوابق در یک محل متمرکز و قابل جست‌وجو نگهداری می‌شود.</span></p>
                     </article>
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M17 5v5l3 2m-3-7a5 5 0 1 1-2.2 9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="problem-index">چالش ۰۲</span></div>
                         <h3>پیگیری مشتریان فراموش می‌شود یا بین همکاران گم می‌شود.</h3>
-                        <p><strong>راهکار سپند</strong><span>سیستم CRM با یادآوری هوشمند، وظایف زمان‌بندی‌شده و تعیین مسئول هر پیگیری، هیچ فرصت فروشی را بدون اقدام رها نمی‌کند.</span></p>
+                        <p><strong>راهکار سپند</strong><span>سیستم CRM با یادآوری هوشمند، وظایف زمان‌بندی‌شده، تعیین مسئول و ارسال پیامک از پرونده، هیچ فرصت فروشی را بدون اقدام رها نمی‌کند.</span></p>
                     </article>
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.7"/><path d="M18.5 5.5 20 4m-2 15 2 1.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۳</span></div>
-                        <h3>وضعیت لحظه‌ای محموله‌ها مشخص نیست.</h3>
-                        <p><strong>راهکار سپند</strong><span>داشبورد عملیات، وضعیت هر پرونده، مرحله جاری، رویدادهای ثبت‌شده و پرونده‌های نیازمند اقدام را به‌صورت لحظه‌ای نمایش می‌دهد.</span></p>
+                        <h3>مشتری برای وضعیت استعلام، محموله و صورتحساب بارها تماس می‌گیرد.</h3>
+                        <p><strong>راهکار سپند</strong><span>پرتال مشتریان با ورود OTP، وضعیت استعلام، رویدادهای مجاز رهگیری، صورتحساب‌ها و رسیدهای همان مشتری را در یک فضای اختصاصی نمایش می‌دهد.</span></p>
                     </article>
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v5h4m-9 5 2 2 4-4m-6 7h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="problem-index">چالش ۰۴</span></div>
@@ -313,8 +321,8 @@
                     </article>
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V4h16v16H4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 16v-3m4 3V8m4 8v-5M7 7h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۷</span></div>
-                        <h3>تهیه گزارش‌های مدیریتی زمان زیادی می‌گیرد.</h3>
-                        <p><strong>راهکار سپند</strong><span>با یکپارچه‌بودن اطلاعات فروش، عملیات و مالی، گزارش‌های مدیریتی و داشبوردهای تحلیلی تنها با چند کلیک در دسترس خواهند بود.</span></p>
+                        <h3>مشخص نیست کدام مشتری، نرخ یا تأمین‌کننده نیازمند اقدام است.</h3>
+                        <p><strong>راهکار سپند</strong><span>تحلیل سودآوری مشتری، مقایسه تأمین‌کنندگان و هشدار نرخ‌های رو به انقضا، اولویت واقعی تیم فروش را روی داشبورد مشخص می‌کنند.</span></p>
                     </article>
                 </div>
             </div>
@@ -326,7 +334,7 @@
                     <div class="about-panel">
                         <div class="about-content-card">
                             <span class="about-logo"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt=""></span>
-                            <p class="about-quote">فروش، عملیات، اسناد و مالی روی یک پرونده مشترک کار می‌کنند؛ هر داده فقط یک‌بار ثبت می‌شود و در مرحله بعدی قابل‌استفاده است.</p>
+                            <p class="about-quote">بازاریابی، فروش، عملیات، مالی و پرتال مشتری روی یک پرونده مشترک کار می‌کنند؛ هر داده یک‌بار ثبت می‌شود و در مرحله بعدی قابل‌استفاده است.</p>
                             <div class="about-meta">کاربرد واقعی نرم‌افزار سپند</div>
                         </div>
                     </div>
@@ -335,12 +343,12 @@
                 <div class="about-copy reveal delay-2">
                     <span class="section-label">کاربرد واقعی محصول</span>
                     <h2 class="section-title">از اولین درخواست مشتری تا<br><span>عملیات، اسناد و سود پرونده</span></h2>
-                    <p>کاربر فروش درخواست مشتری و نرخ را ثبت می‌کند؛ پس از تأیید، همان اطلاعات وارد Booking و پرونده عملیات می‌شود. تیم اسناد و مالی نیز بدون ساخت پرونده جداگانه، وظایف و اطلاعات مرتبط را تکمیل می‌کنند و مدیر وضعیت کل جریان را در گزارش‌ها می‌بیند.</p>
+                    <p>کاربر فروش لید یا مشتری را ثبت می‌کند، پیامک‌ها و اقدامات بعدی را در همان پرونده نگه می‌دارد و درخواست نرخ را پیگیری می‌کند؛ پس از تأیید، همان اطلاعات وارد Booking و پرونده عملیات می‌شود. تیم اسناد و مالی نیز بدون ساخت پرونده جداگانه، وظایف و اطلاعات مرتبط را تکمیل می‌کنند و مدیر وضعیت کل جریان را در گزارش‌ها می‌بیند.</p>
                     <div class="about-list">
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>تبدیل پیشنهاد فروش به پرونده حمل</div>
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>اتصال اسناد به Booking و عملیات</div>
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>محاسبه سود بر پایه هزینه واقعی</div>
-                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>رهگیری کنترل‌شده برای مشتری</div>
+                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>ورود OTP و رهگیری کنترل‌شده مشتری</div>
                     </div>
                     <a class="btn btn-primary" href="{{ route('modules') }}">مشاهده همه ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                 </div>
@@ -356,8 +364,10 @@
                 <div class="why-grid">
                     <article class="why-card reveal delay-1"><span class="why-num">۰۱</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>ورود یک‌باره اطلاعات</h3><p>تعداد دفعات ثبت مجدد اطلاعات مشتری، نرخ و Booking میان فروش، عملیات و مالی کاهش می‌یابد.</p></article>
                     <article class="why-card reveal delay-2"><span class="why-num">۰۲</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="m17 3 4 1-1 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>پیگیری زمان‌مند</h3><p>وظایف عقب‌افتاده، زمان پاسخ به مشتری و درصد پیگیری‌های انجام‌شده قابل‌اندازه‌گیری می‌شوند.</p></article>
-                    <article class="why-card reveal delay-3"><span class="why-num">۰۳</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.7"/></svg></span><h3>سود هر پرونده</h3><p>درآمد، هزینه و حاشیه سود هر پرونده به‌جای برآورد کلی، از داده‌های متصل عملیاتی دیده می‌شود.</p></article>
-                    <article class="why-card reveal delay-4"><span class="why-num">۰۴</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V5h14v14H5Zm3-4 3-3 2 2 3-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>گزارش بدون تجمیع دستی</h3><p>زمان آماده‌سازی گزارش و تعداد فایل‌های جانبی لازم برای تصمیم‌گیری مدیریتی قابل‌کاهش و سنجش است.</p></article>
+                    <article class="why-card reveal delay-3"><span class="why-num">۰۳</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.7"/></svg></span><h3>سود و ارزش هر مشتری</h3><p>درآمد تأییدشده، هزینه پرداخت‌شده، سود خالص و سود متوسط هر کار، مشتریان واقعاً ارزشمند را مشخص می‌کنند.</p></article>
+                    <article class="why-card reveal delay-4"><span class="why-num">۰۴</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h14M7 11h10M9 16h6M12 3v16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>مقایسه تأمین‌کنندگان</h3><p>نرخ خرید در کنار زمان حمل، اعتبار، Free Time، تأخیر، پاسخ‌گویی و شرایط پرداخت سنجیده می‌شود.</p></article>
+                    <article class="why-card reveal delay-1"><span class="why-num">۰۵</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 4h.01M4 20h16L12 4 4 20Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>هشدار پیش از انقضا</h3><p>نرخ‌های معتبر تا ۷ روز آینده با شدت هشدار مشخص می‌شوند تا تیم پیش از پایان اعتبار برای تمدید یا دریافت نرخ جدید اقدام کند.</p></article>
+                    <article class="why-card reveal delay-2"><span class="why-num">۰۶</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V5h14v14H5Zm3-4 3-3 2 2 3-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>گزارش بدون تجمیع دستی</h3><p>پیش‌فاکتورهای ۴۸ ساعته و پرونده‌های نیازمند پیگیری، با رعایت سطح دسترسی و نام ایجادکننده در دسترس‌اند.</p></article>
                 </div>
             </div>
         </section>
@@ -370,11 +380,11 @@
                     <p class="section-subtitle">اطلاعات در طول فرایند حمل تکمیل می‌شوند و بدون ساخت پرونده‌های جداگانه، میان تیم‌ها جریان پیدا می‌کنند.</p>
                 </div>
                 <div class="process-grid">
-                    <article class="process-item reveal delay-1"><span class="process-num">۱</span><h3>CRM و درخواست مشتری</h3><p>مشتری، نیاز حمل، تعاملات و اقدام بعدی در پرونده CRM ثبت می‌شود.</p></article>
+                    <article class="process-item reveal delay-1"><span class="process-num">۱</span><h3>CRM، بازاریابی و درخواست مشتری</h3><p>لید، مشتری، نیاز حمل، پیامک‌ها، تعاملات و اقدام بعدی در پرونده CRM ثبت می‌شود.</p></article>
                     <article class="process-item reveal delay-2"><span class="process-num">۲</span><h3>نرخ‌دهی و پیشنهاد فروش</h3><p>هزینه، قیمت فروش، اعتبار نرخ و حاشیه سود پیشنهادی کنترل می‌شود.</p></article>
                     <article class="process-item reveal delay-3"><span class="process-num">۳</span><h3>رزرو و Booking</h3><p>پیشنهاد تأییدشده با همان داده‌ها به رزرو و پرونده حمل تبدیل می‌شود.</p></article>
                     <article class="process-item reveal delay-1"><span class="process-num">۴</span><h3>اجرای عملیات حمل</h3><p>رویدادها، مسئولیت‌ها، مهلت‌ها و وضعیت محموله مرحله‌به‌مرحله ثبت می‌شوند.</p></article>
-                    <article class="process-item reveal delay-2"><span class="process-num">۵</span><h3>اسناد و اطلاع‌رسانی</h3><p>اسناد کنترل می‌شوند و وضعیت مجاز از طریق پرتال در اختیار مشتری قرار می‌گیرد.</p></article>
+                    <article class="process-item reveal delay-2"><span class="process-num">۵</span><h3>پرتال مشتری و رهگیری</h3><p>مشتری با OTP وارد می‌شود و استعلام، محموله، رویدادهای مجاز و اطلاعات مالی خود را می‌بیند.</p></article>
                     <article class="process-item reveal delay-3"><span class="process-num">۶</span><h3>مالی، سود و گزارش</h3><p>دریافت، پرداخت و سود پرونده برای گزارش مدیریتی نهایی تکمیل می‌شود.</p></article>
                 </div>
             </div>
@@ -383,7 +393,7 @@
         <section class="cta-wrap" id="contact">
             <div class="container">
                 <div class="cta reveal">
-                    <div class="cta-copy"><h2>فرایند واقعی شرکت خود را در سپند ببینید</h2><p>در یک جلسه دمو، سناریوی فروش، عملیات، اسناد و مالی شما را روی نرم‌افزار بررسی می‌کنیم.</p></div>
+                    <div class="cta-copy"><h2>فرایند واقعی شرکت خود را در سپند ببینید</h2><p>در یک جلسه دمو، سناریوی CRM، فروش، عملیات، مالی و تجربه پرتال مشتریان شما را روی نرم‌افزار بررسی می‌کنیم.</p></div>
                     <div class="cta-actions"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="home_bottom_consultation">درخواست دمو و مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a></div>
                 </div>
             </div>
@@ -393,9 +403,9 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>سپند، نرم‌افزار یکپارچه CRM و مدیریت عملیات حمل‌ونقل برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی.</p></div>
-                <div class="footer-col"><h3>دسترسی سریع</h3><a href="{{ route('modules') }}">ماژول‌ها</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('faq') }}">سؤالات متداول</a><a href="{{ route('about') }}">درباره ما</a></div>
-                <div class="footer-col"><h3>راهکارها</h3><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM حمل‌ونقل</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و سود پرونده</a></div>
+                <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>سپند، نرم‌افزار یکپارچه CRM، فروش، عملیات، مالی و پرتال مشتریان برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی.</p></div>
+                <div class="footer-col"><h3>دسترسی سریع</h3><a href="{{ route('modules') }}">ماژول‌ها</a><a href="{{ route('compare.transport-software-excel') }}">مقایسه نرم‌افزار با Excel</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('faq') }}">سؤالات متداول</a><a href="{{ route('about') }}">درباره ما</a></div>
+                <div class="footer-col"><h3>راهکارها</h3><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM حمل‌ونقل</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و سود پرونده</a></div>
                 <div class="footer-col"><h3>ارتباط با ما</h3><a class="footer-contact" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 1 8 7 8-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>درخواست دمو و مشاوره</a><a class="footer-contact" href="{{ route('login') }}"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>ورود مشتریان</a></div>
             </div>
             <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span class="footer-status"><i></i>سامانه‌های سپند فعال هستند</span></div>
