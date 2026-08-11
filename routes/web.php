@@ -14,8 +14,12 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
     Route::get('/sitemap.xml', MarketingSitemapController::class)->name('sitemap');
     Route::view('/faq', 'marketing.faq')->name('faq');
     Route::view('/modules', 'marketing.modules')->name('modules');
-    Route::view('/compare/transport-software-vs-excel', 'marketing.compare-transport-software-excel')
-        ->name('compare.transport-software-excel');
+    Route::permanentRedirect(
+        '/compare/transport-software-vs-excel',
+        '/compare/sepand-vs-other-transport-software'
+    );
+    Route::view('/compare/sepand-vs-other-transport-software', 'marketing.compare-sepand-other-transport-software')
+        ->name('compare.sepand-other-transport-software');
     Route::get('/modules/{module}', [MarketingModuleController::class, 'show'])
         ->whereIn('module', array_keys(config('site_modules')))
         ->name('site.modules.show');

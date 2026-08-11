@@ -9,6 +9,8 @@ class ComparisonLandingPageTest extends TestCase
 {
     private const SITE_URL = 'https://sepandcrm.ir';
 
+    private const COMPARISON_PATH = '/compare/sepand-vs-other-transport-software';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -21,35 +23,36 @@ class ComparisonLandingPageTest extends TestCase
         URL::forceScheme('https');
     }
 
-    public function test_transport_software_vs_excel_is_a_scannable_comparison_landing_page(): void
+    public function test_sepand_vs_other_software_is_a_scannable_comparison_landing_page(): void
     {
-        $path = '/compare/transport-software-vs-excel';
-        $response = $this->get($path)->assertOk();
+        $response = $this->get(self::COMPARISON_PATH)->assertOk();
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>نرم‌افزار حمل‌ونقل یا Excel؟ مقایسه کاربردی | سپند</title>', false)
-            ->assertSee('<meta name="description" content="مقایسه نرم‌افزار تخصصی حمل‌ونقل با Excel از نظر یکپارچگی، خطا، گزارش‌گیری، امنیت و رشد؛ ببینید کدام گزینه برای شرکت شما مناسب‌تر است.">', false)
-            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.$path.'">', false)
+            ->assertSee('<title>سپند یا نرم‌افزارهای دیگر حمل‌ونقل؟ مقایسه | سپند</title>', false)
+            ->assertSee('<meta name="description" content="مقایسه سپند با نرم‌افزارهای دیگر بازار از نظر تخصص حمل، یکپارچگی CRM تا مالی، بازاریابی پیامکی، پرتال مشتریان و استقرار.">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.self::COMPARISON_PATH.'">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
-            ->assertSee('نرم‌افزار تخصصی حمل‌ونقل یا Excel؛', false)
-            ->assertSee('تفاوت اصلی در «ثبت داده» و «مدیریت فرایند» است', false)
+            ->assertSee('سپند یا نرم‌افزارهای دیگر؛', false)
+            ->assertSee('تفاوت اصلی در دامنه تخصص و میزان یکپارچگی است', false)
             ->assertSee('نرم‌افزار تخصصی حمل‌ونقل سپند', false)
-            ->assertSee('Microsoft Excel', false)
+            ->assertSee('نرم‌افزارهای دیگر', false)
             ->assertSee('<table class="comparison-table">', false)
             ->assertSee('CRM، لید و استعلام', false)
             ->assertSee('پیامک و سابقه ارتباطات', false)
+            ->assertSee('پرتال مشتری و رهگیری', false)
             ->assertSee('کدام گزینه برای شما', false)
             ->assertSee('در نهایت کدام را انتخاب کنیم؟', false)
             ->assertSee('درخواست مشاوره', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertStringNotContainsString('noindex', strtolower($content));
+        $this->assertStringNotContainsString('Microsoft Excel', $content);
     }
 
     public function test_comparison_page_has_valid_structured_data_and_real_internal_links(): void
     {
-        $response = $this->get('/compare/transport-software-vs-excel')->assertOk();
+        $response = $this->get(self::COMPARISON_PATH)->assertOk();
         $content = $response->getContent();
 
         foreach ([
@@ -75,11 +78,20 @@ class ComparisonLandingPageTest extends TestCase
         }
     }
 
+    public function test_old_excel_comparison_url_redirects_permanently_to_the_new_page(): void
+    {
+        $this->get('/compare/transport-software-vs-excel')
+            ->assertStatus(301)
+            ->assertRedirect(self::SITE_URL.self::COMPARISON_PATH);
+    }
+
     public function test_comparison_page_is_present_once_in_the_sitemap(): void
     {
-        $location = '<loc>'.self::SITE_URL.'/compare/transport-software-vs-excel</loc>';
+        $location = '<loc>'.self::SITE_URL.self::COMPARISON_PATH.'</loc>';
+        $oldLocation = '<loc>'.self::SITE_URL.'/compare/transport-software-vs-excel</loc>';
         $content = $this->get('/sitemap.xml')->assertOk()->getContent();
 
         $this->assertSame(1, substr_count($content, $location));
+        $this->assertStringNotContainsString($oldLocation, $content);
     }
 }

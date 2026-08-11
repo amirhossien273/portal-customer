@@ -7,6 +7,27 @@ return [
     */
     'connection' => env('CUSTOMER_PORTAL_DB_CONNECTION', 'crm'),
 
+    /*
+    | Tables read by the customer portal from Sepand CRM. These are checked by
+    | `php artisan portal:check-databases` without running CRM migrations here.
+    */
+    'site_required_tables' => [
+        'migrations',
+        'consultation_requests',
+    ],
+
+    'crm_required_tables' => [
+        'customers',
+        'customer_personal',
+        'transactions',
+        'bookings',
+        'operation_jobs',
+        'operation_shipments',
+        'booking_trackings',
+        'invoices',
+        'receipts',
+    ],
+
     'tenant_id' => env(
         'CUSTOMER_PORTAL_TENANT_ID',
         env('TENANCY_DEFAULT_ID', '00000000-0000-0000-0000-000000000001')

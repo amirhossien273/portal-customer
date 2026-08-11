@@ -7,7 +7,7 @@
 .comparison-visual-option strong{display:block;margin:15px 0 12px;font-size:27px;line-height:1.45}
 .comparison-visual-option small{font-size:12px;line-height:1.8}
 .comparison-visual-option.is-product{color:#fff;background:linear-gradient(145deg,#1c6f7e,#144b68)}
-.comparison-visual-option.is-sheet{color:#174b3a;background:#f1fbf5;border:1px solid #d7eee0}
+.comparison-visual-option.is-market{color:#174b3a;background:#f1fbf5;border:1px solid #d7eee0}
 .comparison-visual-vs{display:grid;width:48px;height:48px;place-items:center;color:var(--navy);background:#fff;border-radius:50%;box-shadow:0 9px 24px rgba(15,48,91,.18);font-size:13px;font-weight:900}
 .comparison-summary{position:relative;margin-top:-38px;z-index:3}
 .quick-verdict{padding:32px 38px;background:#fff;border:1px solid #dbe8e8;border-radius:24px;box-shadow:0 20px 55px rgba(15,48,91,.1)}
@@ -17,7 +17,7 @@
 .option-grid,.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1040px;margin:auto}
 .option-card{padding:32px;background:#fff;border:1px solid #dfe9e9;border-radius:24px;box-shadow:0 14px 42px rgba(15,48,91,.06)}
 .option-card.is-product{border-top:4px solid var(--teal)}
-.option-card.is-sheet{border-top:4px solid #3c9b65}
+.option-card.is-market{border-top:4px solid #3c9b65}
 .option-badge{display:inline-flex;padding:5px 10px;color:#53657a;background:#edf3f3;border-radius:99px;font-size:11px;font-weight:700}
 .option-card h3{margin:16px 0 22px;color:var(--navy-900);font-size:21px}
 .option-card dl{display:grid;gap:16px;margin:0}
@@ -42,13 +42,13 @@
 .difference-card p{margin:0;color:var(--muted);font-size:14px;line-height:2}
 .decision-card{padding:32px;border-radius:25px}
 .decision-card.is-product{color:#fff;background:linear-gradient(145deg,var(--navy-900),#174f68);box-shadow:0 24px 60px rgba(15,48,91,.18)}
-.decision-card.is-sheet{color:var(--navy-900);background:#fff;border:1px solid #dce8e2}
+.decision-card.is-market{color:var(--navy-900);background:#fff;border:1px solid #dce8e2}
 .decision-card h3{margin:0 0 22px;font-size:20px;line-height:1.6}
 .decision-card ul{display:grid;gap:14px;margin:0;padding:0;list-style:none}
 .decision-card li{position:relative;padding-right:28px;font-size:14px;line-height:1.9}
 .decision-card li:before{content:'✓';position:absolute;top:3px;right:0;display:grid;width:20px;height:20px;place-items:center;border-radius:7px;font-size:10px;font-weight:900}
 .decision-card.is-product li{color:#dcebed}.decision-card.is-product li:before{color:var(--navy-900);background:#76d9d2}
-.decision-card.is-sheet li{color:var(--muted)}.decision-card.is-sheet li:before{color:#236746;background:#e2f4e9}
+.decision-card.is-market li{color:var(--muted)}.decision-card.is-market li:before{color:#236746;background:#e2f4e9}
 .final-decision-section{padding-bottom:70px}
 .final-decision{max-width:920px;margin:auto;padding:38px 42px;text-align:center;background:#f6fbfb;border:1px solid #d9eaea;border-radius:27px}
 .final-decision .section-label:after{display:none}
