@@ -8,12 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(config('activitylog.table_name', 'activity_log'), function (Blueprint $table): void {
+        $tableName = config('activitylog.table_name', 'activity_log');
+
+        // MySQL creates the table before applying foreign keys. A previous
+        // deployment may therefore have a complete, empty activity_log table
+        // left behind after the obsolete tenants foreign key failed.
+        if (Schema::hasTable($tableName)) {
+            return;
+        }
+
+        Schema::create($tableName, function (Blueprint $table): void {
             $table->uuid('id')->primary();
-            $table->foreignUuid('tenant_id')
-                ->default((string) config('tenancy.default_tenant.id'))
-                ->constrained('tenants')
-                ->cascadeOnDelete();
+            // portal-customer has its own database and intentionally does not
+            // own the CRM tenants table, so this value is indexed but has no FK.
+            $table->uuid('tenant_id')
+                ->default((string) config('customer_portal.tenant_id'));
             $table->string('log_name')->nullable();
             $table->text('description');
             $table->nullableUuidMorphs('subject', 'subject');

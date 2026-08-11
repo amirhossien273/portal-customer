@@ -1,6 +1,4 @@
-@extends('layouts.marketing')
-
-@php
+<?php
     $title = 'مقایسه سپند با رویان، سبا سیستم و زمزم رایانه گستر';
     $description = 'مقایسه نرم‌افزار حمل‌ونقل سپند با رویان، سبا سیستم و زمزم رایانه گستر از نظر CRM، عملیات، مالی، رهگیری، پرتال مشتری و استقرار.';
     $canonical = route('compare.sepand-other-transport-software');
@@ -22,10 +20,10 @@
             'answer' => 'علاوه بر لایسنس، هزینه استقرار، آموزش، سفارشی‌سازی، انتقال داده، پشتیبانی و اتصال به ابزارهای فعلی را بررسی کنید. زمان دوباره‌کاری و تهیه گزارش دستی نیز بخشی از هزینه واقعی هر انتخاب است.',
         ],
     ];
-@endphp
+?>
 
-@push('head')
-<script type="application/ld+json">{!! json_encode([
+<?php $__env->startPush('head'); ?>
+<script type="application/ld+json"><?php echo json_encode([
     '@context' => 'https://schema.org',
     '@graph' => [
         [
@@ -68,18 +66,18 @@
             ], $faqs),
         ],
     ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
-@endpush
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?></script>
+<?php $__env->stopPush(); ?>
 
-@push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-comparison.css') }}?v=20260811-3">
-@endpush
+<?php $__env->startPush('styles'); ?>
+<link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-comparison.css')); ?>?v=20260811-3">
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="page-hero comparison-hero">
     <div class="container hero-inner">
         <div class="hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مقایسه نرم‌افزارهای حمل‌ونقل</span></div>
+            <div class="breadcrumb"><a href="<?php echo e(route('home')); ?>">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مقایسه نرم‌افزارهای حمل‌ونقل</span></div>
             <h1>سپند در مقایسه با<br><span>رویان، سبا سیستم و زمزم رایانه گستر</span></h1>
             <p>در این صفحه سپند را با سه نرم‌افزار نام‌دار بازار ایران مقایسه می‌کنیم. مبنا، امکانات اعلام‌شده در وب‌سایت رسمی هر محصول در مرداد ۱۴۰۵ است؛ جزئیات نهایی هر قابلیت، پلن و استقرار را در دموی همان محصول بررسی کنید.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول مقایسه</a><a class="btn btn-outline" href="#decision">انتخاب بر اساس نیاز</a></div>
@@ -228,9 +226,9 @@
     <div class="container">
         <div class="section-head reveal"><span class="section-label">پرسش‌های تصمیم‌ساز</span><h2 class="section-title" id="comparison-faq-title">پیش از انتخاب<br><span>نرم‌افزار حمل‌ونقل</span></h2></div>
         <div class="faq">
-            @foreach($faqs as $faq)
-                <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
-            @endforeach
+            <?php $__currentLoopData = $faqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $faq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <details class="reveal"><summary><?php echo e($faq['question']); ?></summary><p><?php echo e($faq['answer']); ?></p></details>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
@@ -239,13 +237,15 @@
     <div class="container">
         <h2 id="comparison-links-title">برای تصمیم دقیق‌تر این بخش‌ها را ببینید</h2>
         <nav aria-label="لینک‌های مرتبط با مقایسه">
-            <a href="{{ route('modules') }}">ماژول‌های نرم‌افزار حمل‌ونقل</a>
-            <a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM تخصصی حمل‌ونقل</a>
-            <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a>
-            <a href="{{ route('pricing') }}">قیمت نرم‌افزار حمل‌ونقل</a>
+            <a href="<?php echo e(route('modules')); ?>">ماژول‌های نرم‌افزار حمل‌ونقل</a>
+            <a href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>">CRM تخصصی حمل‌ونقل</a>
+            <a href="<?php echo e(route('site.modules.show', ['module' => 'transport-operations'])); ?>">مدیریت عملیات حمل</a>
+            <a href="<?php echo e(route('pricing')); ?>">قیمت نرم‌افزار حمل‌ونقل</a>
         </nav>
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>هنوز بین سپند، رویان، سبا سیستم و زمزم رایانه گستر مردد هستید؟</h2><p>سناریوی واقعی، ابزارهای موجود و نیازهای تیم شما را بررسی می‌کنیم تا معیارهای انتخاب و تناسب سپند با سازمانتان روشن شود.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="comparison_named_software_consultation">درخواست مشاوره</a></div></div></div></section>
-@endsection
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>هنوز بین سپند، رویان، سبا سیستم و زمزم رایانه گستر مردد هستید؟</h2><p>سناریوی واقعی، ابزارهای موجود و نیازهای تیم شما را بررسی می‌کنیم تا معیارهای انتخاب و تناسب سپند با سازمانتان روشن شود.</p></div><div class="cta-action"><a class="btn" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="comparison_named_software_consultation">درخواست مشاوره</a></div></div></div></section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.marketing', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\project\sepand\portal-customer\resources\views/marketing/compare-sepand-other-transport-software.blade.php ENDPATH**/ ?>

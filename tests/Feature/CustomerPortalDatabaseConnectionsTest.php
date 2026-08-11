@@ -32,7 +32,7 @@ class CustomerPortalDatabaseConnectionsTest extends TestCase
             'database.connections.'.self::SITE_CONNECTION => $this->sqliteConnection($this->siteDatabase),
             'database.connections.'.self::CRM_CONNECTION => $this->sqliteConnection($this->crmDatabase),
             'customer_portal.connection' => self::CRM_CONNECTION,
-            'customer_portal.site_required_tables' => ['migrations', 'consultation_requests'],
+            'customer_portal.site_required_tables' => ['migrations', 'activity_log', 'consultation_requests'],
             'customer_portal.crm_required_tables' => ['customers', 'customer_personal'],
         ]);
 
@@ -109,6 +109,21 @@ class CustomerPortalDatabaseConnectionsTest extends TestCase
         $this->assertStringContainsString('هر دو اتصال به یک دیتابیس', $output);
     }
 
+    public function test_activity_log_migration_does_not_require_a_tenants_table(): void
+    {
+        Schema::connection(self::SITE_CONNECTION)->drop('activity_log');
+        $migration = require database_path('migrations/2026_07_17_000001_create_activity_log_table.php');
+
+        $migration->up();
+        // A second run represents recovery from the partially completed MySQL
+        // migration that existed before the tenants foreign key was removed.
+        $migration->up();
+
+        $this->assertTrue(Schema::connection(self::SITE_CONNECTION)->hasTable('activity_log'));
+        $this->assertTrue(Schema::connection(self::SITE_CONNECTION)->hasColumn('activity_log', 'tenant_id'));
+        $this->assertFalse(Schema::connection(self::SITE_CONNECTION)->hasTable('tenants'));
+    }
+
     /** @return array<string, mixed> */
     private function sqliteConnection(string $database): array
     {
@@ -139,6 +154,10 @@ class CustomerPortalDatabaseConnectionsTest extends TestCase
         });
         $schema->create('consultation_requests', function (Blueprint $table): void {
             $table->id();
+        });
+        $schema->create('activity_log', function (Blueprint $table): void {
+            $table->uuid('id')->primary();
+            $table->uuid('tenant_id');
         });
     }
 

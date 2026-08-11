@@ -29,18 +29,20 @@ class ComparisonLandingPageTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>سپند یا نرم‌افزارهای دیگر حمل‌ونقل؟ مقایسه | سپند</title>', false)
-            ->assertSee('<meta name="description" content="مقایسه سپند با نرم‌افزارهای دیگر بازار از نظر تخصص حمل، یکپارچگی CRM تا مالی، بازاریابی پیامکی، پرتال مشتریان و استقرار.">', false)
+            ->assertSee('<title>مقایسه سپند با رویان، سبا سیستم و زمزم رایانه گستر</title>', false)
+            ->assertSee('<meta name="description" content="مقایسه نرم‌افزار حمل‌ونقل سپند با رویان، سبا سیستم و زمزم رایانه گستر از نظر CRM، عملیات، مالی، رهگیری، پرتال مشتری و استقرار.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.self::COMPARISON_PATH.'">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
-            ->assertSee('سپند یا نرم‌افزارهای دیگر؛', false)
-            ->assertSee('تفاوت اصلی در دامنه تخصص و میزان یکپارچگی است', false)
+            ->assertSee('سپند در مقایسه با', false)
+            ->assertSee('هر چهار محصول تخصصی‌اند؛ تفاوت در ترکیب ماژول‌ها و شیوه ارائه است', false)
             ->assertSee('نرم‌افزار تخصصی حمل‌ونقل سپند', false)
-            ->assertSee('نرم‌افزارهای دیگر', false)
+            ->assertSee('رویان TMS', false)
+            ->assertSee('سبا سیستم', false)
+            ->assertSee('زمزم رایانه گستر', false)
             ->assertSee('<table class="comparison-table">', false)
             ->assertSee('CRM، لید و استعلام', false)
-            ->assertSee('پیامک و سابقه ارتباطات', false)
-            ->assertSee('پرتال مشتری و رهگیری', false)
+            ->assertSee('پیامک و ارتباطات', false)
+            ->assertSee('رهگیری و پرتال مشتری', false)
             ->assertSee('کدام گزینه برای شما', false)
             ->assertSee('در نهایت کدام را انتخاب کنیم؟', false)
             ->assertSee('درخواست مشاوره', false);
@@ -48,6 +50,7 @@ class ComparisonLandingPageTest extends TestCase
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertStringNotContainsString('noindex', strtolower($content));
         $this->assertStringNotContainsString('Microsoft Excel', $content);
+        $this->assertStringNotContainsString('نه با یک برند مشخص', $content);
     }
 
     public function test_comparison_page_has_valid_structured_data_and_real_internal_links(): void
