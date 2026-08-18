@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MarketingConsultationController;
+use App\Http\Controllers\MarketingComparisonController;
 use App\Http\Controllers\MarketingModuleController;
 use App\Http\Controllers\MarketingSitemapController;
 use App\Http\Controllers\MarketingTransportModeController;
@@ -14,6 +15,15 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
     Route::get('/sitemap.xml', MarketingSitemapController::class)->name('sitemap');
     Route::view('/faq', 'marketing.faq')->name('faq');
     Route::view('/modules', 'marketing.modules')->name('modules');
+    Route::get('/compare', [MarketingComparisonController::class, 'index'])->name('compare.index');
+    Route::get('/compare/sepand-vs-royan', [MarketingComparisonController::class, 'competitor'])
+        ->defaults('competitor', 'royan')
+        ->name('compare.sepand-vs-royan');
+    Route::get('/compare/sepand-vs-saba', [MarketingComparisonController::class, 'competitor'])
+        ->defaults('competitor', 'saba')
+        ->name('compare.sepand-vs-saba');
+    Route::get('/compare/best-transport-software', [MarketingComparisonController::class, 'best'])
+        ->name('compare.best-transport-software');
     Route::permanentRedirect(
         '/compare/transport-software-vs-excel',
         '/compare/sepand-vs-other-transport-software'
