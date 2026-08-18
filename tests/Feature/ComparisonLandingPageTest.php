@@ -29,21 +29,24 @@ class ComparisonLandingPageTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>مقایسه سپند با نرم‌افزارهای دیگر حمل‌ونقل</title>', false)
-            ->assertSee('<meta name="description" content="مقایسه نرم‌افزار حمل‌ونقل سپند با نرم‌افزارهای دیگر بازار از نظر یکپارچگی CRM، عملیات، مالی، رهگیری، پرتال مشتری و شیوه استقرار.">', false)
+            ->assertSee('<title>مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی | سپند</title>', false)
+            ->assertSee('<meta name="description" content="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با انواع راهکارها از نظر CRM، Booking، عملیات، اسناد، مالی، گزارش سود، پرتال مشتری و یکپارچگی اطلاعات.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.self::COMPARISON_PATH.'">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
-            ->assertSee('سپند در مقایسه با', false)
-            ->assertSee('تفاوت اصلی در دامنه فرایند، یکپارچگی و شیوه استقرار است', false)
-            ->assertSee('نرم‌افزار تخصصی حمل‌ونقل سپند', false)
-            ->assertSee('نرم‌افزارهای دیگر', false)
+            ->assertSee('مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی؛', false)
+            ->assertSee('سپند چه تفاوتی دارد؟', false)
+            ->assertSee('برای مقایسه نرم‌افزارهای مدیریت حمل‌ونقل باید چه معیارهایی را بررسی کنیم؟', false)
             ->assertSee('<table class="comparison-table">', false)
-            ->assertSee('CRM، لید و استعلام', false)
-            ->assertSee('پیامک و سابقه ارتباطات', false)
-            ->assertSee('پرتال مشتری و رهگیری', false)
-            ->assertSee('کدام گزینه برای شما', false)
-            ->assertSee('در نهایت کدام را انتخاب کنیم؟', false)
-            ->assertSee('درخواست مشاوره', false);
+            ->assertSee('حسابداری‌محور', false)
+            ->assertSee('CRM عمومی', false)
+            ->assertSee('مدیریت ناوگان', false)
+            ->assertSee('تفاوت سپند با نرم‌افزارهای حسابداری حمل‌ونقل چیست؟', false)
+            ->assertSee('تفاوت سپند با CRMهای عمومی چیست؟', false)
+            ->assertSee('تفاوت سپند با نرم‌افزارهای مدیریت ناوگان چیست؟', false)
+            ->assertSee('Lead / Customer → Inquiry → Quotation → Booking → Operation → Documents → Financial → Profit Report', false)
+            ->assertSee('سپند برای چه شرکت‌هایی مناسب‌تر است؟', false)
+            ->assertSee('بهترین نرم‌افزار مدیریت حمل‌ونقل بین‌المللی چه ویژگی‌هایی دارد؟', false)
+            ->assertSee('درخواست دمو و مشاوره', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertStringNotContainsString('noindex', strtolower($content));
@@ -60,8 +63,16 @@ class ComparisonLandingPageTest extends TestCase
         foreach ([
             '/modules',
             '/modules/crm',
+            '/modules/pricing-sales',
+            '/modules/booking',
             '/modules/transport-operations',
-            '/pricing',
+            '/modules/document-management',
+            '/modules/finance-accounting',
+            '/modules/customer-portal-tracking',
+            '/transport-modes/air',
+            '/transport-modes/sea',
+            '/transport-modes/road',
+            '/transport-modes/rail',
             '/consultation',
         ] as $path) {
             $response->assertSee('href="'.self::SITE_URL.$path.'"', false);
@@ -70,6 +81,7 @@ class ComparisonLandingPageTest extends TestCase
         $response
             ->assertSee('"@type":"WebPage"', false)
             ->assertSee('"@type":"BreadcrumbList"', false)
+            ->assertSee('"@type":"ItemList"', false)
             ->assertSee('"@type":"FAQPage"', false);
 
         preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $content, $structuredData);

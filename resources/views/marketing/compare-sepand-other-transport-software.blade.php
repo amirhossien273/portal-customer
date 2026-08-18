@@ -1,25 +1,56 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'مقایسه سپند با نرم‌افزارهای دیگر حمل‌ونقل';
-    $description = 'مقایسه نرم‌افزار حمل‌ونقل سپند با نرم‌افزارهای دیگر بازار از نظر یکپارچگی CRM، عملیات، مالی، رهگیری، پرتال مشتری و شیوه استقرار.';
+    $title = 'مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی | سپند';
+    $description = 'مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با انواع راهکارها از نظر CRM، Booking، عملیات، اسناد، مالی، گزارش سود، پرتال مشتری و یکپارچگی اطلاعات.';
     $canonical = route('compare.sepand-other-transport-software');
+    $dateModified = '2026-08-18';
+    $workflowSteps = [
+        ['label' => 'Lead / Customer', 'title' => 'سرنخ و مشتری', 'description' => 'اطلاعات سرنخ، مشتری، سوابق ارتباط و مسئول پیگیری در CRM شرکت حمل‌ونقل ثبت می‌شود.', 'href' => route('site.modules.show', ['module' => 'crm'])],
+        ['label' => 'Inquiry', 'title' => 'استعلام', 'description' => 'مسیر، روش حمل، محموله و نیاز مشتری در استعلام ساختاریافته قرار می‌گیرد.', 'href' => route('site.modules.show', ['module' => 'pricing-sales'])],
+        ['label' => 'Quotation', 'title' => 'پیشنهاد قیمت', 'description' => 'نرخ خرید، مبلغ فروش و اطلاعات پیشنهاد برای تصمیم مشتری و ادامه فرایند آماده می‌شود.', 'href' => route('site.modules.show', ['module' => 'pricing-sales'])],
+        ['label' => 'Booking', 'title' => 'رزرو حمل', 'description' => 'پس از تأیید پیشنهاد، اطلاعات پایه بدون تشکیل پرونده مستقل وارد Booking می‌شود.', 'href' => route('site.modules.show', ['module' => 'booking'])],
+        ['label' => 'Operation', 'title' => 'عملیات حمل', 'description' => 'رویدادها، وضعیت محموله، مسئول هر اقدام و موارد متوقف‌شده در پرونده عملیاتی پیگیری می‌شوند.', 'href' => route('site.modules.show', ['module' => 'transport-operations'])],
+        ['label' => 'Documents', 'title' => 'اسناد', 'description' => 'نسخه، وضعیت بررسی و مهلت اسناد در ارتباط با Booking و همان پرونده حمل مدیریت می‌شود.', 'href' => route('site.modules.show', ['module' => 'document-management'])],
+        ['label' => 'Financial', 'title' => 'مالی', 'description' => 'درآمد، هزینه، دریافت و پرداخت هر پرونده به تفکیک ارز ثبت و کنترل می‌شود.', 'href' => route('site.modules.show', ['module' => 'finance-accounting'])],
+        ['label' => 'Profit Report', 'title' => 'گزارش سود', 'description' => 'درآمد و هزینه واقعی کنار هم قرار می‌گیرند تا سود پرونده برای تصمیم‌گیری قابل مشاهده باشد.', 'href' => route('site.modules.show', ['module' => 'finance-accounting'])],
+    ];
     $faqs = [
         [
-            'question' => 'آیا سپند همیشه از نرم‌افزارهای دیگر انتخاب بهتری است؟',
-            'answer' => 'خیر. نرم‌افزارهای دیگر دامنه محصول، شیوه استقرار و ساختار ماژول متفاوتی دارند. انتخاب درست باید بر اساس فرایندها، زیرساخت، بودجه و اجرای یک سناریوی واقعی در دموی گزینه‌های نهایی انجام شود.',
+            'question' => 'بهترین نرم‌افزار مدیریت حمل‌ونقل بین‌المللی چه ویژگی‌هایی دارد؟',
+            'answer' => 'گزینه مناسب باید CRM تخصصی، استعلام و نرخ‌دهی، Booking، عملیات چندروش حمل، اسناد، مالی چندارزی، سود پرونده، سطح دسترسی و گزارش‌گیری را متناسب با فرایند واقعی شرکت پوشش دهد.',
         ],
         [
-            'question' => 'چطور سپند را منصفانه با نرم‌افزارهای دیگر مقایسه کنیم؟',
-            'answer' => 'یک سناریوی واقعی و یکسان—از ثبت لید و استعلام تا Booking، عملیات، اسناد، مالی و پرتال مشتری—را در دموی هر گزینه اجرا کنید. سپس تعداد ورود دوباره اطلاعات، پوشش فرایند، دسترسی‌ها و گزارش نهایی را مقایسه کنید.',
+            'question' => 'سپند چه تفاوتی با CRM عمومی دارد؟',
+            'answer' => 'CRM عمومی بر ارتباطات و قیف فروش تمرکز دارد. سپند CRM اطلاعات مشتری و استعلام را به نرخ‌دهی، Booking، عملیات، اسناد و مالی حمل متصل می‌کند.',
         ],
         [
-            'question' => 'آیا امکانات همه نرم‌افزارهای دیگر یکسان است؟',
-            'answer' => 'خیر. عبارت «نرم‌افزارهای دیگر» به مجموعه‌ای از راهکارها با امکانات و مدل‌های ارائه متفاوت اشاره دارد. وضعیت نهایی هر قابلیت، پلن و شیوه استقرار باید در دمو و پیشنهاد رسمی محصول موردنظر تأیید شود.',
+            'question' => 'سپند چه تفاوتی با نرم‌افزار حسابداری حمل‌ونقل دارد؟',
+            'answer' => 'نرم‌افزارهای حسابداری‌محور معمولاً از ثبت مالی شروع می‌کنند. نرم‌افزار حمل‌ونقل سپند فروش، Booking و عملیات را نیز پوشش می‌دهد و درآمد و هزینه را به پرونده حمل مرتبط می‌کند.',
         ],
         [
-            'question' => 'برای انتخاب نرم‌افزار حمل‌ونقل چه هزینه‌هایی را باید مقایسه کرد؟',
-            'answer' => 'علاوه بر لایسنس، هزینه استقرار، آموزش، سفارشی‌سازی، انتقال داده، پشتیبانی و اتصال به ابزارهای فعلی را بررسی کنید. زمان دوباره‌کاری و تهیه گزارش دستی نیز بخشی از هزینه واقعی هر انتخاب است.',
+            'question' => 'آیا سپند برای Freight Forwarder مناسب است؟',
+            'answer' => 'بله. سپند برای شرکت‌های فورواردری و حمل‌ونقل بین‌المللی طراحی شده و فرایند مشتری، نرخ، Booking، عملیات، اسناد و مالی پرونده را پوشش می‌دهد.',
+        ],
+        [
+            'question' => 'آیا سپند حمل هوایی، دریایی، زمینی و ریلی را مدیریت می‌کند؟',
+            'answer' => 'بله. برای هر چهار روش حمل صفحه و فرایند تخصصی وجود دارد و اطلاعات آن‌ها به پرونده مشتری، عملیات، اسناد و مالی مرتبط می‌شود.',
+        ],
+        [
+            'question' => 'آیا اطلاعات نرم‌افزار قبلی یا Excel قابل انتقال است؟',
+            'answer' => 'انتقال خودکار و عمومی برای هر ساختار داده در اطلاعات فعلی محصول تأیید نشده است. قالب فایل‌ها، کیفیت داده و دامنه Migration باید با نمونه واقعی پیش از قرارداد بررسی شود.',
+        ],
+        [
+            'question' => 'آیا سپند سیستم مالی دارد؟',
+            'answer' => 'بله. ماژول مالی و حسابداری چندارزی، درآمد، هزینه، دریافت، پرداخت، مطالبات، تعهدات و سود هر پرونده حمل را مدیریت می‌کند.',
+        ],
+        [
+            'question' => 'آیا امکان اتصال سپند به سیستم‌های دیگر وجود دارد؟',
+            'answer' => 'اتصال داخلی ماژول‌های سپند تأییدشده است؛ اما API یا Integration با هر سامانه بیرونی باید بر اساس سیستم مقصد، داده‌های موردنیاز و مستندات فنی جداگانه تأیید شود.',
+        ],
+        [
+            'question' => 'آیا سپند برای شرکت‌های کوچک هم مناسب است؟',
+            'answer' => 'اگر شرکت کوچک چند مرحله فروش، عملیات و مالی یا چند روش حمل دارد، سپند می‌تواند قابل بررسی باشد. برای نیاز صرفاً حسابداری ساده یا فقط مدیریت ناوگان، راهکار تخصصی محدودتر ممکن است مناسب‌تر باشد.',
         ],
     ];
 @endphp
@@ -35,17 +66,20 @@
             'description' => $description,
             'url' => $canonical,
             'inLanguage' => 'fa-IR',
-            'dateModified' => config('marketing.content_last_modified'),
+            'dateModified' => $dateModified,
             'isPartOf' => ['@id' => route('home').'#website'],
             'about' => [
                 ['@type' => 'SoftwareApplication', 'name' => 'نرم‌افزار مدیریت حمل‌ونقل سپند', 'url' => route('home')],
-                ['@type' => 'Thing', 'name' => 'نرم‌افزارهای دیگر مدیریت حمل‌ونقل و فورواردری'],
+                ['@type' => 'Thing', 'name' => 'مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی'],
             ],
             'significantLink' => [
                 route('modules'),
                 route('site.modules.show', ['module' => 'crm']),
                 route('site.modules.show', ['module' => 'transport-operations']),
-                route('pricing'),
+                route('site.modules.show', ['module' => 'document-management']),
+                route('site.modules.show', ['module' => 'finance-accounting']),
+                route('site.modules.show', ['module' => 'customer-portal-tracking']),
+                route('consultation.create'),
             ],
         ],
         [
@@ -53,8 +87,20 @@
             '@id' => $canonical.'#breadcrumb',
             'itemListElement' => [
                 ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => 'مقایسه سپند با نرم‌افزارهای دیگر', 'item' => $canonical],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی', 'item' => $canonical],
             ],
+        ],
+        [
+            '@type' => 'ItemList',
+            '@id' => $canonical.'#shipment-workflow',
+            'name' => 'مراحل مدیریت پرونده حمل در نرم‌افزار سپند',
+            'itemListElement' => array_map(static fn (array $step, int $index): array => [
+                '@type' => 'ListItem',
+                'position' => $index + 1,
+                'name' => $step['label'].' — '.$step['title'],
+                'description' => $step['description'],
+                'url' => $canonical.'#workflow-step-'.($index + 1),
+            ], $workflowSteps, array_keys($workflowSteps)),
         ],
         [
             '@type' => 'FAQPage',
@@ -70,142 +116,172 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-comparison.css') }}?v=20260811-4">
+<link rel="stylesheet" href="{{ asset('assets/css/marketing-comparison.css') }}?v=20260818-1">
 @endpush
 
 @section('content')
 <section class="page-hero comparison-hero">
     <div class="container hero-inner">
         <div class="hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مقایسه نرم‌افزارهای حمل‌ونقل</span></div>
-            <h1>سپند در مقایسه با<br><span>نرم‌افزارهای دیگر حمل‌ونقل</span></h1>
-            <p>این صفحه سپند را بر اساس معیارهای مهم انتخاب نرم‌افزار با راهکارهای دیگر بازار مقایسه می‌کند. چون دامنه امکانات، پلن‌ها و شیوه استقرار محصولات متفاوت است، جزئیات نهایی را در دموی گزینه موردنظر بررسی کنید.</p>
-            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول مقایسه</a><a class="btn btn-outline" href="#decision">انتخاب بر اساس نیاز</a></div>
+            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مقایسه نرم‌افزارهای مدیریت حمل‌ونقل</span></div>
+            <h1>مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی؛<br><span>سپند چه تفاوتی دارد؟</span></h1>
+            <p>برای مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی نباید فقط فهرست امکانات یا قیمت را دید. انتخاب درست زمانی انجام می‌شود که CRM تخصصی، استعلام و نرخ‌دهی، Booking، عملیات حمل، مدیریت اسناد، مالی چندارزی، گزارش سود پرونده، پرتال مشتری و یکپارچگی اطلاعات با فرایند واقعی شرکت سنجیده شوند. همچنین باید سطح دسترسی، شیوه استقرار، امکان انتقال داده و کیفیت پشتیبانی روشن باشد. بهترین نرم‌افزار حمل‌ونقل بین‌المللی برای هر شرکت گزینه‌ای است که سناریوی واقعی آن مجموعه را با کمترین ورود دوباره اطلاعات و ابهام عملیاتی پوشش دهد.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول مقایسه</a><a class="btn btn-outline" href="#selection-criteria">معیارهای انتخاب نرم‌افزار</a></div>
         </div>
-        <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با نرم‌افزارهای دیگر بازار">
+        <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با دسته‌های مختلف نرم‌افزار حمل‌ونقل">
             <div class="comparison-visual">
-                <div class="comparison-visual-option is-product"><span>راهکار تخصصی</span><strong>سپند</strong><small>از CRM تا عملیات و مالی</small></div>
-                <div class="comparison-visual-vs">یا</div>
-                <div class="comparison-visual-option is-market"><span>گزینه‌های بازار</span><strong>نرم‌افزارهای<br>دیگر</strong><small>راهکارهایی با دامنه و ساختار متفاوت</small></div>
+                <div class="comparison-visual-option is-product"><span>راهکار تخصصی فورواردری</span><strong>سپند CRM</strong><small>CRM، فروش، عملیات، اسناد و مالی پرونده</small></div>
+                <div class="comparison-visual-vs">در برابر</div>
+                <div class="comparison-visual-option is-market"><span>دسته‌های دیگر</span><strong>حسابداری، CRM،<br>عملیات یا ناوگان</strong><small>هر دسته با هدف و دامنه متفاوت</small></div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="comparison-summary" aria-labelledby="quick-comparison-title">
+<section class="section comparison-criteria" id="selection-criteria" aria-labelledby="selection-criteria-title">
     <div class="container">
-        <div class="quick-verdict reveal">
-            <span class="quick-verdict-label">پاسخ کوتاه</span>
-            <h2 id="quick-comparison-title">تفاوت اصلی در دامنه فرایند، یکپارچگی و شیوه استقرار است</h2>
-            <p>سپند برای اتصال فرایندهای شرکت‌های حمل‌ونقل بین‌المللی و فورواردری، از CRM و نرخ‌دهی تا Booking، عملیات، اسناد، مالی و پرتال مشتری طراحی شده است. نرم‌افزارهای دیگر ممکن است تمام این مسیر یا فقط بخشی از آن را پوشش دهند، به ابزارهای جانبی متصل شوند یا مدل استقرار متفاوتی داشته باشند. بنابراین مقایسه دقیق باید بر اساس سناریوی واقعی شرکت شما انجام شود.</p>
+        <div class="section-head reveal">
+            <span class="section-label">چک‌لیست ارزیابی</span>
+            <h2 class="section-title" id="selection-criteria-title">برای مقایسه نرم‌افزارهای مدیریت حمل‌ونقل باید چه معیارهایی را بررسی کنیم؟</h2>
+            <p class="section-sub">هر معیار را با داده و سناریوی خودتان در دمو بررسی کنید؛ وجود یک عنوان در بروشور لزوماً به معنای پوشش کامل فرایند شرکت شما نیست.</p>
         </div>
-    </div>
-</section>
-
-<section class="section" aria-labelledby="options-title">
-    <div class="container">
-        <div class="section-head reveal"><span class="section-label">دو مسیر در یک نگاه</span><h2 class="section-title" id="options-title">هر گزینه برای چه شرایطی<br><span>مناسب‌تر است؟</span></h2></div>
-        <div class="option-grid">
-            <article class="option-card is-product reveal">
-                <span class="option-badge">گزینه فرایندمحور</span>
-                <h3>نرم‌افزار تخصصی حمل‌ونقل سپند</h3>
-                <dl>
-                    <div><dt>تعریف کوتاه</dt><dd>سامانه‌ای برای اتصال CRM، فروش، Booking، عملیات، اسناد، مالی و گردش کار.</dd></div>
-                    <div><dt>مناسب برای</dt><dd>تیم‌های چندواحدی و شرکت‌های دارای پرونده‌ها و پیگیری‌های پرتعداد.</dd></div>
-                    <div><dt>مهم‌ترین مزیت</dt><dd>یک مرجع مشترک برای داده و فرایند.</dd></div>
-                </dl>
+        <div class="criteria-grid">
+            <article class="criteria-card reveal">
+                <span class="criteria-number">۰۱</span>
+                <h3>فروش و تبدیل درخواست به پرونده</h3>
+                <ul>
+                    <li><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM تخصصی شرکت حمل‌ونقل</a> برای لید، مشتری و پیگیری</li>
+                    <li><a href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}">مدیریت استعلام، نرخ و پیشنهاد قیمت</a></li>
+                    <li><a href="{{ route('site.modules.show', ['module' => 'booking']) }}">Booking</a> و انتقال اطلاعات فروش به اجرای حمل</li>
+                </ul>
             </article>
-            <article class="option-card is-market reveal">
-                <span class="option-badge">راهکارهای متنوع بازار</span>
-                <h3>نرم‌افزارهای دیگر</h3>
-                <dl>
-                    <div><dt>تعریف کوتاه</dt><dd>راهکارهایی با تمرکز، معماری، ماژول‌ها و مدل‌های استقرار متفاوت.</dd></div>
-                    <div><dt>مناسب برای</dt><dd>شرکت‌هایی که نیاز مشخصی دارند یا زیرساخت فعلی آن‌ها با محصول دیگری هماهنگ است.</dd></div>
-                    <div><dt>مهم‌ترین مزیت</dt><dd>تنوع انتخاب و امکان تمرکز بیشتر بر یک حوزه خاص.</dd></div>
-                </dl>
+            <article class="criteria-card reveal">
+                <span class="criteria-number">۰۲</span>
+                <h3>روش حمل، عملیات و اسناد</h3>
+                <ul>
+                    <li><a href="{{ route('site.transport-modes.show', ['mode' => 'air']) }}">حمل هوایی</a>، <a href="{{ route('site.transport-modes.show', ['mode' => 'sea']) }}">دریایی</a>، <a href="{{ route('site.transport-modes.show', ['mode' => 'road']) }}">زمینی</a> و <a href="{{ route('site.transport-modes.show', ['mode' => 'rail']) }}">ریلی</a></li>
+                    <li><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a>، رویدادها، مسئولیت و موارد متوقف‌شده</li>
+                    <li><a href="{{ route('site.modules.show', ['module' => 'document-management']) }}">مدیریت اسناد حمل</a>، نسخه، تأیید و مهلت</li>
+                </ul>
+            </article>
+            <article class="criteria-card reveal">
+                <span class="criteria-number">۰۳</span>
+                <h3>مالی و تصمیم‌گیری مدیریتی</h3>
+                <ul>
+                    <li><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">حسابداری و مالی چندارزی</a></li>
+                    <li>محاسبه درآمد، هزینه و سود هر پرونده حمل</li>
+                    <li>گزارش‌گیری عملیاتی، مالی و پیگیری متناسب با سطح دسترسی</li>
+                </ul>
+            </article>
+            <article class="criteria-card reveal">
+                <span class="criteria-number">۰۴</span>
+                <h3>فناوری، حاکمیت و استقرار</h3>
+                <ul>
+                    <li><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">Customer Portal</a>، سطح دسترسی کاربران و تاریخچه فعالیت</li>
+                    <li>API و Integration موردنیاز، امنیت، دوره Backup و مسئول بازیابی</li>
+                    <li>Migration داده، آموزش، پشتیبانی، سفارشی‌سازی و هزینه کل اجرا</li>
+                    <li>مدل Cloud یا On-Premise؛ برای سپند استقرار داخلی تأیید شده و مدل‌های دیگر باید در پیشنهاد رسمی بررسی شوند</li>
+                </ul>
             </article>
         </div>
+        <p class="verification-note reveal"><strong>موارد نیازمند تأیید فنی:</strong> اتصال به سامانه‌های بیرونی، انتقال خودکار داده، سیاست Backup، مدل Cloud، دامنه آموزش و سطح سفارشی‌سازی برای همه پروژه‌ها یکسان فرض نشده‌اند و باید در دمو، مستند فنی یا قرارداد همان استقرار تأیید شوند.</p>
     </div>
 </section>
 
 <section class="section soft" id="comparison-table" aria-labelledby="comparison-table-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">جدول تصمیم‌گیری</span><h2 class="section-title" id="comparison-table-title">مقایسه سپند با<br><span>نرم‌افزارهای دیگر بازار</span></h2><p class="section-sub">ستون «نرم‌افزارهای دیگر» یک نمای کلی از بازار است و درباره همه محصولات حکم یکسانی صادر نمی‌کند. برای تصمیم نهایی، همین معیارها را در دموی گزینه موردنظر بررسی کنید.</p></div>
+        <div class="section-head reveal"><span class="section-label">جدول تصمیم‌گیری</span><h2 class="section-title" id="comparison-table-title">مقایسه دسته‌های مختلف<br><span>نرم‌افزار حمل‌ونقل</span></h2><p class="section-sub">این جدول تفاوت هدف و دامنه رایج هر دسته را نشان می‌دهد، نه حکم قطعی درباره تمام محصولات بازار. وضعیت هر قابلیت را در نسخه، پلن و قرارداد گزینه نهایی تأیید کنید.</p></div>
         <div class="comparison-table-wrap reveal">
             <table class="comparison-table">
-                <caption>مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با نرم‌افزارهای دیگر بازار بر اساس معیارهای مؤثر در انتخاب</caption>
-                <thead><tr><th scope="col">معیار</th><th scope="col">سپند</th><th scope="col">نرم‌افزارهای دیگر</th></tr></thead>
+                <caption>مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با نرم‌افزارهای حسابداری‌محور، CRM عمومی، عملیات حمل و مدیریت ناوگان</caption>
+                <thead><tr><th scope="col">معیار</th><th scope="col">نرم‌افزار سپند</th><th scope="col">حسابداری‌محور</th><th scope="col">CRM عمومی</th><th scope="col">عملیات حمل</th><th scope="col">مدیریت ناوگان</th></tr></thead>
                 <tbody>
-                    <tr><th scope="row">تمرکز اصلی</th><td class="is-strong">حمل بین‌المللی و فورواردری</td><td>بسته به محصول؛ تخصصی یا حوزه‌محور</td></tr>
-                    <tr><th scope="row">CRM، لید و استعلام</th><td class="is-strong">متصل به پرونده حمل</td><td>بسته به دامنه و ماژول‌های محصول</td></tr>
-                    <tr><th scope="row">نرخ‌دهی و Booking</th><td class="is-strong">در جریان مشترک فروش و عملیات</td><td>ممکن است داخلی یا نیازمند ابزار مکمل باشد</td></tr>
-                    <tr><th scope="row">حمل دریایی، هوایی، زمینی و ریلی</th><td class="is-strong">در یک پلتفرم</td><td>پوشش شیوه‌های حمل در محصولات متفاوت است</td></tr>
-                    <tr><th scope="row">عملیات، اسناد و وظایف</th><td class="is-strong">فرایند متصل و قابل‌ردیابی</td><td>بسته به معماری و دامنه محصول</td></tr>
-                    <tr><th scope="row">مالی چندارزی و سود پرونده</th><td class="is-strong">متصل به عملیات حمل</td><td>ممکن است داخلی یا نیازمند اتصال مالی باشد</td></tr>
-                    <tr><th scope="row">پیامک و سابقه ارتباطات</th><td class="is-strong">ارسال و ثبت سابقه در پرونده</td><td>بسته به محصول، پلن یا افزونه</td></tr>
-                    <tr><th scope="row">پرتال مشتری و رهگیری</th><td class="is-strong">استعلام، محموله، رهگیری و مالی</td><td>دامنه خدمات پرتال متفاوت است</td></tr>
-                    <tr><th scope="row">گردش کار و سطح دسترسی</th><td class="is-strong">قابل‌تعریف بر اساس نقش</td><td>بسته به معماری محصول</td></tr>
-                    <tr><th scope="row">استقرار و سفارشی‌سازی</th><td>پس از تحلیل فرایند شرکت</td><td>از راهکار آماده تا استقرار سفارشی</td></tr>
-                    <tr><th scope="row">تعرفه و زمان راه‌اندازی</th><td>متناسب با ماژول و استقرار</td><td>بسته به محصول، پلن و قرارداد</td></tr>
+                    <tr><th scope="row">تمرکز اصلی</th><td class="is-strong">حمل بین‌المللی و فورواردری</td><td>ثبت مالی و حسابداری</td><td>فروش و ارتباط با مشتری</td><td>اجرای عملیات حمل</td><td>خودرو، راننده و سفر ناوگان</td></tr>
+                    <tr><th scope="row">CRM تخصصی حمل</th><td class="is-strong">تخصصی</td><td>معمولاً محدود</td><td>عمومی؛ نیازمند سفارشی‌سازی</td><td>محدود یا وابسته به راهکار</td><td>معمولاً ندارد</td></tr>
+                    <tr><th scope="row">استعلام، نرخ و Booking</th><td class="is-strong">دارد</td><td>محدود یا نیازمند Integration</td><td>نیازمند Integration</td><td>در راهکارهای تخصصی دارد</td><td>معمولاً ندارد</td></tr>
+                    <tr><th scope="row">حمل هوایی، دریایی، زمینی و ریلی</th><td class="is-strong">دارد</td><td>اطلاعات مالی؛ عملیات محدود</td><td>نیازمند توسعه یا اتصال</td><td>پوشش روش‌ها متفاوت است</td><td>عمدتاً ناوگان زمینی</td></tr>
+                    <tr><th scope="row">عملیات و رویدادهای پرونده</th><td class="is-strong">تخصصی</td><td>محدود</td><td>نیازمند Integration</td><td>تخصصی</td><td>تخصصی برای سفر و ناوگان</td></tr>
+                    <tr><th scope="row">مدیریت اسناد حمل</th><td class="is-strong">دارد</td><td>پیوست یا آرشیو محدود</td><td>نیازمند Integration</td><td>دامنه اسناد متفاوت است</td><td>معمولاً محدود به اسناد سفر</td></tr>
+                    <tr><th scope="row">مالی و حسابداری چندارزی</th><td class="is-strong">دارد</td><td>تخصصی؛ چندارزی بودن تأیید شود</td><td>نیازمند Integration</td><td>داخلی یا نیازمند اتصال مالی</td><td>معمولاً محدود یا نیازمند اتصال</td></tr>
+                    <tr><th scope="row">محاسبه سود هر پرونده</th><td class="is-strong">دارد</td><td>دارد؛ اتصال به عملیات تأیید شود</td><td>نیازمند Integration</td><td>دامنه هزینه و درآمد تأیید شود</td><td>سود سفر در برخی راهکارها</td></tr>
+                    <tr><th scope="row">Customer Portal</th><td class="is-strong">دارد</td><td>معمولاً محدود</td><td>پرتال فروش یا پشتیبانی</td><td>بسته به دامنه راهکار</td><td>پرتال راننده یا صاحب ناوگان</td></tr>
+                    <tr><th scope="row">گردش کار و سطح دسترسی</th><td class="is-strong">دارد</td><td>سطح دسترسی مالی</td><td>گردش کار فروش</td><td>گردش کار عملیاتی</td><td>گردش کار ناوگان</td></tr>
+                    <tr><th scope="row">API و اتصال بیرونی</th><td>موردبه‌مورد تأیید شود</td><td>نیازمند بررسی مستندات</td><td>بسته به پلن و مستندات</td><td>نیازمند بررسی مستندات</td><td>نیازمند بررسی مستندات</td></tr>
+                    <tr><th scope="row">استقرار Cloud / On-Premise</th><td>استقرار داخلی تأییدشده؛ مدل دیگر بررسی شود</td><td>مدل استقرار تأیید شود</td><td>مدل استقرار و نسخه محصول تأیید شود</td><td>مدل استقرار متفاوت است</td><td>مدل استقرار متفاوت است</td></tr>
+                    <tr><th scope="row">Migration، Backup، آموزش و پشتیبانی</th><td>دامنه در پیشنهاد اجرا تأیید شود</td><td>در قرارداد تأیید شود</td><td>در پلن خدمات تأیید شود</td><td>در قرارداد تأیید شود</td><td>در قرارداد تأیید شود</td></tr>
                 </tbody>
             </table>
         </div>
+        <p class="table-footnote reveal">عبارت‌هایی مانند «معمولاً» یا «نیازمند بررسی» برای پرهیز از ادعای قطعی درباره محصولات نامشخص استفاده شده‌اند. معیار نهایی، دموی سناریوی یکسان و پیشنهاد رسمی هر تأمین‌کننده است.</p>
     </div>
 </section>
 
-<section class="section" aria-labelledby="differences-title">
+<section class="section category-differences" aria-label="تفاوت دسته‌های نرم‌افزار حمل‌ونقل">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">تفاوت‌های کلیدی</span><h2 class="section-title" id="differences-title">چه چیزی نتیجه انتخاب را<br><span>تغییر می‌دهد؟</span></h2></div>
-        <div class="difference-grid">
-            <article class="difference-card reveal"><span>۰۱</span><h3>دامنه فرایند</h3><p>سپند زنجیره CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی را به هم متصل می‌کند؛ دامنه پوشش در نرم‌افزارهای دیگر باید برای هر محصول جداگانه بررسی شود.</p></article>
-            <article class="difference-card reveal"><span>۰۲</span><h3>یکپارچگی داده‌ها</h3><p>در سپند اطلاعات مشتری و پرونده حمل میان واحدها مشترک است؛ در نرم‌افزارهای دیگر ممکن است همین یکپارچگی وجود داشته باشد یا به اتصال چند ماژول نیاز باشد.</p></article>
-            <article class="difference-card reveal"><span>۰۳</span><h3>تجربه مشتری</h3><p>پیامک، سابقه ارتباطات، استعلام، رهگیری و اطلاعات مالی در پرتال سپند کنار هم قرار می‌گیرند؛ سطح پوشش این مسیر در گزینه‌های دیگر متفاوت است.</p></article>
-            <article class="difference-card reveal"><span>۰۴</span><h3>استقرار و توسعه</h3><p>سپند پس از شناخت ساختار شرکت و ترکیب ماژول‌ها پیشنهاد می‌شود؛ نرم‌افزارهای دیگر ممکن است آماده، ماژولار، ابری یا متناسب با فرایند سازمان ارائه شوند.</p></article>
+        <div class="comparison-section-intro reveal"><span class="section-label">شناخت دسته‌های نرم‌افزار</span><p>پیش از مقایسه برندها باید مشخص شود هر محصول اساساً برای حل چه مسئله‌ای ساخته شده است.</p></div>
+        <div class="category-difference-list">
+            <article class="category-difference-card reveal">
+                <span class="category-index">۰۱</span>
+                <div><h2>تفاوت سپند با نرم‌افزارهای حسابداری حمل‌ونقل چیست؟</h2><p>نرم‌افزار حسابداری‌محور معمولاً بر ثبت سند، دریافت، پرداخت و گزارش مالی تمرکز دارد. نرم‌افزار مدیریت حمل‌ونقل سپند از CRM و استعلام آغاز می‌کند و Booking، عملیات و اسناد را نیز تا ثبت درآمد و هزینه پرونده ادامه می‌دهد. اگر محصول حسابداری دیگری همین فرایندها را پوشش می‌دهد، اتصال واقعی آن‌ها را در دمو بررسی کنید؛ نام ماژول به‌تنهایی کافی نیست.</p></div>
+            </article>
+            <article class="category-difference-card reveal">
+                <span class="category-index">۰۲</span>
+                <div><h2>تفاوت سپند با CRMهای عمومی چیست؟</h2><p>CRM عمومی برای مدیریت تماس، فرصت فروش و فعالیت تیم ساخته می‌شود، اما مفاهیم مسیر، روش حمل، استعلام نرخ، Booking و پرونده عملیاتی را لزوماً به‌صورت تخصصی نمی‌شناسد. سپند CRM این اطلاعات را در زمینه شرکت فورواردری نگهداری می‌کند. در مقایسه، میزان سفارشی‌سازی و Integration موردنیاز CRM عمومی را هم در هزینه و زمان اجرا حساب کنید.</p></div>
+            </article>
+            <article class="category-difference-card reveal">
+                <span class="category-index">۰۳</span>
+                <div><h2>تفاوت سپند با نرم‌افزارهای مدیریت ناوگان چیست؟</h2><p>نرم‌افزار مدیریت ناوگان معمولاً بر خودرو، راننده، سفر، موقعیت، سوخت یا نگهداری تمرکز دارد. سپند اطلاعات خودرو و راننده را در عملیات حمل زمینی نگه می‌دارد، اما در اطلاعات فعلی محصول جایگزین سامانه تخصصی GPS، تلماتیک یا نگهداری ناوگان معرفی نشده است. شرکتی که فقط همین نیاز را دارد، باید راهکار ناوگان را جداگانه ارزیابی کند.</p></div>
+            </article>
         </div>
     </div>
 </section>
 
-<section class="section soft" id="decision" aria-labelledby="decision-title">
+<section class="section soft workflow-section" id="shipment-workflow" aria-labelledby="shipment-workflow-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">انتخاب بر اساس نیاز</span><h2 class="section-title" id="decision-title">کدام گزینه برای شما<br><span>مناسب‌تر است؟</span></h2></div>
+        <div class="section-head reveal"><span class="section-label">سناریوی واقعی</span><h2 class="section-title" id="shipment-workflow-title">یک پرونده حمل در سپند از استعلام تا محاسبه سود چگونه مدیریت می‌شود؟</h2><p class="section-sub workflow-formula" dir="ltr">Lead / Customer → Inquiry → Quotation → Booking → Operation → Documents → Financial → Profit Report</p></div>
+        <ol class="workflow-grid">
+            @foreach($workflowSteps as $index => $step)
+                <li class="workflow-card reveal" id="workflow-step-{{ $index + 1 }}">
+                    <span class="workflow-number">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                    <small dir="ltr">{{ $step['label'] }}</small>
+                    <h3><a href="{{ $step['href'] }}">{{ $step['title'] }}</a></h3>
+                    <p>{{ $step['description'] }}</p>
+                </li>
+            @endforeach
+        </ol>
+    </div>
+</section>
+
+<section class="section" id="decision" aria-labelledby="decision-title">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">تناسب با کسب‌وکار</span><h2 class="section-title" id="decision-title">سپند برای چه شرکت‌هایی مناسب‌تر است؟</h2><p class="section-sub">تناسب محصول به پیچیدگی فرایند، تعداد واحدها و نوع حمل وابسته است؛ اندازه شرکت به‌تنهایی معیار کافی نیست.</p></div>
         <div class="decision-grid">
             <article class="decision-card is-product reveal">
-                <h3>نرم‌افزار سپند مناسب‌تر است اگر:</h3>
+                <h3>سپند برای چه شرکت‌هایی قابل بررسی است؟</h3>
                 <ul>
-                    <li>فروش، عملیات، اسناد و مالی باید روی داده مشترک کار کنند.</li>
-                    <li>پیگیری لید، مشتری، استعلام و وظایف بین چند نفر توزیع می‌شود.</li>
-                    <li>به سطح دسترسی، تاریخچه فعالیت و مسئول مشخص نیاز دارید.</li>
-                    <li>گزارش سود پرونده و وضعیت عملیات نباید با تجمیع دستی ساخته شود.</li>
-                    <li>یک پلتفرم تخصصی را به اتصال چند ابزار جدا ترجیح می‌دهید.</li>
+                    <li>Freight Forwarder و شرکت حمل‌ونقل بین‌المللی</li>
+                    <li>شرکت‌های دارای حمل هوایی، دریایی، زمینی یا ریلی</li>
+                    <li>تیم‌هایی با واحدهای فروش، عملیات، اسناد و مالی جدا</li>
+                    <li>مجموعه‌هایی که اطلاعاتشان در Excel و چند سیستم پراکنده است</li>
+                    <li>شرکت‌هایی که سود هر پرونده و وضعیت اقدامات را جداگانه پیگیری می‌کنند</li>
                 </ul>
             </article>
             <article class="decision-card is-market reveal">
-                <h3>نرم‌افزارهای دیگر را جدی‌تر بررسی کنید اگر:</h3>
+                <h3>سپند برای چه کسب‌وکارهایی ممکن است انتخاب مناسبی نباشد؟</h3>
                 <ul>
-                    <li>دامنه تخصصی یک محصول دیگر دقیق‌تر با مدل فعالیت شما هماهنگ است.</li>
-                    <li>زیرساخت فعلی شرکت از قبل با راهکار دیگری یکپارچه شده است.</li>
-                    <li>به قابلیت ویژه‌ای خارج از دامنه فعلی سپند نیاز دارید.</li>
-                    <li>مدل استقرار یا قرارداد محصول دیگری برای سازمانتان مناسب‌تر است.</li>
-                    <li>دموی گزینه دیگری سناریوی واقعی شما را با تغییر فرایند کمتر پوشش می‌دهد.</li>
+                    <li>کسب‌وکاری که فقط حسابداری ساده و بدون فرایند حمل می‌خواهد</li>
+                    <li>مجموعه‌ای که تنها نیازش GPS، تلماتیک یا نگهداری ناوگان است</li>
+                    <li>شرکتی که قابلیت حیاتی آن خارج از دامنه تأییدشده فعلی سپند است</li>
+                    <li>سازمانی که مدل استقرار یا Integration موردنیازش در بررسی فنی تأیید نمی‌شود</li>
                 </ul>
             </article>
-        </div>
-    </div>
-</section>
-
-<section class="section final-decision-section" aria-labelledby="final-decision-title">
-    <div class="container">
-        <div class="final-decision reveal">
-            <span class="section-label">نتیجه مقایسه</span>
-            <h2 id="final-decision-title">در نهایت کدام را انتخاب کنیم؟</h2>
-            <p>اگر اتصال CRM، فروش، عملیات، مالی، پیامک و پرتال مشتری در یک مسیر تخصصی برایتان معیار اصلی است، سپند گزینه جدی‌تری برای بررسی است. اگر نیاز، زیرساخت یا مدل استقرار متفاوتی دارید، نرم‌افزارهای دیگر نیز می‌توانند انتخاب مناسب‌تری باشند. تصمیم نهایی را با اجرای یک سناریوی واقعی و یکسان در دموی گزینه‌های نهایی و مقایسه هزینه کل استقرار بگیرید.</p>
         </div>
     </div>
 </section>
 
 <section class="section soft" aria-labelledby="comparison-faq-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">پرسش‌های تصمیم‌ساز</span><h2 class="section-title" id="comparison-faq-title">پیش از انتخاب<br><span>نرم‌افزار حمل‌ونقل</span></h2></div>
+        <div class="section-head reveal"><span class="section-label">پرسش‌های تصمیم‌ساز</span><h2 class="section-title" id="comparison-faq-title">سؤالات متداول مقایسه و انتخاب نرم‌افزار حمل‌ونقل</h2></div>
         <div class="faq">
             @foreach($faqs as $faq)
                 <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
@@ -218,13 +294,15 @@
     <div class="container">
         <h2 id="comparison-links-title">برای تصمیم دقیق‌تر این بخش‌ها را ببینید</h2>
         <nav aria-label="لینک‌های مرتبط با مقایسه">
-            <a href="{{ route('modules') }}">ماژول‌های نرم‌افزار حمل‌ونقل</a>
-            <a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM تخصصی حمل‌ونقل</a>
-            <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a>
-            <a href="{{ route('pricing') }}">قیمت نرم‌افزار حمل‌ونقل</a>
+            <a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM شرکت حمل‌ونقل</a>
+            <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a>
+            <a href="{{ route('site.modules.show', ['module' => 'document-management']) }}">مدیریت اسناد</a>
+            <a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و سود پرونده</a>
+            <a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان</a>
+            <a href="{{ route('consultation.create') }}">درخواست دمو</a>
         </nav>
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>هنوز بین سپند و نرم‌افزارهای دیگر مردد هستید؟</h2><p>سناریوی واقعی، ابزارهای موجود و نیازهای تیم شما را بررسی می‌کنیم تا معیارهای انتخاب و تناسب سپند با سازمانتان روشن شود.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="comparison_other_software_consultation">درخواست مشاوره</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>سپند را با فرایند واقعی شرکت خودتان مقایسه کنید</h2><p>در یک جلسه کوتاه، فرایند فعلی فروش، عملیات و مالی شرکت شما بررسی می‌شود تا مشخص شود سپند تا چه حد با نیازهای شما تطابق دارد.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="comparison_other_software_consultation">درخواست دمو و مشاوره</a></div></div></div></section>
 @endsection

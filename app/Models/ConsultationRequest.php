@@ -15,6 +15,8 @@ class ConsultationRequest extends Model
         'mobile',
         'email',
         'company_type',
+        'approximate_users',
+        'primary_need',
         'message',
         'source_page',
     ];
