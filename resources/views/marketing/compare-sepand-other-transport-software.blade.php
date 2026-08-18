@@ -5,6 +5,7 @@
     $description = 'مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با انواع راهکارها از نظر CRM، Booking، عملیات، اسناد، مالی، گزارش سود، پرتال مشتری و یکپارچگی اطلاعات.';
     $canonical = route('compare.sepand-other-transport-software');
     $dateModified = '2026-08-18';
+    $comparisons = config('site_comparisons.pages');
     $workflowSteps = [
         ['label' => 'Lead / Customer', 'title' => 'سرنخ و مشتری', 'description' => 'اطلاعات سرنخ، مشتری، سوابق ارتباط و مسئول پیگیری در CRM شرکت حمل‌ونقل ثبت می‌شود.', 'href' => route('site.modules.show', ['module' => 'crm'])],
         ['label' => 'Inquiry', 'title' => 'استعلام', 'description' => 'مسیر، روش حمل، محموله و نیاز مشتری در استعلام ساختاریافته قرار می‌گیرد.', 'href' => route('site.modules.show', ['module' => 'pricing-sales'])],
@@ -73,6 +74,10 @@
                 ['@type' => 'Thing', 'name' => 'مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی'],
             ],
             'significantLink' => [
+                route('compare.index'),
+                route('compare.sepand-vs-royan'),
+                route('compare.sepand-vs-saba'),
+                route('compare.best-transport-software'),
                 route('modules'),
                 route('site.modules.show', ['module' => 'crm']),
                 route('site.modules.show', ['module' => 'transport-operations']),
@@ -87,7 +92,8 @@
             '@id' => $canonical.'#breadcrumb',
             'itemListElement' => [
                 ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => 'مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی', 'item' => $canonical],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'مرکز مقایسه', 'item' => route('compare.index')],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => 'سپند در برابر سایر نرم‌افزارهای حمل‌ونقل', 'item' => $canonical],
             ],
         ],
         [
@@ -123,7 +129,7 @@
 <section class="page-hero comparison-hero">
     <div class="container hero-inner">
         <div class="hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مقایسه نرم‌افزارهای مدیریت حمل‌ونقل</span></div>
+            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('compare.index') }}">مرکز مقایسه</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>سایر نرم‌افزارها</span></div>
             <h1>مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی؛<br><span>سپند چه تفاوتی دارد؟</span></h1>
             <p>برای مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی نباید فقط فهرست امکانات یا قیمت را دید. انتخاب درست زمانی انجام می‌شود که CRM تخصصی، استعلام و نرخ‌دهی، Booking، عملیات حمل، مدیریت اسناد، مالی چندارزی، گزارش سود پرونده، پرتال مشتری و یکپارچگی اطلاعات با فرایند واقعی شرکت سنجیده شوند. همچنین باید سطح دسترسی، شیوه استقرار، امکان انتقال داده و کیفیت پشتیبانی روشن باشد. بهترین نرم‌افزار حمل‌ونقل بین‌المللی برای هر شرکت گزینه‌ای است که سناریوی واقعی آن مجموعه را با کمترین ورود دوباره اطلاعات و ابهام عملیاتی پوشش دهد.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول مقایسه</a><a class="btn btn-outline" href="#selection-criteria">معیارهای انتخاب نرم‌افزار</a></div>
@@ -303,6 +309,8 @@
         </nav>
     </div>
 </section>
+
+@include('marketing.partials.comparison-cluster-links', ['comparisons' => $comparisons])
 
 <section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>سپند را با فرایند واقعی شرکت خودتان مقایسه کنید</h2><p>در یک جلسه کوتاه، فرایند فعلی فروش، عملیات و مالی شرکت شما بررسی می‌شود تا مشخص شود سپند تا چه حد با نیازهای شما تطابق دارد.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="comparison_other_software_consultation">درخواست دمو و مشاوره</a></div></div></div></section>
 @endsection

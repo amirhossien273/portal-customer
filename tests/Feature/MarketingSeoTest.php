@@ -208,7 +208,11 @@ class MarketingSeoTest extends TestCase
         $pages = [
             '/' => config('marketing.page_keywords.home'),
             '/modules' => config('marketing.page_keywords.modules'),
+            '/compare' => config('marketing.page_keywords.compare_index'),
+            '/compare/sepand-vs-royan' => config('marketing.page_keywords.sepand_vs_royan'),
+            '/compare/sepand-vs-saba' => config('marketing.page_keywords.sepand_vs_saba'),
             '/compare/sepand-vs-other-transport-software' => config('marketing.page_keywords.sepand_vs_other_transport_software'),
+            '/compare/best-transport-software' => config('marketing.page_keywords.best_transport_software'),
             '/modules/crm' => config('site_modules.crm.keywords'),
             '/modules/pricing-sales' => config('site_modules.pricing-sales.keywords'),
             '/modules/booking' => config('site_modules.booking.keywords'),
@@ -225,8 +229,8 @@ class MarketingSeoTest extends TestCase
             '/consultation' => config('marketing.page_keywords.consultation'),
         ];
 
-        $this->assertCount(17, $pages);
-        $this->assertSame(64, array_sum(array_map('count', $pages)));
+        $this->assertCount(21, $pages);
+        $this->assertSame(72, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();

@@ -61,6 +61,10 @@ class ComparisonLandingPageTest extends TestCase
         $content = $response->getContent();
 
         foreach ([
+            '/compare',
+            '/compare/sepand-vs-royan',
+            '/compare/sepand-vs-saba',
+            '/compare/best-transport-software',
             '/modules',
             '/modules/crm',
             '/modules/pricing-sales',
