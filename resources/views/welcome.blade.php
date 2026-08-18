@@ -60,6 +60,7 @@
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260818-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260818-1">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
@@ -411,6 +412,8 @@
             <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span class="footer-status"><i></i>سامانه‌های سپند فعال هستند</span></div>
         </div>
     </footer>
+
+    @include('layouts.partials.floating-consultation-cta')
 
     <script>
         (() => {

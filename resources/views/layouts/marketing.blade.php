@@ -41,6 +41,7 @@
     @stack('head')
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20260805-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260818-1">
     @stack('styles')
 </head>
 <body>
@@ -83,6 +84,7 @@
         <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span>طراحی‌شده برای تجربه‌ای شفاف‌تر</span></div>
     </div>
 </footer>
+@include('layouts.partials.floating-consultation-cta')
 <script>
 (()=>{const menu=document.getElementById('main-nav'),toggle=document.getElementById('menu-toggle');toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}));const track=(eventName,eventLabel,url)=>{const payload={event_category:'marketing',event_label:eventLabel,link_url:url||window.location.href};if(typeof window.gtag==='function')window.gtag('event',eventName,payload);else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:eventName,...payload})}};document.addEventListener('click',event=>{const link=event.target.closest('[data-ga-event]');if(link)track(link.dataset.gaEvent,link.dataset.gaLabel||link.textContent.trim(),link.href)});document.querySelectorAll('[data-ga-form]').forEach(form=>form.addEventListener('submit',()=>track(form.dataset.gaForm,'consultation_form_submit',form.action)));const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
 </script>
