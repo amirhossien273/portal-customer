@@ -8,38 +8,50 @@
 .comparison-visual-option small{font-size:12px;line-height:1.8}
 .comparison-visual-option.is-product{color:#fff;background:linear-gradient(145deg,#1c6f7e,#144b68)}
 .comparison-visual-option.is-market{color:#174b3a;background:#f1fbf5;border:1px solid #d7eee0}
-.comparison-visual-vs{display:grid;width:48px;height:48px;place-items:center;color:var(--navy);background:#fff;border-radius:50%;box-shadow:0 9px 24px rgba(15,48,91,.18);font-size:13px;font-weight:900}
-.comparison-summary{position:relative;margin-top:-38px;z-index:3}
-.quick-verdict{padding:32px 38px;background:#fff;border:1px solid #dbe8e8;border-radius:24px;box-shadow:0 20px 55px rgba(15,48,91,.1)}
-.quick-verdict-label{display:inline-flex;margin-bottom:9px;padding:5px 11px;color:var(--teal-dark);background:#e8f5f4;border-radius:99px;font-size:11px;font-weight:800}
-.quick-verdict h2{margin:0 0 10px;color:var(--navy-900);font-size:22px;line-height:1.6}
-.quick-verdict p{max-width:1040px;margin:0;color:var(--muted);font-size:15px;line-height:2.15}
-.option-grid,.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1040px;margin:auto}
-.option-card{padding:32px;background:#fff;border:1px solid #dfe9e9;border-radius:24px;box-shadow:0 14px 42px rgba(15,48,91,.06)}
-.option-card.is-product{border-top:4px solid var(--teal)}
-.option-card.is-market{border-top:4px solid #3c9b65}
-.option-badge{display:inline-flex;padding:5px 10px;color:#53657a;background:#edf3f3;border-radius:99px;font-size:11px;font-weight:700}
-.option-card h3{margin:16px 0 22px;color:var(--navy-900);font-size:21px}
-.option-card dl{display:grid;gap:16px;margin:0}
-.option-card dl div{padding-top:15px;border-top:1px solid #e8efef}
-.option-card dt{margin-bottom:5px;color:var(--teal-dark);font-size:12px;font-weight:800}
-.option-card dd{margin:0;color:var(--muted);font-size:14px;line-height:1.9}
-.comparison-table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce8e8;border-radius:24px;box-shadow:0 18px 50px rgba(15,48,91,.08)}
-.comparison-table{width:100%;min-width:760px;border-collapse:collapse;text-align:right}
+.comparison-visual-vs{display:grid;width:64px;height:64px;place-items:center;color:var(--navy);background:#fff;border-radius:50%;box-shadow:0 9px 24px rgba(15,48,91,.18);font-size:11px;font-weight:900;text-align:center}
+.comparison-criteria{background:linear-gradient(180deg,#fff 0%,#f8fbfb 100%)}
+.criteria-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.criteria-card{position:relative;padding:30px 74px 30px 28px;background:#fff;border:1px solid #dfeaea;border-radius:23px;box-shadow:0 14px 40px rgba(15,48,91,.05)}
+.criteria-number{position:absolute;top:30px;right:26px;color:var(--teal-dark);font-size:13px;font-weight:900}
+.criteria-card h3{margin:0 0 17px;color:var(--navy-900);font-size:18px;line-height:1.7}
+.criteria-card ul{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.criteria-card li{position:relative;padding-right:18px;color:var(--muted);font-size:14px;line-height:2}
+.criteria-card li:before{content:'';position:absolute;top:12px;right:0;width:6px;height:6px;background:var(--teal);border-radius:50%}
+.criteria-card a{color:var(--teal-dark);font-weight:750;text-decoration:underline;text-decoration-color:rgba(47,145,150,.28);text-underline-offset:4px}
+.criteria-card a:hover{color:var(--navy)}
+.verification-note,.table-footnote{margin:22px 0 0;padding:18px 21px;color:#5d6f83;background:#eef7f6;border-right:4px solid var(--teal);border-radius:14px;font-size:13px;line-height:2}
+.verification-note strong{color:var(--navy)}
+.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1040px;margin:auto}
+.comparison-table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce8e8;border-radius:24px;box-shadow:0 18px 50px rgba(15,48,91,.08);scrollbar-color:var(--teal) #e8f0f0;scrollbar-width:thin}
+.comparison-table{width:100%;min-width:1480px;border-collapse:separate;border-spacing:0;text-align:right}
 .comparison-table caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .comparison-table th,.comparison-table td{padding:18px 22px;border-bottom:1px solid #e4eded;color:#526579;font-size:14px;line-height:1.7}
 .comparison-table thead th{color:#fff;background:var(--navy-900);font-size:14px;font-weight:800}
 .comparison-table thead th:first-child{border-radius:0 22px 0 0}
 .comparison-table thead th:last-child{border-radius:22px 0 0 0}
-.comparison-table tbody th{width:28%;color:var(--navy);background:#f8fbfb;font-weight:800}
+.comparison-table tbody th{width:230px;color:var(--navy);background:#f8fbfb;font-weight:800}
+.comparison-table thead th:first-child,.comparison-table tbody th{position:sticky;right:0;z-index:2;box-shadow:-8px 0 14px rgba(15,48,91,.04)}
+.comparison-table thead th:first-child{z-index:3;background:var(--navy-900)}
 .comparison-table tbody tr:last-child th,.comparison-table tbody tr:last-child td{border-bottom:0}
 .comparison-table td.is-strong{color:#17686e;background:#f1f9f8;font-weight:800}
 .comparison-table td.is-strong:before{content:'✓';display:inline-grid;width:21px;height:21px;margin-left:7px;place-items:center;color:#fff;background:var(--teal-dark);border-radius:50%;font-size:11px}
-.difference-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.difference-card{position:relative;padding:28px 74px 28px 28px;background:#fff;border:1px solid #e0eaea;border-radius:21px}
-.difference-card>span{position:absolute;top:28px;right:26px;color:var(--teal);font-size:14px;font-weight:900}
-.difference-card h3{margin:0 0 9px;color:var(--navy-900);font-size:17px}
-.difference-card p{margin:0;color:var(--muted);font-size:14px;line-height:2}
+.table-footnote{background:#fff;border:1px solid #dde9e9;border-right:4px solid var(--teal)}
+.comparison-section-intro{max-width:880px;margin:0 auto 36px;text-align:center}
+.comparison-section-intro .section-label{justify-content:center}
+.comparison-section-intro p{margin:7px 0 0;color:var(--muted);font-size:15px;line-height:2}
+.category-difference-list{display:grid;gap:18px;max-width:1040px;margin:auto}
+.category-difference-card{display:grid;grid-template-columns:58px 1fr;gap:22px;padding:31px 32px;background:#fff;border:1px solid #dfeaea;border-radius:23px;box-shadow:0 14px 40px rgba(15,48,91,.045)}
+.category-index{display:grid;width:52px;height:52px;place-items:center;color:var(--teal-dark);background:#e8f5f4;border-radius:16px;font-size:13px;font-weight:900}
+.category-difference-card h2{margin:0 0 10px;color:var(--navy-900);font-size:22px;line-height:1.7}
+.category-difference-card p{margin:0;color:var(--muted);font-size:14px;line-height:2.15}
+.workflow-formula{padding:13px 16px;color:var(--teal-dark);background:#e8f5f4;border-radius:14px;font-size:13px;font-weight:800;line-height:1.8}
+.workflow-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none;counter-reset:workflow}
+.workflow-card{position:relative;min-height:245px;padding:27px 24px;background:#fff;border:1px solid #dfeaea;border-radius:21px}
+.workflow-number{display:grid;width:38px;height:38px;margin-bottom:19px;place-items:center;color:#fff;background:var(--teal-dark);border-radius:12px;font-size:11px;font-weight:900}
+.workflow-card small{display:block;color:#8190a1;font-size:10px;font-weight:700;letter-spacing:.4px}
+.workflow-card h3{margin:5px 0 9px;color:var(--navy-900);font-size:17px}
+.workflow-card h3 a:hover{color:var(--teal-dark)}
+.workflow-card p{margin:0;color:var(--muted);font-size:13px;line-height:2}
 .decision-card{padding:32px;border-radius:25px}
 .decision-card.is-product{color:#fff;background:linear-gradient(145deg,var(--navy-900),#174f68);box-shadow:0 24px 60px rgba(15,48,91,.18)}
 .decision-card.is-market{color:var(--navy-900);background:#fff;border:1px solid #dce8e2}
@@ -49,16 +61,12 @@
 .decision-card li:before{content:'✓';position:absolute;top:3px;right:0;display:grid;width:20px;height:20px;place-items:center;border-radius:7px;font-size:10px;font-weight:900}
 .decision-card.is-product li{color:#dcebed}.decision-card.is-product li:before{color:var(--navy-900);background:#76d9d2}
 .decision-card.is-market li{color:var(--muted)}.decision-card.is-market li:before{color:#236746;background:#e2f4e9}
-.final-decision-section{padding-bottom:70px}
-.final-decision{max-width:920px;margin:auto;padding:38px 42px;text-align:center;background:#f6fbfb;border:1px solid #d9eaea;border-radius:27px}
-.final-decision .section-label:after{display:none}
-.final-decision h2{margin:0 0 12px;color:var(--navy-900);font-size:30px}
-.final-decision p{margin:0;color:var(--muted);font-size:15px;line-height:2.15}
 .comparison-links{padding:46px 0;background:var(--navy-900)}
 .comparison-links .container{display:flex;align-items:center;justify-content:space-between;gap:30px}
 .comparison-links h2{margin:0;color:#fff;font-size:18px}
 .comparison-links nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
 .comparison-links a{padding:8px 13px;color:#d9ebed;border:1px solid rgba(255,255,255,.17);border-radius:99px;font-size:12px;transition:.2s}
 .comparison-links a:hover{color:#fff;border-color:var(--teal);background:rgba(47,145,150,.16)}
-@media(max-width:840px){.comparison-hero .hero-copy{max-width:none}.comparison-visual{max-width:620px;margin:auto}.option-grid,.decision-grid{grid-template-columns:1fr}.comparison-links .container{align-items:flex-start;flex-direction:column}.comparison-links nav{justify-content:flex-start}.difference-grid{grid-template-columns:1fr}}
-@media(max-width:580px){.comparison-hero{padding-bottom:80px}.comparison-visual{grid-template-columns:1fr;padding:18px}.comparison-visual-option{min-height:170px}.comparison-visual-vs{margin:-4px auto}.quick-verdict{padding:26px 23px}.quick-verdict h2{font-size:19px}.quick-verdict p{font-size:13px}.option-card,.decision-card{padding:25px 22px}.comparison-table th,.comparison-table td{padding:15px 14px;font-size:12px}.difference-card{padding:25px 62px 25px 20px}.final-decision{padding:30px 23px}.final-decision h2{font-size:25px}.final-decision p{font-size:13px}}
+@media(max-width:1040px){.workflow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:840px){.comparison-hero .hero-copy{max-width:none}.comparison-visual{max-width:620px;margin:auto}.criteria-grid,.decision-grid{grid-template-columns:1fr}.comparison-links .container{align-items:flex-start;flex-direction:column}.comparison-links nav{justify-content:flex-start}}
+@media(max-width:580px){.comparison-hero{padding-bottom:80px}.comparison-visual{grid-template-columns:1fr;padding:18px}.comparison-visual-option{min-height:170px}.comparison-visual-vs{margin:-4px auto}.criteria-card{padding:26px 60px 26px 20px}.criteria-number{top:27px;right:21px}.criteria-card li{font-size:13px}.verification-note,.table-footnote{font-size:12px}.comparison-table th,.comparison-table td{padding:15px 14px;font-size:12px}.category-difference-card{grid-template-columns:1fr;padding:25px 22px}.category-difference-card h2{font-size:19px}.category-difference-card p{font-size:13px}.workflow-grid{grid-template-columns:1fr}.workflow-card{min-height:auto}.workflow-formula{font-size:11px}.decision-card{padding:25px 22px}}

@@ -142,6 +142,13 @@ class MarketingSeoTest extends TestCase
             ->assertSee('کلید API و شماره خط فراز اس‌ام‌اس', false)
             ->assertSee('id="crm-analytics"', false)
             ->assertSee('دریافت‌های تأییدشده منهای پرداخت‌های انجام‌شده', false)
+            ->assertSee('id="crm-follow-ups"', false)
+            ->assertSee('استعلام‌های دارای تسک عقب‌افتاده', false)
+            ->assertSee('استعلام‌های بدون پیگیری بعدی', false)
+            ->assertSee('تسک‌های باقی‌مانده امروز', false)
+            ->assertSee('پیگیری‌های آینده', false)
+            ->assertSee('اعلان داخلی به‌صورت پیش‌فرض فعال است', false)
+            ->assertSee('دریافت پیامک یادآوری را از تنظیمات پروفایل', false)
             ->assertSee('پیگیری پیش‌فاکتورهای ۴۸ ساعته', false)
             ->assertSee('راهنمای تعاملی لید و مشتری', false)
             ->assertSee('"@type":"FAQPage"', false)
@@ -219,7 +226,7 @@ class MarketingSeoTest extends TestCase
         ];
 
         $this->assertCount(17, $pages);
-        $this->assertSame(54, array_sum(array_map('count', $pages)));
+        $this->assertSame(64, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
