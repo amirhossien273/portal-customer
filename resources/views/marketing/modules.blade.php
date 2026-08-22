@@ -2,7 +2,7 @@
 
 @php
     $title = 'ماژول‌های نرم‌افزار حمل‌ونقل و لجستیک | سپند';
-    $description = 'ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM و تحلیل مشتری تا مقایسه تأمین‌کننده، هشدار نرخ، Booking، عملیات، مالی و پرتال مشتریان.';
+    $description = 'ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM، تسک خودکار و نرخ‌دهی تا Booking، عملیات، مالی و پرتال مشتریان.';
     $canonical = route('modules');
     $moduleListItems = collect(config('site_modules'))
         ->map(static fn (array $module, string $slug): array => [
@@ -59,7 +59,7 @@
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ماژول‌ها</span></div>
             <h1>ماژول‌های یکپارچه سپند؛<br><span>از جذب مشتری تا تصمیم‌گیری و عملیات</span></h1>
-            <p>در نرم‌افزار یکپارچه حمل‌ونقل سپند، CRM، تحلیل مشتری، نرخ‌دهی، مقایسه تأمین‌کننده، Booking، عملیات، اسناد، مالی و پرتال مشتریان روی داده مشترک کار می‌کنند؛ بنابراین تیم شما هم فرایند را اجرا می‌کند و هم تصمیم‌های فروش را با داده قابل‌اعتماد می‌گیرد.</p>
+            <p>در نرم‌افزار یکپارچه حمل‌ونقل سپند، CRM، تسک خودکار، نرخ‌دهی، مقایسه تأمین‌کننده، Booking، عملیات، اسناد، مالی و پرتال مشتریان روی داده مشترک کار می‌کنند؛ بنابراین رویدادهای فروش به اقدام مشخص تبدیل می‌شوند و تیم شما با داده قابل‌اعتماد کار می‌کند.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#all-modules">مشاهده ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a><a class="btn btn-outline" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a></div>
         </div>
         <div class="hero-art reveal">
@@ -70,7 +70,7 @@
 
 <section class="section" id="all-modules">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">ماژول‌های اصلی</span><h2 class="section-title">ابزارهای تخصصی برای<br><span>فروش، عملیات و خدمات مشتری</span></h2><p class="section-sub">هر ماژول به‌تنهایی کاربردی است و در کنار سایر بخش‌ها، تصویری کامل از ارتباطات مشتری، عملیات، وضعیت مالی و تجربه سلف‌سرویس مشتریان می‌سازد.</p></div>
+        <div class="section-head reveal"><span class="section-label">ماژول‌های اصلی</span><h2 class="section-title">ابزارهای تخصصی برای<br><span>فروش، عملیات و خدمات مشتری</span></h2><p class="section-sub">هر ماژول به‌تنهایی کاربردی است و در کنار سایر بخش‌ها، رویدادهای CRM را به پیگیری خودکار متصل می‌کند و تصویری کامل از مشتری، عملیات و وضعیت مالی می‌سازد.</p></div>
         <div class="card-grid">
             @foreach(config('site_modules') as $slug => $module)
                 <article class="content-card reveal">

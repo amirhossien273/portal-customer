@@ -2,7 +2,7 @@
 
 return [
     'site_url' => rtrim(env('MARKETING_SITE_URL', 'https://sepandcrm.ir'), '/'),
-    'content_last_modified' => '2026-08-18',
+    'content_last_modified' => '2026-08-22',
     'page_keywords' => [
         'home' => [
             'نرم افزار مدیریت حمل و نقل بین المللی',
