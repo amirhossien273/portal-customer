@@ -65,24 +65,7 @@
             </div>
         </div>
         <div class="hero-art crm-hero-art reveal">
-            <div class="art-panel module-hero-image-panel">
-                <img
-                    class="module-hero-image"
-                    src="{{ asset('assets/images/marketing/modules/'.$slug.'-hero.webp') }}"
-                    alt="{{ $imageAlt }}"
-                    width="1536"
-                    height="1024"
-                    loading="eager"
-                    fetchpriority="high"
-                >
-                <span class="module-hero-brand" aria-label="سپند، CRM هوشمند حمل‌ونقل">
-                    <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" width="45" height="30">
-                    <span>
-                        <strong>سپند</strong>
-                        <small>CRM هوشمند حمل‌ونقل</small>
-                    </span>
-                </span>
-            </div>
+            @include('marketing.partials.module-screenshot-slider')
         </div>
     </div>
 </section>

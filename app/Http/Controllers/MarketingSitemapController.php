@@ -29,13 +29,27 @@ class MarketingSitemapController extends Controller
         ];
 
         foreach (config('site_modules', []) as $slug => $module) {
+            $screenshots = config('module_screenshots.'.$slug, []);
+            $images = array_map(static function (array $screenshot) use ($baseUrl, $module): array {
+                $encodedPath = implode('/', array_map('rawurlencode', explode('/', $screenshot['path'])));
+
+                return [
+                    'loc' => $baseUrl.'/assets/images/marketing/'.$encodedPath,
+                    'title' => $screenshot['alt'] ?? $module['seo_title'],
+                ];
+            }, $screenshots);
+
+            if ($images === []) {
+                $images[] = [
+                    'loc' => $baseUrl.'/assets/images/marketing/modules/'.rawurlencode($slug).'-hero.webp',
+                    'title' => $module['seo_title'],
+                ];
+            }
+
             $urls[] = [
                 'loc' => $baseUrl.'/modules/'.rawurlencode($slug),
                 'lastmod' => $lastModified,
-                'images' => [[
-                    'loc' => $baseUrl.'/assets/images/marketing/modules/'.rawurlencode($slug).'-hero.webp',
-                    'title' => $module['seo_title'],
-                ]],
+                'images' => $images,
             ];
         }
 

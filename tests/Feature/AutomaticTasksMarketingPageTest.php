@@ -43,9 +43,9 @@ class AutomaticTasksMarketingPageTest extends TestCase
             ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/workflow-tasks"', false)
-            ->assertSee('assets/images/marketing/modules/automatic-tasks-hero.webp', false)
-            ->assertSee('<meta property="og:image:width" content="1536">', false)
-            ->assertSee('<meta property="og:image:height" content="1024">', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/automatic-task-rules.webp', false)
+            ->assertSee('<meta property="og:image:width" content="1600">', false)
+            ->assertSee('<meta property="og:image:height" content="851">', false)
             ->assertSee('"@type":"SoftwareApplication"', false)
             ->assertSee('"@type":"FAQPage"', false)
             ->assertSee('"@type":"BreadcrumbList"', false);
@@ -76,15 +76,15 @@ class AutomaticTasksMarketingPageTest extends TestCase
             substr_count($sitemap, '<loc>'.self::SITE_URL.'/modules/automatic-tasks</loc>')
         );
         $this->assertStringContainsString(
-            '<image:loc>'.self::SITE_URL.'/assets/images/marketing/modules/automatic-tasks-hero.webp</image:loc>',
+            '<image:loc>'.self::SITE_URL.'/assets/images/marketing/modules/screenshots/automatic-task-rules.webp</image:loc>',
             $sitemap
         );
 
-        $imagePath = public_path('assets/images/marketing/modules/automatic-tasks-hero.webp');
+        $imagePath = public_path('assets/images/marketing/modules/screenshots/automatic-task-rules.webp');
         $this->assertFileExists($imagePath);
         $image = getimagesize($imagePath);
-        $this->assertSame(1536, $image[0]);
-        $this->assertSame(1024, $image[1]);
+        $this->assertSame(1600, $image[0]);
+        $this->assertSame(851, $image[1]);
         $this->assertSame('image/webp', $image['mime']);
     }
 
