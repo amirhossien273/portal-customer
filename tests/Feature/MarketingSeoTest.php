@@ -165,8 +165,8 @@ class MarketingSeoTest extends TestCase
             ->assertSee('هشدار انقضای نرخ در بازه هفت‌روزه', false)
             ->assertSee('پیش‌فاکتور ۴۸ ساعته با مسئول مشخص', false)
             ->assertSee('دسترسی درست برای هر کاربر', false)
-            ->assertSee('assets/images/marketing/modules/pricing-sales-hero.webp', false)
-            ->assertSee('<meta property="og:image:width" content="1536">', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp', false)
+            ->assertSee('<meta property="og:image:width" content="1600">', false)
             ->assertSee('"@type":"FAQPage"', false)
             ->assertSee('"@type":"BreadcrumbList"', false);
         $this->assertSame(1, substr_count($pricingSalesContent, '<h1'));

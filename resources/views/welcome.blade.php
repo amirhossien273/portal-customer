@@ -59,7 +59,7 @@
         ],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260822-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260822-2">
     <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260818-1">
 </head>
 <body>
@@ -143,10 +143,43 @@
                 <div class="hero-visual reveal is-visible delay-2">
                     <div class="visual-glow" aria-hidden="true"></div>
                     <div class="visual-ring" aria-hidden="true"></div>
-                    <figure class="product-shot">
-                        <img src="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}" width="835" height="335" fetchpriority="high" decoding="async" alt="نمای واقعی فرم اطلاعات کالا در نرم‌افزار مدیریت حمل‌ونقل سپند">
-                        <figcaption>نمای واقعی نرم‌افزار سپند با داده‌های نمونه و بدون اطلاعات مشتری</figcaption>
-                    </figure>
+                    <div class="hero-device-showcase" data-hero-device-showcase data-autoplay="5200" role="group" aria-label="نمای خودکار نسخه دسکتاپ و موبایل نرم‌افزار سپند">
+                        <div class="hero-showcase-laptop" aria-label="تصاویر نسخه دسکتاپ نرم‌افزار سپند">
+                            <div class="laptop-frame">
+                                <div class="laptop-camera" aria-hidden="true"></div>
+                                <div class="device-viewport device-viewport-desktop">
+                                    <figure class="device-slide is-active" data-desktop-slide aria-hidden="false">
+                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" width="1600" height="799" fetchpriority="high" decoding="async" alt="داشبورد مدیریتی نسخه دسکتاپ نرم‌افزار حمل‌ونقل سپند">
+                                    </figure>
+                                    <figure class="device-slide" data-desktop-slide aria-hidden="true">
+                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-calendar.webp') }}" width="1600" height="840" loading="lazy" decoding="async" alt="تقویم فعالیت‌ها و تسک‌های نسخه دسکتاپ نرم‌افزار سپند">
+                                    </figure>
+                                    <figure class="device-slide" data-desktop-slide aria-hidden="true">
+                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-reports.webp') }}" width="1600" height="844" loading="lazy" decoding="async" alt="گزارش‌ها و نمودارهای تحلیلی نسخه دسکتاپ نرم‌افزار سپند">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="laptop-base" aria-hidden="true"><span></span></div>
+                        </div>
+
+                        <div class="hero-showcase-phone" aria-label="تصاویر نسخه موبایل نرم‌افزار سپند">
+                            <div class="phone-frame">
+                                <div class="phone-speaker" aria-hidden="true"></div>
+                                <div class="device-viewport device-viewport-mobile">
+                                    <figure class="device-slide is-active" data-mobile-slide aria-hidden="false">
+                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-dashboard.webp') }}" width="720" height="1447" loading="eager" decoding="async" alt="داشبورد واکنش‌گرای نرم‌افزار سپند در گوشی موبایل">
+                                    </figure>
+                                    <figure class="device-slide" data-mobile-slide aria-hidden="true">
+                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-inquiry.webp') }}" width="720" height="1451" loading="lazy" decoding="async" alt="جزئیات استعلام در نسخه موبایل نرم‌افزار سپند">
+                                    </figure>
+                                    <figure class="device-slide" data-mobile-slide aria-hidden="true">
+                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-operation.webp') }}" width="720" height="1438" loading="lazy" decoding="async" alt="جزئیات عملیات حمل در نسخه موبایل نرم‌افزار سپند">
+                                    </figure>
+                                </div>
+                                <span class="phone-home-indicator" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -171,98 +204,6 @@
                 </article>
             </div>
         </div>
-
-        <section class="section product-showcase-section" id="product-showcase" aria-labelledby="product-showcase-title">
-            <div class="container">
-                <div class="section-head reveal">
-                    <span class="section-label">نمای واقعی محصول</span>
-                    <h2 class="section-title" id="product-showcase-title">سپند روی دسکتاپ و موبایل؛<br><span>همیشه در دسترس تیم شما</span></h2>
-                    <p class="section-subtitle">داشبورد، گزارش‌ها و تقویم فعالیت‌ها را روی دسکتاپ مدیریت کنید و جزئیات استعلام و عملیات را در نسخه موبایل همراه خود داشته باشید.</p>
-                </div>
-
-                <div class="product-showcase-stage">
-                    <article class="showcase-device showcase-laptop reveal" aria-labelledby="desktop-showcase-title">
-                        <div class="showcase-device-heading">
-                            <span class="showcase-device-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 19h19M9 15l-1 4m7-4 1 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-                            <div><h3 id="desktop-showcase-title">نمای کامل نسخه دسکتاپ</h3><p>برای مدیریت روزانه، تحلیل و برنامه‌ریزی تیم</p></div>
-                        </div>
-
-                        <div class="device-slider" data-device-slider data-autoplay="6500" role="region" aria-roledescription="carousel" aria-label="تصاویر نسخه دسکتاپ نرم‌افزار سپند">
-                            <div class="laptop-frame">
-                                <div class="laptop-camera" aria-hidden="true"></div>
-                                <div class="device-viewport device-viewport-desktop">
-                                    <figure class="device-slide is-active" data-device-slide aria-hidden="false" aria-label="تصویر ۱ از ۳">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" width="1600" height="799" loading="lazy" decoding="async" alt="داشبورد مدیریتی نسخه دسکتاپ نرم‌افزار حمل‌ونقل سپند">
-                                    </figure>
-                                    <figure class="device-slide" data-device-slide aria-hidden="true" aria-label="تصویر ۲ از ۳">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-calendar.webp') }}" width="1600" height="840" loading="lazy" decoding="async" alt="تقویم فعالیت‌ها و تسک‌های نسخه دسکتاپ نرم‌افزار سپند">
-                                    </figure>
-                                    <figure class="device-slide" data-device-slide aria-hidden="true" aria-label="تصویر ۳ از ۳">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-reports.webp') }}" width="1600" height="844" loading="lazy" decoding="async" alt="گزارش‌ها و نمودارهای تحلیلی نسخه دسکتاپ نرم‌افزار سپند">
-                                    </figure>
-                                </div>
-                            </div>
-                            <div class="laptop-base" aria-hidden="true"><span></span></div>
-
-                            <div class="device-slider-controls">
-                                <button class="slider-control slider-arrow" type="button" data-slider-prev aria-label="تصویر قبلی نسخه دسکتاپ"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                                <div class="slider-dots" aria-label="انتخاب تصویر نسخه دسکتاپ">
-                                    <button class="slider-dot is-active" type="button" data-slider-dot="0" aria-label="نمایش تصویر ۱ نسخه دسکتاپ" aria-current="true"></button>
-                                    <button class="slider-dot" type="button" data-slider-dot="1" aria-label="نمایش تصویر ۲ نسخه دسکتاپ" aria-current="false"></button>
-                                    <button class="slider-dot" type="button" data-slider-dot="2" aria-label="نمایش تصویر ۳ نسخه دسکتاپ" aria-current="false"></button>
-                                </div>
-                                <button class="slider-control slider-arrow" type="button" data-slider-next aria-label="تصویر بعدی نسخه دسکتاپ"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                                <button class="slider-control slider-toggle" type="button" data-slider-toggle aria-label="توقف نمایش خودکار نسخه دسکتاپ" aria-pressed="false">
-                                    <svg class="pause-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7v10m6-10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                                    <svg class="play-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 7 8 5-8 5V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-                                </button>
-                            </div>
-                            <span class="visually-hidden" data-slider-status aria-live="polite" aria-atomic="true">تصویر ۱ از ۳</span>
-                        </div>
-                    </article>
-
-                    <article class="showcase-device showcase-phone reveal delay-2" aria-labelledby="mobile-showcase-title">
-                        <div class="showcase-device-heading">
-                            <span class="showcase-device-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M10 5h4m-3 13.5h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-                            <div><h3 id="mobile-showcase-title">تجربه روان روی موبایل</h3><p>برای مشاهده و اقدام سریع، در هر موقعیت</p></div>
-                        </div>
-
-                        <div class="device-slider" data-device-slider data-autoplay="7200" role="region" aria-roledescription="carousel" aria-label="تصاویر نسخه موبایل نرم‌افزار سپند">
-                            <div class="phone-frame">
-                                <div class="phone-speaker" aria-hidden="true"></div>
-                                <div class="device-viewport device-viewport-mobile">
-                                    <figure class="device-slide is-active" data-device-slide aria-hidden="false" aria-label="تصویر ۱ از ۳">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-dashboard.webp') }}" width="720" height="1447" loading="lazy" decoding="async" alt="داشبورد واکنش‌گرای نرم‌افزار سپند در گوشی موبایل">
-                                    </figure>
-                                    <figure class="device-slide" data-device-slide aria-hidden="true" aria-label="تصویر ۲ از ۳">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-inquiry.webp') }}" width="720" height="1451" loading="lazy" decoding="async" alt="جزئیات استعلام در نسخه موبایل نرم‌افزار سپند">
-                                    </figure>
-                                    <figure class="device-slide" data-device-slide aria-hidden="true" aria-label="تصویر ۳ از ۳">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-operation.webp') }}" width="720" height="1438" loading="lazy" decoding="async" alt="جزئیات عملیات حمل در نسخه موبایل نرم‌افزار سپند">
-                                    </figure>
-                                </div>
-                                <span class="phone-home-indicator" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="device-slider-controls">
-                                <button class="slider-control slider-arrow" type="button" data-slider-prev aria-label="تصویر قبلی نسخه موبایل"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                                <div class="slider-dots" aria-label="انتخاب تصویر نسخه موبایل">
-                                    <button class="slider-dot is-active" type="button" data-slider-dot="0" aria-label="نمایش تصویر ۱ نسخه موبایل" aria-current="true"></button>
-                                    <button class="slider-dot" type="button" data-slider-dot="1" aria-label="نمایش تصویر ۲ نسخه موبایل" aria-current="false"></button>
-                                    <button class="slider-dot" type="button" data-slider-dot="2" aria-label="نمایش تصویر ۳ نسخه موبایل" aria-current="false"></button>
-                                </div>
-                                <button class="slider-control slider-arrow" type="button" data-slider-next aria-label="تصویر بعدی نسخه موبایل"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                                <button class="slider-control slider-toggle" type="button" data-slider-toggle aria-label="توقف نمایش خودکار نسخه موبایل" aria-pressed="false">
-                                    <svg class="pause-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7v10m6-10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                                    <svg class="play-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 7 8 5-8 5V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-                                </button>
-                            </div>
-                            <span class="visually-hidden" data-slider-status aria-live="polite" aria-atomic="true">تصویر ۱ از ۳</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
 
         <section class="section" id="software-modules">
             <div class="container">
@@ -565,36 +506,25 @@
 
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            document.querySelectorAll('[data-device-slider]').forEach(slider => {
-                const slides = Array.from(slider.querySelectorAll('[data-device-slide]'));
-                const dots = Array.from(slider.querySelectorAll('[data-slider-dot]'));
-                const previousButton = slider.querySelector('[data-slider-prev]');
-                const nextButton = slider.querySelector('[data-slider-next]');
-                const toggleButton = slider.querySelector('[data-slider-toggle]');
-                const status = slider.querySelector('[data-slider-status]');
-                const sliderName = slider.getAttribute('aria-label')?.includes('موبایل') ? 'نسخه موبایل' : 'نسخه دسکتاپ';
-                const autoplayDelay = Number.parseInt(slider.dataset.autoplay || '6500', 10);
+            const heroShowcase = document.querySelector('[data-hero-device-showcase]');
+            if (heroShowcase) {
+                const desktopSlides = Array.from(heroShowcase.querySelectorAll('[data-desktop-slide]'));
+                const mobileSlides = Array.from(heroShowcase.querySelectorAll('[data-mobile-slide]'));
+                const slideCount = Math.min(desktopSlides.length, mobileSlides.length);
+                const autoplayDelay = Number.parseInt(heroShowcase.dataset.autoplay || '5200', 10);
                 let currentIndex = 0;
                 let timer = null;
-                let touchStartX = 0;
                 let isVisible = !('IntersectionObserver' in window);
-                let isHovered = false;
-                let hasFocus = false;
-                let userPaused = reduceMotion;
 
                 const render = index => {
-                    currentIndex = (index + slides.length) % slides.length;
-                    slides.forEach((slide, slideIndex) => {
-                        const isActive = slideIndex === currentIndex;
-                        slide.classList.toggle('is-active', isActive);
-                        slide.setAttribute('aria-hidden', String(!isActive));
+                    currentIndex = (index + slideCount) % slideCount;
+                    [desktopSlides, mobileSlides].forEach(slides => {
+                        slides.forEach((slide, slideIndex) => {
+                            const isActive = slideIndex === currentIndex;
+                            slide.classList.toggle('is-active', isActive);
+                            slide.setAttribute('aria-hidden', String(!isActive));
+                        });
                     });
-                    dots.forEach((dot, dotIndex) => {
-                        const isActive = dotIndex === currentIndex;
-                        dot.classList.toggle('is-active', isActive);
-                        dot.setAttribute('aria-current', String(isActive));
-                    });
-                    status.textContent = `تصویر ${currentIndex + 1} از ${slides.length}، ${sliderName}`;
                 };
 
                 const stop = () => {
@@ -604,60 +534,23 @@
 
                 const start = () => {
                     stop();
-                    if (userPaused || isHovered || hasFocus || !isVisible || document.hidden || slides.length < 2) return;
+                    if (reduceMotion || !isVisible || document.hidden || slideCount < 2) return;
                     timer = window.setInterval(() => render(currentIndex + 1), autoplayDelay);
                 };
 
-                const restart = () => {
-                    stop();
-                    start();
-                };
-
-                const updateToggle = () => {
-                    slider.classList.toggle('is-paused', userPaused);
-                    toggleButton.setAttribute('aria-pressed', String(userPaused));
-                    toggleButton.setAttribute('aria-label', userPaused ? `شروع نمایش خودکار ${sliderName}` : `توقف نمایش خودکار ${sliderName}`);
-                };
-
-                previousButton.addEventListener('click', () => { render(currentIndex - 1); restart(); });
-                nextButton.addEventListener('click', () => { render(currentIndex + 1); restart(); });
-                dots.forEach(dot => dot.addEventListener('click', () => { render(Number(dot.dataset.sliderDot)); restart(); }));
-                toggleButton.addEventListener('click', () => {
-                    userPaused = !userPaused;
-                    updateToggle();
-                    userPaused ? stop() : start();
-                });
-
-                slider.addEventListener('mouseenter', () => { isHovered = true; stop(); });
-                slider.addEventListener('mouseleave', () => { isHovered = false; start(); });
-                slider.addEventListener('focusin', () => { hasFocus = true; stop(); });
-                slider.addEventListener('focusout', event => {
-                    if (slider.contains(event.relatedTarget)) return;
-                    hasFocus = false;
-                    start();
-                });
-                slider.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
-                slider.addEventListener('touchend', event => {
-                    const distance = event.changedTouches[0].clientX - touchStartX;
-                    if (Math.abs(distance) < 35) return;
-                    render(currentIndex + (distance < 0 ? 1 : -1));
-                    restart();
-                }, { passive: true });
-
                 document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
-                updateToggle();
                 render(0);
 
                 if ('IntersectionObserver' in window) {
-                    const sliderObserver = new IntersectionObserver(entries => {
+                    const showcaseObserver = new IntersectionObserver(entries => {
                         isVisible = entries[0].isIntersecting;
                         isVisible ? start() : stop();
-                    }, { threshold: .25 });
-                    sliderObserver.observe(slider);
+                    }, { threshold: .2 });
+                    showcaseObserver.observe(heroShowcase);
                 } else {
                     start();
                 }
-            });
+            }
 
         })();
     </script>
