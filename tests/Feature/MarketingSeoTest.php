@@ -117,7 +117,7 @@ class MarketingSeoTest extends TestCase
 
         $modules
             ->assertSee('<title>ماژول‌های نرم‌افزار حمل‌ونقل و لجستیک | سپند</title>', false)
-            ->assertSee('<meta name="description" content="ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM و تحلیل مشتری تا مقایسه تأمین‌کننده، هشدار نرخ، Booking، عملیات، مالی و پرتال مشتریان.">', false)
+            ->assertSee('<meta name="description" content="ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM، تسک خودکار و نرخ‌دهی تا Booking، عملیات، مالی و پرتال مشتریان.">', false)
             ->assertSee('از جذب مشتری تا تصمیم‌گیری و عملیات', false)
             ->assertSee('تنظیمات مستقل پنل برای هر سازمان', false)
             ->assertSee('خدمات سلف‌سرویس مشتری', false)
@@ -220,6 +220,7 @@ class MarketingSeoTest extends TestCase
             '/modules/document-management' => config('site_modules.document-management.keywords'),
             '/modules/finance-accounting' => config('site_modules.finance-accounting.keywords'),
             '/modules/workflow-tasks' => config('site_modules.workflow-tasks.keywords'),
+            '/modules/automatic-tasks' => config('site_modules.automatic-tasks.keywords'),
             '/modules/customer-portal-tracking' => config('site_modules.customer-portal-tracking.keywords'),
             '/transport-modes/sea' => config('site_transport_modes.sea.keywords'),
             '/transport-modes/air' => config('site_transport_modes.air.keywords'),
@@ -229,8 +230,8 @@ class MarketingSeoTest extends TestCase
             '/consultation' => config('marketing.page_keywords.consultation'),
         ];
 
-        $this->assertCount(21, $pages);
-        $this->assertSame(72, array_sum(array_map('count', $pages)));
+        $this->assertCount(22, $pages);
+        $this->assertSame(77, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();

@@ -69,7 +69,7 @@
                 <img
                     class="module-hero-image"
                     src="{{ asset('assets/images/marketing/modules/'.$slug.'-hero.webp') }}"
-                    alt="تصویر سه‌بعدی ماژول {{ $module['name'] }} سپند"
+                    alt="{{ $imageAlt }}"
                     width="1536"
                     height="1024"
                     loading="eager"
