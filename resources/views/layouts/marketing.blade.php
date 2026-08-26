@@ -53,6 +53,7 @@
             <span class="brand-copy" aria-hidden="true"><strong>سپند</strong><small>CRM هوشمند حمل‌ونقل</small></span>
         </a>
         <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
+            <a href="{{ route('product') }}" @class(['active' => request()->routeIs('product')])>معرفی محصول</a>
             <a href="{{ route('modules') }}" @class(['active' => request()->routeIs('modules', 'site.modules.show', 'site.transport-modes.show')])>ماژول‌ها</a>
             <a href="{{ route('pricing') }}" @class(['active' => request()->routeIs('pricing')])>تعرفه‌ها</a>
             <a href="{{ route('about') }}" @class(['active' => request()->routeIs('about')])>درباره ما</a>
@@ -77,7 +78,7 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، مالی و پرتال مشتریان شرکت‌های فورواردری و لجستیک.</p></div>
-            <div class="footer-col"><h3>محصول</h3><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}">تسک خودکار CRM</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
+            <div class="footer-col"><h3>محصول</h3><a href="{{ route('product') }}">معرفی محصول در عمل</a><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}">تسک خودکار CRM</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
             <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('compare.index') }}">مرکز مقایسه نرم‌افزارها</a><a href="{{ route('home') }}#why-us">مزیت‌های قابل سنجش</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
             <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('organization.portal') }}">پرتال سازمان</a></div>
         </div>

@@ -1,6 +1,21 @@
 <?php
 
-$loader = require __DIR__.'/../vendor/autoload.php';
+$loader = null;
+
+foreach (spl_autoload_functions() ?: [] as $autoloadFunction) {
+    if (is_array($autoloadFunction) && $autoloadFunction[0] instanceof Composer\Autoload\ClassLoader) {
+        $loader = $autoloadFunction[0];
+        break;
+    }
+}
+
+if (! $loader instanceof Composer\Autoload\ClassLoader) {
+    $loader = require __DIR__.'/../vendor/autoload.php';
+}
+
+if (! $loader instanceof Composer\Autoload\ClassLoader) {
+    throw new RuntimeException('Composer class loader is unavailable for the test bootstrap.');
+}
 
 // Keep tests isolated to this application even when a shared vendor runtime
 // is used by the local workspace.

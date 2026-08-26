@@ -23,10 +23,10 @@ class ModuleScreenshotGalleryTest extends TestCase
         $configured = config('module_screenshots');
 
         $this->assertSame(
-            ['crm', 'pricing-sales', 'booking', 'transport-operations', 'finance-accounting', 'workflow-tasks', 'automatic-tasks'],
+            ['crm', 'pricing-sales', 'booking', 'transport-operations', 'finance-accounting', 'workflow-tasks', 'automatic-tasks', 'customer-portal-tracking'],
             array_keys($configured)
         );
-        $this->assertSame(13, array_sum(array_map('count', $configured)));
+        $this->assertSame(14, array_sum(array_map('count', $configured)));
 
         foreach ($configured as $slug => $screenshots) {
             $content = $this->get('/modules/'.$slug)
@@ -78,11 +78,12 @@ class ModuleScreenshotGalleryTest extends TestCase
         foreach (config('module_screenshots') as $screenshots) {
             foreach ($screenshots as $screenshot) {
                 $url = self::SITE_URL.'/assets/images/marketing/'.$screenshot['path'];
-                $this->assertSame(1, substr_count($sitemap, '<image:loc>'.$url.'</image:loc>'));
+                $expectedOccurrences = $screenshot['path'] === 'product-showcase/desktop-dashboard.webp' ? 2 : 1;
+                $this->assertSame($expectedOccurrences, substr_count($sitemap, '<image:loc>'.$url.'</image:loc>'));
             }
         }
 
-        foreach (['document-management', 'customer-portal-tracking'] as $slug) {
+        foreach (['document-management'] as $slug) {
             $this->assertSame(
                 1,
                 substr_count($sitemap, '<image:loc>'.self::SITE_URL.'/assets/images/marketing/modules/'.$slug.'-hero.webp</image:loc>')
