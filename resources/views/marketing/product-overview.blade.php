@@ -32,10 +32,7 @@
             'cta' => 'مشاهده ماژول CRM',
             'images' => [
                 ['path' => 'product-showcase/desktop-dashboard.webp', 'width' => 1600, 'height' => 799, 'alt' => 'داشبورد واقعی پیگیری‌های امروز، عقب‌افتاده و آینده در CRM سپند', 'caption' => 'داشبورد پیگیری‌های من؛ کارهای عقب‌افتاده، امروز، بدون اقدام بعدی و پیگیری‌های آینده'],
-                ['path' => 'modules/screenshots/crm-customers.webp', 'width' => 1600, 'height' => 852, 'alt' => 'فهرست واقعی مشتریان و دسته‌بندی درآمد و سود مشتری در CRM سپند', 'caption' => 'فهرست مشتریان با نماهای بیشترین درآمد، بیشترین سود، کار زیاد با سود کم و کم‌حجم و ارزشمند'],
-            ],
-            'missing_evidence' => [
-                ['file' => 'crm-customer-profit-analysis.webp', 'label' => 'جدول نتیجه یکی از نماهای تحلیلی مشتریان در حالت فعال؛ ترجیحاً «بیشترین سود» یا «کار زیاد، سود کم»'],
+                ['path' => 'modules/screenshots/crm-customers.webp', 'width' => 1600, 'height' => 818, 'alt' => 'فهرست واقعی مشتریان و نماهای تحلیلی درآمد و سود در CRM سپند', 'caption' => 'فهرست مشتریان با نماهای بیشترین درآمد، بیشترین سود، کار زیاد با سود کم و کم‌حجم و ارزشمند'],
             ],
         ],
         [
@@ -51,9 +48,9 @@
             'reverse' => true,
             'images' => [
                 ['path' => 'modules/screenshots/pricing-sales-workflow.webp', 'width' => 1600, 'height' => 687, 'alt' => 'برد واقعی استعلام قیمت تأمین‌کننده و ارسال پیشنهاد نرخ در سپند', 'caption' => 'جریان واقعی بررسی مسیر، استعلام قیمت تأمین‌کننده، ثبت و ارسال پیشنهاد نرخ، تأیید مشتری و تبدیل به Booking'],
+                ['path' => 'modules/screenshots/pricing-supplier-comparison.webp', 'width' => 1600, 'height' => 839, 'alt' => 'مقایسه واقعی تأمین‌کنندگان بر اساس نرخ خرید، مسیر، اعتبار، Free Time و سابقه عملکرد در سپند', 'caption' => 'مقایسه کنارهم تأمین‌کنندگان با نرخ خرید، Transit Time، مسیر، اعتبار نرخ، Free Time، سابقه تأخیر و کیفیت پاسخ‌گویی'],
             ],
             'missing_evidence' => [
-                ['file' => 'pricing-supplier-comparison.webp', 'label' => 'نمای مقایسه پیشنهاد تأمین‌کنندگان با نرخ، مدت حمل، اعتبار، Free Time و شرایط پرداخت'],
                 ['file' => 'pricing-proposed-rate.webp', 'label' => 'نمای ثبت نرخ پیشنهادی و Margin فروش پیش از ارسال Quote به مشتری'],
             ],
         ],
