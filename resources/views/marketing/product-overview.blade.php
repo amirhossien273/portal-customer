@@ -32,6 +32,7 @@
             'cta' => 'مشاهده ماژول CRM',
             'images' => [
                 ['path' => 'product-showcase/desktop-dashboard.webp', 'width' => 1600, 'height' => 799, 'alt' => 'داشبورد واقعی پیگیری‌های امروز، عقب‌افتاده و آینده در CRM سپند', 'caption' => 'داشبورد پیگیری‌های من؛ کارهای عقب‌افتاده، امروز، بدون اقدام بعدی و پیگیری‌های آینده'],
+                ['path' => 'modules/screenshots/crm-overdue-inquiries.webp', 'width' => 1600, 'height' => 879, 'alt' => 'فهرست واقعی استعلام‌های دارای تسک عقب‌افتاده و میزان تأخیر پیگیری در CRM سپند', 'caption' => 'استعلام‌های دارای تسک عقب‌افتاده با مالک پرونده، مرحله، آخرین فعالیت و زمان تأخیر هر پیگیری'],
                 ['path' => 'modules/screenshots/crm-customers.webp', 'width' => 1600, 'height' => 818, 'alt' => 'فهرست واقعی مشتریان و نماهای تحلیلی درآمد و سود در CRM سپند', 'caption' => 'فهرست مشتریان با نماهای بیشترین درآمد، بیشترین سود، کار زیاد با سود کم و کم‌حجم و ارزشمند'],
             ],
         ],
@@ -49,9 +50,7 @@
             'images' => [
                 ['path' => 'modules/screenshots/pricing-sales-workflow.webp', 'width' => 1600, 'height' => 687, 'alt' => 'برد واقعی استعلام قیمت تأمین‌کننده و ارسال پیشنهاد نرخ در سپند', 'caption' => 'جریان واقعی بررسی مسیر، استعلام قیمت تأمین‌کننده، ثبت و ارسال پیشنهاد نرخ، تأیید مشتری و تبدیل به Booking'],
                 ['path' => 'modules/screenshots/pricing-supplier-comparison.webp', 'width' => 1600, 'height' => 839, 'alt' => 'مقایسه واقعی تأمین‌کنندگان بر اساس نرخ خرید، مسیر، اعتبار، Free Time و سابقه عملکرد در سپند', 'caption' => 'مقایسه کنارهم تأمین‌کنندگان با نرخ خرید، Transit Time، مسیر، اعتبار نرخ، Free Time، سابقه تأخیر و کیفیت پاسخ‌گویی'],
-            ],
-            'missing_evidence' => [
-                ['file' => 'pricing-proposed-rate.webp', 'label' => 'نمای ثبت نرخ پیشنهادی و Margin فروش پیش از ارسال Quote به مشتری'],
+                ['path' => 'modules/screenshots/pricing-proposed-rates.webp', 'width' => 1600, 'height' => 701, 'alt' => 'پنجره واقعی نرخ‌های پیشنهادی مشابه برای یک استعلام در نرم‌افزار سپند', 'caption' => 'بررسی نرخ‌های پیشنهادی مشابه و امکان افزودن پیشنهاد نرخ در پرونده استعلام'],
             ],
         ],
         [
@@ -94,8 +93,9 @@
             'outcome' => 'تیم سریع‌تر به سند موردنیاز می‌رسد و ارتباط مدرک با Shipment، مشتری و مرحله عملیات حفظ می‌شود.',
             'module' => 'document-management',
             'cta' => 'مشاهده ماژول مدیریت اسناد',
-            'placeholder' => 'برای تکمیل Evidence این بخش، تصویری از فایل‌های متصل به Shipment همراه وضعیت نسخه یا تأیید نیاز است؛ این کادر UI جعلی نیست و عمداً جای تصویر واقعی را مشخص می‌کند.',
-            'images' => [],
+            'images' => [
+                ['path' => 'modules/screenshots/document-attachment-upload.webp', 'width' => 1600, 'height' => 790, 'alt' => 'پنجره واقعی بارگذاری فایل پیوست برای پرونده استعلام در نرم‌افزار سپند', 'caption' => 'بارگذاری فایل پیوست با عنوان اختیاری و اتصال مستقیم آن به پرونده استعلام'],
+            ],
         ],
         [
             'id' => 'finance',
@@ -184,7 +184,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20260826-2">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20260826-4">
 @endpush
 
 @section('content')
@@ -261,6 +261,24 @@
                 <h2 id="differentiators-title">قابلیت‌هایی که در کار روزانه تفاوت می‌سازند</h2>
                 <p>این‌ها Featureهای تزئینی نیستند؛ هرکدام یک تصمیم یا پیگیری واقعی را از داده موجود در پرونده قابل انجام می‌کنند.</p>
             </div>
+            <figure class="product-differentiator-evidence reveal">
+                <button
+                    class="product-screenshot-button"
+                    type="button"
+                    data-product-lightbox-open
+                    data-image-src="{{ asset('assets/images/marketing/modules/screenshots/crm-customer-insights.webp') }}"
+                    data-image-alt="نماهای واقعی تحلیل مشتریان بر اساس درآمد، سود و حجم کار در CRM سپند"
+                    data-image-caption="دسترسی مستقیم به بیشترین درآمد، بیشترین سود، کار زیاد با سود کم و مشتریان کم‌حجم و ارزشمند"
+                    aria-label="نمایش بزرگ‌تر نماهای تحلیلی مشتریان در CRM سپند"
+                >
+                    <img src="{{ asset('assets/images/marketing/modules/screenshots/crm-customer-insights.webp') }}" alt="نماهای واقعی تحلیل مشتریان بر اساس درآمد، سود و حجم کار در CRM سپند" width="1600" height="391" loading="lazy" decoding="async">
+                    <span class="product-screenshot-zoom" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m20 20-4-4M8 11h6M11 8v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                        بزرگ‌نمایی
+                    </span>
+                </button>
+                <figcaption><span>تصویر واقعی CRM سپند</span>نماهای تحلیلی ارزش و حجم کار مشتریان</figcaption>
+            </figure>
             <div class="product-differentiator-grid">
                 @foreach($differentiators as $item)
                     <a class="product-differentiator-card reveal" href="{{ $item['href'] }}">

@@ -23,10 +23,10 @@ class ModuleScreenshotGalleryTest extends TestCase
         $configured = config('module_screenshots');
 
         $this->assertSame(
-            ['crm', 'pricing-sales', 'booking', 'transport-operations', 'finance-accounting', 'workflow-tasks', 'automatic-tasks', 'customer-portal-tracking'],
+            ['crm', 'pricing-sales', 'booking', 'transport-operations', 'document-management', 'finance-accounting', 'workflow-tasks', 'automatic-tasks', 'customer-portal-tracking'],
             array_keys($configured)
         );
-        $this->assertSame(15, array_sum(array_map('count', $configured)));
+        $this->assertSame(19, array_sum(array_map('count', $configured)));
 
         foreach ($configured as $slug => $screenshots) {
             $content = $this->get('/modules/'.$slug)
@@ -71,7 +71,7 @@ class ModuleScreenshotGalleryTest extends TestCase
         }
     }
 
-    public function test_module_sitemap_lists_all_real_screenshots_and_keeps_legacy_fallbacks(): void
+    public function test_module_sitemap_lists_all_real_screenshots(): void
     {
         $sitemap = $this->get('/sitemap.xml')->assertOk()->getContent();
 
@@ -83,15 +83,6 @@ class ModuleScreenshotGalleryTest extends TestCase
             }
         }
 
-        foreach (['document-management'] as $slug) {
-            $this->assertSame(
-                1,
-                substr_count($sitemap, '<image:loc>'.self::SITE_URL.'/assets/images/marketing/modules/'.$slug.'-hero.webp</image:loc>')
-            );
-            $this->get('/modules/'.$slug)
-                ->assertOk()
-                ->assertSee('assets/images/marketing/modules/'.$slug.'-hero.webp', false)
-                ->assertDontSee('data-module-screenshot-slider', false);
-        }
+        $this->assertSame(array_keys(config('site_modules')), array_keys(config('module_screenshots')));
     }
 }
