@@ -39,9 +39,8 @@ class ProductOverviewPageTest extends TestCase
             ->assertSee('تطبیق مالی Booking', false)
             ->assertSee('قانون تسک و تقویم‌های جدا', false)
             ->assertSee('pricing-supplier-comparison.webp', false)
-            ->assertSee('pricing-proposed-rate.webp', false)
-            ->assertSee('data-missing-screenshot="document-management"', false)
-            ->assertSee('document-management-shipment-files.webp', false)
+            ->assertSee('pricing-proposed-rates.webp', false)
+            ->assertSee('document-attachment-upload.webp', false)
             ->assertSee('مشتری هم وضعیت پرونده را از همان داده واقعی می‌بیند', false)
             ->assertSee('/assets/images/marketing/modules/screenshots/customer-portal-dashboard.webp', false)
             ->assertSee('"@type":"SoftwareApplication"', false)
@@ -54,10 +53,14 @@ class ProductOverviewPageTest extends TestCase
         foreach ([
             '/assets/images/marketing/product-showcase/desktop-dashboard.webp',
             '/assets/images/marketing/modules/screenshots/crm-customers.webp',
+            '/assets/images/marketing/modules/screenshots/crm-customer-insights.webp',
+            '/assets/images/marketing/modules/screenshots/crm-overdue-inquiries.webp',
             '/assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp',
             '/assets/images/marketing/modules/screenshots/pricing-supplier-comparison.webp',
+            '/assets/images/marketing/modules/screenshots/pricing-proposed-rates.webp',
             '/assets/images/marketing/modules/screenshots/booking-profitability.webp',
             '/assets/images/marketing/modules/screenshots/operations-calendar-month.webp',
+            '/assets/images/marketing/modules/screenshots/document-attachment-upload.webp',
             '/assets/images/marketing/modules/screenshots/finance-booking-reconciliation.webp',
             '/assets/images/marketing/modules/screenshots/automatic-task-rules.webp',
             '/assets/images/marketing/modules/screenshots/customer-portal-dashboard.webp',
@@ -73,6 +76,8 @@ class ProductOverviewPageTest extends TestCase
         $this->assertStringNotContainsString('<meta name="keywords"', strtolower($content));
         $this->assertStringNotContainsString('<img src=""', $content);
         $this->assertStringNotContainsString('crm-customer-profit-analysis.webp', $content);
+        $this->assertStringNotContainsString('data-missing-screenshot=', $content);
+        $this->assertStringNotContainsString('product-missing-evidence', $content);
     }
 
     public function test_home_and_shared_navigation_link_to_product_page(): void
