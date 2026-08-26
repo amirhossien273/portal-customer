@@ -16,6 +16,14 @@ class MarketingSitemapController extends Controller
                 'lastmod' => $lastModified,
                 'images' => [['loc' => $baseUrl.'/assets/images/marketing/sepand-cargo-details.webp', 'title' => 'نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند']],
             ],
+            [
+                'loc' => $baseUrl.'/product',
+                'lastmod' => $lastModified,
+                'images' => [[
+                    'loc' => $baseUrl.'/assets/images/marketing/product-showcase/desktop-dashboard.webp',
+                    'title' => 'داشبورد واقعی نرم‌افزار حمل‌ونقل و فورواردری سپند',
+                ]],
+            ],
             ['loc' => $baseUrl.'/faq', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/modules', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/compare', 'lastmod' => $lastModified],
