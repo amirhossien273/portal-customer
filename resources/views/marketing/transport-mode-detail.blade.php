@@ -40,6 +40,12 @@
 
 @include('marketing.partials.module-rich-styles')
 
+@if($slug === 'air')
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('assets/css/marketing-air-freight.css') }}?v=20260827-1">
+    @endpush
+@endif
+
 
 @section('content')
 <section class="page-hero">
@@ -98,6 +104,9 @@
     </div>
 </section>
 
+@if($slug === 'air')
+    @include('marketing.transport-modes.air-chargeable-weight')
+@else
 <section class="section" aria-labelledby="transport-workflow-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="transport-workflow-title">{{ $mode['workflow_heading'] }}</h2><p class="section-sub">{{ $mode['workflow_intro'] }}</p></div>
@@ -108,6 +117,7 @@
         </div>
     </div>
 </section>
+@endif
 
 <section class="dark-section" aria-labelledby="transport-benefits-title">
     <div class="container">
