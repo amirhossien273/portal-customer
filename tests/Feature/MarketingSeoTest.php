@@ -28,7 +28,7 @@ class MarketingSeoTest extends TestCase
         $pages = [
             '/transport-modes/air' => [
                 'title' => 'نرم‌افزار مدیریت حمل هوایی | سپند',
-                'description' => 'رزرو ظرفیت، اطلاعات پرواز، MAWB و HAWB، وزن قابل وصول، ULD و رویدادهای فرودگاهی را در پرونده حمل هوایی سپند مدیریت کنید.',
+                'description' => 'ابعاد محموله، وزن ناخالص، حجم کل و Chargeable Weight را کنار مسیر و تاریخ حرکت پرونده حمل هوایی در سپند ثبت و مدیریت کنید.',
                 'h1' => 'حمل هوایی سپند',
             ],
             '/transport-modes/sea' => [
