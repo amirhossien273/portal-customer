@@ -18,7 +18,7 @@ class FloatingConsultationCtaTest extends TestCase
         URL::forceScheme('https');
     }
 
-    public function test_floating_consultation_cta_is_available_on_all_marketing_page_types(): void
+    public function test_consultation_cta_is_in_the_header_on_all_marketing_page_types(): void
     {
         $paths = [
             '/',
@@ -43,7 +43,17 @@ class FloatingConsultationCtaTest extends TestCase
                 ->assertSee('data-floating-consultation-cta', false)
                 ->assertDontSee('target="_blank"', false);
 
-            $this->assertSame(1, substr_count($content, 'class="floating-consultation-cta"'));
+            $this->assertSame(2, substr_count($content, 'class="floating-consultation-cta '));
+            $this->assertSame(1, substr_count($content, 'data-floating-consultation-cta="mobile-header"'));
+            $this->assertSame(1, substr_count($content, 'data-floating-consultation-cta="desktop-floating"'));
+            $this->assertLessThan(
+                strpos($content, '</header>'),
+                strpos($content, 'data-floating-consultation-cta="mobile-header"')
+            );
+            $this->assertGreaterThan(
+                strpos($content, '</header>'),
+                strpos($content, 'data-floating-consultation-cta="desktop-floating"')
+            );
 
             if ($path === '/consultation') {
                 $response

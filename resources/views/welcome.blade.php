@@ -60,7 +60,7 @@
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260826-1">
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260818-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
@@ -74,13 +74,14 @@
                     <small>CRM هوشمند حمل‌ونقل</small>
                 </span>
             </a>
+            @include('layouts.partials.floating-consultation-cta', ['placement' => 'mobile-header'])
             <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
                 <a href="{{ route('product') }}">معرفی محصول</a>
                 <a href="{{ route('modules') }}">ماژول‌ها</a>
                 <a href="{{ route('pricing') }}">تعرفه‌ها</a>
                 <a href="{{ route('about') }}">درباره ما</a>
                 <a href="{{ route('faq') }}">سؤالات متداول</a>
-                <a href="#why-us">چرا سپند؟</a>
+                <a href="{{ route('why-sepand') }}">چرا سپند؟</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
                     <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking">
                         <span class="portal-new">جدید</span>
@@ -450,7 +451,7 @@
         </div>
     </footer>
 
-    @include('layouts.partials.floating-consultation-cta')
+    @include('layouts.partials.floating-consultation-cta', ['placement' => 'desktop-floating'])
 
     <script>
         (() => {

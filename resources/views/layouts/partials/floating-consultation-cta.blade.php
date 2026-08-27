@@ -1,14 +1,15 @@
 @php
     $floatingConsultationOnForm = request()->routeIs('consultation.create');
     $floatingConsultationHref = $floatingConsultationOnForm ? '#consultation-form' : route('consultation.create');
+    $floatingConsultationPlacement = $placement ?? 'desktop-floating';
 @endphp
 
 <a
-    class="floating-consultation-cta"
-    id="floating-consultation-cta"
+    class="floating-consultation-cta floating-consultation-cta--{{ $floatingConsultationPlacement }}"
+    id="floating-consultation-cta-{{ $floatingConsultationPlacement }}"
     href="{{ $floatingConsultationHref }}"
     aria-label="درخواست دمو و مشاوره نرم‌افزار حمل‌ونقل سپند"
-    data-floating-consultation-cta
+    data-floating-consultation-cta="{{ $floatingConsultationPlacement }}"
     data-ga-event="cta_click"
     data-ga-label="{{ $floatingConsultationOnForm ? 'floating_consultation_form' : 'floating_consultation_global' }}"
 >
@@ -17,11 +18,7 @@
     </span>
     <span class="floating-consultation-cta__copy">
         <small>دمو و نیازسنجی محصول</small>
-        <strong>درخواست دمو و مشاوره</strong>
+        <strong><span class="floating-consultation-cta__desktop-label">درخواست دمو و مشاوره</span><span class="floating-consultation-cta__mobile-label">درخواست دمو</span></strong>
     </span>
     <svg class="floating-consultation-cta__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
-
-<script>
-(()=>{const cta=document.querySelector('[data-floating-consultation-cta]');if(!cta)return;const mobile=window.matchMedia('(max-width: 840px)'),interactive='input, textarea, select, [contenteditable="true"]';const sync=()=>cta.classList.toggle('is-input-hidden',mobile.matches&&Boolean(document.activeElement?.matches(interactive)));document.addEventListener('focusin',sync);document.addEventListener('focusout',()=>setTimeout(sync,80));if(typeof mobile.addEventListener==='function')mobile.addEventListener('change',sync);sync()})();
-</script>

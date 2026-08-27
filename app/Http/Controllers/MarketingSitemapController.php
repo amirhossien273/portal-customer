@@ -24,6 +24,14 @@ class MarketingSitemapController extends Controller
                     'title' => 'داشبورد واقعی نرم‌افزار حمل‌ونقل و فورواردری سپند',
                 ]],
             ],
+            [
+                'loc' => $baseUrl.'/why-sepand',
+                'lastmod' => $lastModified,
+                'images' => [[
+                    'loc' => $baseUrl.'/assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp',
+                    'title' => 'جریان یکپارچه نرخ‌دهی تا Booking در نرم‌افزار سپند',
+                ]],
+            ],
             ['loc' => $baseUrl.'/faq', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/modules', 'lastmod' => $lastModified],
             ['loc' => $baseUrl.'/compare', 'lastmod' => $lastModified],

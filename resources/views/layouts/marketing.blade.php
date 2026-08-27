@@ -41,7 +41,7 @@
     @stack('head')
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20260805-1">
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260818-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
     @stack('styles')
 </head>
 <body>
@@ -52,13 +52,14 @@
             <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" aria-hidden="true">
             <span class="brand-copy" aria-hidden="true"><strong>سپند</strong><small>CRM هوشمند حمل‌ونقل</small></span>
         </a>
+        @include('layouts.partials.floating-consultation-cta', ['placement' => 'mobile-header'])
         <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
             <a href="{{ route('product') }}" @class(['active' => request()->routeIs('product')])>معرفی محصول</a>
             <a href="{{ route('modules') }}" @class(['active' => request()->routeIs('modules', 'site.modules.show', 'site.transport-modes.show')])>ماژول‌ها</a>
             <a href="{{ route('pricing') }}" @class(['active' => request()->routeIs('pricing')])>تعرفه‌ها</a>
             <a href="{{ route('about') }}" @class(['active' => request()->routeIs('about')])>درباره ما</a>
             <a href="{{ route('faq') }}" @class(['active' => request()->routeIs('faq')])>سؤالات متداول</a>
-            <a href="{{ route('home') }}#why-us">چرا سپند؟</a>
+            <a href="{{ route('why-sepand') }}" @class(['active' => request()->routeIs('why-sepand')])>چرا سپند؟</a>
             <div class="portal-actions mobile-portals">
                 <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
                 <a class="portal-link" href="{{ route('login') }}">پورتال مشتریان</a>
@@ -79,13 +80,13 @@
         <div class="footer-grid">
             <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، مالی و پرتال مشتریان شرکت‌های فورواردری و لجستیک.</p></div>
             <div class="footer-col"><h3>محصول</h3><a href="{{ route('product') }}">معرفی محصول در عمل</a><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}">تسک خودکار CRM</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
-            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('compare.index') }}">مرکز مقایسه نرم‌افزارها</a><a href="{{ route('home') }}#why-us">مزیت‌های قابل سنجش</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
+            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('compare.index') }}">مرکز مقایسه نرم‌افزارها</a><a href="{{ route('why-sepand') }}">چرا سپند؟</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
             <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('organization.portal') }}">پرتال سازمان</a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span>طراحی‌شده برای تجربه‌ای شفاف‌تر</span></div>
     </div>
 </footer>
-@include('layouts.partials.floating-consultation-cta')
+@include('layouts.partials.floating-consultation-cta', ['placement' => 'desktop-floating'])
 <script>
 (()=>{const menu=document.getElementById('main-nav'),toggle=document.getElementById('menu-toggle');toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}));const track=(eventName,eventLabel,url)=>{const payload={event_category:'marketing',event_label:eventLabel,link_url:url||window.location.href};if(typeof window.gtag==='function')window.gtag('event',eventName,payload);else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:eventName,...payload})}};document.addEventListener('click',event=>{const link=event.target.closest('[data-ga-event]');if(link)track(link.dataset.gaEvent,link.dataset.gaLabel||link.textContent.trim(),link.href)});document.querySelectorAll('[data-ga-form]').forEach(form=>form.addEventListener('submit',()=>track(form.dataset.gaForm,'consultation_form_submit',form.action)));const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
 </script>
