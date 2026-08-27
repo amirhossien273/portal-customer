@@ -1,6 +1,6 @@
-@extends('layouts.marketing')
 
-@php
+
+<?php
     $title = 'ماژول‌های نرم‌افزار حمل‌ونقل و لجستیک | سپند';
     $description = 'ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM، تسک خودکار و نرخ‌دهی تا Booking، عملیات، مالی و پرتال مشتریان.';
     $canonical = route('modules');
@@ -21,10 +21,10 @@
     $moduleListItems = $moduleListItems
         ->map(static fn (array $item, int $index): array => [...$item, 'position' => $index + 1])
         ->all();
-@endphp
+?>
 
-@push('head')
-<script type="application/ld+json">{!! json_encode([
+<?php $__env->startPush('head'); ?>
+<script type="application/ld+json"><?php echo json_encode([
     '@context' => 'https://schema.org',
     '@graph' => [
         [
@@ -50,17 +50,17 @@
             'itemListElement' => $moduleListItems,
         ],
     ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
-@endpush
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?></script>
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="page-hero">
     <div class="container hero-inner">
         <div class="hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ماژول‌ها</span></div>
+            <div class="breadcrumb"><a href="<?php echo e(route('home')); ?>">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ماژول‌ها</span></div>
             <h1>ماژول‌های یکپارچه سپند؛<br><span>از جذب مشتری تا تصمیم‌گیری و عملیات</span></h1>
             <p>در نرم‌افزار یکپارچه حمل‌ونقل سپند، CRM، تسک خودکار، نرخ‌دهی، مقایسه تأمین‌کننده، Booking، عملیات، اسناد، مالی و پرتال مشتریان روی داده مشترک کار می‌کنند؛ بنابراین رویدادهای فروش به اقدام مشخص تبدیل می‌شوند و تیم شما با داده قابل‌اعتماد کار می‌کند.</p>
-            <div class="hero-actions"><a class="btn btn-primary" href="#all-modules">مشاهده ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a><a class="btn btn-outline" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a></div>
+            <div class="hero-actions"><a class="btn btn-primary" href="#all-modules">مشاهده ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a><a class="btn btn-outline" href="<?php echo e(route('pricing')); ?>">مشاهده تعرفه‌ها</a></div>
         </div>
         <div class="hero-art reveal">
             <div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 0h6v6h-6v-6Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="art-chip">اکوسیستم یکپارچه</span></div><h2 class="art-title">مرکز فرمان کسب‌وکار شما</h2><p class="art-desc">داده‌های هماهنگ، فرایندهای متصل و دید مدیریتی کامل</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
@@ -72,24 +72,24 @@
     <div class="container">
         <div class="section-head reveal"><span class="section-label">ماژول‌های اصلی</span><h2 class="section-title">ابزارهای تخصصی برای<br><span>فروش، عملیات و خدمات مشتری</span></h2><p class="section-sub">هر ماژول به‌تنهایی کاربردی است و در کنار سایر بخش‌ها، رویدادهای CRM را به پیگیری خودکار متصل می‌کند و تصویری کامل از مشتری، عملیات و وضعیت مالی می‌سازد.</p></div>
         <div class="card-grid">
-            @foreach(config('site_modules') as $slug => $module)
+            <?php $__currentLoopData = config('site_modules'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slug => $module): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <article class="content-card reveal">
                     <span class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-                    <h3>{{ $module['name'] }}</h3>
-                    <p>{{ $module['summary'] }}</p>
-                    <ul class="feature-list">@foreach($module['benefits'] as $benefit)<li>{{ $benefit }}</li>@endforeach</ul>
-                    <a class="tag" href="{{ route('site.modules.show', ['module' => $slug]) }}" aria-label="مشاهده جزئیات ماژول {{ $module['name'] }}">مشاهده ماژول {{ $module['short_name'] }}</a>
+                    <h3><?php echo e($module['name']); ?></h3>
+                    <p><?php echo e($module['summary']); ?></p>
+                    <ul class="feature-list"><?php $__currentLoopData = $module['benefits']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $benefit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><li><?php echo e($benefit); ?></li><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></ul>
+                    <a class="tag" href="<?php echo e(route('site.modules.show', ['module' => $slug])); ?>" aria-label="مشاهده جزئیات ماژول <?php echo e($module['name']); ?>">مشاهده ماژول <?php echo e($module['short_name']); ?></a>
                 </article>
-                @if($slug === 'crm')
+                <?php if($slug === 'crm'): ?>
                     <article class="content-card reveal">
                         <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
                         <h3>بازاریابی و پیامک</h3>
                         <p>از پنل فراز اس‌ام‌اس یا مستقیماً از پرونده مشتری، لید و استعلام پیامک بفرستید و نتیجه هر ارسال را در تاریخچه ارتباطات نگه دارید.</p>
                         <ul class="feature-list"><li>ارسال پیامک از پرونده CRM</li><li>لاگ متمرکز و پیگیری وضعیت ارسال</li><li>تنظیمات مستقل پنل برای هر سازمان</li></ul>
-                        <a class="tag" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-sms" aria-label="مشاهده امکانات بازاریابی پیامکی سپند">مشاهده بازاریابی پیامکی</a>
+                        <a class="tag" href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>#crm-sms" aria-label="مشاهده امکانات بازاریابی پیامکی سپند">مشاهده بازاریابی پیامکی</a>
                     </article>
-                @endif
-            @endforeach
+                <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
@@ -106,25 +106,25 @@
                 <span class="crm-capability-num">01</span>
                 <h3>تحلیل درآمد و سود مشتریان</h3>
                 <p>مشتریان بر پایه دریافت‌های تأییدشده، پرداخت‌های انجام‌شده، سود خالص و تعداد کار عملیاتی رتبه‌بندی می‌شوند؛ نه بر اساس حدس یا حجم تماس.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-analytics">مشاهده تحلیل مشتریان</a>
+                <a class="tag" href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>#crm-analytics">مشاهده تحلیل مشتریان</a>
             </article>
             <article class="crm-capability reveal">
                 <span class="crm-capability-num">02</span>
                 <h3>شناسایی مشتری پرکار یا کم‌حجمِ ارزشمند</h3>
                 <p>دو نمای مکمل نشان می‌دهند کدام مشتری کار زیادی با سود متوسط پایین ایجاد می‌کند و کدام مشتری با حجم کمتر، سود بیشتری به ازای هر کار دارد.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-analytics">بررسی فرمول‌ها</a>
+                <a class="tag" href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>#crm-analytics">بررسی فرمول‌ها</a>
             </article>
             <article class="crm-capability reveal">
                 <span class="crm-capability-num">03</span>
                 <h3>مقایسه چندمعیاره تأمین‌کنندگان</h3>
-                <p>نرخ خرید، زمان حمل، مستقیم یا غیرمستقیم‌بودن مسیر، اعتبار نرخ، زمان آزاد، سابقه تأخیر، کیفیت پاسخ و شرایط پرداخت کنار هم دیده می‌شوند.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}#pricing-intelligence">مشاهده مقایسه تأمین‌کننده</a>
+                <p>نرخ خرید، زمان حمل، مستقیم یا غیرمستقیم‌بودن مسیر، اعتبار نرخ، Free Time، سابقه تأخیر، کیفیت پاسخ و شرایط پرداخت کنار هم دیده می‌شوند.</p>
+                <a class="tag" href="<?php echo e(route('site.modules.show', ['module' => 'pricing-sales'])); ?>#pricing-intelligence">مشاهده مقایسه تأمین‌کننده</a>
             </article>
             <article class="crm-capability reveal">
                 <span class="crm-capability-num">04</span>
                 <h3>هشدار نرخ و پیش‌فاکتور نیازمند اقدام</h3>
                 <p>داشبورد نرخ‌های رو به انقضا را پیش از پایان اعتبار برجسته می‌کند و گزارش ۴۸ ساعته، پیش‌فاکتورهای متوقف‌شده را با نام ایجادکننده نمایش می‌دهد.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}#pricing-intelligence">مشاهده هشدارهای فروش</a>
+                <a class="tag" href="<?php echo e(route('site.modules.show', ['module' => 'pricing-sales'])); ?>#pricing-intelligence">مشاهده هشدارهای فروش</a>
             </article>
         </div>
     </div>
@@ -137,5 +137,7 @@
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>کدام ماژول‌ها برای فرایند شما مناسب‌اند؟</h2><p>از CRM و بازاریابی پیامکی تا عملیات، مالی و پرتال مشتریان، نیازهای فعلی شما را بررسی و ترکیب مناسب ماژول‌ها را پیشنهاد می‌کنیم.</p></div><div class="cta-action"><a class="btn" href="{{ route('pricing') }}">انتخاب پلن مناسب</a></div></div></div></section>
-@endsection
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>کدام ماژول‌ها برای فرایند شما مناسب‌اند؟</h2><p>از CRM و بازاریابی پیامکی تا عملیات، مالی و پرتال مشتریان، نیازهای فعلی شما را بررسی و ترکیب مناسب ماژول‌ها را پیشنهاد می‌کنیم.</p></div><div class="cta-action"><a class="btn" href="<?php echo e(route('pricing')); ?>">انتخاب پلن مناسب</a></div></div></div></section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.marketing', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\project\sepand\portal-customer\resources\views/marketing/modules.blade.php ENDPATH**/ ?>

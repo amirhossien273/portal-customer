@@ -1,6 +1,4 @@
-@extends('layouts.marketing')
-
-@php
+<?php
     $capabilities = [
         [
             'title' => 'ثبت مشتریان حقیقی و حقوقی',
@@ -126,10 +124,10 @@
             'answer' => 'این ماژول برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردری، لجستیکی، کشتیرانی، حمل هوایی، زمینی و ریلی و همچنین شرکت‌های بازرگانی دارای تیم فروش سازمانی طراحی شده است.',
         ],
     ];
-@endphp
+?>
 
-@push('head')
-<script type="application/ld+json">{!! json_encode([
+<?php $__env->startPush('head'); ?>
+<script type="application/ld+json"><?php echo json_encode([
     '@context' => 'https://schema.org',
     '@graph' => [
         [
@@ -165,16 +163,16 @@
             ],
         ],
     ],
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
-@endpush
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?></script>
+<?php $__env->stopPush(); ?>
 
-@include('marketing.partials.module-rich-styles')
+<?php echo $__env->make('marketing.partials.module-rich-styles', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="page-hero">
     <div class="container hero-inner">
         <div class="hero-copy crm-hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('modules') }}">ماژول‌ها</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>CRM حمل‌ونقل</span></div>
+            <div class="breadcrumb"><a href="<?php echo e(route('home')); ?>">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="<?php echo e(route('modules')); ?>">ماژول‌ها</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>CRM حمل‌ونقل</span></div>
             <h1 class="module-hero-title">
                 <span class="module-hero-title-main">نرم‌افزار CRM حمل‌ونقل</span>
                 <span class="module-hero-title-accent">و مدیریت مشتریان سپند</span>
@@ -182,12 +180,12 @@
             <p class="crm-lead">ماژول CRM سپند به‌عنوان یک CRM لجستیک تخصصی، مدیریت ارتباط با مشتری را برای شرکت‌های حمل‌ونقل، فورواردری، لجستیکی و بازرگانی پوشش می‌دهد. اطلاعات مشتریان، لیدهای فروش، استعلام‌ها، درخواست‌های حمل، مذاکرات، وظایف و سوابق پیگیری در یک سیستم یکپارچه ثبت و مدیریت می‌شوند.</p>
             <p class="crm-lead">کارشناس از داشبورد «پیگیری‌های من» اقدام‌های عقب‌افتاده، امروز و آینده را می‌بیند، برای تسک‌ها یادآور داخلی یا پیامکی می‌گیرد و از همان پرونده پیگیری را ادامه می‌دهد. مدیر نیز مشتریان پردرآمد، پرسود، پرکار با سود کم و کم‌حجمِ ارزشمند را با فرمول شفاف مشاهده می‌کند.</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="crm_hero_consultation">درخواست دموی نرم‌افزار CRM</a>
+                <a class="btn btn-primary" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="crm_hero_consultation">درخواست دموی نرم‌افزار CRM</a>
                 <a class="btn btn-outline" href="#crm-features">مشاهده امکانات ماژول CRM</a>
             </div>
         </div>
         <div class="hero-art crm-hero-art reveal">
-            @include('marketing.partials.module-screenshot-slider')
+            <?php echo $__env->make('marketing.partials.module-screenshot-slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
 </section>
@@ -195,7 +193,7 @@
 <section class="section" aria-labelledby="crm-problems-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">مسئله و راهکار</span><h2 class="section-title" id="crm-problems-title">نرم‌افزار CRM حمل‌ونقل چه<br><span>مشکلاتی را حل می‌کند؟</span></h2></div>
-        <p class="crm-intro reveal">در بسیاری از شرکت‌های حمل‌ونقل، اطلاعات مشتریان میان فایل‌های اکسل، پیام‌رسان‌ها، پیامک‌ها، ایمیل‌ها و یادداشت‌های کارشناسان پراکنده است. این پراکندگی می‌تواند به فراموش‌شدن پیگیری‌ها، از دست رفتن فرصت‌های فروش و وابستگی اطلاعات به افراد منجر شود. CRM سپند تعاملات و سوابق مشتری را در یک پرونده واحد نگهداری می‌کند.</p>
+        <p class="crm-intro reveal">در بسیاری از شرکت‌های حمل‌ونقل، اطلاعات مشتریان میان فایل‌های Excel، پیام‌رسان‌ها، پیامک‌ها، ایمیل‌ها و یادداشت‌های کارشناسان پراکنده است. این پراکندگی می‌تواند به فراموش‌شدن پیگیری‌ها، از دست رفتن فرصت‌های فروش و وابستگی اطلاعات به افراد منجر شود. CRM سپند تعاملات و سوابق مشتری را در یک پرونده واحد نگهداری می‌کند.</p>
         <div class="crm-problem reveal"><strong>چالش رایج شرکت‌های حمل‌ونقل و لجستیک</strong><p>وقتی آخرین مذاکره، درخواست حمل و اقدام بعدی مشتری در منابع مختلف ثبت شده باشد، تیم فروش تصویر کاملی از وضعیت رابطه با مشتری ندارد و واحد عملیات نیز اطلاعات اولیه را دوباره جمع‌آوری می‌کند.</p></div>
         <div class="crm-problem-grid">
             <article class="crm-problem-card reveal"><h3>پرونده یکپارچه مشتری</h3><p>اطلاعات تماس، سوابق مکالمات، استعلام‌ها، درخواست‌های حمل، اسناد و فعالیت‌های انجام‌شده برای هر مشتری در یک پرونده ثبت می‌شود. کارشناسان بدون جست‌وجو در فایل‌ها و پیام‌های پراکنده، سابقه همکاری را مشاهده می‌کنند.</p></article>
@@ -210,9 +208,9 @@
     <div class="container">
         <div class="section-head reveal"><span class="section-label">امکانات اصلی</span><h2 class="section-title" id="crm-features-title">امکانات ماژول CRM و<br><span>مدیریت مشتریان سپند</span></h2><p class="section-sub">ابزارهای موردنیاز تیم بازاریابی و فروش، از ثبت نخستین سرنخ تا انتقال اطلاعات مشتری به فرایند اجرایی، در یک مسیر قابل‌ردیابی کنار هم قرار می‌گیرند.</p></div>
         <div class="crm-capability-grid">
-            @foreach($capabilities as $index => $capability)
-                <article class="crm-capability reveal"><span class="crm-capability-num">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span><h3>{{ $capability['title'] }}</h3><p>{{ $capability['description'] }}</p></article>
-            @endforeach
+            <?php $__currentLoopData = $capabilities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $capability): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="crm-capability reveal"><span class="crm-capability-num"><?php echo e(str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT)); ?></span><h3><?php echo e($capability['title']); ?></h3><p><?php echo e($capability['description']); ?></p></article>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
@@ -301,9 +299,9 @@
     <div class="container">
         <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="crm-integration-title">اتصال CRM به بازاریابی، فروش و<br><span>عملیات حمل</span></h2><p class="section-sub">CRM سپند یک سیستم جدا از عملیات شرکت نیست. اطلاعات ثبت‌شده در بازاریابی و فروش، از پیامک و وظیفه پیگیری تا استعلام و پیشنهاد، بدون ورود مجدد به مراحل قرارداد، Booking و عملیات منتقل می‌شود؛ در نتیجه خطا و دوباره‌کاری کاهش می‌یابد.</p></div>
         <div class="crm-process-grid">
-            <article class="crm-process reveal"><span class="crm-process-step">۱</span><h3>بازاریابی و فروش</h3><p>لیدها، استعلام‌ها، پیامک‌ها، مذاکرات، فعالیت‌های پیگیری و فرصت‌های فروش در این مرحله مدیریت می‌شوند. مدیر فروش وضعیت هر فرصت، مسئول پیگیری و مرحله فعلی مذاکره را مشاهده می‌کند.</p><a href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}">مشاهده ماژول نرخ‌دهی و فروش</a></article>
-            <article class="crm-process reveal"><span class="crm-process-step">۲</span><h3>قرارداد و Booking</h3><p>پس از تأیید پیشنهاد و توافق با مشتری، مشخصات مشتری و درخواست حمل به ادامه فرایند منتقل می‌شود. به این ترتیب نیازی به ثبت مجدد اطلاعات پایه و جزئیات اولیه درخواست نیست.</p><a href="{{ route('site.modules.show', ['module' => 'booking']) }}">مشاهده ماژول Booking</a></article>
-            <article class="crm-process reveal"><span class="crm-process-step">۳</span><h3>عملیات حمل</h3><p>تیم عملیات به اطلاعات مرتبط با مشتری، درخواست ثبت‌شده و سوابق موردنیاز دسترسی دارد. وضعیت پرونده حمل نیز مبنایی برای پاسخ‌گویی سریع‌تر و دقیق‌تر واحدهای مرتبط به مشتری خواهد بود.</p><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مشاهده ماژول عملیات حمل</a></article>
+            <article class="crm-process reveal"><span class="crm-process-step">۱</span><h3>بازاریابی و فروش</h3><p>لیدها، استعلام‌ها، پیامک‌ها، مذاکرات، فعالیت‌های پیگیری و فرصت‌های فروش در این مرحله مدیریت می‌شوند. مدیر فروش وضعیت هر فرصت، مسئول پیگیری و مرحله فعلی مذاکره را مشاهده می‌کند.</p><a href="<?php echo e(route('site.modules.show', ['module' => 'pricing-sales'])); ?>">مشاهده ماژول نرخ‌دهی و فروش</a></article>
+            <article class="crm-process reveal"><span class="crm-process-step">۲</span><h3>قرارداد و Booking</h3><p>پس از تأیید پیشنهاد و توافق با مشتری، مشخصات مشتری و درخواست حمل به ادامه فرایند منتقل می‌شود. به این ترتیب نیازی به ثبت مجدد اطلاعات پایه و جزئیات اولیه درخواست نیست.</p><a href="<?php echo e(route('site.modules.show', ['module' => 'booking'])); ?>">مشاهده ماژول Booking</a></article>
+            <article class="crm-process reveal"><span class="crm-process-step">۳</span><h3>عملیات حمل</h3><p>تیم عملیات به اطلاعات مرتبط با مشتری، درخواست ثبت‌شده و سوابق موردنیاز دسترسی دارد. وضعیت پرونده حمل نیز مبنایی برای پاسخ‌گویی سریع‌تر و دقیق‌تر واحدهای مرتبط به مشتری خواهد بود.</p><a href="<?php echo e(route('site.modules.show', ['module' => 'transport-operations'])); ?>">مشاهده ماژول عملیات حمل</a></article>
         </div>
     </div>
 </section>
@@ -343,7 +341,7 @@
             <article class="crm-audience reveal"><h3>کشتیرانی و حمل چندوجهی</h3><p>برای هماهنگی ارتباط مشتری در خدمات دریایی، هوایی، زمینی و ریلی.</p></article>
             <article class="crm-audience reveal"><h3>شرکت‌های بازرگانی</h3><p>برای ثبت سوابق مشتریان و مدیریت فرصت‌های فروش سازمانی و درخواست‌های خدمات.</p></article>
             <article class="crm-audience reveal"><h3>تیم‌های فروش سازمانی</h3><p>برای تعیین مسئول، مرحله مذاکره و اقدام بعدی هر مشتری یا فرصت.</p></article>
-            <article class="crm-audience reveal"><h3>مجموعه‌های متکی به اکسل</h3><p>برای جایگزین‌کردن پیگیری‌های پراکنده با پرونده مشترک و قابل‌جست‌وجو.</p></article>
+            <article class="crm-audience reveal"><h3>مجموعه‌های متکی به Excel</h3><p>برای جایگزین‌کردن پیگیری‌های پراکنده با پرونده مشترک و قابل‌جست‌وجو.</p></article>
             <article class="crm-audience reveal"><h3>شرکت‌های واردات و صادرات</h3><p>برای نگهداری ارتباطات تجاری و هماهنگی بهتر درخواست‌های حمل مشتریان.</p></article>
             <article class="crm-audience reveal"><h3>مدیران فروش و عملیات</h3><p>برای داشتن دید مشترک از مشتری، مذاکره، تعهدات و مرحله اجرای خدمت.</p></article>
         </div>
@@ -355,12 +353,14 @@
         <div class="section-head reveal"><span class="section-label">سؤالات متداول</span><h2 class="section-title" id="crm-faq-title">سؤالات متداول درباره<br><span>نرم‌افزار CRM حمل‌ونقل</span></h2></div>
         <p class="crm-faq-intro reveal">پاسخ پرسش‌های رایج شرکت‌های حمل‌ونقل و لجستیک درباره کاربرد CRM تخصصی سپند و ارتباط آن با سایر بخش‌های نرم‌افزار.</p>
         <div class="faq">
-            @foreach($faqs as $faq)
-                <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
-            @endforeach
+            <?php $__currentLoopData = $faqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $faq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <details class="reveal"><summary><?php echo e($faq['question']); ?></summary><p><?php echo e($faq['answer']); ?></p></details>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>CRM سپند را با داده واقعی کسب‌وکار خود ارزیابی کنید</h2><p>در جلسه دمو، مسیر «پیگیری‌های من»، یادآوری داخلی و پیامکی تسک‌ها، ثبت لید و مشتری و تحلیل درآمد، سود و ارزش هر مشتری را با سناریوی تیم شما بررسی می‌کنیم.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="crm_bottom_consultation">درخواست دموی نرم‌افزار CRM</a></div></div></div></section>
-@endsection
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>CRM سپند را با داده واقعی کسب‌وکار خود ارزیابی کنید</h2><p>در جلسه دمو، مسیر «پیگیری‌های من»، یادآوری داخلی و پیامکی تسک‌ها، ثبت لید و مشتری و تحلیل درآمد، سود و ارزش هر مشتری را با سناریوی تیم شما بررسی می‌کنیم.</p></div><div class="cta-action"><a class="btn" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="crm_bottom_consultation">درخواست دموی نرم‌افزار CRM</a></div></div></div></section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.marketing', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\project\sepand\portal-customer\resources\views/marketing/module-crm.blade.php ENDPATH**/ ?>

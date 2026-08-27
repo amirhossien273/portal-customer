@@ -1,0 +1,14 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFVPYCYKL7"></script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-HFVPYCYKL7');
+</script>
+<?php /**PATH C:\project\sepand\portal-customer\resources\views/layouts/partials/google-analytics.blade.php ENDPATH**/ ?>

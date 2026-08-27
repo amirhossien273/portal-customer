@@ -1,0 +1,16 @@
+[2026-08-27 08:54:32] local.ERROR: rename(C:\project\sepand\portal-customer\bootstrap\cache\ser95E3.tmp,C:\project\sepand\portal-customer\bootstrap\cache/services.php): Access is denied (code: 5) {"exception":"[object] (ErrorException(code: 0): rename(C:\\project\\sepand\\portal-customer\\bootstrap\\cache\\ser95E3.tmp,C:\\project\\sepand\\portal-customer\\bootstrap\\cache/services.php): Access is denied (code: 5) at C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php:233)
+[stacktrace]
+#0 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'rename(C:\\\\proje...', 'C:\\\\project\\\\sepa...', 233)
+#1 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'rename(C:\\\\proje...', 'C:\\\\project\\\\sepa...', 233)
+#2 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(233): rename('C:\\\\project\\\\sepa...', 'C:\\\\project\\\\sepa...')
+#3 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(191): Illuminate\\Filesystem\\Filesystem->replace('C:\\\\project\\\\sepa...', '<?php return ar...')
+#4 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(163): Illuminate\\Foundation\\ProviderRepository->writeManifest(Array)
+#5 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(61): Illuminate\\Foundation\\ProviderRepository->compileManifest(Array)
+#6 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#7 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#8 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(286): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#9 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#10 C:\\project\\sepand\\portal-customer\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 C:\\project\\sepand\\portal-customer\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#12 {main}
+"} 

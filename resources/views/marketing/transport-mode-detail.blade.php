@@ -44,6 +44,10 @@
     @push('styles')
         <link rel="stylesheet" href="{{ asset('assets/css/marketing-air-freight.css') }}?v=20260827-1">
     @endpush
+@elseif($slug === 'rail')
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('assets/css/marketing-rail-freight.css') }}?v=20260827-1">
+    @endpush
 @endif
 
 
@@ -75,7 +79,7 @@
                 <img
                     class="module-hero-image"
                     src="{{ asset('assets/images/marketing/transport-modes/'.$slug.'-hero.webp') }}"
-                    alt="{{ $slug === 'air' ? 'تصویر مفهومی عملیات حمل هوایی سپند' : 'تصویر سه‌بعدی ' . $mode['name'] . ' در نرم‌افزار سپند' }}"
+                    alt="{{ in_array($slug, ['air', 'rail'], true) ? 'تصویر مفهومی عملیات ' . $mode['name'] . ' سپند' : 'تصویر سه‌بعدی ' . $mode['name'] . ' در نرم‌افزار سپند' }}"
                     width="1536"
                     height="1024"
                     loading="eager"
@@ -106,6 +110,8 @@
 
 @if($slug === 'air')
     @include('marketing.transport-modes.air-chargeable-weight')
+@elseif($slug === 'rail')
+    @include('marketing.transport-modes.rail-operations-depth')
 @else
 <section class="section" aria-labelledby="transport-workflow-title">
     <div class="container">

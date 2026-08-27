@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    @include('layouts.partials.google-analytics')
+    <?php echo $__env->make('layouts.partials.google-analytics', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f305b">
@@ -12,19 +12,19 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
     <meta property="og:description" content="سامانه یکپارچه شرکت‌های حمل‌ونقل؛ از CRM، تحلیل مشتری و تأمین‌کننده تا عملیات، مالی و پرتال مشتریان با ورود OTP و رهگیری محموله.">
-    <meta property="og:url" content="{{ route('home') }}">
-    <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
+    <meta property="og:url" content="<?php echo e(route('home')); ?>">
+    <meta property="og:image" content="<?php echo e(asset('assets/images/marketing/sepand-cargo-details.webp')); ?>">
     <meta property="og:image:alt" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند">
     <meta property="og:site_name" content="سپند">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
     <meta name="twitter:description" content="سامانه یکپارچه شرکت‌های حمل‌ونقل؛ از CRM، تحلیل مشتری و تأمین‌کننده تا عملیات، مالی و پرتال مشتریان با ورود OTP و رهگیری محموله.">
-    <meta name="twitter:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
-    <link rel="canonical" href="{{ route('home') }}">
+    <meta name="twitter:image" content="<?php echo e(asset('assets/images/marketing/sepand-cargo-details.webp')); ?>">
+    <link rel="canonical" href="<?php echo e(route('home')); ?>">
     <title>نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
-    <script type="application/ld+json">{!! json_encode([
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('assets/images/favicon.png')); ?>?v=20260801">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('favicon.ico')); ?>?v=20260801">
+    <script type="application/ld+json"><?php echo json_encode([
         '@context' => 'https://schema.org',
         '@graph' => [
             [
@@ -57,58 +57,58 @@
                 'publisher' => ['@id' => route('home').'#organization'],
             ],
         ],
-    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?></script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260826-1">
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/home.css')); ?>?v=20260826-1">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-floating-cta.css')); ?>?v=20260827-1">
 </head>
 <body>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
 
     <header class="site-header" id="site-header">
         <div class="container nav-wrap">
-            <a class="brand" href="{{ route('home') }}" aria-label="سپند، صفحه اصلی">
-                <img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="" aria-hidden="true">
+            <a class="brand" href="<?php echo e(route('home')); ?>" aria-label="سپند، صفحه اصلی">
+                <img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt="" aria-hidden="true">
                 <span class="brand-copy" aria-hidden="true">
                     <strong>سپند</strong>
                     <small>CRM هوشمند حمل‌ونقل</small>
                 </span>
             </a>
-            @include('layouts.partials.floating-consultation-cta', ['placement' => 'mobile-header'])
+            <?php echo $__env->make('layouts.partials.floating-consultation-cta', ['placement' => 'mobile-header'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
-                <a href="{{ route('product') }}">معرفی محصول</a>
-                <a href="{{ route('modules') }}">ماژول‌ها</a>
-                <a href="{{ route('pricing') }}">تعرفه‌ها</a>
-                <a href="{{ route('about') }}">درباره ما</a>
-                <a href="{{ route('faq') }}">سؤالات متداول</a>
-                <a href="{{ route('why-sepand') }}">چرا سپند؟</a>
+                <a href="<?php echo e(route('product')); ?>">معرفی محصول</a>
+                <a href="<?php echo e(route('modules')); ?>">ماژول‌ها</a>
+                <a href="<?php echo e(route('pricing')); ?>">تعرفه‌ها</a>
+                <a href="<?php echo e(route('about')); ?>">درباره ما</a>
+                <a href="<?php echo e(route('faq')); ?>">سؤالات متداول</a>
+                <a href="<?php echo e(route('why-sepand')); ?>">چرا سپند؟</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
-                    <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking">
+                    <a class="portal-link tracking" href="<?php echo e(route('tracking')); ?>" data-ga-event="portal_click" data-ga-label="mobile_tracking">
                         <span class="portal-new">جدید</span>
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
                         رهگیری محموله
                     </a>
-                    <a class="portal-link" href="{{ route('login') }}">
+                    <a class="portal-link" href="<?php echo e(route('login')); ?>">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         پورتال مشتریان
                     </a>
-                    <a class="portal-link organization" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="mobile_organization_portal">
+                    <a class="portal-link organization" href="<?php echo e(route('organization.portal')); ?>" data-ga-event="portal_click" data-ga-label="mobile_organization_portal">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V4h10v16M15 9h4v11M3 20h18M8 8h4m-4 4h4m-4 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         پرتال سازمان
                     </a>
                 </div>
             </nav>
             <div class="portal-actions desktop-portals" aria-label="ورود به سامانه‌های سپند">
-                <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="desktop_tracking">
+                <a class="portal-link tracking" href="<?php echo e(route('tracking')); ?>" data-ga-event="portal_click" data-ga-label="desktop_tracking">
                     <span class="portal-new">جدید</span>
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
                     رهگیری محموله
                 </a>
-                <a class="portal-link" href="{{ route('login') }}">
+                <a class="portal-link" href="<?php echo e(route('login')); ?>">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     پورتال مشتریان
                 </a>
-                <a class="portal-link organization" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">
+                <a class="portal-link organization" href="<?php echo e(route('organization.portal')); ?>" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V4h10v16M15 9h4v11M3 20h18M8 8h4m-4 4h4m-4 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     پرتال سازمان
                 </a>
@@ -131,11 +131,11 @@
                         <p>پرتال مشتریان سپند همین جریان را تا خدمات پس از فروش ادامه می‌دهد؛ مشتری با کد یک‌بارمصرف وارد می‌شود و وضعیت استعلام، محموله، رویدادهای مجاز رهگیری، صورتحساب و رسیدهای خود را مشاهده می‌کند.</p>
                     </div>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="hero_consultation">
+                        <a class="btn btn-primary" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="hero_consultation">
                             درخواست دمو و مشاوره
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </a>
-                        <a class="btn btn-secondary" href="{{ route('product') }}" data-ga-event="cta_click" data-ga-label="hero_product">
+                        <a class="btn btn-secondary" href="<?php echo e(route('product')); ?>" data-ga-event="cta_click" data-ga-label="hero_product">
                             مشاهده سپند در عمل
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </a>
@@ -151,13 +151,13 @@
                                 <div class="laptop-camera" aria-hidden="true"></div>
                                 <div class="device-viewport device-viewport-desktop">
                                     <figure class="device-slide is-active" data-desktop-slide aria-hidden="false">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" width="1600" height="799" fetchpriority="high" decoding="async" alt="داشبورد مدیریتی نسخه دسکتاپ نرم‌افزار حمل‌ونقل سپند">
+                                        <img src="<?php echo e(asset('assets/images/marketing/product-showcase/desktop-dashboard.webp')); ?>" width="1600" height="799" fetchpriority="high" decoding="async" alt="داشبورد مدیریتی نسخه دسکتاپ نرم‌افزار حمل‌ونقل سپند">
                                     </figure>
                                     <figure class="device-slide" data-desktop-slide aria-hidden="true">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-calendar.webp') }}" width="1600" height="840" loading="lazy" decoding="async" alt="تقویم فعالیت‌ها و وظایف نسخه دسکتاپ نرم‌افزار سپند">
+                                        <img src="<?php echo e(asset('assets/images/marketing/product-showcase/desktop-calendar.webp')); ?>" width="1600" height="840" loading="lazy" decoding="async" alt="تقویم فعالیت‌ها و وظایف نسخه دسکتاپ نرم‌افزار سپند">
                                     </figure>
                                     <figure class="device-slide" data-desktop-slide aria-hidden="true">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-reports.webp') }}" width="1600" height="844" loading="lazy" decoding="async" alt="گزارش‌ها و نمودارهای تحلیلی نسخه دسکتاپ نرم‌افزار سپند">
+                                        <img src="<?php echo e(asset('assets/images/marketing/product-showcase/desktop-reports.webp')); ?>" width="1600" height="844" loading="lazy" decoding="async" alt="گزارش‌ها و نمودارهای تحلیلی نسخه دسکتاپ نرم‌افزار سپند">
                                     </figure>
                                 </div>
                             </div>
@@ -169,13 +169,13 @@
                                 <div class="phone-speaker" aria-hidden="true"></div>
                                 <div class="device-viewport device-viewport-mobile">
                                     <figure class="device-slide is-active" data-mobile-slide aria-hidden="false">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-dashboard.webp') }}" width="720" height="1447" loading="eager" decoding="async" alt="داشبورد واکنش‌گرای نرم‌افزار سپند در گوشی موبایل">
+                                        <img src="<?php echo e(asset('assets/images/marketing/product-showcase/mobile-dashboard.webp')); ?>" width="720" height="1447" loading="eager" decoding="async" alt="داشبورد واکنش‌گرای نرم‌افزار سپند در گوشی موبایل">
                                     </figure>
                                     <figure class="device-slide" data-mobile-slide aria-hidden="true">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-inquiry.webp') }}" width="720" height="1451" loading="lazy" decoding="async" alt="جزئیات استعلام در نسخه موبایل نرم‌افزار سپند">
+                                        <img src="<?php echo e(asset('assets/images/marketing/product-showcase/mobile-inquiry.webp')); ?>" width="720" height="1451" loading="lazy" decoding="async" alt="جزئیات استعلام در نسخه موبایل نرم‌افزار سپند">
                                     </figure>
                                     <figure class="device-slide" data-mobile-slide aria-hidden="true">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/mobile-operation.webp') }}" width="720" height="1438" loading="lazy" decoding="async" alt="جزئیات عملیات حمل در نسخه موبایل نرم‌افزار سپند">
+                                        <img src="<?php echo e(asset('assets/images/marketing/product-showcase/mobile-operation.webp')); ?>" width="720" height="1438" loading="lazy" decoding="async" alt="جزئیات عملیات حمل در نسخه موبایل نرم‌افزار سپند">
                                     </figure>
                                 </div>
                                 <span class="phone-home-indicator" aria-hidden="true"></span>
@@ -215,54 +215,54 @@
                     <p class="section-subtitle">CRM، بازاریابی پیامکی، وظیفه خودکار، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا رویدادهای فروش به اقدام مشخص تبدیل شوند و اطلاعات بدون ثبت تکراری جریان داشته باشد.</p>
                 </div>
                 <div class="services-grid">
-                    @foreach(config('site_modules') as $slug => $module)
-                        <article class="service-card reveal delay-{{ ($loop->index % 4) + 1 }}">
+                    <?php $__currentLoopData = config('site_modules'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slug => $module): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <article class="service-card reveal delay-<?php echo e(($loop->index % 4) + 1); ?>">
                             <span class="service-icon" aria-hidden="true">
-                                @switch($slug)
-                                    @case('crm')
+                                <?php switch($slug):
+                                    case ('crm'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 19v-1.5A4.5 4.5 0 0 1 8 13h2a4.5 4.5 0 0 1 4.5 4.5V19M16 5.5a3 3 0 0 1 0 5.8M17 14a4.5 4.5 0 0 1 3.5 4.4V19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-                                        @break
-                                    @case('pricing-sales')
+                                        <?php break; ?>
+                                    <?php case ('pricing-sales'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="m4 11 7-7h7l2 2v7l-7 7-9-9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="15.5" cy="8.5" r="1.4" stroke="currentColor" stroke-width="1.6"/><path d="M8 13.5h5M9 16h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-                                        @break
-                                    @case('booking')
+                                        <?php break; ?>
+                                    <?php case ('booking'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7.5 3v4M16.5 3v4M3.5 9h17m-12 5 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('transport-operations')
+                                        <?php break; ?>
+                                    <?php case ('transport-operations'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v10H3V6Zm11 4h4l3 3v3h-7v-6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/><path d="M6 10h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-                                        @break
-                                    @case('document-management')
+                                        <?php break; ?>
+                                    <?php case ('document-management'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v5h4M10 12h5m-5 3h5m-5 3h3M4 7v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('finance-accounting')
+                                        <?php break; ?>
+                                    <?php case ('finance-accounting'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M6.3 8h3.4M8 6.3v3.4m6.3 6.3h3.4M16 14.3v3.4M13.5 5.5H19v5.5M10.5 18.5H5V13" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('workflow-tasks')
+                                        <?php break; ?>
+                                    <?php case ('workflow-tasks'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="6" height="5" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="15" y="15" width="6" height="5" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M9 6.5h4a3 3 0 0 1 3 3V12M15 17.5h-4a3 3 0 0 1-3-3V12m5.5-2 2.5 2 2.5-2M10.5 14 8 12l-2.5 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('automatic-tasks')
+                                        <?php break; ?>
+                                    <?php case ('automatic-tasks'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M5 4h10v16H5V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 8h4M8 12h3m-3 4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18 7v4m-2-2h4m-5.5 6.5 1.7 1.7 3.3-3.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('customer-portal-tracking')
+                                        <?php break; ?>
+                                    <?php case ('customer-portal-tracking'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h18M8 22h8M12 19v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15.5 11.5c0 2-3 4.5-3 4.5s-3-2.5-3-4.5a3 3 0 1 1 6 0Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12.5" cy="11.5" r=".8" fill="currentColor"/></svg>
-                                        @break
-                                    @default
+                                        <?php break; ?>
+                                    <?php default: ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-                                @endswitch
+                                <?php endswitch; ?>
                             </span>
-                            <h3>{{ $module['card_title'] ?? $module['name'] }}</h3>
-                            <p>{{ $module['card_summary'] ?? $module['summary'] }}</p>
-                            <a class="service-link" href="{{ route('site.modules.show', ['module' => $slug]) }}">{{ $module['card_cta'] ?? 'مشاهده جزئیات' }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                            <h3><?php echo e($module['card_title'] ?? $module['name']); ?></h3>
+                            <p><?php echo e($module['card_summary'] ?? $module['summary']); ?></p>
+                            <a class="service-link" href="<?php echo e(route('site.modules.show', ['module' => $slug])); ?>"><?php echo e($module['card_cta'] ?? 'مشاهده جزئیات'); ?> <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                         </article>
-                        @if($slug === 'crm')
+                        <?php if($slug === 'crm'): ?>
                             <article class="service-card reveal delay-2">
                                 <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
                                 <h3>بازاریابی پیامکی و ارتباط با مشتری</h3>
                                 <p>از پرونده مشتری، سرنخ فروش یا استعلام پیامک بفرستید و متن، زمان، فرستنده و وضعیت هر ارسال را در سابقه ارتباطات نگه دارید.</p>
-                                <a class="service-link" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-sms">مشاهده امکانات پیامکی CRM <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                                <a class="service-link" href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>#crm-sms">مشاهده امکانات پیامکی CRM <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                             </article>
-                        @endif
-                    @endforeach
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </section>
@@ -275,29 +275,29 @@
                     <p class="section-subtitle">مدیریت سفر، کانتینر، پرواز، ULD، واگن، ناوگان زمینی و رویدادهای رهگیری — همگی در یک تجربه منسجم.</p>
                 </div>
                 <div class="transport-grid">
-                    @foreach(config('site_transport_modes') as $modeSlug => $mode)
-                        <article class="service-card transport-card reveal delay-{{ $loop->iteration }}">
+                    <?php $__currentLoopData = config('site_transport_modes'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $modeSlug => $mode): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <article class="service-card transport-card reveal delay-<?php echo e($loop->iteration); ?>">
                             <span class="service-icon transport-icon" aria-hidden="true">
-                                @switch($modeSlug)
-                                    @case('sea')
+                                <?php switch($modeSlug):
+                                    case ('sea'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M4 12 6 7h12l2 5-3 6H7l-3-6Zm2 0 6-3 6 3M12 4v5M9 4h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('air')
+                                        <?php break; ?>
+                                    <?php case ('air'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="m3 11 7.5 1.5L14 21l2-1-1-7 5-2.5a2.5 2.5 0 0 0 1.3-3.1 2.5 2.5 0 0 0-3.2-1.2L13 8.5 7 3 5 4l4 6-5.5-1L3 11Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('road')
+                                        <?php break; ?>
+                                    <?php case ('road'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h11v11H3V6Zm11 4h4l3 4v3h-7v-7ZM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                    @case('rail')
+                                        <?php break; ?>
+                                    <?php case ('rail'): ?>
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h10a2 2 0 0 1 2 2v10a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2Zm-2 7h14M8 21l2-3m6 0 2 3M8.5 14h.01m6.99 0h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        @break
-                                @endswitch
+                                        <?php break; ?>
+                                <?php endswitch; ?>
                             </span>
-                            <h3>{{ $mode['name'] }}</h3>
-                            <p>{{ $mode['card_summary'] }}</p>
-                            <a class="service-link transport-link" href="{{ route('site.transport-modes.show', ['mode' => $modeSlug]) }}">مشاهده جزئیات {{ $mode['short_name'] }} <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                            <h3><?php echo e($mode['name']); ?></h3>
+                            <p><?php echo e($mode['card_summary']); ?></p>
+                            <a class="service-link transport-link" href="<?php echo e(route('site.transport-modes.show', ['mode' => $modeSlug])); ?>">مشاهده جزئیات <?php echo e($mode['short_name']); ?> <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                         </article>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </section>
@@ -372,7 +372,7 @@
                 <div class="about-visual reveal">
                     <div class="about-panel">
                         <div class="about-content-card">
-                            <span class="about-logo"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt=""></span>
+                            <span class="about-logo"><img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt=""></span>
                             <p class="about-quote">بازاریابی، فروش، عملیات، مالی و پرتال مشتری روی یک پرونده مشترک کار می‌کنند؛ هر داده یک‌بار ثبت می‌شود و در مرحله بعدی قابل‌استفاده است.</p>
                             <div class="about-meta">کاربرد واقعی نرم‌افزار سپند</div>
                         </div>
@@ -389,7 +389,7 @@
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>محاسبه سود بر پایه هزینه واقعی</div>
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>ورود با کد یک‌بارمصرف و رهگیری کنترل‌شده مشتری</div>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('product') }}">معرفی کامل محصول <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                    <a class="btn btn-primary" href="<?php echo e(route('product')); ?>">معرفی کامل محصول <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                 </div>
             </div>
         </section>
@@ -433,7 +433,7 @@
             <div class="container">
                 <div class="cta reveal">
                     <div class="cta-copy"><h2>فرایند واقعی شرکت خود را در سپند ببینید</h2><p>در یک جلسه دمو، سناریوی CRM، فروش، عملیات، مالی و تجربه پرتال مشتریان شما را روی نرم‌افزار بررسی می‌کنیم.</p></div>
-                    <div class="cta-actions"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="home_bottom_consultation">درخواست دمو و مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a></div>
+                    <div class="cta-actions"><a class="btn" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="home_bottom_consultation">درخواست دمو و مشاوره <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a></div>
                 </div>
             </div>
         </section>
@@ -442,16 +442,16 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>سپند، نرم‌افزار یکپارچه CRM، فروش، عملیات، مالی و پرتال مشتریان برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی.</p></div>
-                <div class="footer-col"><h3>دسترسی سریع</h3><a href="{{ route('product') }}">معرفی محصول</a><a href="{{ route('modules') }}">ماژول‌ها</a><a href="{{ route('compare.index') }}">مرکز مقایسه نرم‌افزارها</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('faq') }}">سؤالات متداول</a><a href="{{ route('about') }}">درباره ما</a></div>
-                <div class="footer-col"><h3>راهکارها</h3><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM حمل‌ونقل</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و سود پرونده</a></div>
-                <div class="footer-col"><h3>ارتباط با ما</h3><a class="footer-contact" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 1 8 7 8-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>درخواست دمو و مشاوره</a><a class="footer-contact" href="{{ route('login') }}"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>ورود مشتریان</a></div>
+                <div class="footer-brand"><a href="<?php echo e(route('home')); ?>"><img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt="سپند"></a><p>سپند، نرم‌افزار یکپارچه CRM، فروش، عملیات، مالی و پرتال مشتریان برای شرکت‌های فورواردری، لجستیک و حمل‌ونقل بین‌المللی.</p></div>
+                <div class="footer-col"><h3>دسترسی سریع</h3><a href="<?php echo e(route('product')); ?>">معرفی محصول</a><a href="<?php echo e(route('modules')); ?>">ماژول‌ها</a><a href="<?php echo e(route('compare.index')); ?>">مرکز مقایسه نرم‌افزارها</a><a href="<?php echo e(route('pricing')); ?>">تعرفه‌ها</a><a href="<?php echo e(route('faq')); ?>">سؤالات متداول</a><a href="<?php echo e(route('about')); ?>">درباره ما</a></div>
+                <div class="footer-col"><h3>راهکارها</h3><a href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>">CRM حمل‌ونقل</a><a href="<?php echo e(route('site.modules.show', ['module' => 'customer-portal-tracking'])); ?>">پرتال مشتریان و رهگیری</a><a href="<?php echo e(route('site.modules.show', ['module' => 'transport-operations'])); ?>">مدیریت عملیات</a><a href="<?php echo e(route('site.modules.show', ['module' => 'finance-accounting'])); ?>">مالی و سود پرونده</a></div>
+                <div class="footer-col"><h3>ارتباط با ما</h3><a class="footer-contact" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="footer_consultation"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 1 8 7 8-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>درخواست دمو و مشاوره</a><a class="footer-contact" href="<?php echo e(route('login')); ?>"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>ورود مشتریان</a></div>
             </div>
-            <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span class="footer-status"><i></i>سامانه‌های سپند فعال هستند</span></div>
+            <div class="footer-bottom"><span>© <?php echo e(date('Y')); ?> سپند؛ تمامی حقوق محفوظ است.</span><span class="footer-status"><i></i>سامانه‌های سپند فعال هستند</span></div>
         </div>
     </footer>
 
-    @include('layouts.partials.floating-consultation-cta', ['placement' => 'desktop-floating'])
+    <?php echo $__env->make('layouts.partials.floating-consultation-cta', ['placement' => 'desktop-floating'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <script>
         (() => {
@@ -558,3 +558,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\project\sepand\portal-customer\resources\views/welcome.blade.php ENDPATH**/ ?>

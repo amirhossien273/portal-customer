@@ -21,23 +21,29 @@ class WhySepandPageTest extends TestCase
         URL::forceScheme('https');
     }
 
-    public function test_why_sepand_page_explains_the_business_difference_with_real_evidence(): void
+    public function test_why_sepand_page_explains_the_business_reason_without_repeating_product_or_compare_pages(): void
     {
         $response = $this->get('/why-sepand')->assertOk();
         $content = $response->getContent();
 
         $response
             ->assertSee('<title>چرا سپند؟ | نرم افزار تخصصی مدیریت شرکت‌های حمل‌ونقل و فورواردری</title>', false)
-            ->assertSee('<meta name="description" content="ببینید چرا سپند برای مدیریت یکپارچه CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی شرکت‌های حمل‌ونقل و فورواردری طراحی شده و چه تفاوتی با ابزارهای پراکنده و CRMهای عمومی دارد.">', false)
+            ->assertSee('<meta name="description" content="ببینید چرا سپند برای اتصال CRM، نرخ‌دهی، Booking، عملیات، اسناد و امور مالی شرکت‌های حمل‌ونقل و فورواردری طراحی شده است.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/why-sepand">', false)
             ->assertSee('مشکل فقط پراکندگی اطلاعات نیست', false)
-            ->assertSee('در فورواردری، فروش پایان فرایند نیست', false)
+            ->assertSee('وقتی ابزارها جدا هستند، فرایند هم تکه‌تکه می‌شود', false)
             ->assertSee('چرا سپند با ابزارهای عمومی متفاوت است؟', false)
-            ->assertSee('مقایسه روش‌های مختلف مدیریت شرکت حمل‌ونقل', false)
-            ->assertSee('سپند برای حل چه مشکلاتی ساخته شده است؟', false)
+            ->assertSee('CRM عمومی برای فروش طراحی شده؛ سپند برای ادامه مسیر بعد از فروش هم ساخته شده است', false)
+            ->assertSee('در فورواردری، فروش پایان فرایند نیست؛ شروع یک پرونده عملیاتی است.', false)
+            ->assertSee('مشاهده مرکز مقایسه', false)
+            ->assertSee('href="'.self::SITE_URL.'/compare"', false)
+            ->assertSee('href="'.self::SITE_URL.'/compare/sepand-vs-other-transport-software"', false)
             ->assertSee('بعد از استقرار چه چیزهایی قابل اندازه‌گیری می‌شوند؟', false)
+            ->assertSee('ارزش مالی هر مشتری', false)
+            ->assertSee('تفاوت سپند را در خود نرم‌افزار ببینید', false)
             ->assertSee('سپند احتمالاً مناسب شماست اگر:', false)
             ->assertSee('سپند احتمالاً بیش از نیاز شماست اگر...', false)
+            ->assertSee('مزیت اصلی سپند یک قابلیت نیست؛ اتصال فرایندها به یکدیگر است', false)
             ->assertSee('assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp', false)
             ->assertSee('assets/images/marketing/modules/screenshots/finance-booking-reconciliation.webp', false)
             ->assertSee('assets/images/marketing/product-showcase/desktop-reports.webp', false)
@@ -45,12 +51,19 @@ class WhySepandPageTest extends TestCase
             ->assertSee('"@type":"SoftwareApplication"', false)
             ->assertSee('"@type":"BreadcrumbList"', false);
 
-        foreach (['crm', 'pricing-sales', 'booking', 'transport-operations', 'finance-accounting'] as $module) {
-            $response->assertSee('href="'.self::SITE_URL.'/modules/'.$module.'"', false);
-        }
-
         $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertSame(4, substr_count($content, 'class="why-problem-card reveal"'));
+        $this->assertSame(5, substr_count($content, 'class="why-pillar-card reveal"'));
         $this->assertSame(3, substr_count($content, 'class="why-evidence-card reveal"'));
+        $this->assertStringNotContainsString('مقایسه روش‌های مختلف مدیریت شرکت حمل‌ونقل', $content);
+        $this->assertStringNotContainsString('سپند برای حل چه مشکلاتی ساخته شده است؟', $content);
+        $this->assertStringNotContainsString('<table', $content);
+        $this->assertStringNotContainsString('Business Outcome', $content);
+        $this->assertStringNotContainsString('Problem → Difference', $content);
+        $this->assertStringNotContainsString('Shipment', $content);
+        $this->assertStringNotContainsString('Follow-up', $content);
+        $this->assertStringNotContainsString('Dashboard', $content);
+        $this->assertStringNotContainsString('Feature', $content);
         $this->assertStringNotContainsString('<meta name="keywords"', strtolower($content));
         $this->assertStringNotContainsString('data-missing-screenshot=', $content);
         $this->assertStringNotContainsString('TODO', $content);
