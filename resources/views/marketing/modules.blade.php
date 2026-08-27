@@ -117,7 +117,7 @@
             <article class="crm-capability reveal">
                 <span class="crm-capability-num">03</span>
                 <h3>مقایسه چندمعیاره تأمین‌کنندگان</h3>
-                <p>نرخ خرید، زمان حمل، مستقیم یا غیرمستقیم‌بودن مسیر، اعتبار نرخ، Free Time، سابقه تأخیر، کیفیت پاسخ و شرایط پرداخت کنار هم دیده می‌شوند.</p>
+                <p>نرخ خرید، زمان حمل، مستقیم یا غیرمستقیم‌بودن مسیر، اعتبار نرخ، زمان آزاد، سابقه تأخیر، کیفیت پاسخ و شرایط پرداخت کنار هم دیده می‌شوند.</p>
                 <a class="tag" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}#pricing-intelligence">مشاهده مقایسه تأمین‌کننده</a>
             </article>
             <article class="crm-capability reveal">

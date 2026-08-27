@@ -107,7 +107,7 @@
         <div class="criteria-grid">
             <article class="criteria-card reveal"><span class="criteria-number">۰۱</span><h3>ادعا را از سند جدا نکنید</h3><p>هر قابلیت را در نسخه قابل خرید، مستند فنی یا قرارداد تأیید کنید؛ شباهت نام ماژول‌ها به معنای یکسان بودن گردش کار نیست.</p></article>
             <article class="criteria-card reveal"><span class="criteria-number">۰۲</span><h3>سناریوی واحد اجرا کنید</h3><p>همان مشتری، مسیر، استعلام، نرخ، Booking، سند و هزینه را در تمام دموها وارد کنید تا دوباره‌کاری و نقاط کور آشکار شوند.</p></article>
-            <article class="criteria-card reveal"><span class="criteria-number">۰۳</span><h3>هزینه کل را بسنجید</h3><p>قیمت لایسنس را کنار استقرار، Migration، آموزش، پشتیبانی، توسعه، زیرساخت و هزینه تغییرات آینده قرار دهید.</p></article>
+            <article class="criteria-card reveal"><span class="criteria-number">۰۳</span><h3>هزینه کل را بسنجید</h3><p>قیمت مجوز استفاده را کنار استقرار، انتقال داده، آموزش، پشتیبانی، توسعه، زیرساخت و هزینه تغییرات آینده قرار دهید.</p></article>
             <article class="criteria-card reveal"><span class="criteria-number">۰۴</span><h3>نتیجه را مکتوب کنید</h3><p>موارد نمایش‌داده‌شده، موارد تعهدشده و موارد نیازمند توسعه را جداگانه ثبت کنید تا تصمیم به برداشت شفاهی وابسته نباشد.</p></article>
         </div>
     </div>

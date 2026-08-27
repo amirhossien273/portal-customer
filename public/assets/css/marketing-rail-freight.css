@@ -1,0 +1,72 @@
+.rail-entity-declaration{max-width:920px;margin:-24px auto 36px;padding:15px 20px;border:1px solid #d6e8e8;border-radius:14px;color:#315368;background:#f5fbfb;font-size:13px;font-weight:700;line-height:2;text-align:center}
+.rail-journey{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.rail-journey-step{position:relative;display:flex;min-width:0;gap:14px;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 12px 34px rgba(15,48,91,.06)}
+.rail-journey-step:after{position:absolute;top:50%;left:-13px;z-index:2;width:25px;height:25px;border:1px solid #b9dada;border-radius:50%;color:var(--teal-dark);background:#fff;content:"←";font-size:13px;font-weight:900;line-height:23px;text-align:center;transform:translateY(-50%)}
+.rail-journey-step:nth-child(3n):after,.rail-journey-step:last-child:after{display:none}
+.rail-journey-step.is-core{border-color:#c8e4e3;background:linear-gradient(145deg,#fff,#f2fafa)}
+.rail-journey-step.is-exception{border-color:#f2c6c8;background:#fff7f7}
+.rail-journey-number{display:grid;width:38px;height:38px;flex:none;place-items:center;border-radius:12px;color:var(--navy);background:#eaf2f7;font-size:11px;font-weight:900}
+.rail-journey-step.is-core .rail-journey-number{color:#116c70;background:#dff3f1}
+.rail-journey-step.is-exception .rail-journey-number{color:#a63d45;background:#fde4e5}
+.rail-journey-step h3{margin:1px 0 7px;color:var(--navy-900);font-size:16px}
+.rail-journey-step p{margin:0;color:var(--muted);font-size:11px;line-height:1.9}
+.rail-entity-graph{display:grid;grid-template-columns:repeat(9,auto);align-items:center;justify-content:center;gap:13px;margin-top:28px;padding:18px;border-radius:18px;color:#fff;background:var(--navy-900)}
+.rail-entity-graph span{display:block;min-width:110px;text-align:center}
+.rail-entity-graph bdi,.rail-entity-graph small{display:block}
+.rail-entity-graph bdi{font-size:12px;font-weight:900}
+.rail-entity-graph small{margin-top:4px;color:#9fc4d2;font-size:8px}
+.rail-entity-graph i{color:#68d1cf;font-style:normal;font-weight:900}
+.rail-split-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);align-items:end;gap:40px;margin-bottom:30px}
+.rail-split-head .section-title{text-align:right}
+.rail-split-head>p{margin:0;color:var(--muted);font-size:12px;line-height:2}
+.rail-evidence{margin:0;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 20px 54px rgba(15,48,91,.08);overflow:hidden}
+.rail-evidence figcaption{padding:14px 22px;border-top:1px solid var(--line);color:#657b8d;background:#f7fbfb;font-size:10px;line-height:1.9}
+.rail-shipment-head,.rail-timeline-head{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:22px 24px;color:#fff;background:linear-gradient(120deg,var(--navy-900),#1d6c73)}
+.rail-shipment-head span,.rail-timeline-head>div>span{display:block;margin-bottom:5px;color:#9ed8d7;font-size:9px;font-weight:800}
+.rail-shipment-head h3,.rail-timeline-head h3{margin:0;font-size:19px}
+.rail-shipment-head p{margin:6px 0 0;color:#c5dbdf;font-size:10px}
+.rail-shipment-head>strong{padding:9px 14px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);font-size:12px}
+.rail-wagon-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:22px}
+.rail-wagon-card{min-width:0;padding:17px;border:1px solid #dde9e9;border-top:4px solid #7ca2b4;border-radius:16px;background:#fbfdfd}
+.rail-wagon-card.is-success{border-top-color:#34a574}.rail-wagon-card.is-station{border-top-color:#d6a13c}.rail-wagon-card.is-danger{border-top-color:#dc5a62}.rail-wagon-card.is-transit{border-top-color:#3b91b8}
+.rail-wagon-card header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rail-wagon-card header span{color:#718596;font-size:9px;font-weight:800}
+.rail-wagon-card header strong{padding:4px 7px;border-radius:999px;color:#385b6a;background:#edf3f5;font-size:8px}
+.rail-wagon-card.is-danger header strong{color:#a33c44;background:#fde7e8}
+.rail-wagon-card h3{margin:15px 0;color:var(--navy);font-size:22px}
+.rail-wagon-card dl{display:grid;gap:8px;margin:0}
+.rail-wagon-card dl div{display:flex;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid #e5eeee}
+.rail-wagon-card dt{color:#8696a5;font-size:8px}.rail-wagon-card dd{margin:0;color:#385267;font-size:9px;font-weight:800}
+.rail-wagon-relation{display:flex;align-items:center;justify-content:center;gap:13px;margin:0 22px 22px;padding:14px;border-radius:14px;color:var(--navy);background:#edf7f6;font-size:10px;font-weight:900}
+.rail-wagon-relation i{color:var(--teal);font-style:normal}
+.rail-delay-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.rail-delay-summary article{padding:18px;border:1px solid #dce9e9;border-radius:16px;background:#fff}
+.rail-delay-summary article.is-delay{border-color:#efb9bd;background:#fff5f5}
+.rail-delay-summary span,.rail-delay-summary small{display:block;color:#7e8e9d;font-size:9px}.rail-delay-summary strong{display:block;margin-top:8px;color:var(--navy);font-size:21px}
+.rail-delay-summary .is-delay strong{color:#b43d47}.rail-delay-summary small{margin-top:6px;color:#a14a51;font-weight:800}
+.rail-event-legend{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rail-event-legend span{display:flex!important;align-items:center;gap:5px;margin:0!important;padding:5px 8px;border-radius:999px;color:#d8ebed!important;background:rgba(255,255,255,.08);font-size:8px!important}
+.rail-event-legend i{width:7px;height:7px;border-radius:50%;background:#50bf8d}.rail-event-legend .is-delay i{background:#ef7b82}.rail-event-legend .is-change i{border:2px solid #7cced0;background:transparent}
+.rail-station-timeline{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin:0;padding:30px 24px;list-style:none}
+.rail-station-timeline:before{position:absolute;top:51px;right:12.5%;left:12.5%;height:3px;border-radius:999px;background:#c8dddd;content:""}
+.rail-station{position:relative;min-width:0}
+.rail-station-marker{position:relative;z-index:2;display:block;width:18px;height:18px;margin:0 auto 13px;border:5px solid #fff;border-radius:50%;background:#2e9b83;box-shadow:0 0 0 2px #87c7b7}
+.rail-station.is-exception .rail-station-marker{background:#d9545d;box-shadow:0 0 0 2px #efafb3}.rail-station.is-pending .rail-station-marker{background:#fff;box-shadow:0 0 0 2px #99b0bd}
+.rail-station-card{height:calc(100% - 31px);padding:16px;border:1px solid #dce8e8;border-radius:15px;background:#fbfdfd}
+.rail-station.is-exception .rail-station-card{border-color:#efc4c6;background:#fff7f7}
+.rail-station-card header span{display:block;color:#8293a1;font-size:8px}.rail-station-card h3{margin:5px 0 13px;color:var(--navy);font-size:16px}
+.rail-station-card ul{display:grid;gap:7px;margin:0;padding:0;list-style:none}
+.rail-station-card li{display:flex;justify-content:space-between;gap:8px;padding:8px;border-radius:9px;background:#eff5f5;color:#617785;font-size:8px}
+.rail-station-card li strong{color:var(--navy);font-size:9px}.rail-station-card li.is-delay{color:#a54048;background:#fde7e8}.rail-station-card li.is-change{color:#146f73;background:#e0f3f2}
+.rail-change-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px;margin:0;padding:0;list-style:none}
+.rail-change-flow li{position:relative;min-width:0;padding:20px 14px;border:1px solid #dce8e8;border-radius:16px;background:#fff;text-align:center}
+.rail-change-flow li:not(:last-child):after{position:absolute;top:50%;left:-22px;color:var(--teal);content:"←";font-size:18px;font-weight:900;transform:translateY(-50%)}
+.rail-change-flow span,.rail-change-flow strong{display:block}.rail-change-flow span{color:#7f909e;font-size:9px}.rail-change-flow strong{margin-top:7px;color:var(--navy);font-size:12px;overflow-wrap:anywhere}
+.rail-change-flow .is-danger{border-color:#efc0c3;background:#fff7f7}.rail-change-flow .is-change{border-color:#b9dcdb;background:#edf9f8}.rail-change-flow .is-success{border-color:#b9decf;background:#f2fbf6}
+.rail-gauge-note{display:flex;align-items:flex-start;gap:16px;margin-top:22px;padding:20px;border:1px dashed #c8dede;border-radius:17px;background:#f7fbfb}
+.rail-gauge-mark{position:relative;width:40px;height:40px;flex:none;border-radius:12px;background:#dff1f0}
+.rail-gauge-mark:before,.rail-gauge-mark:after{position:absolute;top:9px;bottom:9px;width:3px;border-radius:3px;background:#21868a;content:""}.rail-gauge-mark:before{right:13px}.rail-gauge-mark:after{left:13px}
+.rail-gauge-note h3{margin:0 0 6px;color:var(--navy);font-size:15px}.rail-gauge-note p{margin:0;color:var(--muted);font-size:11px;line-height:2}.rail-gauge-note small{display:block;margin-top:6px;color:#9a6d2f;font-size:9px;font-weight:800}
+@media(max-width:960px){.rail-journey{grid-template-columns:repeat(2,minmax(0,1fr))}.rail-journey-step:nth-child(3n):after{display:block}.rail-journey-step:nth-child(2n):after,.rail-journey-step:last-child:after{display:none}.rail-entity-graph{grid-template-columns:repeat(5,minmax(0,1fr))}.rail-entity-graph i{display:none}.rail-wagon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rail-station-timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.rail-station-timeline:before{display:none}.rail-change-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.rail-change-flow li:nth-child(2n):after{display:none}}
+@media(max-width:700px){.rail-entity-declaration{margin-top:-18px;text-align:right}.rail-split-head{grid-template-columns:1fr;gap:12px}.rail-delay-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.rail-timeline-head{align-items:flex-start;flex-direction:column}.rail-event-legend{width:100%}}
+@media(max-width:560px){.rail-journey,.rail-wagon-grid,.rail-delay-summary,.rail-station-timeline,.rail-change-flow{grid-template-columns:1fr}.rail-journey-step:after,.rail-journey-step:nth-child(3n):after{top:auto;right:50%;bottom:-13px;left:auto;display:block;content:"↓";transform:translateX(50%)}.rail-journey-step:last-child:after{display:none}.rail-entity-graph{grid-template-columns:1fr;gap:8px}.rail-entity-graph span{padding:8px;border-bottom:1px solid rgba(255,255,255,.08)}.rail-shipment-head{align-items:flex-start;flex-direction:column}.rail-wagon-relation{align-items:stretch;flex-direction:column;text-align:center}.rail-wagon-relation i{transform:rotate(-90deg)}.rail-change-flow{gap:22px}.rail-change-flow li:not(:last-child):after,.rail-change-flow li:nth-child(2n):after{top:auto;right:50%;bottom:-21px;left:auto;display:block;content:"↓";transform:translateX(50%)}.rail-gauge-note{padding:16px}.rail-gauge-note p{font-size:10px}.rail-evidence figcaption{padding:13px 16px}.rail-wagon-grid,.rail-station-timeline{padding:16px}}

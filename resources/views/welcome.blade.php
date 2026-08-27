@@ -51,9 +51,9 @@
                 'operatingSystem' => 'Web',
                 'url' => route('home'),
                 'image' => asset('assets/images/marketing/sepand-cargo-details.webp'),
-                'description' => 'نرم‌افزار یکپارچه CRM، تحلیل مشتری، نرخ‌دهی، عملیات، مالی و پرتال مشتریان برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردرینگ و لجستیک.',
-                'featureList' => ['CRM و مدیریت مشتریان', 'تحلیل درآمد و سود مشتریان', 'بازاریابی و ارسال پیامک از CRM', 'مقایسه تأمین‌کنندگان', 'هشدار انقضای نرخ', 'پیگیری پیش‌فاکتورهای ۴۸ ساعته', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی', 'گردش کار هوشمند و وظایف', 'ورود OTP پرتال مشتریان', 'مشاهده وضعیت استعلام', 'رهگیری رویدادهای مجاز محموله', 'صورتحساب و رسید مشتری'],
-                'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردرینگ و لجستیک'],
+                'description' => 'نرم‌افزار یکپارچه CRM، تحلیل مشتری، نرخ‌دهی، عملیات، مالی و پرتال مشتریان برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردری و لجستیک.',
+                'featureList' => ['CRM و مدیریت مشتریان', 'تحلیل درآمد و سود مشتریان', 'بازاریابی و ارسال پیامک از CRM', 'مقایسه تأمین‌کنندگان', 'هشدار انقضای نرخ', 'پیگیری پیش‌فاکتورهای ۴۸ ساعته', 'رزرو و Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی و حسابداری چند ارزی', 'گردش کار هوشمند و وظایف', 'ورود با کد یک‌بارمصرف به پرتال مشتریان', 'مشاهده وضعیت استعلام', 'رهگیری رویدادهای مجاز محموله', 'صورتحساب و رسید مشتری'],
+                'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'شرکت‌های حمل‌ونقل، فورواردری و لجستیک'],
                 'publisher' => ['@id' => route('home').'#organization'],
             ],
         ],
@@ -127,7 +127,7 @@
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
                     <h1><span class="hero-title-main">نرم‌افزار مدیریت حمل‌ونقل بین‌المللی</span><span class="hero-title-accent">و فورواردری سپند</span></h1>
                     <div class="hero-description">
-                        <p>سپند یک نرم افزار حمل و نقل بین المللی برای مدیریت فرایندهای شرکت‌های حمل، فورواردری و لجستیک است؛ از ثبت لید، ارتباط پیامکی و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد و امور مالی.</p>
+                        <p>سپند یک نرم افزار حمل و نقل بین المللی برای مدیریت فرایندهای شرکت‌های حمل، فورواردری و لجستیک است؛ از ثبت سرنخ فروش، ارتباط پیامکی و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد و امور مالی.</p>
                         <p>پرتال مشتریان سپند همین جریان را تا خدمات پس از فروش ادامه می‌دهد؛ مشتری با کد یک‌بارمصرف وارد می‌شود و وضعیت استعلام، محموله، رویدادهای مجاز رهگیری، صورتحساب و رسیدهای خود را مشاهده می‌کند.</p>
                     </div>
                     <div class="hero-actions">
@@ -154,7 +154,7 @@
                                         <img src="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" width="1600" height="799" fetchpriority="high" decoding="async" alt="داشبورد مدیریتی نسخه دسکتاپ نرم‌افزار حمل‌ونقل سپند">
                                     </figure>
                                     <figure class="device-slide" data-desktop-slide aria-hidden="true">
-                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-calendar.webp') }}" width="1600" height="840" loading="lazy" decoding="async" alt="تقویم فعالیت‌ها و تسک‌های نسخه دسکتاپ نرم‌افزار سپند">
+                                        <img src="{{ asset('assets/images/marketing/product-showcase/desktop-calendar.webp') }}" width="1600" height="840" loading="lazy" decoding="async" alt="تقویم فعالیت‌ها و وظایف نسخه دسکتاپ نرم‌افزار سپند">
                                     </figure>
                                     <figure class="device-slide" data-desktop-slide aria-hidden="true">
                                         <img src="{{ asset('assets/images/marketing/product-showcase/desktop-reports.webp') }}" width="1600" height="844" loading="lazy" decoding="async" alt="گزارش‌ها و نمودارهای تحلیلی نسخه دسکتاپ نرم‌افزار سپند">
@@ -212,7 +212,7 @@
                 <div class="section-head reveal">
                     <span class="section-label">محصول سپند</span>
                     <h2 class="section-title">سامانه جامع حمل و نقل بین المللی برای فرایندهای یکپارچه</h2>
-                    <p class="section-subtitle">CRM، بازاریابی پیامکی، تسک خودکار، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا رویدادهای فروش به اقدام مشخص تبدیل شوند و اطلاعات بدون ثبت تکراری جریان داشته باشد.</p>
+                    <p class="section-subtitle">CRM، بازاریابی پیامکی، وظیفه خودکار، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا رویدادهای فروش به اقدام مشخص تبدیل شوند و اطلاعات بدون ثبت تکراری جریان داشته باشد.</p>
                 </div>
                 <div class="services-grid">
                     @foreach(config('site_modules') as $slug => $module)
@@ -258,7 +258,7 @@
                             <article class="service-card reveal delay-2">
                                 <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
                                 <h3>بازاریابی پیامکی و ارتباط با مشتری</h3>
-                                <p>از پرونده مشتری، لید یا استعلام پیامک بفرستید و متن، زمان، فرستنده و وضعیت هر ارسال را در سابقه ارتباطات نگه دارید.</p>
+                                <p>از پرونده مشتری، سرنخ فروش یا استعلام پیامک بفرستید و متن، زمان، فرستنده و وضعیت هر ارسال را در سابقه ارتباطات نگه دارید.</p>
                                 <a class="service-link" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-sms">مشاهده امکانات پیامکی CRM <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                             </article>
                         @endif
@@ -330,7 +330,7 @@
                 <div class="problem-grid">
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h6l2 2h8v10H4V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 13h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۱</span></div>
-                        <h3>اطلاعات مشتریان و ارتباطات در Excel، واتساپ، پیامک و ایمیل پراکنده است.</h3>
+                        <h3>اطلاعات مشتریان و ارتباطات در اکسل، واتس‌اپ، پیامک و ایمیل پراکنده است.</h3>
                         <p><strong>راهکار سپند</strong><span>با پرونده یکپارچه مشتری، اطلاعات، مکاتبات، پیامک‌ها، اسناد و سوابق در یک محل متمرکز و قابل جست‌وجو نگهداری می‌شود.</span></p>
                     </article>
                     <article class="problem-card reveal">
@@ -341,7 +341,7 @@
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.7"/><path d="M18.5 5.5 20 4m-2 15 2 1.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="problem-index">چالش ۰۳</span></div>
                         <h3>مشتری برای وضعیت استعلام، محموله و صورتحساب بارها تماس می‌گیرد.</h3>
-                        <p><strong>راهکار سپند</strong><span>پرتال مشتریان با ورود OTP، وضعیت استعلام، رویدادهای مجاز رهگیری، صورتحساب‌ها و رسیدهای همان مشتری را در یک فضای اختصاصی نمایش می‌دهد.</span></p>
+                        <p><strong>راهکار سپند</strong><span>پرتال مشتریان با ورود از طریق کد یک‌بارمصرف، وضعیت استعلام، رویدادهای مجاز رهگیری، صورتحساب‌ها و رسیدهای همان مشتری را در یک فضای اختصاصی نمایش می‌دهد.</span></p>
                     </article>
                     <article class="problem-card reveal">
                         <div class="problem-card-head"><span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v5h4m-9 5 2 2 4-4m-6 7h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="problem-index">چالش ۰۴</span></div>
@@ -382,12 +382,12 @@
                 <div class="about-copy reveal delay-2">
                     <span class="section-label">کاربرد واقعی محصول</span>
                     <h2 class="section-title">از اولین درخواست مشتری تا<br><span>عملیات، اسناد و سود پرونده</span></h2>
-                    <p>کاربر فروش لید یا مشتری را ثبت می‌کند، پیامک‌ها و اقدامات بعدی را در همان پرونده نگه می‌دارد و درخواست نرخ را پیگیری می‌کند؛ پس از تأیید، همان اطلاعات وارد Booking و پرونده عملیات می‌شود. تیم اسناد و مالی نیز بدون ساخت پرونده جداگانه، وظایف و اطلاعات مرتبط را تکمیل می‌کنند و مدیر وضعیت کل جریان را در گزارش‌ها می‌بیند.</p>
+                    <p>کاربر فروش سرنخ یا مشتری را ثبت می‌کند، پیامک‌ها و اقدامات بعدی را در همان پرونده نگه می‌دارد و درخواست نرخ را پیگیری می‌کند؛ پس از تأیید، همان اطلاعات وارد Booking و پرونده عملیات می‌شود. تیم اسناد و مالی نیز بدون ساخت پرونده جداگانه، وظایف و اطلاعات مرتبط را تکمیل می‌کنند و مدیر وضعیت کل جریان را در گزارش‌ها می‌بیند.</p>
                     <div class="about-list">
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>تبدیل پیشنهاد فروش به پرونده حمل</div>
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>اتصال اسناد به Booking و عملیات</div>
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>محاسبه سود بر پایه هزینه واقعی</div>
-                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>ورود OTP و رهگیری کنترل‌شده مشتری</div>
+                        <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>ورود با کد یک‌بارمصرف و رهگیری کنترل‌شده مشتری</div>
                     </div>
                     <a class="btn btn-primary" href="{{ route('product') }}">معرفی کامل محصول <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                 </div>
@@ -404,7 +404,7 @@
                     <article class="why-card reveal delay-1"><span class="why-num">۰۱</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>ورود یک‌باره اطلاعات</h3><p>تعداد دفعات ثبت مجدد اطلاعات مشتری، نرخ و Booking میان فروش، عملیات و مالی کاهش می‌یابد.</p></article>
                     <article class="why-card reveal delay-2"><span class="why-num">۰۲</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="m17 3 4 1-1 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>پیگیری زمان‌مند</h3><p>وظایف عقب‌افتاده، زمان پاسخ به مشتری و درصد پیگیری‌های انجام‌شده قابل‌اندازه‌گیری می‌شوند.</p></article>
                     <article class="why-card reveal delay-3"><span class="why-num">۰۳</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8" stroke="currentColor" stroke-width="1.7"/></svg></span><h3>سود و ارزش هر مشتری</h3><p>درآمد تأییدشده، هزینه پرداخت‌شده، سود خالص و سود متوسط هر کار، مشتریان واقعاً ارزشمند را مشخص می‌کنند.</p></article>
-                    <article class="why-card reveal delay-4"><span class="why-num">۰۴</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h14M7 11h10M9 16h6M12 3v16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>مقایسه تأمین‌کنندگان</h3><p>نرخ خرید در کنار زمان حمل، اعتبار، Free Time، تأخیر، پاسخ‌گویی و شرایط پرداخت سنجیده می‌شود.</p></article>
+                    <article class="why-card reveal delay-4"><span class="why-num">۰۴</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h14M7 11h10M9 16h6M12 3v16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>مقایسه تأمین‌کنندگان</h3><p>نرخ خرید در کنار زمان حمل، اعتبار، زمان آزاد، تأخیر، پاسخ‌گویی و شرایط پرداخت سنجیده می‌شود.</p></article>
                     <article class="why-card reveal delay-1"><span class="why-num">۰۵</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 4h.01M4 20h16L12 4 4 20Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>هشدار پیش از انقضا</h3><p>نرخ‌های معتبر تا ۷ روز آینده با شدت هشدار مشخص می‌شوند تا تیم پیش از پایان اعتبار برای تمدید یا دریافت نرخ جدید اقدام کند.</p></article>
                     <article class="why-card reveal delay-2"><span class="why-num">۰۶</span><span class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V5h14v14H5Zm3-4 3-3 2 2 3-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>گزارش بدون تجمیع دستی</h3><p>پیش‌فاکتورهای ۴۸ ساعته و پرونده‌های نیازمند پیگیری، با رعایت سطح دسترسی و نام ایجادکننده در دسترس‌اند.</p></article>
                 </div>
@@ -419,11 +419,11 @@
                     <p class="section-subtitle">اطلاعات در طول فرایند حمل تکمیل می‌شوند و بدون ساخت پرونده‌های جداگانه، میان تیم‌ها جریان پیدا می‌کنند.</p>
                 </div>
                 <div class="process-grid">
-                    <article class="process-item reveal delay-1"><span class="process-num">۱</span><h3>CRM، بازاریابی و درخواست مشتری</h3><p>لید، مشتری، نیاز حمل، پیامک‌ها، تعاملات و اقدام بعدی در پرونده CRM ثبت می‌شود.</p></article>
+                    <article class="process-item reveal delay-1"><span class="process-num">۱</span><h3>CRM، بازاریابی و درخواست مشتری</h3><p>سرنخ فروش، مشتری، نیاز حمل، پیامک‌ها، تعاملات و اقدام بعدی در پرونده CRM ثبت می‌شود.</p></article>
                     <article class="process-item reveal delay-2"><span class="process-num">۲</span><h3>نرخ‌دهی و پیشنهاد فروش</h3><p>هزینه، قیمت فروش، اعتبار نرخ و حاشیه سود پیشنهادی کنترل می‌شود.</p></article>
                     <article class="process-item reveal delay-3"><span class="process-num">۳</span><h3>رزرو و Booking</h3><p>پیشنهاد تأییدشده با همان داده‌ها به رزرو و پرونده حمل تبدیل می‌شود.</p></article>
                     <article class="process-item reveal delay-1"><span class="process-num">۴</span><h3>اجرای عملیات حمل</h3><p>رویدادها، مسئولیت‌ها، مهلت‌ها و وضعیت محموله مرحله‌به‌مرحله ثبت می‌شوند.</p></article>
-                    <article class="process-item reveal delay-2"><span class="process-num">۵</span><h3>پرتال مشتری و رهگیری</h3><p>مشتری با OTP وارد می‌شود و استعلام، محموله، رویدادهای مجاز و اطلاعات مالی خود را می‌بیند.</p></article>
+                    <article class="process-item reveal delay-2"><span class="process-num">۵</span><h3>پرتال مشتری و رهگیری</h3><p>مشتری با کد یک‌بارمصرف وارد می‌شود و استعلام، محموله، رویدادهای مجاز و اطلاعات مالی خود را می‌بیند.</p></article>
                     <article class="process-item reveal delay-3"><span class="process-num">۶</span><h3>مالی، سود و گزارش</h3><p>دریافت، پرداخت و سود پرونده برای گزارش مدیریتی نهایی تکمیل می‌شود.</p></article>
                 </div>
             </div>

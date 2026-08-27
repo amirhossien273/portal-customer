@@ -41,6 +41,11 @@ class MarketingSeoTest extends TestCase
                 'description' => 'اطلاعات خودرو و راننده، مسیر، مرزها، رویدادهای محموله و هزینه هر سفر زمینی را در پرونده عملیاتی سپند مدیریت کنید.',
                 'h1' => 'حمل زمینی سپند',
             ],
+            '/transport-modes/rail' => [
+                'title' => 'نرم‌افزار مدیریت عملیات حمل ریلی و واگن | سپند',
+                'description' => 'ساختار مدیریت پرونده حمل ریلی را از تخصیص چند واگن و ایستگاه‌های مسیر تا تأخیر، تغییر واگن، اسناد و هزینه‌ها در سپند ببینید.',
+                'h1' => 'تا آخرین ایستگاه مدیریت کنید',
+            ],
             '/modules/transport-operations' => [
                 'title' => 'نرم‌افزار مدیریت عملیات حمل‌ونقل | سپند',
                 'description' => 'ماژول عملیات حمل سپند برای مدیریت پرونده عملیاتی، رویدادها، مسئولیت‌ها، موارد استثنا و وضعیت جاری هر حمل طراحی شده است.',
@@ -88,6 +93,7 @@ class MarketingSeoTest extends TestCase
             '/transport-modes/air',
             '/transport-modes/sea',
             '/transport-modes/road',
+            '/transport-modes/rail',
             '/modules/transport-operations',
         ] as $path) {
             $this->assertSame(1, substr_count($content, '<loc>'.self::SITE_URL.$path.'</loc>'));
@@ -338,6 +344,7 @@ class MarketingSeoTest extends TestCase
             '/transport-modes/air/',
             '/transport-modes/sea/',
             '/transport-modes/road/',
+            '/transport-modes/rail/',
             '/modules/transport-operations/',
         ] as $path) {
             $request = Request::create(self::SITE_URL.$path.'?utm_source=seo', 'GET');
