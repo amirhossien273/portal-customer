@@ -8,8 +8,8 @@
             </p>
         </div>
 
-        <p class="air-weight-declaration reveal" lang="en" dir="ltr">
-            Chargeable Weight in air freight is determined by comparing the shipment's actual weight with its volumetric weight.
+        <p class="air-weight-declaration reveal">
+            <strong>در حمل هوایی، Chargeable Weight با مقایسه وزن واقعی محموله و وزن حجمی آن تعیین می‌شود و معمولاً عدد بزرگ‌تر مبنای محاسبه نرخ حمل قرار می‌گیرد.</strong>
         </p>
 
         <div class="air-weight-example reveal" data-air-weight-example>

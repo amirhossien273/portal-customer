@@ -75,7 +75,7 @@
                 <img
                     class="module-hero-image"
                     src="{{ asset('assets/images/marketing/transport-modes/'.$slug.'-hero.webp') }}"
-                    alt="تصویر سه‌بعدی {{ $mode['name'] }} در نرم‌افزار سپند"
+                    alt="{{ $slug === 'air' ? 'تصویر مفهومی عملیات حمل هوایی سپند' : 'تصویر سه‌بعدی ' . $mode['name'] . ' در نرم‌افزار سپند' }}"
                     width="1536"
                     height="1024"
                     loading="eager"
