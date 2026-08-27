@@ -8,23 +8,31 @@
 .floating-consultation-cta__copy{display:flex;min-width:155px;flex:1;flex-direction:column;line-height:1.55;text-align:right;white-space:nowrap}
 .floating-consultation-cta__copy small{color:rgba(255,255,255,.66);font-size:10px;font-weight:500}
 .floating-consultation-cta__copy strong{color:#fff;font-size:14px;font-weight:900}
+.floating-consultation-cta__mobile-label{display:none}
+.floating-consultation-cta--mobile-header{display:none}
 .floating-consultation-cta__arrow{width:19px;height:19px;flex:0 0 19px;color:#12d6d2;transition:transform .2s ease}
 .floating-consultation-cta:hover .floating-consultation-cta__arrow{transform:translateX(-3px)}
 @keyframes floating-cta-pulse{0%{opacity:.65;transform:scale(.88)}70%,100%{opacity:0;transform:scale(1.16)}}
 
 @media(max-width:840px){
-    .site-footer{padding-bottom:calc(100px + env(safe-area-inset-bottom))}
-    .floating-consultation-cta{right:14px;left:14px;bottom:calc(12px + env(safe-area-inset-bottom));min-width:0;min-height:58px;padding:7px 9px;border-radius:17px;box-shadow:0 14px 36px rgba(8,30,57,.3);transform:none}
-    .floating-consultation-cta:hover{transform:none}
-    .floating-consultation-cta__icon{width:44px;height:44px;flex-basis:44px;border-radius:13px}
-    .floating-consultation-cta__copy{min-width:0;text-align:center}
+    .site-header .nav-wrap{gap:8px}
+    .floating-consultation-cta--desktop-floating{display:none}
+    .floating-consultation-cta--mobile-header{position:relative;right:auto;left:auto;bottom:auto;z-index:1;display:flex;min-width:0;min-height:42px;padding:5px 9px;flex:0 1 auto;gap:7px;border-radius:12px;box-shadow:0 8px 20px rgba(8,30,57,.2);transform:none}
+    .floating-consultation-cta--mobile-header:before{display:none}
+    .floating-consultation-cta--mobile-header:hover{transform:none}
+    .floating-consultation-cta__icon{width:30px;height:30px;flex-basis:30px;border-radius:9px;box-shadow:none}
+    .floating-consultation-cta__icon:after{display:none}
+    .floating-consultation-cta__icon svg{width:17px;height:17px}
+    .floating-consultation-cta__copy{min-width:0;flex:0 1 auto;text-align:center}
     .floating-consultation-cta__copy small{display:none}
-    .floating-consultation-cta__copy strong{font-size:14px}
-    .floating-consultation-cta__arrow{width:18px;height:18px;flex-basis:18px}
-    .floating-consultation-cta.is-input-hidden{opacity:0;pointer-events:none;transform:translateY(calc(100% + 28px))}
+    .floating-consultation-cta__copy strong{font-size:11px;line-height:1.45}
+    .floating-consultation-cta__desktop-label{display:none}
+    .floating-consultation-cta__mobile-label{display:inline}
+    .floating-consultation-cta__arrow{display:none}
 }
 @media(max-width:370px){
-    .floating-consultation-cta{right:10px;left:10px}
-    .floating-consultation-cta__copy strong{font-size:13px}
+    .site-header .brand-copy{display:none}
+    .floating-consultation-cta--mobile-header{padding-inline:8px}
+    .floating-consultation-cta__copy strong{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){.floating-consultation-cta__icon:after{animation:none}}

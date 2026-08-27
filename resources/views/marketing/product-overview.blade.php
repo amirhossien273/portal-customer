@@ -205,7 +205,7 @@
                 </div>
                 <div class="product-proof-note">
                     <span aria-hidden="true">✓</span>
-                    <p><strong>بدون Mockup تبلیغاتی</strong> — تصاویر این صفحه از محیط واقعی سپند گرفته شده‌اند.</p>
+                    <p>تمام تصاویر این صفحه مستقیماً از محیط واقعی نرم‌افزار سپند تهیه شده‌اند.</p>
                 </div>
             </div>
 
@@ -285,7 +285,7 @@
                         <span>{{ $item['group'] }}</span>
                         <h3>{{ $item['title'] }}</h3>
                         <p>{{ $item['text'] }}</p>
-                        <small>مشاهده Evidence ←</small>
+                        <small>مشاهده نمونه واقعی</small>
                     </a>
                 @endforeach
             </div>

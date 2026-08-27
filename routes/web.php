@@ -15,6 +15,7 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
     Route::get('/sitemap.xml', MarketingSitemapController::class)->name('sitemap');
     Route::view('/faq', 'marketing.faq')->name('faq');
     Route::view('/product', 'marketing.product-overview')->name('product');
+    Route::view('/why-sepand', 'marketing.why-sepand')->name('why-sepand');
     Route::view('/modules', 'marketing.modules')->name('modules');
     Route::get('/compare', [MarketingComparisonController::class, 'index'])->name('compare.index');
     Route::get('/compare/sepand-vs-royan', [MarketingComparisonController::class, 'competitor'])
