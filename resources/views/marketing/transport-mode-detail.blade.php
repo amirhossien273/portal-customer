@@ -44,6 +44,10 @@
     @push('styles')
         <link rel="stylesheet" href="{{ asset('assets/css/marketing-air-freight.css') }}?v=20260829-2">
     @endpush
+@elseif($slug === 'road')
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('assets/css/marketing-road-freight.css') }}?v=20260829-1">
+    @endpush
 @elseif($slug === 'rail')
     @push('styles')
         <link rel="stylesheet" href="{{ asset('assets/css/marketing-rail-freight.css') }}?v=20260827-1">
@@ -79,7 +83,7 @@
                 <img
                     class="module-hero-image"
                     src="{{ asset('assets/images/marketing/transport-modes/'.$slug.'-hero.webp') }}"
-                    alt="{{ in_array($slug, ['air', 'rail'], true) ? 'تصویر مفهومی عملیات ' . $mode['name'] . ' سپند' : 'تصویر سه‌بعدی ' . $mode['name'] . ' در نرم‌افزار سپند' }}"
+                    alt="{{ $slug === 'road' ? 'تصویر مفهومی تخصیص کامیون، مسیر و عبور مرزی در حمل زمینی سپند' : (in_array($slug, ['air', 'rail'], true) ? 'تصویر مفهومی عملیات ' . $mode['name'] . ' سپند' : 'تصویر سه‌بعدی ' . $mode['name'] . ' در نرم‌افزار سپند') }}"
                     width="1536"
                     height="1024"
                     loading="eager"
@@ -113,6 +117,11 @@
     @include('marketing.transport-modes.air-chargeable-weight')
     @include('marketing.transport-modes.air-flight-journey')
     @include('marketing.transport-modes.air-documents-uld')
+@elseif($slug === 'road')
+    @include('marketing.transport-modes.road-trip-overview')
+    @include('marketing.transport-modes.road-border-journey')
+    @include('marketing.transport-modes.road-delivery-pod')
+    @include('marketing.transport-modes.road-trip-costs')
 @elseif($slug === 'rail')
     @include('marketing.transport-modes.rail-operations-depth')
 @else

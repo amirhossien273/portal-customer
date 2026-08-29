@@ -37,9 +37,9 @@ class MarketingSeoTest extends TestCase
                 'h1' => 'حمل دریایی سپند',
             ],
             '/transport-modes/road' => [
-                'title' => 'نرم‌افزار مدیریت حمل زمینی | سپند',
-                'description' => 'اطلاعات خودرو و راننده، مسیر، مرزها، رویدادهای محموله و هزینه هر سفر زمینی را در پرونده عملیاتی سپند مدیریت کنید.',
-                'h1' => 'حمل زمینی سپند',
+                'title' => 'نرم‌افزار مدیریت حمل زمینی و سفرهای مرزی | سپند',
+                'description' => 'سفر حمل زمینی را از تخصیص کامیون و راننده تا رویدادهای مرزی، زمان انتظار، تحویل، POD و هزینه واقعی همان Trip در سپند مدیریت کنید.',
+                'h1' => 'تحویل و هزینه نهایی مدیریت کنید',
             ],
             '/transport-modes/rail' => [
                 'title' => 'نرم‌افزار مدیریت عملیات حمل ریلی و واگن | سپند',
@@ -237,7 +237,7 @@ class MarketingSeoTest extends TestCase
         ];
 
         $this->assertCount(22, $pages);
-        $this->assertSame(88, array_sum(array_map('count', $pages)));
+        $this->assertSame(103, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
