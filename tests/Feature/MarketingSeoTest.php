@@ -27,9 +27,9 @@ class MarketingSeoTest extends TestCase
     {
         $pages = [
             '/transport-modes/air' => [
-                'title' => 'نرم‌افزار مدیریت حمل هوایی | سپند',
-                'description' => 'ابعاد محموله، وزن ناخالص، حجم کل و Chargeable Weight را کنار مسیر و تاریخ حرکت پرونده حمل هوایی در سپند ثبت و مدیریت کنید.',
-                'h1' => 'حمل هوایی سپند',
+                'title' => 'نرم‌افزار مدیریت حمل هوایی و Air Freight | سپند',
+                'description' => 'عملیات Air Freight را از Actual و Volumetric Weight تا Chargeable Weight، MAWB/HAWB، Flight Segment، Transshipment، ULD و Airport Milestone مدیریت کنید.',
+                'h1' => 'آخرین بخش پرواز در یک پرونده مدیریت کنید',
             ],
             '/transport-modes/sea' => [
                 'title' => 'نرم‌افزار مدیریت حمل دریایی | سپند',
@@ -237,7 +237,7 @@ class MarketingSeoTest extends TestCase
         ];
 
         $this->assertCount(22, $pages);
-        $this->assertSame(77, array_sum(array_map('count', $pages)));
+        $this->assertSame(88, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
