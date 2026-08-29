@@ -16,7 +16,7 @@
             <p>پرونده نمونه <bdi dir="ltr">{{ $shipment['reference'] }}</bdi> نشان می‌دهد خودرو، راننده، مسیر، مرز، تحویل و هزینه‌های همان سفر چگونه به هم متصل می‌شوند. داده‌ها آزمایشی و غیرحساس‌اند.</p>
         </div>
 
-        <p class="road-entity-declaration reveal">هر سفر زمینی به یک خودرو و راننده متصل می‌شود و رویدادهای مسیر و مرز تا زمان تحویل در خط زمانی همان پرونده باقی می‌مانند. در Road Freight Operations، مدیریت کامیون (Truck Management)، مدیریت راننده (Driver Management)، رهگیری مرز (Border Tracking)، Proof of Delivery و Trip Cost Management در سطح همان سفر به هم مرتبط‌اند.</p>
+        <p class="road-entity-declaration reveal">در یک پرونده حمل زمینی، اطلاعات کامیون و راننده، مسیر و رویدادهای مرزی، تأیید تحویل و هزینه‌های همان سفر به یکدیگر متصل می‌شوند.</p>
 
         <figure class="road-evidence road-overview-preview reveal" data-road-preview="trip-overview" aria-labelledby="road-overview-caption">
             <div role="img" aria-label="نمای پرونده حمل زمینی RD-2026-0148 از استانبول تا تهران از مسیر مرزی گوربولاک و بازرگان">
@@ -41,14 +41,14 @@
                     <section><span>برنامه سفر</span><dl><div><dt>خودروی موردنیاز</dt><dd dir="ltr">{{ $shipment['required_vehicle'] }}</dd></div><div><dt>بارگیری برنامه‌ریزی‌شده</dt><dd dir="ltr">{{ $shipment['planned_pickup'] }}</dd></div><div><dt>وضعیت سفر</dt><dd>{{ $shipment['status'] }}</dd></div></dl></section>
                 </div>
             </div>
-            <figcaption id="road-overview-caption">نمای نمونه یک Road Shipment مرزی؛ اطلاعات محموله و Route، مقدمه اجرای سفر هستند و تمرکز عملیاتی از تخصیص خودرو و راننده آغاز می‌شود.</figcaption>
+            <figcaption id="road-overview-caption">این پرونده نمونه یک Road Shipment مرزی است؛ اطلاعات محموله و مسیر، مقدمه اجرای سفر هستند و تمرکز عملیاتی از تخصیص خودرو و راننده آغاز می‌شود.</figcaption>
         </figure>
 
         <div class="road-entity-graphs reveal" aria-label="ساختار موجودیت‌های سفر زمینی؛ ترتیب روابط از راست به چپ است">
-            <article><strong>Trip Structure</strong><ol class="road-entity-flow"><li>Road Shipment</li><li>Trip</li><li>Vehicle</li><li>Driver</li><li>Route</li></ol></article>
-            <article><strong>Border Structure</strong><ol class="road-entity-flow"><li>Trip</li><li>Border</li><li>Border Event</li><li>Waiting</li><li>Clearance</li><li>Border Exit</li></ol></article>
-            <article><strong>Delivery Structure</strong><ol class="road-entity-flow"><li>Trip</li><li>Destination</li><li>Delivery</li><li>POD</li></ol></article>
-            <article><strong>Cost Structure</strong><ol class="road-entity-flow"><li>Trip</li><li>Trip Costs</li><li>Finance</li></ol></article>
+            <article><strong>ساختار سفر</strong><ol class="road-entity-flow"><li>پرونده حمل زمینی</li><li>سفر</li><li>خودرو</li><li>راننده</li><li>مسیر</li></ol></article>
+            <article><strong>ساختار عملیات مرزی</strong><ol class="road-entity-flow"><li>سفر</li><li>مرز</li><li>رویداد مرزی</li><li>انتظار</li><li>ترخیص</li><li>خروج از مرز</li></ol></article>
+            <article><strong>ساختار تحویل</strong><ol class="road-entity-flow"><li>سفر</li><li>مقصد</li><li>تحویل</li><li>POD</li></ol></article>
+            <article><strong>ساختار هزینه</strong><ol class="road-entity-flow"><li>سفر</li><li>هزینه‌های سفر</li><li>مالی</li></ol></article>
         </div>
     </div>
 </section>
@@ -57,10 +57,10 @@
     <div class="container">
         <div class="road-split-head reveal">
             <div>
-                <span class="section-label">Border Journey · ۹ مرحله</span>
+                <span class="section-label">سفر مرزی · ۹ مرحله</span>
                 <h2 class="section-title" id="road-journey-title">جریان واقعی سفر زمینی از تخصیص کامیون تا هزینه نهایی</h2>
             </div>
-            <p>این Journey چرخه عمومی CRM، Pricing و Booking را تکرار نمی‌کند. پرونده اولیه فقط نقطه شروع است و مسیر اصلی از تخصیص کامیون و راننده تا مرز، POD و هزینه سفر ادامه دارد.</p>
+            <p>این جریان، فرایند عمومی فروش و نرخ‌دهی را تکرار نمی‌کند. پرونده اولیه فقط نقطه شروع است و مسیر اصلی از تخصیص کامیون و راننده تا مرز، POD و هزینه سفر ادامه دارد.</p>
         </div>
 
         <ol class="road-journey" aria-label="جریان نه مرحله‌ای اجرای سفر حمل زمینی">
@@ -79,15 +79,15 @@
         <div class="road-split-head reveal">
             <div>
                 <span class="section-label">نمای عملیاتی حمل زمینی 01</span>
-                <h2 class="section-title" id="road-assignment-title">تخصیص کامیون و راننده به همان Trip</h2>
+                <h2 class="section-title" id="road-assignment-title">خودرو و راننده تخصیص‌یافته</h2>
             </div>
-            <p>خودرو و راننده دو Feature جدا نیستند؛ هر دو با وضعیت و مشخصات مستقل به سفر <bdi dir="ltr">{{ $shipment['reference'] }}</bdi> متصل‌اند و تغییرات بعدی آن‌ها در تاریخچه سفر باقی می‌ماند.</p>
+            <p>خودرو و راننده دو بخش جدا از هم نیستند؛ هر دو با وضعیت و مشخصات مستقل به سفر <bdi dir="ltr">{{ $shipment['reference'] }}</bdi> متصل‌اند و تغییرات بعدی آن‌ها در تاریخچه سفر باقی می‌ماند.</p>
         </div>
 
         <figure class="road-evidence road-assignment-preview reveal" data-road-evidence="vehicle-driver-assignment" aria-labelledby="road-assignment-caption">
-            <div role="img" aria-label="نمای تخصیص کامیون و راننده در پرونده حمل زمینی سپند">
+            <div role="img" aria-label="نمای Truck Management و Driver Management برای تخصیص کامیون و راننده در پرونده حمل زمینی سپند">
                 <header class="road-preview-header">
-                    <div><span>Trip Assignment</span><h3><bdi dir="ltr">{{ $shipment['reference'] }}</bdi></h3><p>کامیون و راننده تخصیص‌یافته</p></div>
+                    <div><span>تخصیص سفر</span><h3><bdi dir="ltr">{{ $shipment['reference'] }}</bdi></h3><p>کامیون و راننده تخصیص‌یافته</p></div>
                     <span class="road-status is-assigned">تخصیص تکمیل‌شده</span>
                 </header>
 
