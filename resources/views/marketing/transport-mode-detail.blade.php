@@ -42,7 +42,7 @@
 
 @if($slug === 'air')
     @push('styles')
-        <link rel="stylesheet" href="{{ asset('assets/css/marketing-air-freight.css') }}?v=20260829-1">
+        <link rel="stylesheet" href="{{ asset('assets/css/marketing-air-freight.css') }}?v=20260829-2">
     @endpush
 @elseif($slug === 'rail')
     @push('styles')
