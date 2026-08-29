@@ -8,10 +8,10 @@ return [
         'origin' => ['city' => 'Istanbul', 'country' => 'Turkey'],
         'border' => ['outbound' => 'Gürbulak', 'inbound' => 'Bazargan'],
         'destination' => ['city' => 'Tehran', 'country' => 'Iran'],
-        'cargo' => 'Industrial Parts',
-        'quantity' => '12 pallets',
+        'cargo' => 'قطعات صنعتی',
+        'quantity' => '۱۲ پالت',
         'gross_weight' => '18,400 kg',
-        'required_vehicle' => 'Curtain-side Trailer',
+        'required_vehicle' => 'تریلر چادری (Curtain-side Trailer)',
         'planned_pickup' => '29 Aug 2026 · 08:30',
         'status' => 'در مسیر',
         'status_tone' => 'transit',
@@ -32,7 +32,7 @@ return [
     'vehicle' => [
         'tractor_plate' => '34 ABC 789',
         'trailer_plate' => 'TR 45821',
-        'type' => 'Curtain-side Trailer',
+        'type' => 'تریلر چادری',
         'capacity' => '24 t',
         'fleet_type' => 'پیمانکاری',
         'status' => 'تخصیص‌یافته',
@@ -46,7 +46,7 @@ return [
         'license' => 'TR-LIC-8452',
         'passport' => 'Demo Passport',
         'assigned_vehicle' => '34 ABC 789',
-        'status' => 'در مسیر',
+        'status' => 'در حال سفر',
         'status_tone' => 'transit',
     ],
 
@@ -71,7 +71,7 @@ return [
         'planned_exit' => '30 Aug · 11:30',
         'actual_exit' => '30 Aug · 14:45',
         'delay' => '+3h 15m',
-        'delay_reason' => 'Customs Inspection',
+        'delay_reason' => 'بازرسی گمرکی',
         'original_eta' => '30 Aug · 19:15',
         'updated_eta' => '30 Aug · 22:30',
     ],
@@ -97,26 +97,26 @@ return [
     ],
 
     'exceptions' => [
-        ['title' => 'تأخیر مرزی', 'detail' => '+3h 15m · Customs Inspection', 'tone' => 'danger'],
-        ['title' => 'نگهداشت اسناد', 'detail' => 'ساختار آماده ثبت Document Hold', 'tone' => 'warning'],
-        ['title' => 'تغییر مسیر', 'detail' => 'ساختار آماده ثبت Route Change', 'tone' => 'change'],
-        ['title' => 'تأخیر تحویل', 'detail' => 'ساختار آماده ثبت Delivery Delay', 'tone' => 'warning'],
+        ['title' => 'تأخیر مرزی', 'detail' => '+3h 15m · بازرسی گمرکی', 'tone' => 'danger'],
+        ['title' => 'توقف به دلیل اسناد', 'detail' => 'توقف ناشی از بررسی یا نقص اسناد در تاریخچه سفر ثبت می‌شود', 'tone' => 'warning'],
+        ['title' => 'تغییر مسیر', 'detail' => 'مسیر قبلی و مسیر جایگزین در تاریخچه سفر قابل تفکیک هستند', 'tone' => 'change'],
+        ['title' => 'تأخیر در تحویل', 'detail' => 'علت تأخیر و زمان جدید تحویل در همان سفر باقی می‌مانند', 'tone' => 'warning'],
     ],
 
     'driver_change' => [
         ['label' => 'راننده A', 'value' => 'Mehmet Kaya', 'tone' => 'normal'],
         ['label' => 'رویداد استراحت', 'value' => 'Bazargan · 15:00', 'tone' => 'warning'],
         ['label' => 'تغییر راننده', 'value' => 'تاریخچه تغییر حفظ می‌شود', 'tone' => 'change'],
-        ['label' => 'راننده B', 'value' => 'Ali Demir · Demo', 'tone' => 'success'],
+        ['label' => 'راننده B', 'value' => 'Ali Demir · نمونه', 'tone' => 'success'],
         ['label' => 'ادامه سفر', 'value' => 'به‌سمت تهران', 'tone' => 'transit'],
     ],
 
     'vehicle_change' => [
         ['label' => 'خودرو 01', 'value' => '34 ABC 789', 'tone' => 'normal'],
-        ['label' => 'رویداد عملیاتی', 'value' => 'Vehicle Check', 'tone' => 'warning'],
+        ['label' => 'رویداد عملیاتی', 'value' => 'بررسی فنی خودرو', 'tone' => 'warning'],
         ['label' => 'تغییر خودرو', 'value' => 'تاریخچه تغییر حفظ می‌شود', 'tone' => 'change'],
-        ['label' => 'خودرو 02', 'value' => 'Demo Replacement', 'tone' => 'success'],
-        ['label' => 'ادامه مسیر', 'value' => 'در همان Trip', 'tone' => 'transit'],
+        ['label' => 'خودرو 02', 'value' => 'خودروی جایگزین نمونه', 'tone' => 'success'],
+        ['label' => 'ادامه مسیر', 'value' => 'در همان سفر', 'tone' => 'transit'],
     ],
 
     'pod' => [
@@ -126,7 +126,7 @@ return [
         'received_by' => 'Demo Consignee',
         'delivery_status' => 'تحویل‌شده',
         'pod_status' => 'POD بارگذاری‌شده',
-        'document_type' => 'Signed Delivery Receipt',
+        'document_type' => 'رسید امضاشده تحویل',
         'file_name' => 'POD-2026-0148.pdf',
         'uploaded_at' => '30 Aug 2026 · 22:25',
     ],
@@ -144,13 +144,13 @@ return [
         'total' => 3000,
         'customer_revenue' => 4250,
         'gross_margin' => 1250,
-        'available_categories' => ['Driver Cost', 'Fuel', 'Toll', 'Border Charge', 'Customs-related Operational Charge', 'Parking', 'Waiting Cost', 'Maintenance / Emergency', 'Other Cost'],
+        'available_categories' => ['هزینه راننده', 'سوخت', 'عوارض جاده‌ای', 'هزینه مرزی', 'هزینه عملیاتی گمرکی', 'پارکینگ', 'هزینه انتظار', 'نگهداری / اضطراری', 'سایر هزینه‌ها'],
     ],
 
     'cost_route' => [
         ['place' => 'Istanbul', 'items' => [['label' => 'سوخت', 'amount' => '620 USD']]],
         ['place' => 'Ankara', 'items' => [['label' => 'عوارض', 'amount' => '70 USD']]],
-        ['place' => 'Border', 'items' => [['label' => 'هزینه مرزی', 'amount' => '210 USD'], ['label' => 'هزینه انتظار', 'amount' => '95 USD']]],
+        ['place' => 'مرز', 'items' => [['label' => 'هزینه مرزی', 'amount' => '210 USD'], ['label' => 'هزینه انتظار', 'amount' => '95 USD']]],
         ['place' => 'Tehran', 'items' => [['label' => 'عوارض نهایی', 'amount' => '75 USD'], ['label' => 'کرایه راننده و سایر', 'amount' => '1,930 USD']]],
     ],
 ];

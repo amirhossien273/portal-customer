@@ -12,13 +12,13 @@
                 <span class="section-label">نمای عملیاتی حمل زمینی 03</span>
                 <h2 class="section-title" id="road-pod-title">تحویل و POD؛ پایان قابل اثبات همان سفر</h2>
             </div>
-            <p>تأیید تحویل یا POD پس از رسیدن محموله به مقصد به همان Shipment و Delivery Event متصل می‌شود. این بخش فقط مدرک تحویل سفر زمینی را نشان می‌دهد و گردش عمومی مدیریت اسناد را تکرار نمی‌کند.</p>
+            <p>تأیید تحویل یا POD پس از رسیدن محموله به مقصد به همان پرونده و رویداد تحویل متصل می‌شود. این بخش فقط مدرک تحویل سفر زمینی را نشان می‌دهد و گردش عمومی مدیریت اسناد را تکرار نمی‌کند.</p>
         </div>
 
         <figure class="road-evidence road-pod-preview reveal" data-road-evidence="delivery-pod" aria-labelledby="road-pod-caption">
-            <div role="img" aria-label="نمای POD و تأیید تحویل محموله زمینی در سپند">
+            <div role="img" aria-label="نمای POD یا Proof of Delivery و تأیید تحویل محموله زمینی در سپند">
                 <header class="road-preview-header">
-                    <div><span>Delivery Confirmation</span><h3>تحویل در <bdi dir="ltr">{{ $pod['destination'] }}</bdi></h3><p>پرونده <bdi dir="ltr">{{ $pod['shipment'] }}</bdi></p></div>
+                    <div><span>تأیید تحویل و POD</span><h3>تحویل در <bdi dir="ltr">{{ $pod['destination'] }}</bdi></h3><p>پرونده <bdi dir="ltr">{{ $pod['shipment'] }}</bdi></p></div>
                     <span class="road-status is-completed">{{ $pod['delivery_status'] }}</span>
                 </header>
 
@@ -45,7 +45,7 @@
                     <li>تحویل</li><li>تأیید گیرنده</li><li>POD</li><li>اتصال سند به پرونده حمل</li>
                 </ol>
             </div>
-            <figcaption id="road-pod-caption">تأیید تحویل و POD همان سفر در کنار وضعیت مقصد و زمان تحویل نگهداری می‌شوند؛ فایل نمونه ۱۳ دقیقه پس از تحویل به پرونده متصل شده است.</figcaption>
+            <figcaption id="road-pod-caption">تأیید تحویل و POD همان سفر در کنار زمان تحویل، مقصد و وضعیت پرونده نگهداری می‌شوند.</figcaption>
         </figure>
 
         <div class="road-pod-statuses reveal" aria-label="وضعیت‌های چرخه POD"><span>در انتظار تحویل</span><span>تحویل‌شده</span><span>POD در انتظار</span><span class="is-active">POD بارگذاری‌شده</span><span>POD تأییدشده</span></div>
