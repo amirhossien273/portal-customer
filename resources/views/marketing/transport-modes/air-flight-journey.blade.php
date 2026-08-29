@@ -6,63 +6,63 @@
 
 {{-- TODO: connect flight segments to production shipment API --}}
 {{-- TODO: connect Flight Segment Timeline to air operations backend --}}
+{{-- TODO: connect Airport Milestones to production air operations events --}}
 
 <section class="section air-flight-section" id="air-flight-segments" aria-labelledby="air-flight-title">
     <div class="container">
         <div class="air-split-head reveal">
             <div>
-                <span class="section-label">Multi-leg &amp; Transshipment Flights</span>
+                <span class="section-label">نمای عملیاتی حمل هوایی 02 · پروازهای چندمرحله‌ای و ترانشیپمنت</span>
                 <h2 class="section-title" id="air-flight-title">مدیریت مسیرهای چندمرحله‌ای در حمل هوایی</h2>
             </div>
-            <p>در Air Freight، یک Shipment ممکن است پیش از Destination از Transit Airport عبور کند. سپند مسیر را به Flight Segmentهای مستقل تفکیک می‌کند تا Flight، زمان‌بندی و Status هر Leg جدا دیده شود.</p>
+            <p>در حمل هوایی، یک محموله ممکن است پیش از رسیدن به مقصد از یک فرودگاه ترانزیت عبور کند. مسیر به بخش‌های مستقل پرواز تقسیم می‌شود تا اطلاعات پرواز، زمان‌بندی و وضعیت هر بخش جداگانه دیده شود.</p>
         </div>
 
-        <p class="air-entity-declaration reveal">یک <bdi dir="ltr">Air Shipment</bdi> می‌تواند چند Flight Segment داشته باشد و هر Segment دارای Origin Airport، Destination Airport، Flight Number، Segment ETD، Segment ETA و Status مستقل است.</p>
+        <p class="air-entity-declaration reveal">هر پرونده حمل هوایی می‌تواند چند بخش پرواز (Flight Segment) داشته باشد و هر بخش دارای فرودگاه مبدأ، فرودگاه مقصد، شماره پرواز، ETD، ETA و وضعیت مستقل باشد.</p>
 
-        <div class="air-status-legend reveal" aria-label="راهنمای وضعیت Flight Segment">
+        <div class="air-status-legend reveal" aria-label="راهنمای وضعیت بخش‌های پرواز">
             @foreach($airDemo['status_labels'] as $key => $label)
                 <span class="air-status is-{{ $key }}">{{ $label }}</span>
             @endforeach
         </div>
 
         <figure class="air-evidence air-flight-evidence reveal" data-air-evidence="flight-segment-timeline" aria-labelledby="air-flight-caption">
-            <div class="air-flight-preview" role="img" aria-label="Timeline مسیر پرواز چندمرحله‌ای از Shanghai PVG به Dubai DXB و Tehran IKA همراه Transshipment و Delay در سپند">
+            <div class="air-flight-preview" role="img" aria-label="خط زمانی مسیر پرواز چندمرحله‌ای از شانگهای PVG به دبی DXB و تهران IKA همراه ترانشیپمنت و تأخیر در سپند">
                 <header class="air-preview-header">
                     <div>
-                        <span>Shipment <bdi dir="ltr">{{ $airDemo['shipment']['reference'] }}</bdi></span>
-                        <h3>Flight Segment Timeline</h3>
-                        <p><bdi dir="ltr">PVG → DXB → IKA</bdi> · 2 Flight Segments · 1 Transshipment</p>
+                        <span>پرونده حمل هوایی <bdi dir="ltr">{{ $airDemo['shipment']['reference'] }}</bdi></span>
+                        <h3>خط زمانی بخش‌های پرواز</h3>
+                        <p><bdi dir="ltr">PVG → DXB → IKA</bdi> · ۲ بخش پرواز · ۱ ترانشیپمنت</p>
                     </div>
-                    <span class="air-status is-transit">In Transit</span>
+                    <span class="air-status is-transit">{{ $airDemo['shipment']['status'] }}</span>
                 </header>
 
-                <ol class="air-segment-timeline" aria-label="Flight Segmentهای مسیر چندمرحله‌ای محموله هوایی">
+                <ol class="air-segment-timeline" aria-label="بخش‌های پرواز مسیر چندمرحله‌ای محموله هوایی">
                     @foreach($segments as $segment)
                         <li class="air-segment is-{{ $segment['status_key'] }}">
                             <div class="air-segment-route">
-                                <span>Leg {{ $segment['number'] }}</span>
+                                <span>بخش پرواز {{ $segment['number'] }}</span>
                                 <div><strong dir="ltr">{{ $segment['origin']['code'] }}</strong><small>{{ $segment['origin']['city'] }}</small></div>
                                 <i aria-hidden="true">←</i>
                                 <div><strong dir="ltr">{{ $segment['destination']['code'] }}</strong><small>{{ $segment['destination']['city'] }}</small></div>
                             </div>
                             <div class="air-segment-card">
                                 <header>
-                                    <div><span>Flight</span><strong dir="ltr">{{ $segment['flight'] }}</strong><small>{{ $segment['airline'] }}</small></div>
+                                    <div><span>شماره پرواز</span><strong dir="ltr">{{ $segment['flight'] }}</strong><small>{{ $segment['airline'] }}</small></div>
                                     <span class="air-status is-{{ $segment['status_key'] }}">{{ $segment['status'] }}</span>
                                 </header>
                                 <dl>
-                                    <div><dt>Segment ETD</dt><dd dir="ltr">{{ $segment['planned_etd'] }}</dd></div>
-                                    <div><dt>Segment ETA</dt><dd dir="ltr">{{ $segment['planned_eta'] }}</dd></div>
-                                    <div><dt>Date</dt><dd dir="ltr">{{ $segment['date'] }}</dd></div>
+                                    <div><dt>زمان حرکت (ETD)</dt><dd dir="ltr">{{ $segment['departure_date'] }} · {{ $segment['planned_etd'] }}</dd></div>
+                                    <div><dt>زمان رسیدن (ETA)</dt><dd dir="ltr">{{ $segment['arrival_date'] }} · {{ $segment['planned_eta'] }}</dd></div>
                                 </dl>
                                 @if($segment['updated_etd'])
-                                    <aside class="air-delay-event" aria-label="رویداد تأخیر Flight Segment {{ $segment['number'] }}">
-                                        <span>Delay Event</span>
+                                    <aside class="air-delay-event" aria-label="رویداد تأخیر بخش پرواز {{ $segment['number'] }}">
+                                        <span>رویداد تأخیر</span>
                                         <dl>
-                                            <div><dt>Planned Departure</dt><dd dir="ltr">{{ $segment['planned_etd'] }}</dd></div>
-                                            <div><dt>Updated Departure</dt><dd dir="ltr">{{ $segment['updated_etd'] }}</dd></div>
-                                            <div><dt>Updated ETA</dt><dd dir="ltr">{{ $segment['updated_eta'] }}</dd></div>
-                                            <div class="is-delay"><dt>Delay</dt><dd dir="ltr">{{ $segment['delay'] }}</dd></div>
+                                            <div><dt>زمان حرکت برنامه‌ریزی‌شده</dt><dd dir="ltr">{{ $segment['departure_date'] }} · {{ $segment['planned_etd'] }}</dd></div>
+                                            <div><dt>زمان حرکت به‌روزشده</dt><dd dir="ltr">{{ $segment['departure_date'] }} · {{ $segment['updated_etd'] }}</dd></div>
+                                            <div><dt>ETA به‌روزشده</dt><dd dir="ltr">{{ $segment['arrival_date'] }} · {{ $segment['updated_eta'] }}</dd></div>
+                                            <div class="is-delay"><dt>تأخیر</dt><dd dir="ltr">{{ $segment['delay'] }}</dd></div>
                                         </dl>
                                     </aside>
                                 @endif
@@ -73,13 +73,13 @@
                             <li class="air-transshipment-event">
                                 <div class="air-hub-marker" aria-hidden="true"><span>DXB</span></div>
                                 <article>
-                                    <header><div><span>Hub Event</span><h3>Transshipment · {{ $transshipment['city'] }}</h3></div><span class="air-status is-connection">{{ $transshipment['status'] }}</span></header>
+                                    <header><div><span>رویداد فرودگاه ترانزیت</span><h3>ترانشیپمنت · {{ $transshipment['city'] }}</h3></div><span class="air-status is-connection">{{ $transshipment['status'] }}</span></header>
                                     <dl>
-                                        <div><dt>Airport</dt><dd dir="ltr">{{ $transshipment['airport'] }}</dd></div>
-                                        <div><dt>Inbound Flight</dt><dd dir="ltr">{{ $transshipment['inbound_flight'] }}</dd></div>
-                                        <div><dt>Outbound Flight</dt><dd dir="ltr">{{ $transshipment['outbound_flight'] }}</dd></div>
-                                        <div><dt>Planned Connection</dt><dd dir="ltr">{{ $transshipment['planned_connection_time'] }}</dd></div>
-                                        <div><dt>Updated Connection</dt><dd dir="ltr">{{ $transshipment['updated_connection_time'] }}</dd></div>
+                                        <div><dt>فرودگاه</dt><dd dir="ltr">{{ $transshipment['airport'] }}</dd></div>
+                                        <div><dt>پرواز ورودی</dt><dd dir="ltr">{{ $transshipment['inbound_flight'] }}</dd></div>
+                                        <div><dt>پرواز خروجی</dt><dd dir="ltr">{{ $transshipment['outbound_flight'] }}</dd></div>
+                                        <div><dt>زمان اتصال برنامه‌ریزی‌شده</dt><dd dir="ltr">{{ $transshipment['planned_connection_time'] }}</dd></div>
+                                        <div><dt>زمان اتصال به‌روزشده</dt><dd dir="ltr">{{ $transshipment['updated_connection_time'] }}</dd></div>
                                     </dl>
                                 </article>
                             </li>
@@ -87,11 +87,11 @@
                     @endforeach
                 </ol>
             </div>
-            <figcaption id="air-flight-caption">نمایش مسیر چندمرحله‌ای Shipment از Origin تا Destination؛ هر Flight Leg زمان‌بندی و Status مستقل دارد و Transshipment در DXB به‌عنوان Event متفاوت از Segment نمایش داده می‌شود.</figcaption>
+            <figcaption id="air-flight-caption">نمایش مسیر چندمرحله‌ای محموله از مبدأ تا مقصد؛ هر بخش پرواز زمان‌بندی و وضعیت مستقل دارد و ترانشیپمنت در DXB به‌عنوان یک رویداد مجزا نمایش داده می‌شود.</figcaption>
         </figure>
 
-        <div class="air-flight-entity-graph reveal" aria-label="رابطه موجودیت‌های پرواز در پرونده حمل هوایی">
-            <span>Air Shipment</span><i>←</i><span>Flight Segment</span><i>←</i><span>Origin / Destination Airport</span><i>←</i><span>Flight Number</span><i>←</i><span>ETD / ETA</span><i>←</i><span>Status</span>
+        <div class="air-flight-entity-graph reveal" aria-label="رابطه موجودیت‌های پرواز؛ ترتیب از راست به چپ است">
+            <strong>مسیر پرواز</strong><ol class="air-entity-flow"><li>پرونده حمل هوایی</li><li>بخش پرواز</li><li>فرودگاه مبدأ / مقصد</li><li>شماره پرواز</li><li>ETD / ETA</li><li>وضعیت</li></ol>
         </div>
     </div>
 </section>
@@ -100,12 +100,12 @@
     <div class="container">
         <div class="air-split-head reveal">
             <div>
-                <span class="section-label">Airport Milestones</span>
-                <h2 class="section-title" id="air-milestones-title">رویدادهای Air Shipment روی یک Timeline عملیاتی</h2>
+                <span class="section-label">نقاط عطف فرودگاهی</span>
+                <h2 class="section-title" id="air-milestones-title">رویدادهای پرونده حمل هوایی روی یک خط زمانی عملیاتی</h2>
             </div>
-            <p>Milestoneها رخدادهای Airport و Flight را به ترتیب زمانی نشان می‌دهند؛ Delay زمان برنامه‌ریزی‌شده را حذف نمی‌کند و Updated Time کنار آن باقی می‌ماند.</p>
+            <p>نقاط عطف، رویدادهای فرودگاه و پرواز را به ترتیب زمانی نشان می‌دهند. در صورت تأخیر، زمان برنامه‌ریزی‌شده حذف نمی‌شود و زمان به‌روزشده در کنار آن باقی می‌ماند.</p>
         </div>
-        <ol class="air-milestone-timeline reveal" aria-label="Timeline رویدادهای فرودگاهی محموله هوایی">
+        <ol class="air-milestone-timeline reveal" aria-label="خط زمانی رویدادهای فرودگاهی محموله هوایی">
             @foreach($airDemo['milestones'] as $milestone)
                 <li class="is-{{ $milestone['tone'] }}">
                     <span class="air-milestone-dot" aria-hidden="true"></span>
