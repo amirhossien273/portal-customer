@@ -36,6 +36,7 @@ class MarketingModuleController extends Controller
             'imageHeight' => $primaryScreenshot['height'] ?? 1024,
             'page' => $page,
             'screenshots' => $screenshots,
+            'relatedContentPages' => config('site_content_pages.module_relations.'.$module, []),
         ]);
     }
 }

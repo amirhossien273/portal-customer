@@ -26,6 +26,24 @@ return [
             'title' => 'بهترین نرم‌افزار حمل‌ونقل بین‌المللی',
             'description' => 'چک‌لیست ارزیابی و سناریوی دمویی برای انتخاب متناسب با فرایند و بودجه شرکت.',
         ],
+        [
+            'route' => 'compare.best-freight-forwarding-software',
+            'eyebrow' => 'راهنمای تخصصی فورواردری',
+            'title' => 'بهترین نرم‌افزار فورواردری',
+            'description' => 'معیارهای CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی برای انتخاب راهکار فورواردری.',
+        ],
+        [
+            'route' => 'compare.best-crm-for-transport-companies',
+            'eyebrow' => 'راهنمای انتخاب CRM',
+            'title' => 'بهترین CRM برای شرکت حمل‌ونقل',
+            'description' => 'چک‌لیست مشتری، استعلام، پیگیری، تحلیل فروش و اتصال CRM به عملیات حمل.',
+        ],
+        [
+            'route' => 'compare.best-transport-accounting-software',
+            'eyebrow' => 'راهنمای انتخاب مالی',
+            'title' => 'بهترین حسابداری حمل‌ونقل',
+            'description' => 'ارزیابی مالی چندارزی، دریافت‌وپرداخت، سود پرونده و ارتباط حسابداری با عملیات.',
+        ],
     ],
 
     'competitors' => [

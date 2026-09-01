@@ -44,6 +44,19 @@ class MarketingSitemapController extends Controller
             ['loc' => $baseUrl.'/consultation', 'lastmod' => $lastModified],
         ];
 
+        foreach (['guides', 'solutions'] as $group) {
+            foreach (config('site_content_pages.'.$group, []) as $page) {
+                $urls[] = [
+                    'loc' => route($page['route']),
+                    'lastmod' => $lastModified,
+                    'images' => [[
+                        'loc' => $baseUrl.'/assets/images/marketing/'.implode('/', array_map('rawurlencode', explode('/', $page['image']))),
+                        'title' => $page['image_alt'],
+                    ]],
+                ];
+            }
+        }
+
         foreach (config('site_modules', []) as $slug => $module) {
             $screenshots = config('module_screenshots.'.$slug, []);
             $images = array_map(static function (array $screenshot) use ($baseUrl, $module): array {
