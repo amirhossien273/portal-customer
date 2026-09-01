@@ -157,6 +157,8 @@
     </div>
 </section>
 
+@include('marketing.partials.related-content-pages')
+
 <section class="section soft" aria-labelledby="module-faq-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">سؤالات متداول</span><h2 class="section-title" id="module-faq-title">{{ $page['faq_heading'] }}</h2></div>

@@ -2,7 +2,7 @@
 
 return [
     'site_url' => rtrim(env('MARKETING_SITE_URL', 'https://sepandcrm.ir'), '/'),
-    'content_last_modified' => '2026-08-22',
+    'content_last_modified' => '2026-09-01',
     'page_keywords' => [
         'home' => [
             'نرم افزار مدیریت حمل و نقل بین المللی',
@@ -45,6 +45,26 @@ return [
             'بهترین نرم افزار حمل و نقل بین المللی',
             'انتخاب نرم افزار حمل و نقل بین المللی',
         ],
+        'best_freight_forwarding_software' => [
+            'بهترین نرم افزار فورواردری',
+            'نرم افزار شرکت فورواردری',
+            'انتخاب نرم افزار فورواردری',
+        ],
+        'best_crm_for_transport_companies' => [
+            'بهترین CRM برای شرکت حمل و نقل',
+            'نرم افزار CRM شرکت حمل و نقل',
+            'انتخاب CRM حمل و نقل',
+        ],
+        'best_transport_accounting_software' => [
+            'بهترین نرم افزار حسابداری حمل و نقل',
+            'نرم افزار حسابداری حمل و نقل بین المللی',
+            'انتخاب حسابداری فورواردری',
+        ],
+        'solution_nvocc' => ['نرم افزار NVOCC', 'نرم افزار مدیریت NVOCC'],
+        'solution_container_management' => ['نرم افزار مدیریت کانتینر', 'مدیریت کانتینر حمل دریایی'],
+        'solution_on_premise' => ['نرم افزار حمل و نقل On-Premise', 'استقرار داخلی نرم افزار حمل و نقل'],
+        'solution_bill_of_lading' => ['نرم افزار مدیریت بارنامه', 'مدیریت HBL و MBL'],
+        'solution_freight_sales_automation' => ['اتوماسیون فروش شرکت حمل و نقل', 'اتوماسیون فروش فورواردری'],
         'pricing' => [
             'قیمت نرم افزار حمل و نقل بین المللی',
         ],

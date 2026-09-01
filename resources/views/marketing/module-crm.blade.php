@@ -350,6 +350,8 @@
     </div>
 </section>
 
+@include('marketing.partials.related-content-pages')
+
 <section class="section soft" aria-labelledby="crm-faq-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">سؤالات متداول</span><h2 class="section-title" id="crm-faq-title">سؤالات متداول درباره<br><span>نرم‌افزار CRM حمل‌ونقل</span></h2></div>

@@ -9,6 +9,7 @@
 @media(max-width:1050px){.crm-hero-copy .module-hero-title-main,.crm-hero-copy .module-hero-title-accent{white-space:normal}.crm-audience-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:840px){.crm-hero-art{min-height:410px}.crm-problem-grid,.crm-outcomes,.crm-capability-grid,.crm-process-grid,.crm-benefits-grid{grid-template-columns:1fr}.crm-intro{margin-top:-10px}.crm-benefits-grid{max-width:650px;margin-inline:auto}}
 @media(max-width:580px){.crm-hero-copy .module-hero-title{font-size:clamp(28px,8.4vw,36px);line-height:1.58;letter-spacing:-1px}.crm-hero-copy .crm-lead{font-size:15px;line-height:2.1}.module-hero-brand{right:10px;bottom:10px;padding:6px 9px;border-radius:12px}.module-hero-brand>img{width:28px}.module-hero-brand strong{font-size:10px}.module-hero-brand small{font-size:7px}.crm-dashboard{inset:18px;padding:17px}.crm-pipeline{grid-template-columns:1fr}.crm-customer{padding:10px}.crm-problem{padding:24px}.crm-audience-grid{grid-template-columns:1fr}.crm-capability{padding:72px 23px 24px}.crm-capability-num{top:22px;right:22px}.crm-intro,.crm-benefit-intro{font-size:13px}}
+.crm-audience>a{display:inline-flex;margin-top:14px;color:var(--teal-dark);font-size:12px;font-weight:800}.crm-audience>a:hover{color:var(--navy)}.crm-audience>.section-label{margin-bottom:9px;font-size:10px}.crm-audience>.section-label:after{display:none}
 
 /* Real product screenshots used in module hero sections. */
 .module-screenshot-panel {

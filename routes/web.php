@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MarketingConsultationController;
 use App\Http\Controllers\MarketingComparisonController;
+use App\Http\Controllers\MarketingContentPageController;
 use App\Http\Controllers\MarketingModuleController;
 use App\Http\Controllers\MarketingSitemapController;
 use App\Http\Controllers\MarketingTransportModeController;
@@ -26,6 +27,18 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
         ->name('compare.sepand-vs-saba');
     Route::get('/compare/best-transport-software', [MarketingComparisonController::class, 'best'])
         ->name('compare.best-transport-software');
+    Route::get('/compare/best-freight-forwarding-software', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'guides')
+        ->defaults('contentSlug', 'best-freight-forwarding-software')
+        ->name('compare.best-freight-forwarding-software');
+    Route::get('/compare/best-crm-for-transport-companies', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'guides')
+        ->defaults('contentSlug', 'best-crm-for-transport-companies')
+        ->name('compare.best-crm-for-transport-companies');
+    Route::get('/compare/best-transport-accounting-software', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'guides')
+        ->defaults('contentSlug', 'best-transport-accounting-software')
+        ->name('compare.best-transport-accounting-software');
     Route::permanentRedirect(
         '/compare/transport-software-vs-excel',
         '/compare/sepand-vs-other-transport-software'
@@ -38,6 +51,26 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
     Route::get('/transport-modes/{mode}', [MarketingTransportModeController::class, 'show'])
         ->whereIn('mode', array_keys(config('site_transport_modes')))
         ->name('site.transport-modes.show');
+    Route::get('/solutions/nvocc', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'nvocc')
+        ->name('solutions.nvocc');
+    Route::get('/solutions/container-management', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'container-management')
+        ->name('solutions.container-management');
+    Route::get('/solutions/on-premise', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'on-premise')
+        ->name('solutions.on-premise');
+    Route::get('/solutions/bill-of-lading-management', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'bill-of-lading-management')
+        ->name('solutions.bill-of-lading-management');
+    Route::get('/solutions/freight-sales-automation', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'freight-sales-automation')
+        ->name('solutions.freight-sales-automation');
     Route::view('/pricing', 'marketing.pricing')->name('pricing');
     Route::view('/about', 'marketing.about')->name('about');
     Route::get('/consultation', [MarketingConsultationController::class, 'create'])->name('consultation.create');
