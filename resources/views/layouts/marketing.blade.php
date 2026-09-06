@@ -40,7 +40,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
     @stack('head')
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20260831-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20260906-1">
     <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
     @stack('styles')
 </head>
@@ -83,6 +83,7 @@
             <div class="footer-col"><h3>محصول</h3><a href="{{ route('product') }}">معرفی محصول در عمل</a><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}">تسک خودکار CRM</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
             <div class="footer-col">
                 <h3>راهکارها</h3>
+                <a href="{{ route('solutions.index') }}">همه راهکارهای سپند</a>
                 @foreach(config('site_content_pages.solutions', []) as $solution)
                     <a href="{{ route($solution['route']) }}">{{ $solution['nav_title'] }}</a>
                 @endforeach

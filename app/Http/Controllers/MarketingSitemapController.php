@@ -57,6 +57,26 @@ class MarketingSitemapController extends Controller
             }
         }
 
+        $urls[] = [
+            'loc' => route('solutions.index'),
+            'lastmod' => $lastModified,
+            'images' => [[
+                'loc' => $baseUrl.'/assets/images/marketing/product-showcase/desktop-dashboard.webp',
+                'title' => 'راهکارهای یکپارچه نرم‌افزار حمل‌ونقل سپند',
+            ]],
+        ];
+
+        foreach (config('site_platform_solutions.pages', []) as $slug => $page) {
+            $urls[] = [
+                'loc' => route('solutions.platform.show', ['solution' => $slug]),
+                'lastmod' => $lastModified,
+                'images' => array_map(static fn (array $evidence): array => [
+                    'loc' => $baseUrl.'/assets/images/marketing/'.implode('/', array_map('rawurlencode', explode('/', $evidence['image']))),
+                    'title' => $evidence['alt'],
+                ], $page['evidence']),
+            ];
+        }
+
         foreach (config('site_modules', []) as $slug => $module) {
             $screenshots = config('module_screenshots.'.$slug, []);
             $images = array_map(static function (array $screenshot) use ($baseUrl, $module): array {

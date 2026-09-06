@@ -4,6 +4,7 @@ use App\Http\Controllers\MarketingConsultationController;
 use App\Http\Controllers\MarketingComparisonController;
 use App\Http\Controllers\MarketingContentPageController;
 use App\Http\Controllers\MarketingModuleController;
+use App\Http\Controllers\MarketingPlatformSolutionController;
 use App\Http\Controllers\MarketingSitemapController;
 use App\Http\Controllers\MarketingTransportModeController;
 use App\Http\Controllers\CustomerPortalAuthController;
@@ -18,6 +19,8 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
     Route::view('/product', 'marketing.product-overview')->name('product');
     Route::view('/why-sepand', 'marketing.why-sepand')->name('why-sepand');
     Route::view('/modules', 'marketing.modules')->name('modules');
+    Route::get('/solutions', [MarketingPlatformSolutionController::class, 'index'])
+        ->name('solutions.index');
     Route::get('/compare', [MarketingComparisonController::class, 'index'])->name('compare.index');
     Route::get('/compare/sepand-vs-royan', [MarketingComparisonController::class, 'competitor'])
         ->defaults('competitor', 'royan')
@@ -91,6 +94,9 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
         ->defaults('contentGroup', 'solutions')
         ->defaults('contentSlug', 'fleet-dispatch-planning')
         ->name('solutions.fleet-dispatch-planning');
+    Route::get('/solutions/{solution}', [MarketingPlatformSolutionController::class, 'show'])
+        ->whereIn('solution', array_keys(config('site_platform_solutions.pages', [])))
+        ->name('solutions.platform.show');
     Route::view('/pricing', 'marketing.pricing')->name('pricing');
     Route::view('/about', 'marketing.about')->name('about');
     Route::get('/consultation', [MarketingConsultationController::class, 'create'])->name('consultation.create');
