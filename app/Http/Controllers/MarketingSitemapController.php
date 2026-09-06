@@ -77,6 +77,17 @@ class MarketingSitemapController extends Controller
             ];
         }
 
+        foreach (config('site_case_studies', []) as $slug => $page) {
+            $urls[] = [
+                'loc' => route('case-studies.show', ['caseStudy' => $slug]),
+                'lastmod' => $lastModified,
+                'images' => [[
+                    'loc' => $baseUrl.'/assets/images/marketing/'.implode('/', array_map('rawurlencode', explode('/', $page['image']))),
+                    'title' => $page['image_alt'],
+                ]],
+            ];
+        }
+
         foreach (config('site_modules', []) as $slug => $module) {
             $screenshots = config('module_screenshots.'.$slug, []);
             $images = array_map(static function (array $screenshot) use ($baseUrl, $module): array {

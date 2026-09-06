@@ -23,6 +23,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/marketing-platform-solutions.css') }}?v=20260906-1">
+@if(isset($page['demo']))<link rel="stylesheet" href="{{ asset('assets/css/marketing-real-demo.css') }}?v=20260906-1">@endif
 @endpush
 
 @section('content')
@@ -65,7 +66,7 @@
 <nav class="platform-toc" aria-label="فهرست بخش‌های راهکار">
     <div class="container">
         <span>در این صفحه</span>
-        <a href="#capabilities">قابلیت‌ها</a><a href="#product-evidence">شواهد محصول</a><a href="#workflow">جریان اجرا</a><a href="#operational-depth">عمق عملیاتی</a><a href="#controls">کنترل‌ها</a><a href="#metrics">شاخص‌ها</a><a href="#related-solutions">راهکارهای مرتبط</a><a href="#solution-faq">پرسش‌ها</a>
+        <a href="#capabilities">قابلیت‌ها</a><a href="#product-evidence">شواهد محصول</a>@if(isset($page['demo']))<a href="#real-demo">دموی واقعی</a>@endif<a href="#workflow">جریان اجرا</a><a href="#operational-depth">عمق عملیاتی</a><a href="#controls">کنترل‌ها</a><a href="#metrics">شاخص‌ها</a><a href="#related-solutions">راهکارهای مرتبط</a><a href="#solution-faq">پرسش‌ها</a>
     </div>
 </nav>
 
@@ -95,6 +96,26 @@
         </div>
     </div>
 </section>
+
+@if(isset($page['demo']))
+<section class="section platform-real-demo" id="real-demo" aria-labelledby="real-demo-title">
+    <div class="container">
+        <header class="platform-real-demo-head reveal">
+            <div><span class="section-label">REAL PRODUCT WALKTHROUGH</span><h2 class="section-title" id="real-demo-title">{{ $page['demo']['title'] }}</h2></div>
+            <p>{{ $page['demo']['intro'] }}</p>
+        </header>
+        <div class="platform-demo-strip" role="list">
+            @foreach($page['demo']['steps'] as $step)
+                <article class="platform-demo-step reveal" role="listitem">
+                    <div class="platform-demo-media"><img src="{{ asset('assets/images/marketing/'.$step['image']) }}" width="1600" height="900" loading="lazy" alt="{{ $step['alt'] }}"><span aria-hidden="true">{{ $loop->iteration }}</span></div>
+                    <small>{{ $step['label'] }}</small><h3>{{ $step['title'] }}</h3><p>{{ $step['text'] }}</p>
+                </article>
+            @endforeach
+        </div>
+        <p class="platform-demo-note reveal"><strong>شفافیت داده:</strong> {{ $page['demo']['note'] }}</p>
+    </div>
+</section>
+@endif
 
 <section class="section soft" id="workflow" aria-labelledby="workflow-title">
     <div class="container">

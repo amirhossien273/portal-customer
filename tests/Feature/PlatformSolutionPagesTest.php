@@ -18,6 +18,10 @@ class PlatformSolutionPagesTest extends TestCase
         'multimodal-transport' => 'مدیریت حمل چندوجهی؛ یک Journey، چند Leg هماهنگ',
         'schedule-management' => 'مدیریت برنامه حرکت؛ یک مرجع برای ETD، ETA و تغییرات',
         'rate-management' => 'مدیریت نرخ حمل؛ محاسبه یکسان، معتبر و قابل ردیابی',
+        'security-access-management' => 'امنیت و مدیریت دسترسی؛ هر کاربر فقط در دامنه مسئولیت خودش',
+        'payment-workflow' => 'درخواست پرداخت تا پرداخت نهایی؛ یک زنجیره کنترل‌شده و قابل ردیابی',
+        'booking-reconciliation' => 'دریافت و تطبیق مالی Booking؛ هر مبلغ با منشأ و مصرف روشن',
+        'supplier-management' => 'Supplier Master و مقایسه تأمین‌کنندگان؛ انتخاب بر پایه نرخ و توان اجرا',
     ];
 
     protected function setUp(): void
@@ -127,5 +131,15 @@ class PlatformSolutionPagesTest extends TestCase
             ->assertOk()
             ->assertSee('href="'.self::SITE_URL.'/solutions/document-readiness"', false)
             ->assertSee('href="'.self::SITE_URL.'/solutions/bill-of-lading-management"', false);
+    }
+
+    public function test_operations_automation_contains_real_rule_to_exception_walkthrough(): void
+    {
+        $this->get('/solutions/operations-automation')
+            ->assertOk()
+            ->assertSee('دموی واقعی چرخه Rule تا Exception', false)
+            ->assertSee('live/control-center-rules.png', false)
+            ->assertSee('live/control-center-exceptions.png', false)
+            ->assertSee('شفافیت داده:', false);
     }
 }

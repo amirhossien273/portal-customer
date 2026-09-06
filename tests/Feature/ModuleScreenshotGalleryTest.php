@@ -93,8 +93,14 @@ class ModuleScreenshotGalleryTest extends TestCase
                     ->where('image', $screenshot['path'])
                     ->count();
 
+                $expectedOccurrences += collect(config('site_platform_solutions.pages', []))
+                    ->flatMap(fn (array $page) => $page['evidence'] ?? [])
+                    ->where('image', $screenshot['path'])
+                    ->count();
+
                 if ($screenshot['path'] === 'product-showcase/desktop-dashboard.webp') {
-                    $expectedOccurrences++;
+                    // Product overview and the platform-solutions hub each publish this image.
+                    $expectedOccurrences += 2;
                 }
 
                 if ($screenshot['path'] === 'modules/screenshots/pricing-sales-workflow.webp') {

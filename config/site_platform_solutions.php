@@ -225,6 +225,29 @@ $pages = [
     ],
 ];
 
+$priorityPages = require __DIR__.'/site_priority_solutions.php';
+$pages = array_merge($pages, $priorityPages);
+
+$pages['operations-automation']['evidence'] = [
+    ['title' => 'Rule Builder واقعی عملیات', 'text' => 'چهار Template حمل هوایی، دریایی، جاده‌ای و ریلی و نقطه شروع ساخت Rule سفارشی در محیط واقعی.', 'image' => 'live/control-center-rules.png', 'alt' => 'Rule Builder واقعی مرکز کنترل عملیات سپند', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'operations-automation'], 'cta' => 'دیدن چرخه Rule تا Exception'],
+    ['title' => 'Exception Workbench واقعی', 'text' => 'صف رسیدگی Exception با وضعیت جاری Tenant؛ نبود Exception فعال نیز صادقانه در همین تصویر مشخص است.', 'image' => 'live/control-center-exceptions.png', 'alt' => 'Exception Workbench واقعی مرکز کنترل عملیات سپند', 'route' => 'solutions.operation-exception-management', 'cta' => 'بررسی مدیریت استثنا'],
+    ['title' => 'داشبورد عملیاتی واقعی', 'text' => 'شاخص‌های جاری لید، مشتری، استعلام، Booking و پیگیری‌های نیازمند اقدام در یک نمای مدیریتی.', 'image' => 'live/operations-dashboard.png', 'alt' => 'داشبورد واقعی عملیات و پیگیری سپند', 'route' => 'solutions.shipment-visibility', 'cta' => 'مشاهده دیدپذیری عملیات'],
+];
+$pages['operations-automation']['demo'] = [
+    'title' => 'دموی واقعی چرخه Rule تا Exception',
+    'intro' => 'این سناریو با نماهای ثبت‌شده از استقرار واقعی سپند، مرز میان تعریف کنترل، ساخت Exception و رسیدگی انسانی را مرحله‌به‌مرحله نشان می‌دهد.',
+    'note' => 'وضعیت داده‌ها متعلق به لحظه ثبت تصویر است؛ در Tenant بررسی‌شده هنوز Rule فعال و Exception باز ثبت نشده بود.',
+    'steps' => [
+        ['label' => '۱. تعریف کنترل', 'title' => 'انتخاب Template یا Rule سفارشی', 'text' => 'شرط، آستانه، Severity، مسئول، Due و Escalation تعریف می‌شوند.', 'image' => 'live/control-center-rules.png', 'alt' => 'مرحله تعریف Rule در مرکز کنترل سپند'],
+        ['label' => '۲. تشخیص انحراف', 'title' => 'ساخت Exception یکتا', 'text' => 'انطباق داده عملیاتی با Rule به Exception متصل به پرونده تبدیل می‌شود.', 'image' => 'live/control-center-exceptions.png', 'alt' => 'مرحله ایجاد Exception در مرکز کنترل سپند'],
+        ['label' => '۳. اقدام و سنجش', 'title' => 'رسیدگی، بستن و مرور KPI', 'text' => 'مالک اقدام نتیجه را ثبت می‌کند و زمان پاسخ و موارد تکراری در داشبورد بررسی می‌شوند.', 'image' => 'live/operations-dashboard.png', 'alt' => 'مرحله پایش نتیجه در داشبورد واقعی سپند'],
+    ],
+];
+
+$pages['container-nvocc']['evidence'][0] = ['title' => 'کنترل واقعی دارایی کانتینری', 'text' => 'نمای واقعی Enterprise Control برای بررسی Container Master، رویداد، تعهد و وضعیت بهره‌برداری.', 'image' => 'live/container-control.png', 'alt' => 'کنترل واقعی کانتینر و NVOCC در سپند', 'route' => 'solutions.container-management', 'cta' => 'مشاهده مدیریت کانتینر'];
+$pages['fleet-management']['evidence'][0] = ['title' => 'کنترل واقعی ناوگان و Compliance', 'text' => 'نمای واقعی کنترل خودرو، راننده، آمادگی مدارک و جلوگیری از تخصیص ناسازگار.', 'image' => 'live/fleet-compliance-control.png', 'alt' => 'کنترل واقعی ناوگان و Compliance در سپند', 'route' => 'solutions.fleet-dispatch-planning', 'cta' => 'مشاهده برنامه‌ریزی اعزام'];
+$pages['rate-management']['evidence'][0] = ['title' => 'مدیریت واقعی Rate Master', 'text' => 'نمای واقعی تعرفه‌های ساختاریافته برای کنترل دامنه، اعتبار و مبنای محاسبه.', 'image' => 'live/rate-management.png', 'alt' => 'صفحه واقعی مدیریت نرخ و تعرفه سپند', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'rate-management'], 'cta' => 'مرور منطق Rate Break'];
+
 foreach ($pages as $slug => &$page) {
     $page['slug'] = $slug;
     $page['route'] = 'solutions.platform.show';
@@ -242,6 +265,7 @@ return [
             'assets' => ['label' => 'ناوگان و تجهیزات', 'description' => 'خودرو، راننده، کانتینر و تعهدات'],
             'network' => ['label' => 'شبکه حمل', 'description' => 'هماهنگی مسیرها و روش‌های حمل'],
             'documents' => ['label' => 'اسناد و انطباق', 'description' => 'نسخه، مهلت، تأیید و آمادگی سند'],
+            'governance' => ['label' => 'امنیت و حاکمیت', 'description' => 'فضای کاری، نقش، مجوز و ممیزی'],
         ],
         'solution_meta' => [
             'operations-automation' => [
@@ -283,6 +307,26 @@ return [
                 'category' => 'commercial',
                 'problem' => 'نرخ منقضی یا هزینه جانبی ناقص، پیشنهاد فروش را پرریسک می‌کند.',
                 'outcome' => 'Rate Master، شکست مقداری، اعتبار و Breakdown قابل ردیابی.',
+            ],
+            'security-access-management' => [
+                'category' => 'governance',
+                'problem' => 'دامنه سازمانی و اختیار هر نقش روشن یا قابل ممیزی نیست.',
+                'outcome' => 'Workspace فعال، نقش، مجوز منویی و ردپای تغییر حساس.',
+            ],
+            'payment-workflow' => [
+                'category' => 'commercial',
+                'problem' => 'درخواست، تأیید و پرداخت در کانال‌های جدا نگهداری می‌شوند.',
+                'outcome' => 'یک زنجیره قابل ردیابی از درخواست تا مرجع بانکی پرداخت.',
+            ],
+            'booking-reconciliation' => [
+                'category' => 'commercial',
+                'problem' => 'دریافت ثبت شده اما مصرف آن در Booking و مانده واقعی روشن نیست.',
+                'outcome' => 'Receipt، Allocation، تبدیل ارز و مانده در سطح Booking.',
+            ],
+            'supplier-management' => [
+                'category' => 'commercial',
+                'problem' => 'هویت و نرخ تأمین‌کننده تکراری است و انتخاب فقط با مبلغ انجام می‌شود.',
+                'outcome' => 'Supplier Master یکتا و مقایسه نرخ، زمان و سابقه اجرا.',
             ],
         ],
         'journey' => [
