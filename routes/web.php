@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MarketingConsultationController;
 use App\Http\Controllers\MarketingComparisonController;
+use App\Http\Controllers\MarketingCaseStudyController;
 use App\Http\Controllers\MarketingContentPageController;
 use App\Http\Controllers\MarketingModuleController;
 use App\Http\Controllers\MarketingPlatformSolutionController;
@@ -99,6 +100,9 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
         ->name('solutions.platform.show');
     Route::view('/pricing', 'marketing.pricing')->name('pricing');
     Route::view('/about', 'marketing.about')->name('about');
+    Route::get('/customers/case-studies/{caseStudy}', [MarketingCaseStudyController::class, 'show'])
+        ->whereIn('caseStudy', array_keys(config('site_case_studies', [])))
+        ->name('case-studies.show');
     Route::get('/consultation', [MarketingConsultationController::class, 'create'])->name('consultation.create');
 });
 

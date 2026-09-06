@@ -1,0 +1,118 @@
+.platform-real-demo {
+    position: relative;
+    background: #f6faf9;
+    overflow: hidden;
+}
+
+.platform-real-demo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .35;
+    background-image: radial-gradient(rgba(47, 145, 150, .18) .7px, transparent .7px);
+    background-size: 24px 24px;
+}
+
+.platform-real-demo .container { position: relative; }
+
+.platform-real-demo-head {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    align-items: end;
+    gap: 70px;
+    margin-bottom: 34px;
+}
+
+.platform-real-demo-head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2.1;
+}
+
+.platform-demo-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.platform-demo-step {
+    position: relative;
+    padding: 11px 11px 25px;
+    background: #fff;
+    border: 1px solid #dce9e8;
+    border-radius: 23px;
+    box-shadow: 0 17px 44px rgba(15, 48, 91, .055);
+}
+
+.platform-demo-media {
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.platform-demo-media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    background: #e9f1f1;
+}
+
+.platform-demo-media span {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: grid;
+    width: 31px;
+    height: 31px;
+    place-items: center;
+    color: #082d46;
+    background: #6cdfd8;
+    border: 2px solid rgba(255, 255, 255, .8);
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.platform-demo-step > small {
+    padding: 0 12px;
+    color: var(--teal-dark);
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.platform-demo-step h3 {
+    margin: 6px 12px 8px;
+    color: var(--navy);
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.platform-demo-step > p {
+    margin: 0 12px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.95;
+}
+
+.platform-demo-note {
+    margin: 18px 0 0;
+    padding: 15px 18px;
+    color: #5e7282;
+    background: #fff;
+    border: 1px solid #dce9e8;
+    border-radius: 14px;
+    font-size: 10px;
+    line-height: 1.9;
+}
+
+.platform-demo-note strong { color: var(--navy); }
+
+@media (max-width: 860px) {
+    .platform-real-demo-head,
+    .platform-demo-strip { grid-template-columns: 1fr; }
+    .platform-real-demo-head { gap: 24px; }
+}

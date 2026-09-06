@@ -88,7 +88,7 @@
                     <a href="{{ route($solution['route']) }}">{{ $solution['nav_title'] }}</a>
                 @endforeach
             </div>
-            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('compare.index') }}">مرکز مقایسه نرم‌افزارها</a><a href="{{ route('why-sepand') }}">چرا سپند؟</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
+            <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('compare.index') }}">مرکز مقایسه نرم‌افزارها</a><a href="{{ route('case-studies.show', ['caseStudy' => 'operational-control-snapshot']) }}">مطالعه موردی واقعی</a><a href="{{ route('why-sepand') }}">چرا سپند؟</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
             <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('organization.portal') }}">پرتال سازمان</a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} سپند؛ تمامی حقوق محفوظ است.</span><span>طراحی‌شده برای تجربه‌ای شفاف‌تر</span></div>
