@@ -527,5 +527,32 @@ $operational = require __DIR__.'/site_operational_solutions.php';
 $operationalModules = require __DIR__.'/site_operational_modules.php';
 $pages['solutions'] = array_merge($pages['solutions'], $operational['solutions']);
 $pages['module_relations'] = array_merge($pages['module_relations'], $operationalModules['module_relations']);
+$overrides = require __DIR__.'/site_seo_overrides.php';
+$pages = array_replace_recursive($pages, $overrides['content_pages']);
+$seo = require __DIR__.'/site_seo_strategy.php';
+
+foreach ($overrides['content_pages'] as $group => $groupOverrides) {
+    if ($group === 'module_relations') {
+        foreach ($groupOverrides as $slug => $relations) {
+            $pages[$group][$slug] = $relations;
+        }
+
+        continue;
+    }
+
+    foreach ($groupOverrides as $slug => $pageOverride) {
+        foreach (['outcomes', 'pillars', 'workflow', 'checklist', 'boundaries', 'faqs'] as $listKey) {
+            if (array_key_exists($listKey, $pageOverride)) {
+                $pages[$group][$slug][$listKey] = $pageOverride[$listKey];
+            }
+        }
+    }
+}
+
+foreach (array_keys($seo['redirects']) as $legacyPath) {
+    if (str_starts_with($legacyPath, '/modules/')) {
+        unset($pages['module_relations'][basename($legacyPath)]);
+    }
+}
 
 return $pages;

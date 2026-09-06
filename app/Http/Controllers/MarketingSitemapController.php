@@ -124,6 +124,8 @@ class MarketingSitemapController extends Controller
             ];
         }
 
+        $urls = collect($urls)->unique('loc')->values()->all();
+
         return response()
             ->view('marketing.sitemap', ['urls' => $urls])
             ->header('Content-Type', 'application/xml; charset=UTF-8')

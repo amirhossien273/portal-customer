@@ -38,7 +38,7 @@ class MarketingSeoTest extends TestCase
             ],
             '/transport-modes/road' => [
                 'title' => 'نرم‌افزار مدیریت حمل زمینی و سفرهای مرزی | سپند',
-                'description' => 'سفر حمل زمینی را از تخصیص کامیون و راننده تا رویدادهای مرزی، زمان انتظار، تحویل، POD و هزینه واقعی همان Trip در سپند مدیریت کنید.',
+                'description' => 'عملیات Road Freight را از تخصیص کامیون و راننده تا رویدادهای مرزی، زمان انتظار، تحویل، POD و هزینه واقعی سفر در سپند مدیریت کنید.',
                 'h1' => 'تحویل و هزینه نهایی مدیریت کنید',
             ],
             '/transport-modes/rail' => [
@@ -181,10 +181,10 @@ class MarketingSeoTest extends TestCase
         $portalContent = $portal->getContent();
 
         $portal
-            ->assertSee('<title>پرتال مشتریان حمل‌ونقل و رهگیری محموله | سپند</title>', false)
-            ->assertSee('<meta name="description" content="پرتال مشتریان سپند با ورود امن OTP، وضعیت استعلام، محموله و رویدادهای مجاز رهگیری را همراه صورتحساب و رسید از اطلاعات یکپارچه CRM نمایش می‌دهد.">', false)
+            ->assertSee('<title>'.config('site_modules.customer-portal-tracking.seo_title').'</title>', false)
+            ->assertSee('<meta name="description" content="'.e(config('site_modules.customer-portal-tracking.meta_description')).'">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/customer-portal-tracking">', false)
-            ->assertSee('از استعلام تا رهگیری و امور مالی', false)
+            ->assertSee('OTP، رهگیری مجاز و صورتحساب', false)
             ->assertSee('ورود با شماره موبایل و OTP', false)
             ->assertSee('مشاهده استعلام‌ها', false)
             ->assertSee('رهگیری محموله و timeline رویدادها', false)
@@ -237,7 +237,7 @@ class MarketingSeoTest extends TestCase
         ];
 
         $this->assertCount(22, $pages);
-        $this->assertSame(103, array_sum(array_map('count', $pages)));
+        $this->assertSame(95, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
@@ -282,7 +282,7 @@ class MarketingSeoTest extends TestCase
         }
 
         $this->assertSame(
-            ['پرتال مشتریان حمل و نقل', 'نرم افزار رهگیری محموله برای مشتریان'],
+            ['پرتال مشتریان حمل و نقل', 'پرتال رهگیری مشتری حمل', 'مشاهده صورتحساب مشتری حمل و نقل'],
             config('site_modules.customer-portal-tracking.keywords')
         );
     }

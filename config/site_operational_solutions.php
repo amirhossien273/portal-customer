@@ -89,7 +89,7 @@ return [
             'pillars_heading' => 'معماری راهکار مدیریت استثناهای حمل',
             'pillars_intro' => 'چرخه مؤثر از قاعده محدود و قابل سنجش شروع می‌شود و با ثبت نتیجه پایان می‌یابد.',
             'pillars' => [
-                ['title' => 'Rule Builder و چرخه Exception', 'description' => 'شرط، شدت، مسئول و وضعیت رسیدگی در ابزار تخصصی مرکز کنترل مدیریت می‌شوند.', 'link' => ['label' => 'نرم‌افزار مدیریت استثناهای عملیات حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'operational-control-center']]],
+                ['title' => 'Rule Builder و Trigger عملیاتی', 'description' => 'شرط، شدت، مسئول و مسیر Escalation در راهکار تخصصی اتوماسیون عملیات تعریف می‌شوند.', 'link' => ['label' => 'اتوماسیون عملیات با Rule و Trigger', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'operations-automation']]],
                 ['title' => 'دیدپذیری پیش از رسیدگی', 'description' => 'برج کنترل نشانه‌های سکون، تأخیر یا نیازمند توجه را در نمای روزانه آشکار می‌کند.', 'link' => ['label' => 'راهکار دیدپذیری عملیات حمل', 'route' => 'solutions.shipment-visibility']],
                 ['title' => 'پرونده و داده مرجع', 'description' => 'Exception به Job، Shipment، Schedule یا هزینه مرتبط می‌شود و از متن پرونده جدا نمی‌ماند.', 'link' => ['label' => 'ماژول مدیریت عملیات حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'transport-operations']]],
                 ['title' => 'حاکمیت تصمیم حساس', 'description' => 'موارد اعتباری، SLA یا اثرگذار بر سود در سطح مرکز فرمان بررسی می‌شوند.', 'link' => ['label' => 'راهکار حاکمیت عملیاتی حمل‌ونقل', 'route' => 'solutions.transport-governance']],
@@ -112,7 +112,7 @@ return [
             ],
             'boundary_heading' => 'مرز مدیریت استثنا با قابلیت‌های نزدیک',
             'boundaries' => [
-                ['title' => 'صفحه محصول مرکز کنترل', 'description' => 'برای فهرست امکانات Rule، کیفیت داده و Schedule صفحه ماژول را ببینید.', 'link' => ['label' => 'مرکز کنترل عملیات سپند', 'route' => 'site.modules.show', 'parameters' => ['module' => 'operational-control-center']]],
+                ['title' => 'Rule و Trigger پیش از Exception', 'description' => 'برای تعریف سیگنال، شرط، Severity و Escalation به صفحه اتوماسیون عملیات بروید.', 'link' => ['label' => 'اتوماسیون عملیات سپند', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'operations-automation']]],
                 ['title' => 'پایش لحظه‌ای', 'description' => 'اگر هدف فقط دیدن وضعیت و پرونده‌های ساکن است، راهکار دیدپذیری مناسب‌تر است.', 'link' => ['label' => 'برج کنترل حمل‌ونقل', 'route' => 'solutions.shipment-visibility']],
                 ['title' => 'کنترل مدیریتی', 'description' => 'برای اعتبار، SLA، دارایی و سود به راهکار حاکمیت عملیاتی بروید.', 'link' => ['label' => 'مرکز فرمان سازمانی حمل‌ونقل', 'route' => 'solutions.transport-governance']],
             ],
@@ -151,7 +151,7 @@ return [
             'pillars_heading' => 'ستون‌های راهکار حاکمیت عملیاتی حمل',
             'pillars_intro' => 'چهار محور زیر تصمیم را از گزارش جدا و به فرایند اجرایی متصل می‌کنند.',
             'pillars' => [
-                ['title' => 'مرکز فرمان سازمانی', 'description' => 'Workspaceهای اعتبار، SLA، تحلیل، DMS، دارایی و مالی در یک سطح مدیریتی قرار می‌گیرند.', 'link' => ['label' => 'مرکز فرمان سازمانی شرکت حمل‌ونقل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'enterprise-command-center']]],
+                ['title' => 'امنیت و دامنه اختیار', 'description' => 'Workspace، نقش، مجوز و ردپای تغییر حساس مبنای اجرای سیاست سازمانی هستند.', 'link' => ['label' => 'امنیت و مدیریت دسترسی سپند', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'security-access-management']]],
                 ['title' => 'کنترل استثناهای اجرایی', 'description' => 'رخدادهای خارج از قاعده با مسئول و نتیجه مشخص به مرکز فرمان ورودی می‌دهند.', 'link' => ['label' => 'راهکار مدیریت استثناهای حمل', 'route' => 'solutions.operation-exception-management']],
                 ['title' => 'حاکمیت اسناد و آمادگی', 'description' => 'دسترسی، نسخه، تأیید و الزام مدارک در نقاط حساس کنترل می‌شوند.', 'link' => ['label' => 'راهکار آمادگی اسناد حمل', 'route' => 'solutions.document-readiness']],
                 ['title' => 'مالی و سودآوری', 'description' => 'نرخ ارز، Accrual و Snapshot سود، اثر اقتصادی تصمیم‌ها را آشکار می‌کنند.', 'link' => ['label' => 'نرم‌افزار حسابداری چندارزی حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'finance-accounting']]],
@@ -174,7 +174,7 @@ return [
             ],
             'boundary_heading' => 'مرز حاکمیت با صفحات اجرایی',
             'boundaries' => [
-                ['title' => 'صفحه محصول مرکز فرمان', 'description' => 'برای مشاهده Workspaceها و امکانات قابل استفاده به معرفی ماژول بروید.', 'link' => ['label' => 'مرکز فرمان سازمانی سپند', 'route' => 'site.modules.show', 'parameters' => ['module' => 'enterprise-command-center']]],
+                ['title' => 'پایش اجرای سیاست در عملیات', 'description' => 'برای مشاهده وضعیت جاری و اولویت تصمیم روزانه به برج کنترل عملیات بروید.', 'link' => ['label' => 'برج کنترل عملیات سپند', 'route' => 'site.modules.show', 'parameters' => ['module' => 'operations-control-tower']]],
                 ['title' => 'کنترل Exception روزانه', 'description' => 'برای Rule، هشدار، مسئول و Override اجرایی صفحه مدیریت استثنا را ببینید.', 'link' => ['label' => 'مدیریت استثناهای عملیات حمل', 'route' => 'solutions.operation-exception-management']],
                 ['title' => 'برنامه‌ریزی اعزام', 'description' => 'برای تخصیص خودرو و راننده بر اساس ظرفیت و مدارک به راهکار دیسپچ بروید.', 'link' => ['label' => 'راهکار برنامه‌ریزی دیسپچ ناوگان', 'route' => 'solutions.fleet-dispatch-planning']],
             ],
@@ -213,7 +213,7 @@ return [
             'pillars_heading' => 'اجزای راهکار آمادگی اسناد حمل',
             'pillars_intro' => 'الگو، وضعیت، سند واقعی و نقطه کنترل چهار جزء مکمل این راهکارند.',
             'pillars' => [
-                ['title' => 'چک‌لیست استاندارد', 'description' => 'Template، سطح الزام و رفتار هشدار یا Block برای هر سرویس تعریف می‌شوند.', 'link' => ['label' => 'چک‌لیست استاندارد اسناد حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'document-checklists']]],
+                ['title' => 'مدیریت فایل و سابقه سند', 'description' => 'ثبت، دسترسی، نسخه و آرشیو فایل در ماژول مدیریت اسناد انجام می‌شود.', 'link' => ['label' => 'ماژول مدیریت اسناد حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'document-management']]],
                 ['title' => 'مدیریت فایل و نسخه', 'description' => 'سند واقعی، نسخه جاری، تگ، دسترسی و وضعیت تأیید در DMS نگهداری می‌شوند.', 'link' => ['label' => 'نرم‌افزار مدیریت اسناد حمل‌ونقل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'document-management']]],
                 ['title' => 'ساختار بارنامه', 'description' => 'در پرونده دریایی، ارتباط House و Master و کنترل نسخه دامنه تخصصی خود را دارد.', 'link' => ['label' => 'راهکار مدیریت HBL و MBL', 'route' => 'solutions.bill-of-lading-management']],
                 ['title' => 'کنترل مرحله عملیات', 'description' => 'نتیجه چک‌لیست پیش از نقاط حساس همان Job و Shipment بررسی می‌شود.', 'link' => ['label' => 'ماژول عملیات حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'transport-operations']]],
@@ -236,7 +236,7 @@ return [
             ],
             'boundary_heading' => 'مرز آمادگی اسناد با محتوای اسنادی دیگر',
             'boundaries' => [
-                ['title' => 'صفحه محصول چک‌لیست', 'description' => 'برای امکانات Template، سطح الزام و کنترل پرونده معرفی ماژول را ببینید.', 'link' => ['label' => 'چک‌لیست اسناد پرونده حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'document-checklists']]],
+                ['title' => 'چرخه عمر و Approval سند', 'description' => 'برای نسخه‌بندی، بازگشت اصلاح و تأیید نهایی به راهکار تخصصی گردش سند بروید.', 'link' => ['label' => 'چرخه تأیید اسناد حمل', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'document-management']]],
                 ['title' => 'DMS و گردش تأیید', 'description' => 'اگر نیاز اصلی نسخه، دسترسی، تگ و تأیید فایل است، صفحه مدیریت اسناد مناسب‌تر است.', 'link' => ['label' => 'مدیریت و کنترل نسخه اسناد حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'document-management']]],
                 ['title' => 'بارنامه House و Master', 'description' => 'برای ساختار داده و فرایند تخصصی بارنامه دریایی به راهکار مربوط بروید.', 'link' => ['label' => 'مدیریت بارنامه حمل', 'route' => 'solutions.bill-of-lading-management']],
             ],
@@ -277,7 +277,7 @@ return [
             'pillars' => [
                 ['title' => 'دیسپچ و Assignment', 'description' => 'پروفایل خودرو، راننده، ظرفیت و چرخه مأموریت در ماژول تخصصی مدیریت می‌شوند.', 'link' => ['label' => 'نرم‌افزار دیسپچ ناوگان حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'fleet-dispatch']]],
                 ['title' => 'Shipment و نیاز بار', 'description' => 'وزن، حجم، پالت، تجهیز و بازه زمانی از پرونده عملیاتی می‌آیند.', 'link' => ['label' => 'نرم‌افزار مدیریت پرونده حمل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'transport-operations']]],
-                ['title' => 'حاکمیت دارایی و انطباق', 'description' => 'سیاست مدارک، وضعیت ناوگان و ظرفیت شبکه در مرکز فرمان کنترل می‌شوند.', 'link' => ['label' => 'مرکز فرمان سازمانی شرکت حمل‌ونقل', 'route' => 'site.modules.show', 'parameters' => ['module' => 'enterprise-command-center']]],
+                ['title' => 'Master Data و انطباق ناوگان', 'description' => 'خودرو، راننده، نگهداری، مدارک و Availability در راهکار مدیریت ناوگان کنترل می‌شوند.', 'link' => ['label' => 'مدیریت ناوگان و رانندگان', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'fleet-management']]],
                 ['title' => 'سفر حمل زمینی', 'description' => 'رویدادهای مرزی، انتظار، تحویل و POD در جریان تخصصی حمل زمینی ثبت می‌شوند.', 'link' => ['label' => 'نرم‌افزار مدیریت حمل زمینی', 'route' => 'site.transport-modes.show', 'parameters' => ['mode' => 'road']]],
             ],
             'workflow_heading' => 'جریان دیسپچ از درخواست تا پایان مأموریت',

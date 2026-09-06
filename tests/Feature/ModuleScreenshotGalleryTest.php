@@ -26,12 +26,11 @@ class ModuleScreenshotGalleryTest extends TestCase
             [
                 'crm', 'pricing-sales', 'booking', 'transport-operations', 'document-management',
                 'finance-accounting', 'workflow-tasks', 'automatic-tasks', 'customer-portal-tracking',
-                'operations-control-tower', 'operational-control-center', 'enterprise-command-center',
-                'document-checklists', 'fleet-dispatch',
+                'operations-control-tower', 'fleet-dispatch',
             ],
             array_keys($configured)
         );
-        $this->assertSame(24, array_sum(array_map('count', $configured)));
+        $this->assertSame(21, array_sum(array_map('count', $configured)));
 
         foreach ($configured as $slug => $screenshots) {
             $content = $this->get('/modules/'.$slug)

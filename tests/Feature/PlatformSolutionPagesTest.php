@@ -12,9 +12,8 @@ class PlatformSolutionPagesTest extends TestCase
     private const PAGES = [
         'operations-automation' => 'اتوماسیون عملیات حمل‌ونقل؛ از سیگنال تا اقدام قابل پیگیری',
         'freight-finance' => 'مدیریت مالی حمل‌ونقل؛ از هزینه تعهدی تا سود واقعی پرونده',
-        'container-nvocc' => 'مدیریت کانتینر NVOCC؛ کنترل دارایی، دپو و تعهد بازگشت',
         'fleet-management' => 'مدیریت ناوگان؛ آمادگی خودرو و راننده پیش از تصمیم اعزام',
-        'document-management' => 'مدیریت اسناد حمل؛ فایل درست، نسخه درست، در زمان درست',
+        'document-management' => 'چرخه عمر و تأیید سند حمل؛ از Draft تا نسخه نهایی',
         'multimodal-transport' => 'مدیریت حمل چندوجهی؛ یک Journey، چند Leg هماهنگ',
         'schedule-management' => 'مدیریت برنامه حرکت؛ یک مرجع برای ETD، ETA و تغییرات',
         'rate-management' => 'مدیریت نرخ حمل؛ محاسبه یکسان، معتبر و قابل ردیابی',
@@ -102,12 +101,13 @@ class PlatformSolutionPagesTest extends TestCase
 
     public function test_navigation_sitemap_and_evidence_assets_cover_every_platform_solution(): void
     {
-        $home = $this->get('/')->assertOk()->assertSee('href="'.self::SITE_URL.'/solutions"', false);
+        $this->get('/')->assertOk()->assertSee('href="'.self::SITE_URL.'/solutions"', false);
+        $hub = $this->get('/solutions')->assertOk();
         $sitemap = $this->get('/sitemap.xml')->assertOk()->getContent();
 
         foreach (config('site_platform_solutions.pages') as $slug => $page) {
             $url = self::SITE_URL.'/solutions/'.$slug;
-            $home->assertSee('href="'.$url.'"', false);
+            $hub->assertSee('href="'.$url.'"', false);
             $this->assertSame(1, substr_count($sitemap, '<loc>'.$url.'</loc>'));
 
             foreach ($page['evidence'] as $evidence) {
@@ -119,9 +119,13 @@ class PlatformSolutionPagesTest extends TestCase
     public function test_overlapping_topics_link_to_their_more_specific_existing_pages(): void
     {
         $this->get('/solutions/container-nvocc')
+            ->assertMovedPermanently()
+            ->assertRedirect(self::SITE_URL.'/solutions/container-management');
+
+        $this->get('/solutions/container-management')
             ->assertOk()
-            ->assertSee('href="'.self::SITE_URL.'/solutions/nvocc"', false)
-            ->assertSee('href="'.self::SITE_URL.'/solutions/container-management"', false);
+            ->assertSee('Container Master، Depot، Lease و Utilization', false)
+            ->assertSee('live/container-control.png', false);
 
         $this->get('/solutions/fleet-management')
             ->assertOk()

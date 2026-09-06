@@ -98,8 +98,8 @@
             <h1>{{ $page['h1'] }}</h1>
             <p>{{ $page['lead'] }}</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="#decision-framework">{{ $isGuide ? 'مشاهده معیارهای انتخاب' : 'مشاهده اجزای راهکار' }}</a>
-                <a class="btn btn-outline" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_hero_consultation">درخواست دمو و مشاوره</a>
+                <a class="btn btn-primary" href="#decision-framework">{{ $page['hero_primary_label'] ?? ($isGuide ? 'مشاهده معیارهای انتخاب' : 'مشاهده اجزای راهکار') }}</a>
+                <a class="btn btn-outline" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_hero_consultation">{{ $page['hero_secondary_label'] ?? 'درخواست دمو و مشاوره' }}</a>
             </div>
         </div>
         <aside class="content-answer-card reveal" aria-label="پاسخ کوتاه">
@@ -291,5 +291,5 @@
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta_title'] }}</h2><p>{{ $page['cta_text'] }}</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_bottom_consultation">درخواست دمو و مشاوره</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta_title'] }}</h2><p>{{ $page['cta_text'] }}</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_bottom_consultation">{{ $page['cta_button'] ?? 'درخواست دمو و مشاوره' }}</a></div></div></div></section>
 @endsection

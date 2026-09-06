@@ -12,7 +12,7 @@
                     <span class="section-label">{{ $relatedPage['group'] === 'guide' ? 'راهنمای انتخاب' : 'راهکار تخصصی' }}</span>
                     <h3>{{ $relatedPage['title'] }}</h3>
                     <p>{{ $relatedPage['description'] }}</p>
-                    <a href="{{ route($relatedPage['route']) }}">مشاهده صفحه <span aria-hidden="true">←</span></a>
+                    <a href="{{ route($relatedPage['route'], $relatedPage['parameters'] ?? []) }}">مشاهده صفحه <span aria-hidden="true">←</span></a>
                 </article>
             @endforeach
         </div>

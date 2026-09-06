@@ -124,7 +124,7 @@
     @include('marketing.transport-modes.road-trip-costs')
 @elseif($slug === 'rail')
     @include('marketing.transport-modes.rail-operations-depth')
-@else
+@elseif(! empty($mode['workflow_heading']) && ! empty($mode['workflow_intro']) && ! empty($mode['workflow']))
 <section class="section" aria-labelledby="transport-workflow-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="transport-workflow-title">{{ $mode['workflow_heading'] }}</h2><p class="section-sub">{{ $mode['workflow_intro'] }}</p></div>

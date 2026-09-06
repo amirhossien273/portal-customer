@@ -39,13 +39,13 @@
             <h1>{{ $page['h1'] }}</h1>
             <p>{{ $page['lead'] }}</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="#product-evidence">مشاهده شواهد واقعی محصول</a>
-                <a class="btn btn-outline" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_hero_demo">درخواست دمو</a>
+                <a class="btn btn-primary" href="#product-evidence">{{ $page['hero_primary_label'] ?? 'مشاهده شواهد واقعی محصول' }}</a>
+                <a class="btn btn-outline" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_hero_demo">{{ $page['hero_secondary_label'] ?? 'درخواست دمو' }}</a>
             </div>
         </div>
         <aside class="platform-hero-panel reveal" aria-label="دامنه این راهکار">
             <span>مسئله‌ای که حل می‌شود</span>
-            <h2>{{ $page['nav_title'] }} چه زمانی ضروری است؟</h2>
+            <h2>{{ $page['intent_heading'] ?? ($page['nav_title'].' چه زمانی ضروری است؟') }}</h2>
             <p>{{ $page['problem'] }}</p>
             <div class="platform-mini-metrics">
                 @foreach(array_slice($page['metrics'], 0, 3) as $metric)<small>{{ $metric }}</small>@endforeach
@@ -171,5 +171,5 @@
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['nav_title'] }} را با یک سناریوی واقعی ارزیابی کنید</h2><p>یک پرونده نمونه و گلوگاه اصلی تیم را آماده کنید تا داده، کنترل، مسئولیت و خروجی در جلسه دمو بررسی شوند.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_bottom_demo">درخواست دمو و مشاوره</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta_title'] ?? ($page['nav_title'].' را با یک سناریوی واقعی ارزیابی کنید') }}</h2><p>{{ $page['cta_text'] ?? 'یک پرونده نمونه و گلوگاه اصلی تیم را آماده کنید تا داده، کنترل، مسئولیت و خروجی در جلسه دمو بررسی شوند.' }}</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_bottom_demo">{{ $page['cta_button'] ?? 'درخواست دمو و مشاوره' }}</a></div></div></div></section>
 @endsection

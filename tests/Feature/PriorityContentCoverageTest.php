@@ -14,7 +14,7 @@ class PriorityContentCoverageTest extends TestCase
             '/solutions/payment-workflow' => 'درخواست پرداخت تا پرداخت نهایی',
             '/solutions/booking-reconciliation' => 'دریافت و تطبیق مالی Booking',
             '/modules/customer-portal-tracking' => 'انتخاب حساب در ساختار چندسازمانی',
-            '/solutions/container-nvocc' => 'live/container-control.png',
+            '/solutions/container-management' => 'live/container-control.png',
             '/solutions/fleet-management' => 'live/fleet-compliance-control.png',
             '/solutions/supplier-management' => 'Supplier Master و مقایسه تأمین‌کنندگان',
             '/solutions/rate-management' => 'Rate Break & Minimum',

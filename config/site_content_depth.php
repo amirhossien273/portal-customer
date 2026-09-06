@@ -410,5 +410,17 @@ $depth = [
 
 $operational = require __DIR__.'/site_operational_solutions.php';
 $depth['solutions'] = array_merge($depth['solutions'], $operational['depth']);
+$overrides = require __DIR__.'/site_seo_overrides.php';
+$depth = array_replace_recursive($depth, $overrides['content_depth']);
+
+foreach ($overrides['content_depth'] as $group => $groupOverrides) {
+    foreach ($groupOverrides as $slug => $pageOverride) {
+        foreach (['editorial', 'diagnostic', 'deep_dive', 'metrics', 'rollout'] as $sectionKey) {
+            if (array_key_exists($sectionKey, $pageOverride)) {
+                $depth[$group][$slug][$sectionKey] = $pageOverride[$sectionKey];
+            }
+        }
+    }
+}
 
 return $depth;
