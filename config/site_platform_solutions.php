@@ -244,9 +244,29 @@ $pages['operations-automation']['demo'] = [
     ],
 ];
 
-$pages['container-nvocc']['evidence'][0] = ['title' => 'کنترل واقعی دارایی کانتینری', 'text' => 'نمای واقعی Enterprise Control برای بررسی Container Master، رویداد، تعهد و وضعیت بهره‌برداری.', 'image' => 'live/container-control.png', 'alt' => 'کنترل واقعی کانتینر و NVOCC در سپند', 'route' => 'solutions.container-management', 'cta' => 'مشاهده مدیریت کانتینر'];
 $pages['fleet-management']['evidence'][0] = ['title' => 'کنترل واقعی ناوگان و Compliance', 'text' => 'نمای واقعی کنترل خودرو، راننده، آمادگی مدارک و جلوگیری از تخصیص ناسازگار.', 'image' => 'live/fleet-compliance-control.png', 'alt' => 'کنترل واقعی ناوگان و Compliance در سپند', 'route' => 'solutions.fleet-dispatch-planning', 'cta' => 'مشاهده برنامه‌ریزی اعزام'];
 $pages['rate-management']['evidence'][0] = ['title' => 'مدیریت واقعی Rate Master', 'text' => 'نمای واقعی تعرفه‌های ساختاریافته برای کنترل دامنه، اعتبار و مبنای محاسبه.', 'image' => 'live/rate-management.png', 'alt' => 'صفحه واقعی مدیریت نرخ و تعرفه سپند', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'rate-management'], 'cta' => 'مرور منطق Rate Break'];
+
+$overrides = require __DIR__.'/site_seo_overrides.php';
+$pages = array_replace_recursive($pages, $overrides['platform_pages']);
+
+foreach ($overrides['platform_pages'] as $slug => $override) {
+    foreach (['capabilities', 'evidence', 'workflow', 'depth', 'controls', 'metrics', 'roles', 'faqs', 'related', 'existing_links'] as $listKey) {
+        if (array_key_exists($listKey, $override)) {
+            $pages[$slug][$listKey] = $override[$listKey];
+        }
+    }
+}
+
+unset($pages['container-nvocc']);
+
+foreach ($pages as &$platformPage) {
+    $platformPage['related'] = array_values(array_filter(
+        $platformPage['related'],
+        static fn (string $relatedSlug): bool => isset($pages[$relatedSlug])
+    ));
+}
+unset($platformPage);
 
 foreach ($pages as $slug => &$page) {
     $page['slug'] = $slug;
@@ -277,11 +297,6 @@ return [
                 'category' => 'commercial',
                 'problem' => 'هزینه واقعی دیر می‌رسد و سود پرونده قابل اتکا نیست.',
                 'outcome' => 'Accrual، ارز، تطبیق و Margin واقعی در سطح Booking یا Job.',
-            ],
-            'container-nvocc' => [
-                'category' => 'assets',
-                'problem' => 'موقعیت، تخصیص یا موعد بازگشت کانتینر بین فایل‌ها گم می‌شود.',
-                'outcome' => 'چرخه دارایی، دپو، Lease، اسناد و هزینه در پرونده متصل.',
             ],
             'fleet-management' => [
                 'category' => 'assets',
@@ -333,7 +348,7 @@ return [
             ['number' => '۰۱', 'eyebrow' => 'Commercial', 'title' => 'درخواست و نرخ', 'text' => 'استعلام را با نرخ معتبر، هزینه‌های جانبی و منطق محاسبه شروع کنید.', 'solutions' => ['rate-management']],
             ['number' => '۰۲', 'eyebrow' => 'Planning', 'title' => 'مسیر و برنامه', 'text' => 'Journey، Leg، ETD و ETA را پیش از اجرا روی یک برنامه مرجع هماهنگ کنید.', 'solutions' => ['schedule-management', 'multimodal-transport']],
             ['number' => '۰۳', 'eyebrow' => 'Execution', 'title' => 'اجرا و استثنا', 'text' => 'رخدادهای مهم را به هشدار، مسئول، موعد و اقدام قابل سنجش تبدیل کنید.', 'solutions' => ['operations-automation']],
-            ['number' => '۰۴', 'eyebrow' => 'Resources', 'title' => 'دارایی و ظرفیت', 'text' => 'خودرو، راننده و کانتینر را با تعهدات و مأموریت جاری کنترل کنید.', 'solutions' => ['fleet-management', 'container-nvocc']],
+            ['number' => '۰۴', 'eyebrow' => 'Resources', 'title' => 'دارایی و ظرفیت', 'text' => 'آمادگی خودرو و راننده را در Master ناوگان کنترل و چرخه کانتینر را در صفحه تخصصی مدیریت کانتینر بررسی کنید.', 'solutions' => ['fleet-management']],
             ['number' => '۰۵', 'eyebrow' => 'Compliance', 'title' => 'سند و آمادگی', 'text' => 'نسخه و کامل‌بودن مدارک را در همان نقطه عملیاتی بررسی کنید.', 'solutions' => ['document-management']],
             ['number' => '۰۶', 'eyebrow' => 'Outcome', 'title' => 'مالی و سود واقعی', 'text' => 'هزینه تعهدی و واقعی را با درآمد و نرخ ارز همان پرونده تطبیق دهید.', 'solutions' => ['freight-finance']],
         ],

@@ -1,8 +1,8 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'مقایسه نرم‌افزارهای حمل‌ونقل بین‌المللی | سپند';
-    $description = 'مرکز مقایسه نرم‌افزار سپند با رویان، سبا سیستم و سایر راهکارهای حمل‌ونقل؛ جدول‌ها، معیارهای انتخاب، موارد نیازمند بررسی و راهنمای دمو.';
+    $title = 'مرکز مقایسه و راهنمای انتخاب نرم‌افزار حمل‌ونقل | سپند';
+    $description = 'هاب مقایسه نرم‌افزارهای حمل‌ونقل؛ انتخاب میان مقایسه مستقیم، مقایسه دسته‌های نرم‌افزار، راهنمای عمومی خرید و راهنمای تخصصی فورواردری.';
     $canonical = route('compare.index');
     $faqs = [
         ['question' => 'چطور یک نرم‌افزار حمل‌ونقل را بی‌طرفانه مقایسه کنیم؟', 'answer' => 'سناریوی یکسانی را از ثبت مشتری و استعلام تا نرخ، Booking، عملیات، اسناد، مالی و گزارش سود در هر محصول اجرا کنید و فقط قابلیت‌های نمایش‌داده‌شده یا تعهدشده در قرارداد را قطعی بدانید.'],
@@ -66,8 +66,8 @@
     <div class="container hero-inner">
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مرکز مقایسه</span></div>
-            <h1>مقایسه نرم‌افزار سپند با سایر نرم‌افزارهای حمل‌ونقل</h1>
-            <p>این مرکز برای تصمیم‌گیری مرحله Comparison طراحی شده است: اطلاعات عمومی محصولات را جدا از موارد نیازمند بررسی نشان می‌دهد و کمک می‌کند یک سناریوی ثابت را در دموهای مختلف اجرا کنید. هدف، اعلام برنده عمومی نیست؛ هدف، انتخاب راهکاری است که با فرایند، استقرار و بودجه شرکت شما تطابق بیشتری دارد.</p>
+            <h1>مرکز مقایسه و راهنمای انتخاب نرم‌افزار حمل‌ونقل</h1>
+            <p>این صفحه هاب مسیریابی است: مقایسه مستقیم برندها، مقایسه دسته‌های TMS و CRM و مالی، چارچوب عمومی انتخاب و راهنمای تخصصی فورواردری را از هم جدا می‌کند تا برای هر سؤال وارد صفحه مالک همان Query شوید.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#comparison-pages">مشاهده مقایسه‌ها</a><a class="btn btn-outline" href="{{ route('compare.best-transport-software') }}">راهنمای انتخاب</a></div>
         </div>
         <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مرکز مقایسه نرم‌افزار سپند با راهکارهای حمل‌ونقل">
@@ -84,8 +84,8 @@
     <div class="container">
         <div class="section-head reveal">
             <span class="section-label">صفحات Cluster</span>
-            <h2 class="section-title" id="comparison-pages-title">مقایسه موردنظر را انتخاب کنید</h2>
-            <p class="section-sub">در مقایسه با رقبا، فقط اطلاعات منتشرشده در منابع رسمی قطعی تلقی شده و بقیه موارد برای بررسی در دمو علامت‌گذاری شده‌اند.</p>
+            <h2 class="section-title" id="comparison-pages-title">بر اساس نوع تصمیم، صفحه مقایسه مناسب را انتخاب کنید</h2>
+            <p class="section-sub">این هاب مالک نام صفحات و مسیر تصمیم است؛ پاسخ تفصیلی هر Intent در صفحه تخصصی خودش ارائه می‌شود.</p>
         </div>
         <div class="hub-card-grid">
             @foreach($comparisons as $index => $item)

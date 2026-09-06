@@ -182,5 +182,22 @@ $modules = [
 ];
 
 $operational = require __DIR__.'/site_operational_modules.php';
+$modules = array_merge($modules, $operational['modules']);
+$seo = require __DIR__.'/site_seo_strategy.php';
+$overrides = require __DIR__.'/site_seo_overrides.php';
 
-return array_merge($modules, $operational['modules']);
+foreach (array_keys($seo['redirects']) as $legacyPath) {
+    if (str_starts_with($legacyPath, '/modules/')) {
+        unset($modules[basename($legacyPath)]);
+    }
+}
+
+$modules = array_replace_recursive($modules, $overrides['modules']);
+
+foreach ($overrides['modules'] as $slug => $override) {
+    if (array_key_exists('keywords', $override)) {
+        $modules[$slug]['keywords'] = $override['keywords'];
+    }
+}
+
+return $modules;

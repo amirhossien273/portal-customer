@@ -1,10 +1,10 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی | سپند';
-    $description = 'مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با انواع راهکارها از نظر CRM، Booking، عملیات، اسناد، مالی، گزارش سود، پرتال مشتری و یکپارچگی اطلاعات.';
+    $title = 'مقایسه انواع نرم‌افزار حمل‌ونقل؛ TMS، CRM و مالی | سپند';
+    $description = 'مقایسه دسته‌های نرم‌افزار حمل‌ونقل شامل راهکار یکپارچه، TMS عملیاتی، CRM عمومی، حسابداری‌محور و مدیریت ناوگان؛ تفاوت دامنه و Trade-off هر معماری.';
     $canonical = route('compare.sepand-other-transport-software');
-    $dateModified = '2026-08-18';
+    $dateModified = '2026-09-06';
     $comparisons = config('site_comparisons.pages');
     $workflowSteps = [
         ['label' => 'Lead / Customer', 'title' => 'سرنخ و مشتری', 'description' => 'اطلاعات سرنخ، مشتری، سوابق ارتباط و مسئول پیگیری در CRM شرکت حمل‌ونقل ثبت می‌شود.', 'href' => route('site.modules.show', ['module' => 'crm'])],
@@ -18,8 +18,8 @@
     ];
     $faqs = [
         [
-            'question' => 'بهترین نرم‌افزار مدیریت حمل‌ونقل بین‌المللی چه ویژگی‌هایی دارد؟',
-            'answer' => 'گزینه مناسب باید CRM تخصصی، استعلام و نرخ‌دهی، Booking، عملیات چندروش حمل، اسناد، مالی چندارزی، سود پرونده، سطح دسترسی و گزارش‌گیری را متناسب با فرایند واقعی شرکت پوشش دهد.',
+            'question' => 'دسته‌های اصلی نرم‌افزار حمل‌ونقل چه تفاوتی دارند؟',
+            'answer' => 'راهکار یکپارچه زنجیره مشتری تا مالی را متصل می‌کند؛ TMS عملیاتی روی برنامه و اجرای حمل، CRM عمومی روی رابطه و فروش، حسابداری‌محور روی ثبت مالی و Fleet System روی دارایی و اعزام تمرکز دارد.',
         ],
         [
             'question' => 'سپند چه تفاوتی با CRM عمومی دارد؟',
@@ -71,7 +71,7 @@
             'isPartOf' => ['@id' => route('home').'#website'],
             'about' => [
                 ['@type' => 'SoftwareApplication', 'name' => 'نرم‌افزار مدیریت حمل‌ونقل سپند', 'url' => route('home')],
-                ['@type' => 'Thing', 'name' => 'مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی'],
+                ['@type' => 'Thing', 'name' => 'مقایسه دسته‌های نرم‌افزار حمل‌ونقل'],
             ],
             'significantLink' => [
                 route('compare.index'),
@@ -130,9 +130,9 @@
     <div class="container hero-inner">
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('compare.index') }}">مرکز مقایسه</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>سایر نرم‌افزارها</span></div>
-            <h1>مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی؛<br><span>سپند چه تفاوتی دارد؟</span></h1>
-            <p>برای مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی نباید فقط فهرست امکانات یا قیمت را دید. انتخاب درست زمانی انجام می‌شود که CRM تخصصی، استعلام و نرخ‌دهی، Booking، عملیات حمل، مدیریت اسناد، مالی چندارزی، گزارش سود پرونده، پرتال مشتری و یکپارچگی اطلاعات با فرایند واقعی شرکت سنجیده شوند. همچنین باید سطح دسترسی، شیوه استقرار، امکان انتقال داده و کیفیت پشتیبانی روشن باشد. بهترین نرم‌افزار حمل‌ونقل بین‌المللی برای هر شرکت گزینه‌ای است که سناریوی واقعی آن مجموعه را با کمترین ورود دوباره اطلاعات و ابهام عملیاتی پوشش دهد.</p>
-            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول مقایسه</a><a class="btn btn-outline" href="#selection-criteria">معیارهای انتخاب نرم‌افزار</a></div>
+            <h1>مقایسه انواع نرم‌افزار حمل‌ونقل؛<br><span>TMS، CRM، مالی و راهکار یکپارچه</span></h1>
+            <p>این صفحه معماری‌ها را مقایسه می‌کند، نه برندها را: راهکار یکپارچه، TMS عملیاتی، CRM عمومی، نرم‌افزار حسابداری‌محور و سیستم مدیریت ناوگان از نقطه شروع، داده مرجع و خروجی متفاوتی ساخته شده‌اند. جدول صفحه نشان می‌دهد هر دسته کدام مسئله را عمیق‌تر حل می‌کند و در کدام Handoff به اتصال یا ابزار مکمل نیاز دارد.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول دسته‌ها</a><a class="btn btn-outline" href="#selection-criteria">شناخت مرز هر معماری</a></div>
         </div>
         <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با دسته‌های مختلف نرم‌افزار حمل‌ونقل">
             <div class="comparison-visual">
@@ -148,7 +148,7 @@
     <div class="container">
         <div class="section-head reveal">
             <span class="section-label">چک‌لیست ارزیابی</span>
-            <h2 class="section-title" id="selection-criteria-title">برای مقایسه نرم‌افزارهای مدیریت حمل‌ونقل باید چه معیارهایی را بررسی کنیم؟</h2>
+            <h2 class="section-title" id="selection-criteria-title">دامنه و نقطه شروع هر دسته نرم‌افزار را چگونه تشخیص دهیم؟</h2>
             <p class="section-sub">هر معیار را با داده و سناریوی خودتان در دمو بررسی کنید؛ وجود یک عنوان در بروشور لزوماً به معنای پوشش کامل فرایند شرکت شما نیست.</p>
         </div>
         <div class="criteria-grid">

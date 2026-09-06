@@ -49,6 +49,9 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
     );
     Route::view('/compare/sepand-vs-other-transport-software', 'marketing.compare-sepand-other-transport-software')
         ->name('compare.sepand-other-transport-software');
+    foreach (config('site_seo_strategy.redirects', []) as $legacyPath => $primaryPath) {
+        Route::permanentRedirect($legacyPath, $primaryPath);
+    }
     Route::get('/modules/{module}', [MarketingModuleController::class, 'show'])
         ->whereIn('module', array_keys(config('site_modules')))
         ->name('site.modules.show');

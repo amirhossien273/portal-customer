@@ -600,5 +600,24 @@ $pages = [
 ];
 
 $operational = require __DIR__.'/site_operational_modules.php';
+$pages = array_merge($pages, $operational['module_pages']);
+$seo = require __DIR__.'/site_seo_strategy.php';
+$overrides = require __DIR__.'/site_seo_overrides.php';
 
-return array_merge($pages, $operational['module_pages']);
+foreach (array_keys($seo['redirects']) as $legacyPath) {
+    if (str_starts_with($legacyPath, '/modules/')) {
+        unset($pages[basename($legacyPath)]);
+    }
+}
+
+$pages = array_replace_recursive($pages, $overrides['module_pages']);
+
+foreach ($overrides['module_pages'] as $slug => $override) {
+    foreach (['hero', 'connections'] as $listKey) {
+        if (array_key_exists($listKey, $override)) {
+            $pages[$slug][$listKey] = $override[$listKey];
+        }
+    }
+}
+
+return $pages;

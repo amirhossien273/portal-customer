@@ -14,49 +14,37 @@ class OperationalMarketingPagesTest extends TestCase
             'h1' => 'برج کنترل عملیات حمل',
             'solution' => '/solutions/shipment-visibility',
         ],
-        'operational-control-center' => [
-            'h1' => 'مرکز کنترل عملیات',
-            'solution' => '/solutions/operation-exception-management',
-        ],
-        'enterprise-command-center' => [
-            'h1' => 'مرکز فرمان سازمانی',
-            'solution' => '/solutions/transport-governance',
-        ],
-        'document-checklists' => [
-            'h1' => 'چک‌لیست استاندارد اسناد',
-            'solution' => '/solutions/document-readiness',
-        ],
         'fleet-dispatch' => [
-            'h1' => 'دیسپچ و تخصیص ناوگان',
+            'h1' => 'دیسپچ اجرایی ناوگان',
             'solution' => '/solutions/fleet-dispatch-planning',
         ],
     ];
 
     private const SOLUTIONS = [
         'shipment-visibility' => [
-            'h1' => 'وضعیت جاری محموله‌ها را بدون گزارش‌گیری دستی ببینید',
+            'h1' => 'دیدپذیری داخلی محموله؛ وضعیت و Milestone معتبر برای اقدام',
             'module' => '/modules/operations-control-tower',
-            'anchor' => 'نرم‌افزار برج کنترل عملیات حمل',
+            'anchor' => 'برج کنترل عملیات حمل',
         ],
         'operation-exception-management' => [
             'h1' => 'هشدار عملیاتی را به اقدام دارای مسئول و نتیجه تبدیل کنید',
-            'module' => '/modules/operational-control-center',
-            'anchor' => 'نرم‌افزار مدیریت استثناهای عملیات حمل',
+            'module' => '/solutions/operations-automation',
+            'anchor' => 'اتوماسیون عملیات سپند',
         ],
         'transport-governance' => [
             'h1' => 'تصمیم‌های ریسک، تعهد و سود را میان واحدها هماهنگ کنید',
-            'module' => '/modules/enterprise-command-center',
-            'anchor' => 'مرکز فرمان سازمانی شرکت حمل‌ونقل',
+            'module' => '/modules/operations-control-tower',
+            'anchor' => 'برج کنترل عملیات سپند',
         ],
         'document-readiness' => [
-            'h1' => 'کامل‌بودن مدارک هر پرونده را پیش از نقطه حساس کنترل کنید',
-            'module' => '/modules/document-checklists',
-            'anchor' => 'چک‌لیست استاندارد اسناد حمل',
+            'h1' => 'آمادگی اسناد حمل؛ پرونده کامل پیش از نقطه حساس',
+            'module' => '/modules/document-management',
+            'anchor' => 'ماژول مدیریت اسناد حمل',
         ],
         'fleet-dispatch-planning' => [
-            'h1' => 'اعزام خودرو و راننده را با ظرفیت و محدودیت واقعی برنامه‌ریزی کنید',
+            'h1' => 'برنامه‌ریزی پیش از اعزام؛ ظرفیت و Assignment بدون تداخل',
             'module' => '/modules/fleet-dispatch',
-            'anchor' => 'نرم‌افزار دیسپچ ناوگان حمل',
+            'anchor' => 'دیسپچ و تخصیص ناوگان سپند',
         ],
     ];
 
@@ -136,8 +124,8 @@ class OperationalMarketingPagesTest extends TestCase
             ->mapWithKeys(fn (array $keywords, string $slug): array => [$keywords[0] => 'solution:'.$slug]);
         $targets = $moduleTargets->merge($solutionTargets);
 
-        $this->assertCount(10, $targets);
-        $this->assertCount(10, $targets->keys()->unique());
+        $this->assertCount(7, $targets);
+        $this->assertCount(7, $targets->keys()->unique());
 
         foreach (self::MODULES as $slug => $_) {
             $module = config('site_modules.'.$slug);
@@ -148,18 +136,27 @@ class OperationalMarketingPagesTest extends TestCase
 
     public function test_navigation_footer_and_sitemap_link_every_new_page(): void
     {
-        $home = $this->get('/')->assertOk();
+        $home = $this->get('/')->assertOk()
+            ->assertSee('href="'.self::SITE_URL.'/solutions"', false);
+        $hub = $this->get('/solutions')->assertOk();
         $sitemap = $this->get('/sitemap.xml')->assertOk()->getContent();
 
         foreach (self::SOLUTIONS as $slug => $_) {
             $url = self::SITE_URL.'/solutions/'.$slug;
-            $home->assertSee('href="'.$url.'"', false);
+            $hub->assertSee('href="'.$url.'"', false);
             $this->assertSame(1, substr_count($sitemap, '<loc>'.$url.'</loc>'));
         }
 
         foreach (self::MODULES as $slug => $_) {
             $url = self::SITE_URL.'/modules/'.$slug;
             $this->assertSame(1, substr_count($sitemap, '<loc>'.$url.'</loc>'));
+        }
+
+        foreach (config('site_seo_strategy.redirects') as $legacyPath => $primaryPath) {
+            $this->assertSame(0, substr_count($sitemap, '<loc>'.self::SITE_URL.$legacyPath.'</loc>'));
+            $this->get($legacyPath)
+                ->assertMovedPermanently()
+                ->assertRedirect(self::SITE_URL.$primaryPath);
         }
     }
 }

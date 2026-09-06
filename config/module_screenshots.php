@@ -155,5 +155,21 @@ $screenshots = [
 ];
 
 $operational = require __DIR__.'/site_operational_modules.php';
+$screenshots = array_merge($screenshots, $operational['screenshots']);
+$seo = require __DIR__.'/site_seo_strategy.php';
 
-return array_merge($screenshots, $operational['screenshots']);
+foreach (array_keys($seo['redirects']) as $legacyPath) {
+    if (str_starts_with($legacyPath, '/modules/')) {
+        unset($screenshots[basename($legacyPath)]);
+    }
+}
+
+$screenshots['fleet-dispatch'] = [[
+    'path' => 'modules/screenshots/operations-calendar-list.webp',
+    'width' => 1600,
+    'height' => 861,
+    'alt' => 'صف اجرایی مأموریت‌ها و پرونده‌های نیازمند اقدام برای دیسپچر ناوگان سپند',
+    'caption' => 'صف اجرایی دیسپچ؛ مشاهده مأموریت‌های جاری، زمان حرکت و اقدام بعدی شیفت',
+]];
+
+return $screenshots;
