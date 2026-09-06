@@ -1,6 +1,6 @@
 <?php
 
-return [
+$modules = [
     'crm' => [
         'name' => 'CRM و مدیریت مشتریان',
         'short_name' => 'CRM',
@@ -180,3 +180,7 @@ return [
         'benefits' => ['ورود امن با OTP', 'رهگیری شفاف استعلام و محموله', 'مشاهده صورتحساب و رسید'],
     ],
 ];
+
+$operational = require __DIR__.'/site_operational_modules.php';
+
+return array_merge($modules, $operational['modules']);

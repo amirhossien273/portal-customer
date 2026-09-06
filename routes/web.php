@@ -71,6 +71,26 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
         ->defaults('contentGroup', 'solutions')
         ->defaults('contentSlug', 'freight-sales-automation')
         ->name('solutions.freight-sales-automation');
+    Route::get('/solutions/shipment-visibility', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'shipment-visibility')
+        ->name('solutions.shipment-visibility');
+    Route::get('/solutions/operation-exception-management', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'operation-exception-management')
+        ->name('solutions.operation-exception-management');
+    Route::get('/solutions/transport-governance', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'transport-governance')
+        ->name('solutions.transport-governance');
+    Route::get('/solutions/document-readiness', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'document-readiness')
+        ->name('solutions.document-readiness');
+    Route::get('/solutions/fleet-dispatch-planning', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'fleet-dispatch-planning')
+        ->name('solutions.fleet-dispatch-planning');
     Route::view('/pricing', 'marketing.pricing')->name('pricing');
     Route::view('/about', 'marketing.about')->name('about');
     Route::get('/consultation', [MarketingConsultationController::class, 'create'])->name('consultation.create');

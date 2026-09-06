@@ -32,3 +32,4 @@ body{font-size:16px}.main-nav>a{font-size:15px}.portal-link{font-size:12px}.new-
 @media(max-width:1050px){.footer-grid{grid-template-columns:1.3fr repeat(2,1fr)}.footer-brand{grid-column:1/-1}}
 @media(max-width:580px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:1280px){.main-nav{max-height:calc(100dvh - 90px);overflow-y:auto;overscroll-behavior:contain}}
+@media(min-width:1281px){.solutions-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;width:min(680px,calc(100vw - 40px));max-height:min(70vh,580px);overflow-y:auto;overscroll-behavior:contain}.solutions-menu a{border:1px solid transparent}.solutions-menu a:hover,.solutions-menu a[aria-current=page]{border-color:#d9eceb}}

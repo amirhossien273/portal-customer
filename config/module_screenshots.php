@@ -1,6 +1,6 @@
 <?php
 
-return [
+$screenshots = [
     'crm' => [
         [
             'path' => 'modules/screenshots/crm-customers.webp',
@@ -153,3 +153,7 @@ return [
         ],
     ],
 ];
+
+$operational = require __DIR__.'/site_operational_modules.php';
+
+return array_merge($screenshots, $operational['screenshots']);

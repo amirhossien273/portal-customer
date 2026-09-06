@@ -23,10 +23,15 @@ class ModuleScreenshotGalleryTest extends TestCase
         $configured = config('module_screenshots');
 
         $this->assertSame(
-            ['crm', 'pricing-sales', 'booking', 'transport-operations', 'document-management', 'finance-accounting', 'workflow-tasks', 'automatic-tasks', 'customer-portal-tracking'],
+            [
+                'crm', 'pricing-sales', 'booking', 'transport-operations', 'document-management',
+                'finance-accounting', 'workflow-tasks', 'automatic-tasks', 'customer-portal-tracking',
+                'operations-control-tower', 'operational-control-center', 'enterprise-command-center',
+                'document-checklists', 'fleet-dispatch',
+            ],
             array_keys($configured)
         );
-        $this->assertSame(19, array_sum(array_map('count', $configured)));
+        $this->assertSame(24, array_sum(array_map('count', $configured)));
 
         foreach ($configured as $slug => $screenshots) {
             $content = $this->get('/modules/'.$slug)
@@ -78,7 +83,24 @@ class ModuleScreenshotGalleryTest extends TestCase
         foreach (config('module_screenshots') as $screenshots) {
             foreach ($screenshots as $screenshot) {
                 $url = self::SITE_URL.'/assets/images/marketing/'.$screenshot['path'];
-                $expectedOccurrences = $screenshot['path'] === 'product-showcase/desktop-dashboard.webp' ? 2 : 1;
+                $expectedOccurrences = collect(config('module_screenshots'))
+                    ->flatten(1)
+                    ->where('path', $screenshot['path'])
+                    ->count();
+
+                $expectedOccurrences += collect(['guides', 'solutions'])
+                    ->flatMap(fn (string $group) => config('site_content_pages.'.$group, []))
+                    ->where('image', $screenshot['path'])
+                    ->count();
+
+                if ($screenshot['path'] === 'product-showcase/desktop-dashboard.webp') {
+                    $expectedOccurrences++;
+                }
+
+                if ($screenshot['path'] === 'modules/screenshots/pricing-sales-workflow.webp') {
+                    $expectedOccurrences++;
+                }
+
                 $this->assertSame($expectedOccurrences, substr_count($sitemap, '<image:loc>'.$url.'</image:loc>'));
             }
         }

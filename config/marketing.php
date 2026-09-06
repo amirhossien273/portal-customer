@@ -1,8 +1,8 @@
 <?php
 
-return [
+$marketing = [
     'site_url' => rtrim(env('MARKETING_SITE_URL', 'https://sepandcrm.ir'), '/'),
-    'content_last_modified' => '2026-09-01',
+    'content_last_modified' => '2026-09-06',
     'page_keywords' => [
         'home' => [
             'نرم افزار مدیریت حمل و نقل بین المللی',
@@ -96,3 +96,8 @@ return [
         ],
     ],
 ];
+
+$operational = require __DIR__.'/site_operational_solutions.php';
+$marketing['page_keywords'] = array_merge($marketing['page_keywords'], $operational['keywords']);
+
+return $marketing;

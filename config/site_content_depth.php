@@ -1,6 +1,6 @@
 <?php
 
-return [
+$depth = [
     'guides' => [
         'best-freight-forwarding-software' => [
             'editorial' => [
@@ -407,3 +407,8 @@ return [
         ],
     ],
 ];
+
+$operational = require __DIR__.'/site_operational_solutions.php';
+$depth['solutions'] = array_merge($depth['solutions'], $operational['depth']);
+
+return $depth;

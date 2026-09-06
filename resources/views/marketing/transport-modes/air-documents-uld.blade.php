@@ -41,7 +41,7 @@
                     @endforeach
                 </div>
             </div>
-            <figcaption id="air-documents-caption">ثبت اطلاعات MAWB و HAWB و رابطه بارنامه مادر با بارنامه‌های House؛ این نمای نمونه با داده‌های آزمایشی و غیرحساس ساخته شده است.</figcaption>
+            <figcaption id="air-documents-caption">ثبت اطلاعات MAWB و HAWB و رابطه بارنامه مادر با بارنامه‌های House؛  </figcaption>
         </figure>
 
         <div class="air-document-entity-graph reveal" aria-label="رابطه اسناد حمل هوایی؛ ترتیب از راست به چپ است"><strong>رابطه اسناد</strong><ol class="air-entity-flow"><li>پرونده حمل هوایی</li><li>MAWB</li><li>HAWB 01</li><li>HAWB 02</li><li>HAWB 03</li></ol></div>
