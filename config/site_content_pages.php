@@ -1,6 +1,6 @@
 <?php
 
-return [
+$pages = [
     'guides' => [
         'best-freight-forwarding-software' => [
             'route' => 'compare.best-freight-forwarding-software',
@@ -522,3 +522,10 @@ return [
         ],
     ],
 ];
+
+$operational = require __DIR__.'/site_operational_solutions.php';
+$operationalModules = require __DIR__.'/site_operational_modules.php';
+$pages['solutions'] = array_merge($pages['solutions'], $operational['solutions']);
+$pages['module_relations'] = array_merge($pages['module_relations'], $operationalModules['module_relations']);
+
+return $pages;

@@ -1,6 +1,6 @@
 <?php
 
-return [
+$pages = [
     'pricing-sales' => [
         'h1' => 'نرم‌افزار نرخ‌دهی و فروش حمل‌ونقل سپند',
         'h1_main' => 'نرم‌افزار نرخ‌دهی و فروش',
@@ -596,3 +596,7 @@ return [
         'cta' => ['title' => 'تجربه سلف‌سرویس مشتریان خود را در سپند ببینید', 'text' => 'در جلسه دمو، مسیر ورود OTP، مشاهده استعلام، رهگیری محموله و اطلاعات مالی را بر اساس فرایند واقعی شرکت شما بررسی می‌کنیم.', 'primary' => 'درخواست دموی پرتال مشتری', 'secondary' => 'مشاهده امکانات پرتال'],
     ],
 ];
+
+$operational = require __DIR__.'/site_operational_modules.php';
+
+return array_merge($pages, $operational['module_pages']);
