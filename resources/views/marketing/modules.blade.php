@@ -59,7 +59,7 @@
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ماژول‌ها</span></div>
             <h1>ماژول‌های یکپارچه سپند؛<br><span>از جذب مشتری تا تصمیم‌گیری و عملیات</span></h1>
-            <p>در نرم‌افزار یکپارچه حمل‌ونقل سپند، CRM، تسک خودکار، نرخ‌دهی، مقایسه تأمین‌کننده، Booking، عملیات، اسناد، مالی و پرتال مشتریان روی داده مشترک کار می‌کنند؛ بنابراین رویدادهای فروش به اقدام مشخص تبدیل می‌شوند و تیم شما با داده قابل‌اعتماد کار می‌کند.</p>
+            <p>در نرم‌افزار یکپارچه حمل‌ونقل سپند، CRM، ایمیل سازمانی، تسک خودکار، نرخ‌دهی، مقایسه تأمین‌کننده، Booking، عملیات، اسناد، مالی و پرتال مشتریان روی داده مشترک کار می‌کنند؛ بنابراین مکاتبات و رویدادهای فروش به پرونده و اقدام مشخص متصل می‌شوند.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#all-modules">مشاهده ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a><a class="btn btn-outline" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a></div>
         </div>
         <div class="hero-art reveal">

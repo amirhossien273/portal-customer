@@ -4,7 +4,7 @@
         data-module-screenshot-slider
         role="region"
         aria-roledescription="carousel"
-        aria-label="تصاویر واقعی ماژول {{ $module['name'] }}"
+        aria-label="{{ ($screenshots[0]['kind'] ?? 'product') === 'conceptual' ? 'نمای مفهومی ماژول '.$module['name'] : 'تصاویر واقعی ماژول '.$module['name'] }}"
     >
         <div class="module-screenshot-viewport">
             @foreach($screenshots as $screenshot)

@@ -181,6 +181,8 @@ $modules = [
     ],
 ];
 
+$emailWorkflow = require __DIR__.'/site_email_workflow_module.php';
+$modules['email-workflow-automation'] = $emailWorkflow['module'];
 $operational = require __DIR__.'/site_operational_modules.php';
 $modules = array_merge($modules, $operational['modules']);
 $seo = require __DIR__.'/site_seo_strategy.php';
