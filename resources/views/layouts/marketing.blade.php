@@ -83,7 +83,7 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، مالی و پرتال مشتریان شرکت‌های فورواردری و لجستیک.</p></div>
-            <div class="footer-col"><h3>محصول</h3><a href="{{ route('product') }}">معرفی محصول در عمل</a><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM و مدیریت مشتری</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و حسابداری حمل</a><a href="{{ route('pricing') }}">تعرفه‌ها</a></div>
+            <div class="footer-col"><h3>محصول</h3><a href="{{ route('product') }}">معرفی محصول در عمل</a><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM و مدیریت مشتری</a><a href="{{ route('site.modules.show', ['module' => 'email-workflow-automation']) }}">اتوماسیون ایمیل حمل</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و حسابداری حمل</a><a href="{{ route('pricing') }}">تعرفه‌ها</a></div>
             <div class="footer-col">
                 <h3>راهکارها</h3>
                 <a href="{{ route('solutions.index') }}">همه راهکارهای سپند</a>

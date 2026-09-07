@@ -213,7 +213,7 @@
                 <div class="section-head reveal">
                     <span class="section-label">محصول سپند</span>
                     <h2 class="section-title">سامانه جامع حمل و نقل بین المللی برای فرایندهای یکپارچه</h2>
-                    <p class="section-subtitle">CRM، بازاریابی پیامکی، وظیفه خودکار، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا رویدادهای فروش به اقدام مشخص تبدیل شوند و اطلاعات بدون ثبت تکراری جریان داشته باشد.</p>
+                    <p class="section-subtitle">CRM، ایمیل سازمانی، بازاریابی پیامکی، وظیفه خودکار، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا مکاتبات و رویدادهای فروش به پرونده و اقدام مشخص متصل شوند.</p>
                 </div>
                 <div class="services-grid">
                     @foreach(config('site_modules') as $slug => $module)
@@ -243,6 +243,9 @@
                                         @break
                                     @case('automatic-tasks')
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M5 4h10v16H5V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 8h4M8 12h3m-3 4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18 7v4m-2-2h4m-5.5 6.5 1.7 1.7 3.3-3.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        @break
+                                    @case('email-workflow-automation')
+                                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6M8 16h3m4 0h1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 3v4m-2-2h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
                                         @break
                                     @case('customer-portal-tracking')
                                         <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 8h18M8 22h8M12 19v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15.5 11.5c0 2-3 4.5-3 4.5s-3-2.5-3-4.5a3 3 0 1 1 6 0Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12.5" cy="11.5" r=".8" fill="currentColor"/></svg>

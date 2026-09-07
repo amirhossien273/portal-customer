@@ -2,7 +2,7 @@
 
 $marketing = [
     'site_url' => rtrim(env('MARKETING_SITE_URL', 'https://sepandcrm.ir'), '/'),
-    'content_last_modified' => '2026-09-06',
+    'content_last_modified' => '2026-09-07',
     'page_keywords' => [
         'home' => [
             'نرم افزار مدیریت حمل و نقل بین المللی',

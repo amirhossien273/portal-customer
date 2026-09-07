@@ -113,6 +113,71 @@
     </div>
 </section>
 
+{{-- Module-specific narrative blocks are rendered only when their configuration is present. --}}
+@if(! empty($page['workflow_stages']))
+<section class="section email-workflow-section" id="email-workflow-path" aria-labelledby="email-workflow-path-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">مسیر Email-to-Workflow</span>
+            <h2 class="section-title" id="email-workflow-path-title">{{ $page['workflow_heading'] }}</h2>
+            <p class="section-sub">{{ $page['workflow_intro'] }}</p>
+        </div>
+        <ol class="email-flow-grid" aria-label="مراحل تبدیل ایمیل به گردش کار حمل">
+            @foreach($page['workflow_stages'] as $stage)
+                <li @class(['email-flow-step', 'is-available' => $stage['status'] === 'available', 'is-planned' => $stage['status'] !== 'available', 'reveal'])>
+                    <span class="email-flow-number" aria-hidden="true">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span class="email-flow-status">{{ $stage['status'] === 'available' ? 'زیرساخت فعال' : 'Roadmap' }}</span>
+                    <h3 dir="ltr">{{ $stage['label'] }}</h3>
+                    <p>{{ $stage['description'] }}</p>
+                </li>
+            @endforeach
+        </ol>
+    </div>
+</section>
+@endif
+
+@if(! empty($page['scenarios']))
+<section class="section soft" id="email-classification-scenarios" aria-labelledby="email-scenarios-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">P1 · در مسیر توسعه</span>
+            <h2 class="section-title" id="email-scenarios-title">{{ $page['scenarios_heading'] }}</h2>
+            <p class="section-sub">{{ $page['scenarios_intro'] }}</p>
+        </div>
+        <div class="email-scenario-grid">
+            @foreach($page['scenarios'] as $scenario)
+                <article class="email-scenario-card reveal">
+                    <span class="email-scenario-type" dir="ltr">{{ $scenario['type'] }}</span>
+                    <blockquote dir="ltr">“{{ $scenario['example'] }}”</blockquote>
+                    <div class="email-scenario-action"><span>اقدام هدف</span><p>{{ $scenario['action'] }}</p></div>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+@if(! empty($page['roadmap']))
+<section class="section email-roadmap-section" id="email-workflow-roadmap" aria-labelledby="email-roadmap-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">Roadmap محصول</span>
+            <h2 class="section-title" id="email-roadmap-title">{{ $page['roadmap_heading'] }}</h2>
+            <p class="section-sub">{{ $page['roadmap_intro'] }}</p>
+        </div>
+        <div class="email-roadmap-grid">
+            @foreach($page['roadmap'] as $phase)
+                <article class="email-roadmap-card is-{{ $phase['tone'] }} reveal">
+                    <header><span class="email-roadmap-phase">{{ $phase['phase'] }}</span><span class="email-roadmap-status">{{ $phase['status'] }}</span></header>
+                    <h3>{{ $phase['title'] }}</h3>
+                    <ul>@foreach($phase['items'] as $item)<li>{{ $item }}</li>@endforeach</ul>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 @if(! empty($page['insights']))
 <section class="section" id="{{ $slug === 'pricing-sales' ? 'pricing-intelligence' : 'module-insights' }}" aria-labelledby="module-insights-title">
     <div class="container">

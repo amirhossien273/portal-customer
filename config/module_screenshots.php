@@ -154,6 +154,8 @@ $screenshots = [
     ],
 ];
 
+$emailWorkflow = require __DIR__.'/site_email_workflow_module.php';
+$screenshots['email-workflow-automation'] = $emailWorkflow['screenshots'];
 $operational = require __DIR__.'/site_operational_modules.php';
 $screenshots = array_merge($screenshots, $operational['screenshots']);
 $seo = require __DIR__.'/site_seo_strategy.php';

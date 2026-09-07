@@ -228,6 +228,7 @@ class MarketingSeoTest extends TestCase
             '/modules/workflow-tasks' => config('site_modules.workflow-tasks.keywords'),
             '/modules/automatic-tasks' => config('site_modules.automatic-tasks.keywords'),
             '/modules/customer-portal-tracking' => config('site_modules.customer-portal-tracking.keywords'),
+            '/modules/email-workflow-automation' => config('site_modules.email-workflow-automation.keywords'),
             '/transport-modes/sea' => config('site_transport_modes.sea.keywords'),
             '/transport-modes/air' => config('site_transport_modes.air.keywords'),
             '/transport-modes/road' => config('site_transport_modes.road.keywords'),
@@ -236,8 +237,8 @@ class MarketingSeoTest extends TestCase
             '/consultation' => config('marketing.page_keywords.consultation'),
         ];
 
-        $this->assertCount(22, $pages);
-        $this->assertSame(100, array_sum(array_map('count', $pages)));
+        $this->assertCount(23, $pages);
+        $this->assertSame(105, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();

@@ -599,6 +599,8 @@ $pages = [
     ],
 ];
 
+$emailWorkflow = require __DIR__.'/site_email_workflow_module.php';
+$pages['email-workflow-automation'] = $emailWorkflow['page'];
 $operational = require __DIR__.'/site_operational_modules.php';
 $pages = array_merge($pages, $operational['module_pages']);
 $seo = require __DIR__.'/site_seo_strategy.php';
