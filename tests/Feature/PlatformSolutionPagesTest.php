@@ -13,7 +13,7 @@ class PlatformSolutionPagesTest extends TestCase
         'operations-automation' => 'اتوماسیون عملیات حمل‌ونقل؛ از سیگنال تا اقدام قابل پیگیری',
         'freight-finance' => 'مدیریت مالی حمل‌ونقل؛ از هزینه تعهدی تا سود واقعی پرونده',
         'fleet-management' => 'مدیریت ناوگان؛ آمادگی خودرو و راننده پیش از تصمیم اعزام',
-        'document-management' => 'چرخه عمر و تأیید سند حمل؛ از Draft تا نسخه نهایی',
+        'document-management' => 'چرخه تأیید اسناد حمل را از Draft تا نسخه نهایی کنترل کنید',
         'multimodal-transport' => 'مدیریت حمل چندوجهی؛ یک Journey، چند Leg هماهنگ',
         'schedule-management' => 'مدیریت برنامه حرکت؛ یک مرجع برای ETD، ETA و تغییرات',
         'rate-management' => 'مدیریت نرخ حمل؛ محاسبه یکسان، معتبر و قابل ردیابی',
@@ -80,7 +80,7 @@ class PlatformSolutionPagesTest extends TestCase
                 ->assertSee('<link rel="canonical" href="'.self::SITE_URL.$path.'">', false)
                 ->assertSee('Product Evidence', false)
                 ->assertSee('Operational Depth', false)
-                ->assertSee('مرزبندی نیت جست‌وجو', false)
+                ->assertSee('دامنه و کاربرد راهکار', false)
                 ->assertSee('"@type":"SoftwareApplication"', false)
                 ->assertSee('"@type":"FAQPage"', false)
                 ->assertDontSee('<meta name="keywords"', false)
@@ -134,7 +134,8 @@ class PlatformSolutionPagesTest extends TestCase
         $this->get('/solutions/document-management')
             ->assertOk()
             ->assertSee('href="'.self::SITE_URL.'/solutions/document-readiness"', false)
-            ->assertSee('href="'.self::SITE_URL.'/solutions/bill-of-lading-management"', false);
+            ->assertSee('href="'.self::SITE_URL.'/modules/document-management"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/operations-automation"', false);
     }
 
     public function test_operations_automation_contains_real_rule_to_exception_walkthrough(): void

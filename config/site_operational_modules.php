@@ -438,8 +438,8 @@ return [
             'path' => 'modules/screenshots/document-attachment-upload.webp',
             'width' => 1600,
             'height' => 790,
-            'alt' => 'ثبت فایل و کنترل مدارک موردنیاز پرونده حمل در سپند',
-            'caption' => 'اتصال مدرک واقعی به پرونده و کنترل وضعیت تکمیل اقلام استاندارد',
+            'alt' => 'پنجره واقعی ثبت فایل در پرونده حمل سپند',
+            'caption' => 'شاهد ثبت فایل مرتبط؛ نمای اختصاصی Checklist Designer در دارایی‌های سایت هنوز جایگزین نشده است',
         ]],
         'fleet-dispatch' => [[
             'path' => 'modules/screenshots/operations-calendar-month.webp',

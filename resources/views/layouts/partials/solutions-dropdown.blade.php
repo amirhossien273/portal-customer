@@ -8,19 +8,12 @@
             <span>همه راهکارها</span>
             <small>انتخاب بر اساس مسئله، شواهد محصول و عمق عملیاتی</small>
         </a>
-        <span class="solutions-menu-heading">راهکارهای پلتفرمی</span>
-        @foreach(config('site_platform_solutions.pages', []) as $slug => $solution)
-            <a href="{{ route('solutions.platform.show', ['solution' => $slug]) }}" @if(request()->routeIs('solutions.platform.show') && request()->route('solution') === $slug) aria-current="page" @endif>
-                <span>{{ $solution['nav_title'] }}</span>
-                <small>{{ $solution['nav_description'] }}</small>
-            </a>
-        @endforeach
-        <span class="solutions-menu-heading">سناریوهای تخصصی</span>
-        @foreach(config('site_content_pages.solutions', []) as $solution)
-            <a href="{{ route($solution['route']) }}" @if(request()->routeIs($solution['route'])) aria-current="page" @endif>
-                <span>{{ $solution['nav_title'] }}</span>
-                <small>{{ $solution['nav_description'] }}</small>
-            </a>
-        @endforeach
+        <span class="solutions-menu-heading">حوزه‌های اصلی</span>
+        <a href="{{ route('site.modules.show', ['module' => 'crm']) }}"><span>فروش و CRM</span><small>مشتری، نرخ، پیشنهاد و Booking</small></a>
+        <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}"><span>عملیات و کنترل</span><small>اجرا، دیدپذیری، هشدار و Exception</small></a>
+        <a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}"><span>مالی</span><small>هزینه، دریافت، پرداخت و سود پرونده</small></a>
+        <a href="{{ route('site.modules.show', ['module' => 'document-management']) }}"><span>اسناد</span><small>مخزن، تأیید، آمادگی و بارنامه</small></a>
+        <a href="{{ route('solutions.platform.show', ['solution' => 'fleet-management']) }}"><span>ناوگان</span><small>خودرو، راننده، برنامه‌ریزی و دیسپچ</small></a>
+        <a href="{{ route('solutions.nvocc') }}"><span>NVOCC و کانتینر</span><small>دریایی، کانتینر، Schedule و HBL/MBL</small></a>
     </div>
 </details>

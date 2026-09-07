@@ -40,7 +40,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
     @stack('head')
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20260906-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20260907-1">
     <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
     @stack('styles')
 </head>
@@ -75,18 +75,21 @@
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="باز کردن منو"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     </div>
 </header>
-<main id="main-content">@yield('content')</main>
+<main id="main-content">
+    @yield('content')
+    @include('marketing.partials.contextual-paths')
+</main>
 <footer class="site-footer">
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، مالی و پرتال مشتریان شرکت‌های فورواردری و لجستیک.</p></div>
-            <div class="footer-col"><h3>محصول</h3><a href="{{ route('product') }}">معرفی محصول در عمل</a><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}">تسک خودکار CRM</a><a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a><a href="{{ route('pricing') }}">تعرفه‌ها</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a></div>
+            <div class="footer-col"><h3>محصول</h3><a href="{{ route('product') }}">معرفی محصول در عمل</a><a href="{{ route('modules') }}">ماژول‌های نرم‌افزار</a><a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM و مدیریت مشتری</a><a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">مدیریت عملیات حمل</a><a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و حسابداری حمل</a><a href="{{ route('pricing') }}">تعرفه‌ها</a></div>
             <div class="footer-col">
                 <h3>راهکارها</h3>
                 <a href="{{ route('solutions.index') }}">همه راهکارهای سپند</a>
-                @foreach(config('site_content_pages.solutions', []) as $solution)
-                    <a href="{{ route($solution['route']) }}">{{ $solution['nav_title'] }}</a>
-                @endforeach
+                <a href="{{ route('site.modules.show', ['module' => 'document-management']) }}">مدیریت اسناد حمل</a>
+                <a href="{{ route('solutions.platform.show', ['solution' => 'fleet-management']) }}">مدیریت ناوگان</a>
+                <a href="{{ route('solutions.nvocc') }}">راهکار NVOCC</a>
             </div>
             <div class="footer-col"><h3>سپند</h3><a href="{{ route('about') }}">درباره ما</a><a href="{{ route('faq') }}">سؤالات متداول نرم‌افزار</a><a href="{{ route('compare.index') }}">مرکز مقایسه نرم‌افزارها</a><a href="{{ route('case-studies.show', ['caseStudy' => 'operational-control-snapshot']) }}">مطالعه موردی واقعی</a><a href="{{ route('why-sepand') }}">چرا سپند؟</a><a href="{{ route('home') }}#process">گردش کار هوشمند محصول</a></div>
             <div class="footer-col"><h3>شروع همکاری</h3><a href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="{{ route('login') }}">پورتال مشتریان</a><a href="{{ route('organization.portal') }}">پرتال سازمان</a></div>

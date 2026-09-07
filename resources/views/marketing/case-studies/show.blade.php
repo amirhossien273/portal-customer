@@ -7,7 +7,8 @@
         ['@type' => 'Article', '@id' => $canonical.'#article', 'headline' => $page['h1'], 'description' => $description, 'image' => $image, 'datePublished' => '2026-09-06', 'dateModified' => '2026-09-06', 'inLanguage' => 'fa-IR', 'author' => ['@type' => 'Organization', 'name' => 'سپند'], 'publisher' => ['@type' => 'Organization', 'name' => 'سپند']],
         ['@type' => 'BreadcrumbList', 'itemListElement' => [
             ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-            ['@type' => 'ListItem', 'position' => 2, 'name' => 'مطالعات موردی', 'item' => $canonical],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'چرا سپند', 'item' => route('why-sepand')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => 'مطالعه موردی کنترل عملیات', 'item' => $canonical],
         ]],
     ],
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
@@ -21,7 +22,7 @@
 <section class="case-hero">
     <div class="container case-hero-grid">
         <div class="reveal">
-            <nav class="breadcrumb" aria-label="مسیر صفحه"><a href="{{ route('home') }}">صفحه اصلی</a><span>/</span><span>مطالعه موردی</span></nav>
+            <nav class="breadcrumb" aria-label="مسیر صفحه"><a href="{{ route('home') }}">صفحه اصلی</a><span>/</span><a href="{{ route('why-sepand') }}">چرا سپند</a><span>/</span><span>مطالعه موردی</span></nav>
             <span class="case-eyebrow">{{ $page['eyebrow'] }}</span>
             <h1>{{ $page['h1'] }}</h1>
             <p>{{ $page['lead'] }}</p>
