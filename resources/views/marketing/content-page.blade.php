@@ -4,7 +4,7 @@
     $isGuide = $group === 'guides';
     $depth = $page['depth'];
     $parentLabel = $isGuide ? 'مرکز مقایسه' : 'راهکارها';
-    $parentUrl = $isGuide ? route('compare.index') : null;
+    $parentUrl = $isGuide ? route('compare.index') : route('solutions.index');
     $linkUrl = static fn (array $link): string => route($link['route'], $link['parameters'] ?? []);
     $significantLinks = array_values(array_unique(array_merge(
         [$canonical, route('consultation.create')],
@@ -38,7 +38,7 @@
             'description' => $description,
             'inLanguage' => 'fa-IR',
             'dateModified' => config('marketing.content_last_modified'),
-            'isPartOf' => ['@id' => ($isGuide ? route('compare.index') : route('home')).'#webpage'],
+            'isPartOf' => ['@id' => $parentUrl.'#webpage'],
             'breadcrumb' => ['@id' => $canonical.'#breadcrumb'],
             'mainEntity' => [
                 ['@id' => $canonical.'#checklist'],
@@ -275,7 +275,7 @@
 
 <section class="section soft" id="boundaries-section" aria-labelledby="boundaries-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">لینک‌سازی موضوعی</span><h2 class="section-title" id="boundaries-title">{{ $page['boundary_heading'] }}</h2><p class="section-sub">هر صفحه فقط یک نیت اصلی دارد؛ برای موضوع مکمل از مسیر دقیق زیر استفاده کنید.</p></div>
+        <div class="section-head reveal"><span class="section-label">مسیرهای مرتبط</span><h2 class="section-title" id="boundaries-title">{{ $page['boundary_heading'] }}</h2><p class="section-sub">برای ادامه بررسی هر بخش، از مسیر تخصصی مرتبط استفاده کنید.</p></div>
         <div class="content-boundaries-grid">
             @foreach($page['boundaries'] as $boundary)
                 <article class="content-boundary-card reveal"><h3>{{ $boundary['title'] }}</h3><p>{{ $boundary['description'] }}</p><a href="{{ $linkUrl($boundary['link']) }}">{{ $boundary['link']['label'] }} <span aria-hidden="true">←</span></a></article>

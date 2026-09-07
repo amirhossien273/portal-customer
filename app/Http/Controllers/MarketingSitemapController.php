@@ -10,6 +10,11 @@ class MarketingSitemapController extends Controller
     {
         $baseUrl = config('marketing.site_url');
         $lastModified = config('marketing.content_last_modified');
+        $marketingUrl = static function (string $route, array $parameters = []) use ($baseUrl): string {
+            $path = parse_url(route($route, $parameters), PHP_URL_PATH) ?: '/';
+
+            return rtrim($baseUrl, '/').($path === '/' ? '/' : '/'.ltrim($path, '/'));
+        };
         $urls = [
             [
                 'loc' => $baseUrl.'/',
@@ -47,7 +52,7 @@ class MarketingSitemapController extends Controller
         foreach (['guides', 'solutions'] as $group) {
             foreach (config('site_content_pages.'.$group, []) as $page) {
                 $urls[] = [
-                    'loc' => route($page['route']),
+                        'loc' => $marketingUrl($page['route']),
                     'lastmod' => $lastModified,
                     'images' => [[
                         'loc' => $baseUrl.'/assets/images/marketing/'.implode('/', array_map('rawurlencode', explode('/', $page['image']))),
@@ -58,7 +63,7 @@ class MarketingSitemapController extends Controller
         }
 
         $urls[] = [
-            'loc' => route('solutions.index'),
+            'loc' => $marketingUrl('solutions.index'),
             'lastmod' => $lastModified,
             'images' => [[
                 'loc' => $baseUrl.'/assets/images/marketing/product-showcase/desktop-dashboard.webp',
@@ -68,7 +73,7 @@ class MarketingSitemapController extends Controller
 
         foreach (config('site_platform_solutions.pages', []) as $slug => $page) {
             $urls[] = [
-                'loc' => route('solutions.platform.show', ['solution' => $slug]),
+                'loc' => $marketingUrl('solutions.platform.show', ['solution' => $slug]),
                 'lastmod' => $lastModified,
                 'images' => array_map(static fn (array $evidence): array => [
                     'loc' => $baseUrl.'/assets/images/marketing/'.implode('/', array_map('rawurlencode', explode('/', $evidence['image']))),
@@ -79,7 +84,7 @@ class MarketingSitemapController extends Controller
 
         foreach (config('site_case_studies', []) as $slug => $page) {
             $urls[] = [
-                'loc' => route('case-studies.show', ['caseStudy' => $slug]),
+                'loc' => $marketingUrl('case-studies.show', ['caseStudy' => $slug]),
                 'lastmod' => $lastModified,
                 'images' => [[
                     'loc' => $baseUrl.'/assets/images/marketing/'.implode('/', array_map('rawurlencode', explode('/', $page['image']))),

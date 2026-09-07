@@ -58,7 +58,7 @@
     <div class="container">
         <article class="platform-boundary-card reveal">
             <span aria-hidden="true">◎</span>
-            <div><small>مرزبندی نیت جست‌وجو</small><h2 id="intent-title">این صفحه دقیقاً درباره چیست؟</h2><p>{{ $page['boundary'] }}</p></div>
+            <div><small>دامنه و کاربرد راهکار</small><h2 id="intent-title">این صفحه دقیقاً درباره چیست؟</h2><p>{{ $page['boundary'] }}</p></div>
         </article>
     </div>
 </section>
@@ -151,14 +151,14 @@
 
 <section class="section soft" id="related-solutions" aria-labelledby="related-title">
     <div class="container">
-        <header class="section-head reveal"><span class="section-label">لینک‌سازی موضوعی</span><h2 class="section-title" id="related-title">موضوعات مکمل، بدون هم‌پوشانی محتوایی</h2><p class="section-sub">برای هر نیت تخصصی از صفحه مقصد خودش استفاده کنید؛ این پیوندها مسیر بررسی را کامل می‌کنند.</p></header>
+        <header class="section-head reveal"><span class="section-label">مسیرهای مرتبط</span><h2 class="section-title" id="related-title">راهکارها و صفحات مکمل</h2><p class="section-sub">برای ادامه بررسی فرایند، صفحه تخصصی مرتبط را انتخاب کنید.</p></header>
         <div class="platform-related-grid">
             @foreach($page['related'] as $relatedSlug)
                 @php($related = $allSolutions[$relatedSlug])
                 <a class="platform-related-card reveal" href="{{ $solutionUrl($relatedSlug) }}"><span>{{ $related['eyebrow'] }}</span><h3>{{ $related['nav_title'] }}</h3><p>{{ $related['nav_description'] }}</p><b>مطالعه راهکار ←</b></a>
             @endforeach
             @foreach($page['existing_links'] as $link)
-                <a class="platform-related-card is-existing reveal" href="{{ route($link['route'], $link['parameters'] ?? []) }}"><span>صفحه تخصصی موجود</span><h3>{{ $link['label'] }}</h3><p>برای بررسی دقیق این نیت و جلوگیری از تکرار محتوا، از صفحه اختصاصی آن استفاده کنید.</p><b>مشاهده صفحه ←</b></a>
+                <a class="platform-related-card is-existing reveal" href="{{ route($link['route'], $link['parameters'] ?? []) }}"><span>صفحه تخصصی</span><h3>{{ $link['label'] }}</h3><p>{{ $link['description'] ?? 'جزئیات این بخش را در صفحه تخصصی مرتبط ببینید.' }}</p><b>مشاهده صفحه ←</b></a>
             @endforeach
         </div>
     </div>

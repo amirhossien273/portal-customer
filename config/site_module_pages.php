@@ -613,7 +613,7 @@ foreach (array_keys($seo['redirects']) as $legacyPath) {
 $pages = array_replace_recursive($pages, $overrides['module_pages']);
 
 foreach ($overrides['module_pages'] as $slug => $override) {
-    foreach (['hero', 'connections'] as $listKey) {
+    foreach (['hero', 'problems', 'outcomes', 'capabilities', 'insights', 'connections', 'benefits', 'audiences', 'faqs'] as $listKey) {
         if (array_key_exists($listKey, $override)) {
             $pages[$slug][$listKey] = $override[$listKey];
         }

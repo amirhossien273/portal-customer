@@ -237,7 +237,7 @@ class MarketingSeoTest extends TestCase
         ];
 
         $this->assertCount(22, $pages);
-        $this->assertSame(95, array_sum(array_map('count', $pages)));
+        $this->assertSame(100, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
@@ -307,10 +307,11 @@ class MarketingSeoTest extends TestCase
 
         $this->get('/modules/document-management')
             ->assertOk()
-            ->assertSee('<title>نرم‌افزار مدیریت اسناد حمل‌ونقل | سپند</title>', false)
-            ->assertSee('<meta name="description" content="مدیریت، کنترل نسخه، تأیید و آرشیو اسناد حمل در سپند؛ متصل به مشتری، Booking و پرونده عملیاتی.">', false)
-            ->assertSee('<span class="module-hero-title-main">نرم‌افزار مدیریت اسناد</span>', false)
-            ->assertSee('در پرونده‌های حمل دریایی، نرم افزار مدیریت HBL و MBL سپند، اطلاعات این اسناد را در همین چرخه کنترل نسخه، تأیید و آرشیو نگهداری می‌کند.', false)
+            ->assertSee('<title>نرم افزار مدیریت اسناد حمل‌ونقل و فورواردری | سپند</title>', false)
+            ->assertSee('<meta name="description" content="نرم افزار مدیریت اسناد حمل‌ونقل سپند برای بارگذاری، دسته‌بندی، جست‌وجو و آرشیو فایل‌های متصل به مشتری، Booking و عملیات با دسترسی کنترل‌شده.">', false)
+            ->assertSee('<span class="module-hero-title-main">نرم افزار مدیریت اسناد حمل‌ونقل</span>', false)
+            ->assertSee('Document Repository', false)
+            ->assertSee('چرخه تأیید و بازبینی اسناد', false)
             ->assertDontSee('نرم افزار صدور بارنامه', false);
     }
 

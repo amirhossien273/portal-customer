@@ -32,8 +32,8 @@ class MarketingContentPagesTest extends TestCase
             '/solutions/nvocc' => ['title' => 'نرم‌افزار NVOCC | مدیریت عملیات، اسناد و مالی', 'h1' => 'عملیات NVOCC را از رزرو تا سود پرونده یکپارچه مدیریت کنید'],
             '/solutions/container-management' => ['title' => 'نرم‌افزار مدیریت کانتینر | کنترل چرخه و هزینه', 'h1' => 'کانتینر، مهلت‌ها و هزینه‌ها را در متن همان پرونده حمل مدیریت کنید'],
             '/solutions/on-premise' => ['title' => 'نرم‌افزار حمل‌ونقل On-Premise | راهنمای استقرار', 'h1' => 'استقرار On-Premise نرم‌افزار حمل‌ونقل را با مسئولیت‌های روشن انتخاب کنید'],
-            '/solutions/bill-of-lading-management' => ['title' => 'نرم‌افزار مدیریت بارنامه حمل | HBL و MBL', 'h1' => 'بارنامه را از پیش‌نویس تا تأیید و آرشیو در پرونده حمل کنترل کنید'],
-            '/solutions/freight-sales-automation' => ['title' => 'اتوماسیون فروش شرکت حمل‌ونقل و فورواردری', 'h1' => 'فروش حمل‌ونقل را از لید تا Booking به یک جریان قابل پیگیری تبدیل کنید'],
+            '/solutions/bill-of-lading-management' => ['title' => 'نرم افزار مدیریت بارنامه HBL و MBL | سپند', 'h1' => 'بارنامه‌های HBL و MBL را در ارتباط با Booking کنترل کنید'],
+            '/solutions/freight-sales-automation' => ['title' => 'اتوماسیون پیگیری فروش حمل؛ SLA و Handoff | سپند', 'h1' => 'پیگیری فروش حمل را رویدادمحور کنید؛ از پاسخ تا Handoff'],
         ];
 
         $renderedTitles = [];
@@ -108,7 +108,7 @@ class MarketingContentPagesTest extends TestCase
         $this->assertSame($metricHeadings, array_values(array_unique($metricHeadings)));
     }
 
-    public function test_header_compare_hub_and_relevant_modules_link_to_the_new_pages(): void
+    public function test_topic_hubs_and_contextual_modules_link_to_specialized_pages_without_a_megamenu_dump(): void
     {
         $solutionPaths = [
             '/solutions/nvocc',
@@ -123,11 +123,26 @@ class MarketingContentPagesTest extends TestCase
             '/compare/best-transport-accounting-software',
         ];
 
+        $menuAuthorityPaths = [
+            '/solutions',
+            '/modules/crm',
+            '/modules/transport-operations',
+            '/modules/finance-accounting',
+            '/modules/document-management',
+            '/solutions/fleet-management',
+            '/solutions/nvocc',
+        ];
+
         foreach (['/', '/product', '/solutions/nvocc'] as $path) {
             $response = $this->get($path)->assertOk()->assertSee('class="nav-solutions"', false);
-            foreach ($solutionPaths as $solutionPath) {
-                $response->assertSee('href="'.self::SITE_URL.$solutionPath.'"', false);
+            foreach ($menuAuthorityPaths as $authorityPath) {
+                $this->assertStringContainsString('href="'.self::SITE_URL.$authorityPath.'"', $response->getContent(), "Missing {$authorityPath} from {$path}");
             }
+        }
+
+        $solutionHub = $this->get('/solutions')->assertOk();
+        foreach ($solutionPaths as $solutionPath) {
+            $solutionHub->assertSee('href="'.self::SITE_URL.$solutionPath.'"', false);
         }
 
         $compareHub = $this->get('/compare')->assertOk();
@@ -138,14 +153,14 @@ class MarketingContentPagesTest extends TestCase
         $moduleLinks = [
             '/modules/crm' => ['/compare/best-crm-for-transport-companies', '/solutions/freight-sales-automation'],
             '/modules/finance-accounting' => ['/compare/best-transport-accounting-software'],
-            '/modules/document-management' => ['/solutions/bill-of-lading-management'],
-            '/modules/transport-operations' => ['/solutions/nvocc', '/solutions/container-management'],
+            '/modules/document-management' => ['/solutions/document-management', '/solutions/document-readiness', '/solutions/bill-of-lading-management'],
+            '/modules/transport-operations' => ['/solutions/shipment-visibility', '/solutions/operation-exception-management', '/solutions/operations-automation'],
         ];
 
         foreach ($moduleLinks as $modulePath => $relatedPaths) {
             $response = $this->get($modulePath)->assertOk();
             foreach ($relatedPaths as $relatedPath) {
-                $response->assertSee('href="'.self::SITE_URL.$relatedPath.'"', false);
+                $this->assertStringContainsString('href="'.self::SITE_URL.$relatedPath.'"', $response->getContent(), "Missing {$relatedPath} from {$modulePath}");
             }
         }
     }
@@ -181,18 +196,18 @@ class MarketingContentPagesTest extends TestCase
     {
         $this->get('/compare/best-crm-for-transport-companies')
             ->assertOk()
-            ->assertSee('انتخاب CRM تخصصی؛ جدا از معرفی محصول', false)
+            ->assertSee('راهنمای Selection؛ نه صفحه محصول CRM یا اتوماسیون فروش', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
             ->assertSee('href="'.self::SITE_URL.'/solutions/freight-sales-automation"', false);
 
         $this->get('/solutions/container-management')
             ->assertOk()
-            ->assertSee('مدیریت کانتینر با ردیابی عمومی محموله متفاوت است', false)
+            ->assertSee('مالک چرخه دارایی کانتینر؛ نه مدل کسب‌وکار NVOCC یا روش حمل دریایی', false)
             ->assertSee('href="'.self::SITE_URL.'/transport-modes/sea"', false);
 
         $this->get('/solutions/bill-of-lading-management')
             ->assertOk()
-            ->assertSee('این محتوا ادعای سامانه صدور بارنامه جاده‌ای رسمی یا اتصال به سامانه‌های حاکمیتی ندارد', false)
+            ->assertSee('صدور رسمی بارنامه جاده‌ای یا اتصال حاکمیتی در دامنه این صفحه ادعا نمی‌شود', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/document-management"', false);
     }
 

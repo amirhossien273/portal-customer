@@ -3,6 +3,7 @@
 @php
     $capabilities = $page['capabilities'];
     $faqs = $page['faqs'];
+    $moduleCanonical = $canonical ?? route('site.modules.show', ['module' => $slug]);
 @endphp
 
 @push('head')
@@ -10,12 +11,23 @@
     '@context' => 'https://schema.org',
     '@graph' => [
         [
+            '@type' => 'WebPage',
+            '@id' => $moduleCanonical.'#webpage',
+            'url' => $moduleCanonical,
+            'name' => $module['seo_title'],
+            'description' => $module['meta_description'],
+            'inLanguage' => 'fa-IR',
+            'breadcrumb' => ['@id' => $moduleCanonical.'#breadcrumb'],
+            'mainEntity' => [['@id' => $moduleCanonical.'#software'], ['@id' => $moduleCanonical.'#faq']],
+        ],
+        [
             '@type' => 'SoftwareApplication',
+            '@id' => $moduleCanonical.'#software',
             'name' => $page['h1'],
             'applicationCategory' => 'BusinessApplication',
             'operatingSystem' => 'Web',
             'description' => $module['meta_description'],
-            'url' => route('site.modules.show', ['module' => $slug]),
+            'url' => $moduleCanonical,
             'featureList' => array_column($capabilities, 'title'),
             'audience' => [
                 '@type' => 'BusinessAudience',
@@ -24,6 +36,7 @@
         ],
         [
             '@type' => 'FAQPage',
+            '@id' => $moduleCanonical.'#faq',
             'mainEntity' => array_map(static fn (array $faq): array => [
                 '@type' => 'Question',
                 'name' => $faq['question'],
@@ -35,6 +48,7 @@
         ],
         [
             '@type' => 'BreadcrumbList',
+            '@id' => $moduleCanonical.'#breadcrumb',
             'itemListElement' => [
                 ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
                 ['@type' => 'ListItem', 'position' => 2, 'name' => 'ماژول‌ها', 'item' => route('modules')],
