@@ -27,7 +27,7 @@ class ComparisonHubTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>مقایسه نرم‌افزارهای حمل‌ونقل بین‌المللی | سپند</title>', false)
+            ->assertSee('<title>مرکز مقایسه نرم‌افزار حمل‌ونقل | سپند</title>', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/compare">', false)
             ->assertSee('مقایسه نرم‌افزار سپند با سایر نرم‌افزارهای حمل‌ونقل', false)
             ->assertSee('سپند در برابر رویان', false)

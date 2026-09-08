@@ -220,7 +220,7 @@
 @else
     <section class="ops-bridge" aria-labelledby="bridge-title">
         <div class="container ops-bridge-grid">
-            <div class="reveal"><span class="section-label">ارتباط دو راهکار</span><h2 id="bridge-title">{{ $page['bridge_heading'] }}</h2><p>{{ $page['bridge_text'] }}</p><a class="btn" href="{{ route('solutions.operations-control-tower') }}">مشاهده برج کنترل عملیات</a></div>
+            <div class="reveal"><span class="section-label">ارتباط دو راهکار</span><h2 id="bridge-title">{{ $page['bridge_heading'] }}</h2><p>{{ $page['bridge_text'] }}</p><a class="btn" href="{{ route('site.modules.show', ['module' => 'operations-control-tower']) }}">مشاهده برج کنترل عملیات</a></div>
             <div class="ops-bridge-signals reveal" aria-label="داده‌های منتقل‌شده به برج کنترل"><span>مرحله ناقص</span><span>مدرک ثبت‌نشده</span><span>کار عقب‌افتاده</span><span>اقدام در انتظار</span></div>
         </div>
     </section>

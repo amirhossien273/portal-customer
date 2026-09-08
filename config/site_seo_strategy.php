@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'updated_at' => '2026-09-06',
+    'updated_at' => '2026-09-08',
 
     /*
      * Consolidated URLs must not remain in any indexable collection. These
@@ -11,6 +11,7 @@ return [
         '/modules/operational-control-center' => '/solutions/operation-exception-management',
         '/modules/enterprise-command-center' => '/solutions/transport-governance',
         '/solutions/container-nvocc' => '/solutions/container-management',
+        '/solutions/operations-control-tower' => '/modules/operations-control-tower',
     ],
 
     /*
@@ -29,6 +30,7 @@ return [
                 '/solutions/shipment-visibility' => ['query' => 'دیدپذیری وضعیت محموله', 'intent' => 'وضعیت، Milestone و تازگی داده در نمای داخلی', 'audience' => 'تیم داخلی عملیات', 'outcome' => 'وضعیت معتبر محموله'],
                 '/solutions/operation-exception-management' => ['query' => 'مدیریت استثناهای عملیات حمل', 'intent' => 'رسیدگی، مالکیت و بستن Exception', 'audience' => 'کارشناس رسیدگی و سرپرست عملیات', 'outcome' => 'Exception حل‌شده و قابل ممیزی'],
                 '/solutions/transport-governance' => ['query' => 'حاکمیت عملیاتی شرکت حمل و نقل', 'intent' => 'سیاست، اختیار و تصمیم بین‌واحدی', 'audience' => 'مدیر ارشد و مالک سیاست', 'outcome' => 'تصمیم سازمانی قابل ممیزی'],
+                '/solutions/operational-workflow-management' => ['query' => 'چک لیست اجرای عملیات فورواردری', 'intent' => 'استانداردسازی SOP، کنترل مرحله و مدرک عبور', 'audience' => 'مالک رویه و سرپرست عملیات', 'outcome' => 'اجرای یکنواخت و مستند فرایند'],
             ],
         ],
         'documents' => [
@@ -97,6 +99,7 @@ return [
                 '/modules/workflow-tasks' => ['query' => 'مدیریت گردش کار و وظایف حمل و نقل', 'intent' => 'فرایند و Task انسانی', 'audience' => 'مدیر تیم و کاربران مسئول اقدام', 'outcome' => 'وظیفه انسانی با مالک و مهلت'],
                 '/modules/automatic-tasks' => ['query' => 'ساخت خودکار تسک CRM', 'intent' => 'یک Trigger رویدادی برای ساخت Task', 'audience' => 'مدیر فروش و CRM', 'outcome' => 'پیگیری خودکار رویداد فروش'],
                 '/solutions/operations-automation' => ['query' => 'اتوماسیون عملیات حمل و نقل', 'intent' => 'Rule چندمرحله‌ای تا Exception و Escalation', 'audience' => 'مالک فرایند عملیات', 'outcome' => 'کنترل عملیاتی خودکار'],
+                '/solutions/operational-workflow-management' => ['query' => 'چک لیست اجرای عملیات فورواردری', 'intent' => 'الگوی SOP، کنترل عبور مرحله و شواهد انجام کار', 'audience' => 'مالک رویه و سرپرست عملیات', 'outcome' => 'اجرای یکنواخت عملیات'],
             ],
         ],
         'compare' => [

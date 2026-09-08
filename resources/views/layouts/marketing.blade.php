@@ -87,7 +87,7 @@
             <div class="footer-col">
                 <h3>راهکارهای سپند</h3>
                 <a href="{{ route('solutions.index') }}">همه راهکارهای سپند</a>
-                <a href="{{ route('solutions.operations-control-tower') }}">برج کنترل عملیات</a>
+                <a href="{{ route('site.modules.show', ['module' => 'operations-control-tower']) }}">برج کنترل عملیات</a>
                 <a href="{{ route('solutions.operational-workflow-management') }}">گردش کار عملیات</a>
                 <a href="{{ route('site.modules.show', ['module' => 'document-management']) }}">مدیریت اسناد حمل</a>
                 <a href="{{ route('solutions.platform.show', ['solution' => 'fleet-management']) }}">مدیریت ناوگان</a>

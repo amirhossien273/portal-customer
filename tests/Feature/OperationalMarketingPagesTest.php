@@ -37,7 +37,7 @@ class OperationalMarketingPagesTest extends TestCase
             'anchor' => 'برج کنترل عملیات سپند',
         ],
         'document-readiness' => [
-            'h1' => 'آمادگی اسناد حمل؛ پرونده کامل پیش از نقطه حساس',
+            'h1' => 'آماده بودن مدارک حمل را پیش از مرحله حساس کنترل کنید',
             'module' => '/modules/document-management',
             'anchor' => 'ماژول مدیریت اسناد حمل',
         ],

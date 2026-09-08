@@ -10,18 +10,18 @@
     <meta name="description" content="سپند، نرم‌افزار مدیریت حمل‌ونقل با CRM، تحلیل مشتری، مقایسه تأمین‌کننده، هشدار نرخ، عملیات، مالی و پرتال مشتریان برای رهگیری محموله.">
     <meta property="og:locale" content="fa_IR">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
+    <meta property="og:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی | سپند">
     <meta property="og:description" content="سامانه یکپارچه شرکت‌های حمل‌ونقل؛ از CRM، تحلیل مشتری و تأمین‌کننده تا عملیات، مالی و پرتال مشتریان با ورود OTP و رهگیری محموله.">
     <meta property="og:url" content="{{ route('home') }}">
     <meta property="og:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <meta property="og:image:alt" content="نرم‌افزار CRM و مدیریت عملیات حمل‌ونقل سپند">
     <meta property="og:site_name" content="سپند">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند">
+    <meta name="twitter:title" content="نرم‌افزار مدیریت حمل‌ونقل بین‌المللی | سپند">
     <meta name="twitter:description" content="سامانه یکپارچه شرکت‌های حمل‌ونقل؛ از CRM، تحلیل مشتری و تأمین‌کننده تا عملیات، مالی و پرتال مشتریان با ورود OTP و رهگیری محموله.">
     <meta name="twitter:image" content="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}">
     <link rel="canonical" href="{{ route('home') }}">
-    <title>نرم‌افزار مدیریت حمل‌ونقل بین‌المللی و فورواردری | سپند</title>
+    <title>نرم‌افزار مدیریت حمل‌ونقل بین‌المللی | سپند</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon.png') }}?v=20260801">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
     <script type="application/ld+json">{!! json_encode([
@@ -126,7 +126,7 @@
             <div class="container hero-grid">
                 <div class="hero-copy reveal is-visible">
                     <div class="eyebrow"><span class="eyebrow-dot"></span>مسیر هوشمند تجارت شما</div>
-                    <h1><span class="hero-title-main">نرم‌افزار مدیریت حمل‌ونقل بین‌المللی</span><span class="hero-title-accent">و فورواردری سپند</span></h1>
+                    <h1><span class="hero-title-main">نرم‌افزار مدیریت حمل‌ونقل بین‌المللی</span><span class="hero-title-accent">سپند</span></h1>
                     <div class="hero-description">
                         <p>سپند یک نرم افزار حمل و نقل بین المللی برای مدیریت فرایندهای شرکت‌های حمل، فورواردری و لجستیک است؛ از ثبت سرنخ فروش، ارتباط پیامکی و پیگیری فرصت فروش تا استعلام، رزرو، عملیات اجرایی، اسناد و امور مالی.</p>
                         <p>پرتال مشتریان سپند همین جریان را تا خدمات پس از فروش ادامه می‌دهد؛ مشتری با کد یک‌بارمصرف وارد می‌شود و وضعیت استعلام، محموله، رویدادهای مجاز رهگیری، صورتحساب و رسیدهای خود را مشاهده می‌کند.</p>

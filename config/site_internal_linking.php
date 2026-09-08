@@ -96,7 +96,6 @@ $targets = [
     'governance' => $target('/solutions/transport-governance', 'solutions.transport-governance', [], 'تعریف سیاست و تصمیم قابل ممیزی بین واحدها', ['حاکمیت عملیات حمل', 'کنترل‌های مدیریتی حمل', 'Transport Governance', 'سیاست‌گذاری عملیات']),
     'document-readiness' => $target('/solutions/document-readiness', 'solutions.document-readiness', [], 'سنجش کامل‌بودن مدارک پیش از Gate عملیاتی', ['کنترل آماده بودن مدارک', 'Document Readiness حمل', 'کنترل کسری اسناد', 'آمادگی مدارک پیش از عملیات']),
     'dispatch-planning' => $target('/solutions/fleet-dispatch-planning', 'solutions.fleet-dispatch-planning', [], 'برنامه‌ریزی ظرفیت و تخصیص بدون تداخل', ['برنامه‌ریزی اعزام ناوگان', 'تخصیص بدون تداخل مأموریت', 'Dispatch Planning', 'برنامه ظرفیت خودرو و راننده']),
-    'tower-solution' => $target('/solutions/operations-control-tower', 'solutions.operations-control-tower', [], 'پایش یکپارچه تأخیر، مدارک و اقدام‌های فوری', ['راهکار برج کنترل عملیات', 'مرکز فرماندهی عملیات حمل', 'پایش یکپارچه محموله‌ها', 'مرکز کنترل عملیات سپند']),
     'operational-workflow' => $target('/solutions/operational-workflow-management', 'solutions.operational-workflow-management', [], 'استانداردسازی مرحله، مسئول، مهلت و مدرک', ['مدیریت گردش کار عملیات', 'چک‌لیست هوشمند عملیات حمل', 'استانداردسازی فرایند فورواردری', 'کنترل مرحله‌های عملیات']),
 ];
 
@@ -111,7 +110,7 @@ return [
         '/why-sepand' => $page(2, 'Core', ['home', 'product', 'about', 'case-study']),
         '/faq' => $page(3, 'Core', ['product', 'modules', 'solutions']),
         '/modules' => $page(2, 'Core', ['crm', 'email-workflow', 'pricing-sales', 'transport-operations', 'finance']),
-        '/solutions' => $page(2, 'Core', ['tower-solution', 'operational-workflow', 'transport-operations', 'finance', 'crm', 'product']),
+        '/solutions' => $page(2, 'Core', ['control-tower', 'operational-workflow', 'transport-operations', 'finance', 'crm', 'product']),
         '/compare' => $page(2, 'Compare', ['best-forwarding', 'best-transport', 'best-crm', 'best-accounting']),
         '/pricing' => $page(2, 'Core', ['product', 'consultation', 'compare', 'faq']),
         '/about' => $page(3, 'Core', ['home', 'why', 'case-study']),
@@ -136,7 +135,7 @@ return [
         '/modules/automatic-tasks' => $page(3, 'Sales', ['crm', 'workflow', 'sales-automation']),
         '/modules/customer-portal-tracking' => $page(2, 'Core', ['visibility', 'booking', 'finance', 'product']),
         '/modules/email-workflow-automation' => $page(2, 'Sales / Operations', ['crm', 'pricing-sales', 'documents', 'transport-operations']),
-        '/modules/operations-control-tower' => $page(3, 'Operations', ['transport-operations', 'visibility', 'exception', 'tower-solution']),
+        '/modules/operations-control-tower' => $page(3, 'Operations', ['transport-operations', 'visibility', 'exception', 'operational-workflow']),
         '/modules/document-checklists' => $page(3, 'Documents', ['documents', 'document-readiness', 'document-approval']),
         '/modules/fleet-dispatch' => $page(3, 'Road / Fleet', ['road', 'dispatch-planning', 'fleet-management']),
 
@@ -167,7 +166,6 @@ return [
         '/solutions/transport-governance' => $page(3, 'Operations', ['transport-operations', 'finance', 'security']),
         '/solutions/document-readiness' => $page(3, 'Documents', ['documents', 'document-checklists', 'document-approval']),
         '/solutions/fleet-dispatch-planning' => $page(3, 'Road / Fleet', ['road', 'fleet-management', 'fleet-dispatch']),
-        '/solutions/operations-control-tower' => $page(2, 'Operations', ['transport-operations', 'operational-workflow', 'visibility', 'exception', 'schedule']),
-        '/solutions/operational-workflow-management' => $page(2, 'Operations', ['transport-operations', 'tower-solution', 'workflow', 'documents', 'schedule']),
+        '/solutions/operational-workflow-management' => $page(2, 'Operations', ['transport-operations', 'control-tower', 'workflow', 'documents', 'schedule']),
     ],
 ];

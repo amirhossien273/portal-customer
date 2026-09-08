@@ -1,0 +1,489 @@
+<?php
+    $title = 'نرم‌افزار فورواردری سپند | معرفی محصول و گردش‌کار یکپارچه';
+    $description = 'نرم‌افزار فورواردری سپند، مدیریت مشتری، نرخ‌دهی، رزرو، عملیات حمل، اسناد و امور مالی را در یک گردش‌کار متصل می‌کند؛ بخش‌های واقعی محصول را ببینید.';
+    $canonical = route('product');
+    $image = asset('assets/images/marketing/product-showcase/desktop-dashboard.webp');
+    $imageAlt = 'داشبورد واقعی نرم‌افزار مدیریت شرکت حمل‌ونقل سپند';
+    $imageWidth = 1600;
+    $imageHeight = 799;
+
+    $flowSteps = [
+        ['id' => 'crm', 'label' => 'CRM', 'title' => 'مشتری و پیگیری'],
+        ['id' => 'pricing', 'label' => 'نرخ‌دهی', 'title' => 'استعلام و نرخ'],
+        ['id' => 'booking', 'label' => 'Booking', 'title' => 'رزرو حمل'],
+        ['id' => 'operations', 'label' => 'عملیات حمل', 'title' => 'عملیات'],
+        ['id' => 'documents', 'label' => 'اسناد', 'title' => 'اسناد'],
+        ['id' => 'finance', 'label' => 'مالی', 'title' => 'مالی'],
+        ['id' => 'dashboard', 'label' => 'مدیریت', 'title' => 'گزارش مدیریتی'],
+    ];
+
+    $sections = [
+        [
+            'id' => 'crm',
+            'eyebrow' => '۰۱ — CRM حمل‌ونقل',
+            'title' => 'هیچ پیگیری‌ای گم نمی‌شود',
+            'lead' => 'هر مشتری، تماس، فعالیت و اقدام بعدی در یک پرونده قابل پیگیری می‌ماند.',
+            'problem' => 'اطلاعات مشتری، تماس‌ها و پیگیری‌ها بین اکسل، واتس‌اپ، تماس تلفنی و حافظه کارشناسان پراکنده می‌شوند و بخشی از فرصت‌ها بدون اقدام می‌مانند.',
+            'action' => 'سپند اطلاعات مشتری، سرنخ فروش، استعلام، فعالیت و وظیفه را یکپارچه ثبت می‌کند؛ مسئول، مهلت و وضعیت هر اقدام مشخص است و پیگیری‌های عقب‌افتاده، امروز و آینده جدا دیده می‌شوند.',
+            'outcome' => 'کارشناس می‌داند امروز چه کسی را پیگیری کند و مدیر علاوه بر وضعیت کارها، مشتریان با بیشترین درآمد، بیشترین سود، کار زیاد با سود کم و مشتریان کم‌حجم و ارزشمند را می‌بیند.',
+            'module' => 'crm',
+            'cta' => 'مشاهده ماژول CRM',
+            'images' => [
+                ['path' => 'product-showcase/desktop-dashboard.webp', 'width' => 1600, 'height' => 799, 'alt' => 'داشبورد واقعی پیگیری‌های امروز، عقب‌افتاده و آینده در CRM سپند', 'caption' => 'داشبورد پیگیری‌های من؛ کارهای عقب‌افتاده، امروز، بدون اقدام بعدی و پیگیری‌های آینده'],
+                ['path' => 'modules/screenshots/crm-overdue-inquiries.webp', 'width' => 1600, 'height' => 879, 'alt' => 'فهرست واقعی استعلام‌های دارای وظیفه عقب‌افتاده و میزان تأخیر پیگیری در CRM سپند', 'caption' => 'استعلام‌های دارای وظیفه عقب‌افتاده با مالک پرونده، مرحله، آخرین فعالیت و زمان تأخیر هر پیگیری'],
+                ['path' => 'modules/screenshots/crm-customers.webp', 'width' => 1600, 'height' => 818, 'alt' => 'فهرست واقعی مشتریان و نماهای تحلیلی درآمد و سود در CRM سپند', 'caption' => 'فهرست مشتریان با نماهای بیشترین درآمد، بیشترین سود، کار زیاد با سود کم و کم‌حجم و ارزشمند'],
+            ],
+        ],
+        [
+            'id' => 'pricing',
+            'eyebrow' => '۰۲ — نرخ‌دهی و فروش',
+            'title' => 'از استعلام مشتری تا پیشنهاد نرخ، همه‌چیز قابل ردیابی است',
+            'lead' => 'تصمیم نرخ‌دهی فقط «ارزان‌ترین عدد» نیست؛ تأمین‌کننده، اعتبار نرخ، حاشیه سود و اقدام بعدی هم‌زمان اهمیت دارند.',
+            'problem' => 'نرخ تأمین‌کنندگان در ایمیل، واتس‌اپ و اکسل پخش می‌شود و مقایسه پیشنهادهای نرخ، تاریخ اعتبار و حاشیه سود پیشنهادی دشوار می‌ماند.',
+            'action' => 'سپند استعلام مشتری، قیمت تأمین‌کننده، مقایسه چندمعیاره تأمین‌کنندگان، نرخ پیشنهادی، حاشیه سود، تاریخ اعتبار و وضعیت پیشنهاد فروش را در یک جریان نگه می‌دارد.',
+            'outcome' => 'کارشناس بهترین گزینه را فقط بر اساس کمترین قیمت انتخاب نمی‌کند؛ نرخ رو به انقضا و پیش‌فاکتور ۴۸ ساعته بدون پیگیری نیز به اقدام قابل مشاهده تبدیل می‌شوند.',
+            'module' => 'pricing-sales',
+            'cta' => 'مشاهده ماژول نرخ‌دهی و فروش',
+            'reverse' => true,
+            'images' => [
+                ['path' => 'modules/screenshots/pricing-sales-workflow.webp', 'width' => 1600, 'height' => 687, 'alt' => 'برد واقعی استعلام قیمت تأمین‌کننده و ارسال پیشنهاد نرخ در سپند', 'caption' => 'جریان واقعی بررسی مسیر، استعلام قیمت تأمین‌کننده، ثبت و ارسال پیشنهاد نرخ، تأیید مشتری و تبدیل به Booking'],
+                ['path' => 'modules/screenshots/pricing-supplier-comparison.webp', 'width' => 1600, 'height' => 839, 'alt' => 'مقایسه واقعی تأمین‌کنندگان بر اساس نرخ خرید، مسیر، اعتبار، زمان آزاد و سابقه عملکرد در سپند', 'caption' => 'مقایسه کنارهم تأمین‌کنندگان با نرخ خرید، مدت حمل، مسیر، اعتبار نرخ، زمان آزاد، سابقه تأخیر و کیفیت پاسخ‌گویی'],
+                ['path' => 'modules/screenshots/pricing-proposed-rates.webp', 'width' => 1600, 'height' => 701, 'alt' => 'پنجره واقعی نرخ‌های پیشنهادی مشابه برای یک استعلام در نرم‌افزار سپند', 'caption' => 'بررسی نرخ‌های پیشنهادی مشابه و امکان افزودن پیشنهاد نرخ در پرونده استعلام'],
+            ],
+        ],
+        [
+            'id' => 'booking',
+            'eyebrow' => '۰۳ — Booking',
+            'title' => 'وقتی نرخ تأیید شد، پرونده از نو ساخته نمی‌شود',
+            'lead' => 'اطلاعات تأییدشده فروش همراه پرونده به مرحله رزرو و اجرا می‌رود.',
+            'problem' => 'در سیستم‌های پراکنده، اطلاعات مشتری و حمل پس از تأیید نرخ دوباره وارد فایل یا نرم‌افزار دیگری می‌شود و خطای انسانی بالا می‌رود.',
+            'action' => 'در سپند استعلام و پیشنهاد نرخ تأییدشده به Booking متصل می‌شوند و اطلاعات اصلی مسیر، مشتری، پیشنهاد فروش و پرونده حمل حفظ می‌شود.',
+            'outcome' => 'ورود تکراری کمتر می‌شود؛ فروش، عملیات و مالی روی یک Booking مشترک کار می‌کنند و وضعیت پرداخت و دریافت همان پرونده قابل مشاهده است.',
+            'module' => 'booking',
+            'cta' => 'مشاهده ماژول Booking',
+            'images' => [
+                ['path' => 'modules/screenshots/booking-profitability.webp', 'width' => 1595, 'height' => 626, 'alt' => 'نمای واقعی Booking و ارتباط مبلغ پیشنهاد فروش با پرداخت و دریافت در سپند', 'caption' => 'پرونده‌های Booking با مبلغ پیشنهاد فروش، وضعیت نرخ تبدیل و دریافت‌ها و پرداخت‌های متصل به همان پرونده'],
+            ],
+        ],
+        [
+            'id' => 'operations',
+            'eyebrow' => '۰۴ — عملیات حمل',
+            'title' => 'تیم عملیات می‌داند هر پرونده حمل دقیقاً در چه مرحله‌ای است',
+            'lead' => 'تقویم حرکت و فهرست استثناها، پرونده‌های نیازمند اقدام را از دل عملیات روزانه بیرون می‌کشد.',
+            'problem' => 'پس از Booking، نقاط کنترل، مهلت‌ها و هماهنگی‌های متعدد وارد پرونده می‌شوند و کنترل آن‌ها از طریق پیام و فایل پراکنده دشوار است.',
+            'action' => 'سپند رویدادهای عملیات حمل، مسئول‌ها و برنامه حرکت محموله را به همان پرونده Booking متصل می‌کند و موارد بدون برنامه، بدون شماره کانتینر یا نیازمند اقدام را جدا نشان می‌دهد.',
+            'outcome' => 'تیم عملیات پرونده متوقف یا ناقص را سریع‌تر پیدا می‌کند و مدیر برای گرفتن وضعیت مجبور نیست از چند نفر گزارش جمع کند.',
+            'module' => 'transport-operations',
+            'cta' => 'مشاهده ماژول عملیات حمل',
+            'reverse' => true,
+            'images' => [
+                ['path' => 'modules/screenshots/operations-calendar-month.webp', 'width' => 1600, 'height' => 773, 'alt' => 'تقویم ماهانه واقعی حرکت محموله‌ها و هشدار عملیات در سپند', 'caption' => 'تقویم ماهانه حرکت محموله‌ها با وضعیت عادی، نیازمند اقدام و اطلاعات ناقص'],
+                ['path' => 'modules/screenshots/operations-calendar-list.webp', 'width' => 1600, 'height' => 861, 'alt' => 'نمای فهرستی واقعی حرکت محموله و استثناهای عملیاتی در سپند', 'caption' => 'نمای فهرستی حرکت‌ها و صف‌های بدون تاریخ حرکت، بدون برنامه و بدون شماره کانتینر'],
+            ],
+        ],
+        [
+            'id' => 'documents',
+            'eyebrow' => '۰۵ — مدیریت اسناد',
+            'title' => 'اسناد از پرونده حمل جدا نمی‌شوند',
+            'lead' => 'نسخه، وضعیت تأیید و مهلت هر سند باید در بستر همان مشتری و پرونده حمل دیده شود.',
+            'problem' => 'بارنامه، صورتحساب، فهرست بسته‌بندی و پیش‌نویس‌ها در پوشه‌ها، ایمیل و پیام‌های مختلف قرار می‌گیرند و تشخیص آخرین نسخه دشوار می‌شود.',
+            'action' => 'سپند فایل‌ها و وضعیت اسناد را به مشتری، Booking و پرونده عملیاتی مربوط متصل می‌کند تا نسخه جاری، اصلاحات و مسئول کنترل روشن باشد.',
+            'outcome' => 'تیم سریع‌تر به سند موردنیاز می‌رسد و ارتباط مدرک با پرونده حمل، مشتری و مرحله عملیات حفظ می‌شود.',
+            'module' => 'document-management',
+            'cta' => 'مشاهده ماژول مدیریت اسناد',
+            'images' => [
+                ['path' => 'modules/screenshots/document-attachment-upload.webp', 'width' => 1600, 'height' => 790, 'alt' => 'پنجره واقعی بارگذاری فایل پیوست برای پرونده استعلام در نرم‌افزار سپند', 'caption' => 'بارگذاری فایل پیوست با عنوان اختیاری و اتصال مستقیم آن به پرونده استعلام'],
+            ],
+        ],
+        [
+            'id' => 'finance',
+            'eyebrow' => '۰۶ — مالی چندارزی',
+            'title' => 'در پایان فقط درآمد مهم نیست؛ سود واقعی پرونده باید مشخص باشد',
+            'lead' => 'پرداخت، دریافت، نرخ تبدیل و سند مالی در بستر همان Booking بررسی می‌شوند.',
+            'problem' => 'وقتی هزینه و درآمد بیرون از پرونده حمل ثبت شوند، تشخیص سودآوری واقعی پرونده و علت مغایرت دشوار می‌شود.',
+            'action' => 'سپند درخواست‌های پرداخت، دریافت‌ها، نرخ تبدیل، اسناد و تأییدکننده را به Booking مربوط متصل می‌کند و نمای تطبیق مالی در اختیار تیم قرار می‌دهد.',
+            'outcome' => 'مالی و مدیریت می‌توانند پرداخت‌های معلق، تسویه، کسری دریافت یا پرداخت و سود پرونده را بدون جدا کردن عملیات از حسابداری بررسی کنند.',
+            'module' => 'finance-accounting',
+            'cta' => 'مشاهده ماژول مالی',
+            'reverse' => true,
+            'images' => [
+                ['path' => 'modules/screenshots/finance-payments.webp', 'width' => 1600, 'height' => 830, 'alt' => 'فهرست واقعی درخواست‌های پرداخت و وضعیت تأیید در سپند', 'caption' => 'درخواست‌های پرداخت، مبلغ، دریافت‌کننده، مشتری و وضعیت تأیید هر پرونده'],
+                ['path' => 'modules/screenshots/finance-booking-reconciliation.webp', 'width' => 1600, 'height' => 811, 'alt' => 'نمای واقعی تطبیق مالی Booking و کنترل نرخ تبدیل در سپند', 'caption' => 'تطبیق مالی Booking؛ پیشنهاد فروش، پرداخت، دریافت، نرخ تبدیل و کسری‌های قابل پیگیری'],
+                ['path' => 'modules/screenshots/finance-payment-details.webp', 'width' => 1576, 'height' => 922, 'alt' => 'جزئیات واقعی پرداخت و اسناد پیوست‌شده در نرم‌افزار سپند', 'caption' => 'جزئیات پرداخت با Booking مرتبط، تأییدکننده، حساب مقصد و فایل سند'],
+            ],
+        ],
+        [
+            'id' => 'dashboard',
+            'eyebrow' => '۰۷ — مدیریت',
+            'title' => 'مدیر برای فهمیدن وضعیت شرکت لازم نیست از چند واحد گزارش بگیرد',
+            'lead' => 'شاخص‌های CRM، فروش، عملیات و فعالیت‌ها از داده ثبت‌شده در همان سیستم ساخته می‌شوند.',
+            'problem' => 'وقتی فروش، عملیات و فعالیت کارکنان در سیستم‌های جدا ثبت شوند، دید مدیریتی لحظه‌ای و قابل اتکا شکل نمی‌گیرد.',
+            'action' => 'سپند اطلاعات سرنخ فروش، مشتری، استعلام، Booking، وظیفه و عملیات را به داشبورد و گزارش‌های تحلیلی متصل می‌کند.',
+            'outcome' => 'مدیر در یک نما حجم کار، پیگیری‌های معوق، مسیر تبدیل سرنخ به مشتری، روند استعلام تا Booking و ریزش مشتری را مشاهده می‌کند.',
+            'module' => 'crm',
+            'cta' => 'درخواست نمایش آنلاین سپند',
+            'cta_url' => route('consultation.create'),
+            'featured' => true,
+            'images' => [
+                ['path' => 'product-showcase/desktop-dashboard.webp', 'width' => 1600, 'height' => 799, 'alt' => 'داشبورد مدیریتی واقعی سپند با وضعیت سرنخ فروش، مشتری، استعلام و Booking', 'caption' => 'داشبورد واقعی سپند بر اساس اطلاعات ثبت‌شده در CRM، فروش و عملیات'],
+                ['path' => 'product-showcase/desktop-reports.webp', 'width' => 1600, 'height' => 844, 'alt' => 'گزارش تحلیلی واقعی سرنخ فروش، مشتری، استعلام و Booking در سپند', 'caption' => 'گزارش‌های واقعی مقایسه سرنخ و مشتری، استعلام و Booking، برچسب مشتری و ریزش'],
+            ],
+        ],
+    ];
+
+    $differentiators = [
+        ['group' => 'CRM', 'title' => 'مشتریان با بیشترین درآمد', 'text' => 'رتبه‌بندی بر اساس دریافت‌های تأییدشده، نه حدس یا حجم تماس.', 'href' => '#crm'],
+        ['group' => 'CRM', 'title' => 'مشتریان با بیشترین سود', 'text' => 'درآمد منهای هزینه قطعی برای تشخیص ارزش واقعی ارتباط.', 'href' => '#crm'],
+        ['group' => 'CRM', 'title' => 'کار زیاد، سود کم', 'text' => 'نمایی برای مشتریانی که فشار عملیاتی بالا و بازده پایین دارند.', 'href' => '#crm'],
+        ['group' => 'CRM', 'title' => 'کم‌حجم و ارزشمند', 'text' => 'مشتریانی که با تعداد کار کمتر، سود بالاتری در هر پرونده می‌سازند.', 'href' => '#crm'],
+        ['group' => 'نرخ‌دهی', 'title' => 'مقایسه چندمعیاره تأمین‌کننده', 'text' => 'نرخ خرید، مدت حمل، مستقیم یا غیرمستقیم بودن، اعتبار، زمان آزاد و شرایط پرداخت کنار هم دیده می‌شوند.', 'href' => '#pricing'],
+        ['group' => 'نرخ‌دهی', 'title' => 'نرخ پیشنهادی و هشدار انقضا', 'text' => 'حاشیه سود و اعتبار پیشنهاد نرخ پیش از ارسال و هنگام نزدیک‌شدن انقضا دیده می‌شوند.', 'href' => '#pricing'],
+        ['group' => 'مالی', 'title' => 'تطبیق مالی Booking', 'text' => 'پیشنهاد فروش، نرخ تبدیل، دریافت، پرداخت و کسری در یک کارت پرونده.', 'href' => '#finance'],
+        ['group' => 'گردش‌کار', 'title' => 'قانون وظیفه و تقویم‌های جدا', 'text' => 'وظیفه خودکار، تقویم فعالیت تیم و تقویم حرکت محموله هر کدام در بستر خود نمایش داده می‌شوند.', 'href' => '#workflow-evidence'],
+    ];
+
+    $roles = [
+        ['title' => 'فروش', 'text' => 'مشتری، سرنخ فروش، استعلام، پیشنهاد نرخ، پیگیری و تحلیل ارزش مشتری.'],
+        ['title' => 'عملیات', 'text' => 'Booking، پرونده حمل، وظیفه، نقاط کنترل، تقویم حرکت و استثناها.'],
+        ['title' => 'اسناد', 'text' => 'مدارک، نسخه‌ها، وضعیت تأیید و فایل‌های مرتبط با پرونده.'],
+        ['title' => 'مالی', 'text' => 'هزینه، پرداخت، دریافت، نرخ تبدیل، تسویه و سود پرونده.'],
+        ['title' => 'مدیریت', 'text' => 'داشبورد، شاخص‌های کلیدی عملکرد، گزارش روند، گلوگاه و عملکرد واحدها.'],
+    ];
+
+    $portalScreenshot = config('module_screenshots.customer-portal-tracking.0');
+
+    $structuredData = [
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'SoftwareApplication',
+                '@id' => route('product').'#software',
+                'name' => 'سپند CRM',
+                'applicationCategory' => 'BusinessApplication',
+                'operatingSystem' => 'Web',
+                'url' => route('product'),
+                'description' => $description,
+                'image' => $image,
+                'inLanguage' => 'fa-IR',
+            ],
+            [
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'معرفی محصول', 'item' => route('product')],
+                ],
+            ],
+        ],
+    ];
+?>
+
+<?php $__env->startPush('head'); ?>
+    <script type="application/ld+json"><?php echo json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?></script>
+<?php $__env->stopPush(); ?>
+
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-product.css')); ?>?v=20260826-4">
+<?php $__env->stopPush(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <section class="product-hero" aria-labelledby="product-title">
+        <div class="container product-hero-grid">
+            <div class="product-hero-copy reveal visible">
+                <nav class="breadcrumb" aria-label="مسیر راهنما">
+                    <a href="<?php echo e(route('home')); ?>">صفحه اصلی</a>
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    <span>معرفی محصول</span>
+                </nav>
+                <span class="product-kicker">سپند در عمل</span>
+                <h1 id="product-title">نرم‌افزار فورواردری سپند؛ <span>از اولین تماس مشتری تا تسویه پرونده</span></h1>
+                <p>سپند CRM، نرخ‌دهی، Booking، عملیات حمل، اسناد و امور مالی شرکت‌های حمل‌ونقل و فورواردری را در یک جریان یکپارچه به هم متصل می‌کند. اینجا هر ادعا با بخشی واقعی از نرم‌افزار همراه است.</p>
+                <div class="product-hero-actions">
+                    <a class="btn btn-primary" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="product_hero_consultation">درخواست دمو</a>
+                    <a class="btn btn-outline" href="#product-flow">مشاهده فرایند سپند</a>
+                </div>
+                <div class="product-proof-note">
+                    <span aria-hidden="true">✓</span>
+                    <p>تمام تصاویر این صفحه مستقیماً از محیط واقعی نرم‌افزار سپند تهیه شده‌اند.</p>
+                </div>
+            </div>
+
+            <figure class="product-hero-shot reveal visible">
+                <button
+                    class="product-screenshot-button"
+                    type="button"
+                    data-product-lightbox-open
+                    data-image-src="<?php echo e($image); ?>"
+                    data-image-alt="<?php echo e($imageAlt); ?>"
+                    data-image-caption="داشبورد واقعی سپند؛ پیگیری‌ها، نرخ‌های در حال انقضا و روند CRM تا Booking"
+                    aria-label="نمایش بزرگ‌تر داشبورد واقعی سپند"
+                >
+                    <img src="<?php echo e($image); ?>" alt="<?php echo e($imageAlt); ?>" width="1600" height="799" fetchpriority="high" decoding="async">
+                    <span class="product-screenshot-zoom" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m20 20-4-4M8 11h6M11 8v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                        بزرگ‌نمایی
+                    </span>
+                </button>
+                <figcaption><span>تصویر واقعی نرم‌افزار سپند</span> داشبورد پیگیری، فروش و عملیات</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="product-flow" id="product-flow" aria-labelledby="product-flow-title">
+        <div class="container">
+            <div class="product-section-head reveal">
+                <span>چرخه یک پرونده</span>
+                <h2 id="product-flow-title">یک پرونده در سپند چه مسیری را طی می‌کند؟</h2>
+                <p>سپند مجموعه‌ای از ماژول‌های جدا از هم نیست. اطلاعات پرونده از اولین ارتباط با مشتری تا عملیات و امور مالی همراه همان پرونده حرکت می‌کند.</p>
+            </div>
+            <p class="product-flow-context reveal">برای یک فورواردر، نرم‌افزار مدیریت شرکت حمل‌ونقل زمانی ارزشمند است که CRM حمل‌ونقل، مدیریت Booking و مدیریت عملیات حمل را به همان پرونده متصل کند؛ مسیر زیر همین پیوستگی را نشان می‌دهد.</p>
+            <nav class="product-flow-steps reveal" aria-label="مراحل فرایند سپند">
+                <?php $__currentLoopData = $flowSteps; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $step): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <a href="#<?php echo e($step['id']); ?>">
+                        <span><?php echo e(str_pad($loop->iteration, 2, '0', STR_PAD_LEFT)); ?></span>
+                        <b><?php echo e($step['label']); ?></b>
+                        <small><?php echo e($step['title']); ?></small>
+                    </a>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </nav>
+        </div>
+    </section>
+
+    <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php if (isset($component)) { $__componentOriginalb7ca24fd3ec1451b368d7d0168fc3574 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalb7ca24fd3ec1451b368d7d0168fc3574 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.marketing.product-evidence','data' => ['section' => $section]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('marketing.product-evidence'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['section' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($section)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalb7ca24fd3ec1451b368d7d0168fc3574)): ?>
+<?php $attributes = $__attributesOriginalb7ca24fd3ec1451b368d7d0168fc3574; ?>
+<?php unset($__attributesOriginalb7ca24fd3ec1451b368d7d0168fc3574); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalb7ca24fd3ec1451b368d7d0168fc3574)): ?>
+<?php $component = $__componentOriginalb7ca24fd3ec1451b368d7d0168fc3574; ?>
+<?php unset($__componentOriginalb7ca24fd3ec1451b368d7d0168fc3574); ?>
+<?php endif; ?>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+    <section class="product-differentiators" aria-labelledby="differentiators-title">
+        <div class="container">
+            <div class="product-section-head reveal">
+                <span>تفاوت در جزئیات</span>
+                <h2 id="differentiators-title">قابلیت‌هایی که در کار روزانه تفاوت می‌سازند</h2>
+                <p>این‌ها قابلیت‌های تزئینی نیستند؛ هرکدام یک تصمیم یا پیگیری واقعی را از اطلاعات موجود در پرونده قابل انجام می‌کنند.</p>
+            </div>
+            <figure class="product-differentiator-evidence reveal">
+                <button
+                    class="product-screenshot-button"
+                    type="button"
+                    data-product-lightbox-open
+                    data-image-src="<?php echo e(asset('assets/images/marketing/modules/screenshots/crm-customer-insights.webp')); ?>"
+                    data-image-alt="نماهای واقعی تحلیل مشتریان بر اساس درآمد، سود و حجم کار در CRM سپند"
+                    data-image-caption="دسترسی مستقیم به بیشترین درآمد، بیشترین سود، کار زیاد با سود کم و مشتریان کم‌حجم و ارزشمند"
+                    aria-label="نمایش بزرگ‌تر نماهای تحلیلی مشتریان در CRM سپند"
+                >
+                    <img src="<?php echo e(asset('assets/images/marketing/modules/screenshots/crm-customer-insights.webp')); ?>" alt="نماهای واقعی تحلیل مشتریان بر اساس درآمد، سود و حجم کار در CRM سپند" width="1600" height="391" loading="lazy" decoding="async">
+                    <span class="product-screenshot-zoom" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m20 20-4-4M8 11h6M11 8v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                        بزرگ‌نمایی
+                    </span>
+                </button>
+                <figcaption><span>تصویر واقعی CRM سپند</span>نماهای تحلیلی ارزش و حجم کار مشتریان</figcaption>
+            </figure>
+            <div class="product-differentiator-grid">
+                <?php $__currentLoopData = $differentiators; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <a class="product-differentiator-card reveal" href="<?php echo e($item['href']); ?>">
+                        <span><?php echo e($item['group']); ?></span>
+                        <h3><?php echo e($item['title']); ?></h3>
+                        <p><?php echo e($item['text']); ?></p>
+                        <small>مشاهده نمونه واقعی</small>
+                    </a>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+
+            <div class="product-workflow-proof reveal" id="workflow-evidence">
+                <div>
+                    <span>خودکارسازی و تقویم</span>
+                    <h3>پیگیری فقط به حافظه کارشناس وابسته نیست</h3>
+                    <p>قانون ساخت وظیفه خودکار، مرکز اعلان‌ها، تقویم فعالیت تیم و تقویم حرکت محموله چهار نمای متفاوت از «اقدام بعدی» می‌سازند.</p>
+                    <div class="product-workflow-links">
+                        <a href="<?php echo e(route('site.modules.show', ['module' => 'automatic-tasks'])); ?>">قوانین وظیفه خودکار</a>
+                        <a href="<?php echo e(route('site.modules.show', ['module' => 'workflow-tasks'])); ?>">گردش کار و تقویم فعالیت</a>
+                    </div>
+                </div>
+                <div class="product-workflow-thumbs">
+                    <button type="button" data-product-lightbox-open data-image-src="<?php echo e(asset('assets/images/marketing/modules/screenshots/automatic-task-rules.webp')); ?>" data-image-alt="قوانین واقعی ساخت وظیفه خودکار در سپند" data-image-caption="قوانین ساخت وظیفه خودکار، وضعیت فعال‌بودن و گزارش اجرا" aria-label="نمایش بزرگ‌تر قوانین وظیفه خودکار">
+                        <img src="<?php echo e(asset('assets/images/marketing/modules/screenshots/automatic-task-rules.webp')); ?>" alt="قوانین واقعی ساخت وظیفه خودکار در سپند" width="1600" height="851" loading="lazy" decoding="async">
+                    </button>
+                    <button type="button" data-product-lightbox-open data-image-src="<?php echo e(asset('assets/images/marketing/modules/screenshots/workflow-notifications.webp')); ?>" data-image-alt="مرکز اعلان و یادآوری واقعی سپند" data-image-caption="اعلان‌های خوانده‌نشده، وظایف ارجاع‌شده و امکان تعویق یادآوری" aria-label="نمایش بزرگ‌تر مرکز اعلان‌ها">
+                        <img src="<?php echo e(asset('assets/images/marketing/modules/screenshots/workflow-notifications.webp')); ?>" alt="مرکز اعلان و یادآوری واقعی سپند" width="1600" height="859" loading="lazy" decoding="async">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-integration" aria-labelledby="integration-title">
+        <div class="container">
+            <div class="product-section-head reveal">
+                <span>یکپارچگی محصول</span>
+                <h2 id="integration-title">مزیت اصلی سپند یک قابلیت نیست؛ اتصال فرایندها به یکدیگر است</h2>
+                <p>اطلاعات یک بار وارد سیستم می‌شوند و در طول چرخه فروش، عملیات و مالی همراه همان پرونده حرکت می‌کنند.</p>
+            </div>
+            <div class="product-integration-track reveal" aria-label="اتصال مراحل پرونده در سپند">
+                <?php $__currentLoopData = ['مشتری', 'CRM', 'استعلام', 'پیشنهاد نرخ', 'Booking', 'عملیات حمل', 'مالی', 'گزارش مدیریتی']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div><span><?php echo e(str_pad($loop->iteration, 2, '0', STR_PAD_LEFT)); ?></span><b><?php echo e($item); ?></b></div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-portal-proof" aria-labelledby="portal-proof-title">
+        <div class="container product-portal-proof-grid">
+            <div class="product-portal-proof-copy reveal">
+                <span class="product-evidence-eyebrow">دید مشتری خارج از سازمان</span>
+                <h2 id="portal-proof-title">مشتری هم وضعیت پرونده را از همان داده واقعی می‌بیند</h2>
+                <p>پرتال مشتری پایگاه داده جداگانه‌ای برای ورود دوباره اطلاعات نیست. استعلام، محموله، رویدادهای مجاز رهگیری و اطلاعات مالی از پرونده‌های ثبت‌شده در سپند خوانده می‌شوند.</p>
+                <ul>
+                    <li><strong>مسئله:</strong> تماس‌های مکرر برای وضعیت استعلام و محموله.</li>
+                    <li><strong>اقدام سپند:</strong> ورود امن OTP و نمایش فقط اطلاعات مجاز همان مشتری.</li>
+                    <li><strong>خروجی:</strong> پاسخ‌گویی سلف‌سرویس، بدون ساخت یک جزیره اطلاعاتی تازه.</li>
+                </ul>
+                <a href="<?php echo e(route('site.modules.show', ['module' => 'customer-portal-tracking'])); ?>">
+                    مشاهده پرتال مشتریان و رهگیری
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </a>
+            </div>
+            <figure class="product-portal-proof-shot reveal">
+                <button
+                    class="product-screenshot-button"
+                    type="button"
+                    data-product-lightbox-open
+                    data-image-src="<?php echo e(asset('assets/images/marketing/'.$portalScreenshot['path'])); ?>"
+                    data-image-alt="<?php echo e($portalScreenshot['alt']); ?>"
+                    data-image-caption="<?php echo e($portalScreenshot['caption']); ?>"
+                    aria-label="نمایش بزرگ‌تر داشبورد واقعی پرتال مشتری سپند"
+                >
+                    <img src="<?php echo e(asset('assets/images/marketing/'.$portalScreenshot['path'])); ?>" alt="<?php echo e($portalScreenshot['alt']); ?>" width="<?php echo e($portalScreenshot['width']); ?>" height="<?php echo e($portalScreenshot['height']); ?>" loading="lazy" decoding="async">
+                    <span class="product-screenshot-zoom" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m20 20-4-4M8 11h6M11 8v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                        بزرگ‌نمایی
+                    </span>
+                </button>
+                <figcaption><span>تصویر واقعی پرتال مشتری سپند</span><?php echo e($portalScreenshot['caption']); ?></figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="product-roles" aria-labelledby="roles-title">
+        <div class="container">
+            <div class="product-section-head reveal">
+                <span>یک پرونده، چند زاویه</span>
+                <h2 id="roles-title">هر واحد، همان پرونده را از زاویه خودش می‌بیند</h2>
+            </div>
+            <div class="product-role-grid">
+                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <article class="product-role-card reveal">
+                        <span><?php echo e(str_pad($loop->iteration, 2, '0', STR_PAD_LEFT)); ?></span>
+                        <h3><?php echo e($role['title']); ?></h3>
+                        <p><?php echo e($role['text']); ?></p>
+                    </article>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-wrap product-final-cta">
+        <div class="container">
+            <div class="cta reveal">
+                <div class="cta-copy">
+                    <h2>سپند را با فرایند واقعی شرکت خودتان ببینید</h2>
+                    <p>در جلسه دمو، فرایند فروش، نرخ‌دهی، Booking، عملیات و مالی سپند را بر اساس سناریوی واقعی یک شرکت حمل‌ونقل بررسی می‌کنیم.</p>
+                </div>
+                <div class="product-cta-actions">
+                    <a class="btn" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="product_bottom_consultation">درخواست دمو</a>
+                    <a class="btn product-cta-secondary" href="<?php echo e(route('about')); ?>">تماس با ما</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <dialog class="product-lightbox" data-product-lightbox aria-labelledby="product-lightbox-caption">
+        <div class="product-lightbox-toolbar">
+            <p id="product-lightbox-caption" data-product-lightbox-caption></p>
+            <button type="button" data-product-lightbox-close aria-label="بستن تصویر بزرگ">×</button>
+        </div>
+        <div class="product-lightbox-body">
+            <img alt="" data-product-lightbox-image>
+        </div>
+    </dialog>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+    <script>
+        (() => {
+            document.querySelectorAll('[data-evidence-gallery]').forEach(gallery => {
+                const slides = Array.from(gallery.querySelectorAll('[data-evidence-slide]'));
+                const dots = Array.from(gallery.querySelectorAll('[data-evidence-dot]'));
+                const caption = gallery.querySelector('[data-evidence-caption]');
+                let current = 0;
+                let touchStart = 0;
+
+                const show = index => {
+                    current = (index + slides.length) % slides.length;
+                    slides.forEach((slide, slideIndex) => {
+                        const active = slideIndex === current;
+                        slide.classList.toggle('is-active', active);
+                        slide.setAttribute('aria-hidden', String(!active));
+                    });
+                    dots.forEach((dot, dotIndex) => {
+                        const active = dotIndex === current;
+                        dot.classList.toggle('is-active', active);
+                        dot.setAttribute('aria-current', String(active));
+                    });
+                    if (caption) caption.textContent = slides[current].dataset.caption;
+                };
+
+                gallery.querySelector('[data-evidence-previous]')?.addEventListener('click', () => show(current - 1));
+                gallery.querySelector('[data-evidence-next]')?.addEventListener('click', () => show(current + 1));
+                dots.forEach(dot => dot.addEventListener('click', () => show(Number(dot.dataset.evidenceDot))));
+                gallery.addEventListener('touchstart', event => { touchStart = event.changedTouches[0].clientX; }, { passive: true });
+                gallery.addEventListener('touchend', event => {
+                    const distance = event.changedTouches[0].clientX - touchStart;
+                    if (Math.abs(distance) > 45 && slides.length > 1) show(current + (distance < 0 ? 1 : -1));
+                }, { passive: true });
+            });
+
+            const dialog = document.querySelector('[data-product-lightbox]');
+            const dialogImage = dialog?.querySelector('[data-product-lightbox-image]');
+            const dialogCaption = dialog?.querySelector('[data-product-lightbox-caption]');
+            let lastTrigger = null;
+
+            const closeDialog = () => {
+                if (!dialog?.open) return;
+                dialog.close();
+                lastTrigger?.focus();
+            };
+
+            document.querySelectorAll('[data-product-lightbox-open]').forEach(button => button.addEventListener('click', () => {
+                if (!dialog || !dialogImage || !dialogCaption) return;
+                lastTrigger = button;
+                dialogImage.src = button.dataset.imageSrc;
+                dialogImage.alt = button.dataset.imageAlt;
+                dialogCaption.textContent = button.dataset.imageCaption;
+                dialog.showModal();
+            }));
+
+            dialog?.querySelector('[data-product-lightbox-close]')?.addEventListener('click', closeDialog);
+            dialog?.addEventListener('click', event => { if (event.target === dialog) closeDialog(); });
+        })();
+    </script>
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.marketing', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\project\sepand\portal-customer\resources\views/marketing/product-overview.blade.php ENDPATH**/ ?>
