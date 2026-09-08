@@ -82,6 +82,17 @@ class MarketingSitemapController extends Controller
             ];
         }
 
+        foreach (config('site_operational_landing_pages', []) as $page) {
+            $urls[] = [
+                'loc' => $marketingUrl($page['route']),
+                'lastmod' => $lastModified,
+                'images' => [[
+                    'loc' => $baseUrl.'/assets/images/marketing/'.implode('/', array_map('rawurlencode', explode('/', $page['image']))),
+                    'title' => $page['image_alt'],
+                ]],
+            ];
+        }
+
         foreach (config('site_case_studies', []) as $slug => $page) {
             $urls[] = [
                 'loc' => $marketingUrl('case-studies.show', ['caseStudy' => $slug]),

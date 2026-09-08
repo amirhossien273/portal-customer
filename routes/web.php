@@ -5,6 +5,7 @@ use App\Http\Controllers\MarketingComparisonController;
 use App\Http\Controllers\MarketingCaseStudyController;
 use App\Http\Controllers\MarketingContentPageController;
 use App\Http\Controllers\MarketingModuleController;
+use App\Http\Controllers\MarketingOperationalSolutionController;
 use App\Http\Controllers\MarketingPlatformSolutionController;
 use App\Http\Controllers\MarketingSitemapController;
 use App\Http\Controllers\MarketingTransportModeController;
@@ -98,6 +99,12 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
         ->defaults('contentGroup', 'solutions')
         ->defaults('contentSlug', 'fleet-dispatch-planning')
         ->name('solutions.fleet-dispatch-planning');
+    Route::get('/solutions/operations-control-tower', [MarketingOperationalSolutionController::class, 'show'])
+        ->defaults('solution', 'operations-control-tower')
+        ->name('solutions.operations-control-tower');
+    Route::get('/solutions/operational-workflow-management', [MarketingOperationalSolutionController::class, 'show'])
+        ->defaults('solution', 'operational-workflow-management')
+        ->name('solutions.operational-workflow-management');
     Route::get('/solutions/{solution}', [MarketingPlatformSolutionController::class, 'show'])
         ->whereIn('solution', array_keys(config('site_platform_solutions.pages', [])))
         ->name('solutions.platform.show');

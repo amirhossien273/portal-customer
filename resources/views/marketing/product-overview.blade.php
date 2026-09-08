@@ -1,8 +1,8 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'معرفی نرم افزار سپند | مدیریت یکپارچه شرکت‌های حمل‌ونقل و فورواردری';
-    $description = 'با نحوه کار نرم افزار سپند از CRM و نرخ‌دهی تا Booking، عملیات حمل، اسناد و امور مالی آشنا شوید و بخش‌های واقعی محصول را مشاهده کنید.';
+    $title = 'نرم‌افزار فورواردری سپند | معرفی محصول و گردش‌کار یکپارچه';
+    $description = 'نرم‌افزار فورواردری سپند، مدیریت مشتری، نرخ‌دهی، رزرو، عملیات حمل، اسناد و امور مالی را در یک گردش‌کار متصل می‌کند؛ بخش‌های واقعی محصول را ببینید.';
     $canonical = route('product');
     $image = asset('assets/images/marketing/product-showcase/desktop-dashboard.webp');
     $imageAlt = 'داشبورد واقعی نرم‌افزار مدیریت شرکت حمل‌ونقل سپند';
@@ -197,7 +197,7 @@
                     <span>معرفی محصول</span>
                 </nav>
                 <span class="product-kicker">سپند در عمل</span>
-                <h1 id="product-title">از اولین تماس مشتری تا تسویه پرونده؛ <span>همه‌چیز در یک سیستم</span></h1>
+                <h1 id="product-title">نرم‌افزار فورواردری سپند؛ <span>از اولین تماس مشتری تا تسویه پرونده</span></h1>
                 <p>سپند CRM، نرخ‌دهی، Booking، عملیات حمل، اسناد و امور مالی شرکت‌های حمل‌ونقل و فورواردری را در یک جریان یکپارچه به هم متصل می‌کند. اینجا هر ادعا با بخشی واقعی از نرم‌افزار همراه است.</p>
                 <div class="product-hero-actions">
                     <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="product_hero_consultation">درخواست دمو</a>

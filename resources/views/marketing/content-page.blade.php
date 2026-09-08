@@ -80,7 +80,7 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-content-page.css') }}?v=20260831-2">
+<link rel="stylesheet" href="{{ asset('assets/css/marketing-content-page.css') }}?v=20260908-1">
 @endpush
 
 @section('content')
@@ -132,6 +132,7 @@
         <nav class="content-toc" aria-label="فهرست مطالب">
             <span>در این صفحه</span>
             <a href="#outcomes-section">خروجی‌ها</a>
+            @if(isset($page['specialist_difference']))<a href="#specialist-difference-section">تفاوت دو دسته</a>@endif
             <a href="#diagnostic-section">تشخیص نیاز</a>
             <a href="#decision-framework">اجزای اصلی</a>
             <a href="#workflow-section">جریان کار</a>
@@ -153,6 +154,30 @@
         </div>
     </div>
 </section>
+
+@if(isset($page['specialist_difference']))
+<section class="section soft content-specialist-difference" id="specialist-difference-section" aria-labelledby="specialist-difference-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">تفکیک موضوعی</span>
+            <h2 class="section-title" id="specialist-difference-title">{{ $page['specialist_difference']['heading'] }}</h2>
+            <p class="section-sub">{{ $page['specialist_difference']['intro'] }}</p>
+        </div>
+        <div class="content-difference-grid">
+            @foreach(['general', 'forwarding'] as $differenceKey)
+                @php($difference = $page['specialist_difference'][$differenceKey])
+                <article class="content-difference-card reveal">
+                    <span>{{ $loop->iteration === 1 ? 'دسته عمومی' : 'دسته تخصصی' }}</span>
+                    <h3>{{ $difference['title'] }}</h3>
+                    <p>{{ $difference['description'] }}</p>
+                    <ul>@foreach($difference['items'] as $item)<li>{{ $item }}</li>@endforeach</ul>
+                </article>
+            @endforeach
+        </div>
+        <div class="content-difference-action reveal"><a href="{{ $linkUrl($page['specialist_difference']['link']) }}">{{ $page['specialist_difference']['link']['label'] }} <span aria-hidden="true">←</span></a></div>
+    </div>
+</section>
+@endif
 
 <section class="section content-diagnostic-section" id="diagnostic-section" aria-labelledby="diagnostic-title">
     <div class="container">

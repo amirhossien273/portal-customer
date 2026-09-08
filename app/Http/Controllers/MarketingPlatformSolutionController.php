@@ -10,7 +10,9 @@ class MarketingPlatformSolutionController extends Controller
     {
         $solutions = config('site_platform_solutions.pages', []);
         $hub = config('site_platform_solutions.hub', []);
-        $specializedSolutions = collect(config('site_content_pages.solutions', []))->keyBy('route');
+        $specializedSolutions = collect(config('site_content_pages.solutions', []))
+            ->merge(config('site_operational_landing_pages', []))
+            ->keyBy('route');
         $specializedGroups = collect($hub['specialized_groups'] ?? [])->map(function (array $group) use ($specializedSolutions): array {
             $group['solutions'] = collect($group['routes'] ?? [])
                 ->map(fn (string $route) => $specializedSolutions->get($route))

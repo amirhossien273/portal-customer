@@ -24,10 +24,10 @@ class ProductOverviewPageTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>معرفی نرم افزار سپند | مدیریت یکپارچه شرکت‌های حمل‌ونقل و فورواردری</title>', false)
+            ->assertSee('<title>نرم‌افزار فورواردری سپند | معرفی محصول و گردش‌کار یکپارچه</title>', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/product">', false)
             ->assertSee('از اولین تماس مشتری تا تسویه پرونده؛', false)
-            ->assertSee('همه‌چیز در یک سیستم', false)
+            ->assertSee('نرم‌افزار فورواردری سپند؛', false)
             ->assertSee('id="product-flow"', false)
             ->assertSee('قابلیت‌هایی که در کار روزانه تفاوت می‌سازند', false)
             ->assertSee('مشتریان با بیشترین درآمد', false)

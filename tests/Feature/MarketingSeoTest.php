@@ -238,7 +238,7 @@ class MarketingSeoTest extends TestCase
         ];
 
         $this->assertCount(23, $pages);
-        $this->assertSame(105, array_sum(array_map('count', $pages)));
+        $this->assertSame(106, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
