@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0abdab45-2db4-49b6-acc3-93ff9521c6a8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/transport-modes/air-documents-uld.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/transport-modes/air-documents-uld.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/transport-modes/rail-operations-depth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/transport-modes/rail-operations-depth.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/marketing/transport-modes/road-trip-overview.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marketing/transport-modes/road-trip-overview.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="0abdab45-2db4-49b6-acc3-93ff9521c6a8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +54,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -74,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1788593311556</updated>
-      <workItem from="1788593312818" duration="2661000" />
+      <workItem from="1788593312818" duration="3853000" />
     </task>
     <servers />
   </component>
