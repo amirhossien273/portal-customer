@@ -351,8 +351,8 @@ return [
                 'cta_button' => 'درخواست دموی ارزیابی مالی',
             ],
             'best-freight-forwarding-software' => [
-                'intent_title' => 'Selection تخصصی Freight Forwarder؛ نه انتخاب عمومی نرم‌افزار حمل',
-                'intent_text' => 'این صفحه فقط نیازهای عمودی فورواردری مانند چندروش حمل، House/Master، Agent، Profit per Job و Handoff فروش به عملیات را ارزیابی می‌کند.',
+                'intent_title' => 'راهنمای تخصصی Freight Forwarder؛ جدا از نرم‌افزار عمومی حمل',
+                'intent_text' => 'این صفحه گردش‌کار عمودی فورواردری شامل Inquiry، Rate Request، Quotation، Booking، Shipment، House/Master، Agent، Carrier و Profitability را ارزیابی می‌کند.',
                 'hero_primary_label' => 'مشاهده معیارهای تخصصی فورواردری',
                 'hero_secondary_label' => 'درخواست دموی فورواردری',
                 'cta_button' => 'درخواست دموی ارزیابی فورواردری',

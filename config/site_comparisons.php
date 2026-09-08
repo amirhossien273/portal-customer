@@ -23,14 +23,14 @@ return [
         [
             'route' => 'compare.best-transport-software',
             'eyebrow' => 'راهنمای انتخاب',
-            'title' => 'بهترین نرم‌افزار حمل‌ونقل بین‌المللی',
-            'description' => 'چک‌لیست ارزیابی و سناریوی دمویی برای انتخاب متناسب با فرایند و بودجه شرکت.',
+            'title' => 'راهنمای نرم‌افزار مدیریت حمل‌ونقل',
+            'description' => 'معیارهای عمومی CRM، نرخ، عملیات، مالی، اسناد، گزارش و حمل چندوجهی برای انتخاب یک سامانه جامع.',
         ],
         [
             'route' => 'compare.best-freight-forwarding-software',
             'eyebrow' => 'راهنمای تخصصی فورواردری',
             'title' => 'بهترین نرم‌افزار فورواردری',
-            'description' => 'معیارهای CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی برای انتخاب راهکار فورواردری.',
+            'description' => 'گردش‌کار تخصصی Inquiry، نرخ، Quotation، Booking، Shipment، اسناد، Agent، Carrier و سودآوری محموله.',
         ],
         [
             'route' => 'compare.best-crm-for-transport-companies',

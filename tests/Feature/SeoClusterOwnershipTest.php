@@ -142,10 +142,10 @@ class SeoClusterOwnershipTest extends TestCase
 
         $this->get('/compare/best-transport-software')
             ->assertOk()
-            ->assertSee('بهترین نرم‌افزار حمل‌ونقل بین‌المللی را چگونه انتخاب کنیم؟', false);
+            ->assertSee('نرم‌افزار مدیریت حمل‌ونقل را چگونه انتخاب کنیم؟', false);
 
         $this->get('/compare/best-freight-forwarding-software')
             ->assertOk()
-            ->assertSee('Selection تخصصی Freight Forwarder', false);
+            ->assertSee('راهنمای تخصصی Freight Forwarder', false);
     }
 }

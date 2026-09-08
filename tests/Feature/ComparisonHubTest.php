@@ -33,7 +33,7 @@ class ComparisonHubTest extends TestCase
             ->assertSee('سپند در برابر رویان', false)
             ->assertSee('سپند در برابر سبا سیستم', false)
             ->assertSee('سپند در برابر سایر نرم‌افزارهای حمل‌ونقل', false)
-            ->assertSee('بهترین نرم‌افزار حمل‌ونقل بین‌المللی', false)
+            ->assertSee('راهنمای نرم‌افزار مدیریت حمل‌ونقل', false)
             ->assertSee('"@type":"CollectionPage"', false)
             ->assertSee('"@type":"BreadcrumbList"', false)
             ->assertSee('"@type":"ItemList"', false)
@@ -105,11 +105,11 @@ class ComparisonHubTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>بهترین نرم‌افزار حمل‌ونقل بین‌المللی | راهنمای انتخاب</title>', false)
+            ->assertSee('<title>نرم‌افزار مدیریت حمل‌ونقل | راهنمای انتخاب جامع</title>', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/compare/best-transport-software">', false)
-            ->assertSee('بهترین نرم‌افزار حمل‌ونقل بین‌المللی را چگونه انتخاب کنیم؟', false)
-            ->assertSee('هشت معیار برای ارزیابی نرم‌افزار حمل‌ونقل', false)
-            ->assertSee('دمو را از Lead تا سود پرونده اجرا کنید', false)
+            ->assertSee('نرم‌افزار مدیریت حمل‌ونقل را چگونه انتخاب کنیم؟', false)
+            ->assertSee('هشت معیار عمومی برای ارزیابی نرم‌افزار مدیریت حمل‌ونقل', false)
+            ->assertSee('یک فرایند عمومی حمل را از درخواست تا گزارش اجرا کنید', false)
             ->assertSee('قیمت پایین‌تر الزاماً هزینه کل کمتر نیست', false)
             ->assertSee('"@type":"BreadcrumbList"', false)
             ->assertSee('"@type":"FAQPage"', false);
@@ -120,6 +120,46 @@ class ComparisonHubTest extends TestCase
 
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertValidJsonLd($content);
+    }
+
+    public function test_transport_and_forwarding_guides_have_distinct_intents_and_reciprocal_links(): void
+    {
+        $transportPath = '/compare/best-transport-software';
+        $forwardingPath = '/compare/best-freight-forwarding-software';
+        $transport = $this->get($transportPath)->assertOk();
+        $forwarding = $this->get($forwardingPath)->assertOk();
+        $transportHtml = $transport->getContent();
+        $forwardingHtml = $forwarding->getContent();
+
+        $transport
+            ->assertSee('<meta name="description" content="راهنمای انتخاب نرم‌افزار مدیریت حمل‌ونقل با معیارهای عمومی CRM، نرخ، عملیات، مالی، اسناد، گزارش‌گیری، امنیت و پشتیبانی از حمل چندوجهی.">', false)
+            ->assertSee('راهنمای انتخاب نرم‌افزار تخصصی فورواردری', false)
+            ->assertSee('href="'.self::SITE_URL.$forwardingPath.'"', false)
+            ->assertDontSee('گردش‌کار واقعی Freight Forwarder از استعلام تا بستن Shipment', false);
+
+        $forwarding
+            ->assertSee('<meta name="description" content="راهنمای انتخاب نرم‌افزار فورواردری و Freight Forwarding Software برای شرکت حمل‌ونقل بین‌المللی؛ از استعلام و نرخ تا رزرو، اسناد و سود محموله.">', false)
+            ->assertSee('تفاوت نرم‌افزار فورواردری با نرم‌افزار عمومی مدیریت حمل‌ونقل چیست؟', false)
+            ->assertSee('گردش‌کار واقعی Freight Forwarder از استعلام تا بستن Shipment', false)
+            ->assertSee('Inquiry', false)
+            ->assertSee('Rate Request', false)
+            ->assertSee('Quotation', false)
+            ->assertSee('Booking', false)
+            ->assertSee('HBL', false)
+            ->assertSee('MBL', false)
+            ->assertSee('Agent', false)
+            ->assertSee('Carrier', false)
+            ->assertSee('Profitability', false)
+            ->assertSee('راهنمای انتخاب نرم‌افزار مدیریت حمل‌ونقل', false)
+            ->assertSee('href="'.self::SITE_URL.$transportPath.'"', false)
+            ->assertDontSee('هشت معیار عمومی برای ارزیابی نرم‌افزار مدیریت حمل‌ونقل', false);
+
+        $this->assertSame(1, substr_count($transportHtml, '<link rel="canonical" href="'.self::SITE_URL.$transportPath.'">'));
+        $this->assertSame(1, substr_count($forwardingHtml, '<link rel="canonical" href="'.self::SITE_URL.$forwardingPath.'">'));
+        $this->assertStringNotContainsString('<link rel="canonical" href="'.self::SITE_URL.$forwardingPath.'">', $transportHtml);
+        $this->assertStringNotContainsString('<link rel="canonical" href="'.self::SITE_URL.$transportPath.'">', $forwardingHtml);
+        $this->assertValidJsonLd($transportHtml);
+        $this->assertValidJsonLd($forwardingHtml);
     }
 
     public function test_every_comparison_url_is_present_once_in_sitemap(): void

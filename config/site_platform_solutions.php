@@ -359,7 +359,7 @@ return [
             ['eyebrow' => 'Financial Outcome', 'title' => 'تطبیق مالی در سطح Booking', 'description' => 'دریافت، پرداخت و تبدیل ارز به پرونده متصل می‌مانند تا نتیجه مالی قابل ردیابی باشد.', 'image' => 'modules/screenshots/finance-booking-reconciliation.webp', 'alt' => 'نمای واقعی تطبیق مالی Booking در سپند', 'route' => 'solutions.platform.show', 'parameters' => ['solution' => 'freight-finance']],
         ],
         'specialized_groups' => [
-            ['title' => 'کنترل و حاکمیت عملیات', 'description' => 'برای دیدپذیری، Exception، آمادگی و تصمیم مدیریتی.', 'routes' => ['solutions.shipment-visibility', 'solutions.operation-exception-management', 'solutions.transport-governance', 'solutions.document-readiness', 'solutions.fleet-dispatch-planning']],
+            ['title' => 'کنترل و حاکمیت عملیات', 'description' => 'برای دیدپذیری، رسیدگی به رخداد، آمادگی و تصمیم مدیریتی.', 'routes' => ['solutions.operations-control-tower', 'solutions.operational-workflow-management', 'solutions.shipment-visibility', 'solutions.operation-exception-management', 'solutions.transport-governance', 'solutions.document-readiness', 'solutions.fleet-dispatch-planning']],
             ['title' => 'دریایی، کانتینر و اسناد', 'description' => 'برای سناریوهای عمیق‌تر عملیات دریایی و تجهیزات.', 'routes' => ['solutions.nvocc', 'solutions.container-management', 'solutions.bill-of-lading-management']],
             ['title' => 'فروش و استقرار', 'description' => 'برای جریان تجاری یا الزامات زیرساخت سازمان.', 'routes' => ['solutions.freight-sales-automation', 'solutions.on-premise']],
         ],

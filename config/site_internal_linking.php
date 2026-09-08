@@ -50,8 +50,8 @@ $targets = [
     'compare-royan' => $target('/compare/sepand-vs-royan', 'compare.sepand-vs-royan', [], 'مقایسه سپند و رویان بر اساس معیارهای عملیاتی', ['مقایسه سپند و رویان', 'راهنمای سپند در برابر رویان', 'ارزیابی سپند و رویان']),
     'compare-saba' => $target('/compare/sepand-vs-saba', 'compare.sepand-vs-saba', [], 'مقایسه سپند و سبا سیستم با معیارهای یکسان', ['مقایسه سپند و سبا سیستم', 'راهنمای سپند در برابر سبا', 'ارزیابی سپند و سبا سیستم']),
     'compare-other' => $target('/compare/sepand-vs-other-transport-software', 'compare.sepand-other-transport-software', [], 'شناخت دسته‌های مختلف نرم‌افزار حمل', ['مقایسه با سایر نرم‌افزارهای حمل', 'سپند در برابر راهکارهای دیگر', 'مقایسه دسته‌های نرم‌افزار حمل']),
-    'best-transport' => $target('/compare/best-transport-software', 'compare.best-transport-software', [], 'انتخاب نرم‌افزار عمومی مدیریت حمل', ['راهنمای انتخاب نرم‌افزار حمل', 'بهترین نرم‌افزار مدیریت حمل', 'چارچوب انتخاب سامانه حمل']),
-    'best-forwarding' => $target('/compare/best-freight-forwarding-software', 'compare.best-freight-forwarding-software', [], 'انتخاب سامانه متناسب با شرکت فورواردری', ['راهنمای انتخاب نرم‌افزار فورواردری', 'بهترین نرم‌افزار فورواردری', 'چارچوب ارزیابی سامانه فورواردری', 'چک‌لیست انتخاب سیستم فورواردری', 'ارزیابی نرم‌افزار Freight Forwarding', 'راهنمای خرید سامانه فورواردری']),
+    'best-transport' => $target('/compare/best-transport-software', 'compare.best-transport-software', [], 'انتخاب نرم‌افزار عمومی مدیریت حمل', ['راهنمای انتخاب نرم‌افزار مدیریت حمل‌ونقل', 'راهنمای انتخاب نرم‌افزار حمل', 'بهترین نرم‌افزار مدیریت حمل', 'چارچوب انتخاب سامانه حمل']),
+    'best-forwarding' => $target('/compare/best-freight-forwarding-software', 'compare.best-freight-forwarding-software', [], 'انتخاب سامانه متناسب با شرکت فورواردری', ['راهنمای انتخاب نرم‌افزار تخصصی فورواردری', 'راهنمای انتخاب نرم‌افزار فورواردری', 'بهترین نرم‌افزار فورواردری', 'چارچوب ارزیابی سامانه فورواردری', 'چک‌لیست انتخاب سیستم فورواردری', 'ارزیابی نرم‌افزار Freight Forwarding', 'راهنمای خرید سامانه فورواردری']),
     'best-crm' => $target('/compare/best-crm-for-transport-companies', 'compare.best-crm-for-transport-companies', [], 'ارزیابی CRM تخصصی صنعت حمل', ['راهنمای انتخاب CRM حمل‌ونقل', 'بهترین CRM برای شرکت حمل', 'چک‌لیست CRM تخصصی فورواردری']),
     'best-accounting' => $target('/compare/best-transport-accounting-software', 'compare.best-transport-accounting-software', [], 'ارزیابی نرم‌افزار مالی متصل به عملیات حمل', ['راهنمای حسابداری حمل‌ونقل', 'بهترین نرم‌افزار حسابداری حمل', 'چک‌لیست سامانه مالی فورواردری']),
 
@@ -96,6 +96,8 @@ $targets = [
     'governance' => $target('/solutions/transport-governance', 'solutions.transport-governance', [], 'تعریف سیاست و تصمیم قابل ممیزی بین واحدها', ['حاکمیت عملیات حمل', 'کنترل‌های مدیریتی حمل', 'Transport Governance', 'سیاست‌گذاری عملیات']),
     'document-readiness' => $target('/solutions/document-readiness', 'solutions.document-readiness', [], 'سنجش کامل‌بودن مدارک پیش از Gate عملیاتی', ['کنترل آماده بودن مدارک', 'Document Readiness حمل', 'کنترل کسری اسناد', 'آمادگی مدارک پیش از عملیات']),
     'dispatch-planning' => $target('/solutions/fleet-dispatch-planning', 'solutions.fleet-dispatch-planning', [], 'برنامه‌ریزی ظرفیت و تخصیص بدون تداخل', ['برنامه‌ریزی اعزام ناوگان', 'تخصیص بدون تداخل مأموریت', 'Dispatch Planning', 'برنامه ظرفیت خودرو و راننده']),
+    'tower-solution' => $target('/solutions/operations-control-tower', 'solutions.operations-control-tower', [], 'پایش یکپارچه تأخیر، مدارک و اقدام‌های فوری', ['راهکار برج کنترل عملیات', 'مرکز فرماندهی عملیات حمل', 'پایش یکپارچه محموله‌ها', 'مرکز کنترل عملیات سپند']),
+    'operational-workflow' => $target('/solutions/operational-workflow-management', 'solutions.operational-workflow-management', [], 'استانداردسازی مرحله، مسئول، مهلت و مدرک', ['مدیریت گردش کار عملیات', 'چک‌لیست هوشمند عملیات حمل', 'استانداردسازی فرایند فورواردری', 'کنترل مرحله‌های عملیات']),
 ];
 
 $page = static fn (int $tier, string $cluster, array $links): array => compact('tier', 'cluster', 'links');
@@ -109,7 +111,7 @@ return [
         '/why-sepand' => $page(2, 'Core', ['home', 'product', 'about', 'case-study']),
         '/faq' => $page(3, 'Core', ['product', 'modules', 'solutions']),
         '/modules' => $page(2, 'Core', ['crm', 'email-workflow', 'pricing-sales', 'transport-operations', 'finance']),
-        '/solutions' => $page(2, 'Core', ['transport-operations', 'finance', 'crm', 'product']),
+        '/solutions' => $page(2, 'Core', ['tower-solution', 'operational-workflow', 'transport-operations', 'finance', 'crm', 'product']),
         '/compare' => $page(2, 'Compare', ['best-forwarding', 'best-transport', 'best-crm', 'best-accounting']),
         '/pricing' => $page(2, 'Core', ['product', 'consultation', 'compare', 'faq']),
         '/about' => $page(3, 'Core', ['home', 'why', 'case-study']),
@@ -119,8 +121,8 @@ return [
         '/compare/sepand-vs-royan' => $page(3, 'Compare', ['compare', 'compare-saba', 'best-forwarding']),
         '/compare/sepand-vs-saba' => $page(3, 'Compare', ['compare', 'compare-royan', 'best-forwarding']),
         '/compare/sepand-vs-other-transport-software' => $page(3, 'Compare', ['compare', 'best-transport', 'product']),
-        '/compare/best-transport-software' => $page(2, 'Compare', ['product', 'modules', 'compare-other', 'compare']),
-        '/compare/best-freight-forwarding-software' => $page(1, 'Compare', ['product', 'crm', 'pricing-sales', 'transport-operations', 'finance', 'solutions']),
+        '/compare/best-transport-software' => $page(2, 'Compare', ['product', 'modules', 'compare-other', 'compare', 'best-forwarding']),
+        '/compare/best-freight-forwarding-software' => $page(1, 'Compare', ['product', 'crm', 'pricing-sales', 'transport-operations', 'finance', 'best-transport']),
         '/compare/best-crm-for-transport-companies' => $page(3, 'Sales', ['crm', 'pricing-sales', 'compare']),
         '/compare/best-transport-accounting-software' => $page(3, 'Finance', ['finance', 'freight-finance', 'compare']),
 
@@ -130,11 +132,11 @@ return [
         '/modules/transport-operations' => $page(1, 'Operations', ['visibility', 'control-tower', 'operations-automation', 'exception', 'finance', 'product']),
         '/modules/document-management' => $page(2, 'Documents', ['document-approval', 'document-readiness', 'bill-of-lading', 'document-checklists']),
         '/modules/finance-accounting' => $page(1, 'Finance', ['freight-finance', 'payment', 'booking-reconciliation', 'pricing-sales', 'transport-operations']),
-        '/modules/workflow-tasks' => $page(3, 'Operations', ['automatic-tasks', 'operations-automation', 'transport-operations']),
+        '/modules/workflow-tasks' => $page(3, 'Operations', ['automatic-tasks', 'operations-automation', 'transport-operations', 'operational-workflow']),
         '/modules/automatic-tasks' => $page(3, 'Sales', ['crm', 'workflow', 'sales-automation']),
         '/modules/customer-portal-tracking' => $page(2, 'Core', ['visibility', 'booking', 'finance', 'product']),
         '/modules/email-workflow-automation' => $page(2, 'Sales / Operations', ['crm', 'pricing-sales', 'documents', 'transport-operations']),
-        '/modules/operations-control-tower' => $page(3, 'Operations', ['transport-operations', 'visibility', 'exception']),
+        '/modules/operations-control-tower' => $page(3, 'Operations', ['transport-operations', 'visibility', 'exception', 'tower-solution']),
         '/modules/document-checklists' => $page(3, 'Documents', ['documents', 'document-readiness', 'document-approval']),
         '/modules/fleet-dispatch' => $page(3, 'Road / Fleet', ['road', 'dispatch-planning', 'fleet-management']),
 
@@ -165,5 +167,7 @@ return [
         '/solutions/transport-governance' => $page(3, 'Operations', ['transport-operations', 'finance', 'security']),
         '/solutions/document-readiness' => $page(3, 'Documents', ['documents', 'document-checklists', 'document-approval']),
         '/solutions/fleet-dispatch-planning' => $page(3, 'Road / Fleet', ['road', 'fleet-management', 'fleet-dispatch']),
+        '/solutions/operations-control-tower' => $page(2, 'Operations', ['transport-operations', 'operational-workflow', 'visibility', 'exception', 'schedule']),
+        '/solutions/operational-workflow-management' => $page(2, 'Operations', ['transport-operations', 'tower-solution', 'workflow', 'documents', 'schedule']),
     ],
 ];

@@ -32,7 +32,7 @@ class InternalLinkArchitectureTest extends TestCase
         sort($sitemapPaths);
         sort($registeredPaths);
 
-        $this->assertCount(56, $sitemapPaths);
+        $this->assertCount(58, $sitemapPaths);
         $this->assertSame($sitemapPaths, $registeredPaths);
 
         foreach ($registeredPages as $path => $page) {

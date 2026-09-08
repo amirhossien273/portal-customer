@@ -105,7 +105,7 @@ return [
             'pages' => [
                 '/compare' => ['query' => 'مرکز مقایسه نرم افزار حمل و نقل', 'intent' => 'هاب و مسیریابی بین مقایسه‌ها', 'audience' => 'بازدیدکننده در مرحله بررسی', 'outcome' => 'انتخاب صفحه مقایسه مناسب'],
                 '/compare/sepand-vs-other-transport-software' => ['query' => 'مقایسه انواع نرم افزار حمل و نقل', 'intent' => 'مقایسه دسته‌ها و معماری‌های نرم‌افزار', 'audience' => 'تیم ارزیابی راهکار', 'outcome' => 'شناخت Trade-off دسته‌ها'],
-                '/compare/best-transport-software' => ['query' => 'بهترین نرم افزار حمل و نقل بین المللی', 'intent' => 'چارچوب انتخاب عمومی', 'audience' => 'کمیته خرید نرم‌افزار', 'outcome' => 'امتیازدهی و Shortlist'],
+                '/compare/best-transport-software' => ['query' => 'نرم افزار مدیریت حمل و نقل', 'intent' => 'چارچوب انتخاب عمومی', 'audience' => 'کمیته خرید نرم‌افزار', 'outcome' => 'امتیازدهی و Shortlist'],
                 '/compare/best-freight-forwarding-software' => ['query' => 'بهترین نرم افزار فورواردری', 'intent' => 'چارچوب انتخاب تخصصی Freight Forwarder', 'audience' => 'مدیر شرکت فورواردری', 'outcome' => 'Shortlist عمودی و سناریوی دمو'],
             ],
         ],
