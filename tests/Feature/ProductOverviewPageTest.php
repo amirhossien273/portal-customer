@@ -35,7 +35,10 @@ class ProductOverviewPageTest extends TestCase
             ->assertSee('id="product-flow"', false)
             ->assertSee('یک پرونده در سپند چه مسیری را طی می‌کند؟', false)
             ->assertSee('قابلیت‌هایی که در کار روزانه تفاوت می‌سازند', false)
-            ->assertSee('مزیت اصلی سپند؛ اتصال فرایندها', false)
+            ->assertSee('یکپارچگی فروش، عملیات و مالی', false)
+            ->assertSee('اطلاعات مشتری، استعلام‌ها، پیشنهادهای نرخ، رزرو حمل و عملیات اجرایی در سپند به یکدیگر متصل هستند. واحدهای فروش، عملیات و مالی بدون نیاز به ثبت مجدد اطلاعات، وضعیت پرونده را متناسب با مسئولیت خود مشاهده و پیگیری می‌کنند.', false)
+            ->assertSee('آشنایی بیشتر با قابلیت‌های سپند', false)
+            ->assertSee('برای بررسی دقیق‌تر هر بخش از نرم‌افزار فورواردری سپند، می‌توانید امکانات مدیریت مشتریان، نرخ‌دهی و فروش، عملیات حمل، مالی چندارزی و پرتال مشتریان را به‌صورت جداگانه مشاهده کنید.', false)
             ->assertSee('فروش', false)
             ->assertSee('عملیات', false)
             ->assertSee('اسناد', false)
@@ -86,12 +89,27 @@ class ProductOverviewPageTest extends TestCase
             $response->assertSee('href="'.self::SITE_URL.'/modules/'.$module.'"', false);
         }
 
+        foreach ([
+            '/modules/crm' => 'مدیریت مشتریان شرکت حمل',
+            '/modules/pricing-sales' => 'مدیریت نرخ و Quotation',
+            '/modules/transport-operations' => 'پرونده عملیاتی محموله',
+            '/modules/finance-accounting' => 'مالی چندارزی فورواردری',
+            '/modules/customer-portal-tracking' => 'پرتال مشتریان و رهگیری',
+            '/pricing' => 'تعرفه نرم‌افزار سپند',
+        ] as $path => $anchor) {
+            $response->assertSee('href="'.self::SITE_URL.$path.'">'.$anchor.'</a>', false);
+        }
+
         $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertSame(1, substr_count($content, 'product-flow-steps reveal'));
         $this->assertStringNotContainsString('<meta name="keywords"', strtolower($content));
         $this->assertStringNotContainsString('<img src=""', $content);
         $this->assertStringNotContainsString('crm-customer-profit-analysis.webp', $content);
         $this->assertStringNotContainsString('data-missing-screenshot=', $content);
         $this->assertStringNotContainsString('product-missing-evidence', $content);
+        $this->assertStringNotContainsString('مزیت اصلی سپند؛ اتصال فرایندها', $content);
+        $this->assertStringNotContainsString('مسیر ادامه بررسی', $content);
+        $this->assertStringNotContainsString('هر لینک دامنه مستقل صفحه مقصد را توضیح می‌دهد', $content);
     }
 
     public function test_home_and_shared_navigation_link_to_product_page(): void
@@ -117,6 +135,14 @@ class ProductOverviewPageTest extends TestCase
         $this->get('/compare/best-freight-forwarding-software')
             ->assertOk()
             ->assertSee('href="'.self::SITE_URL.'/product">بررسی امکانات نرم‌افزار فورواردری سپند', false);
+
+        $this->get('/modules/pricing-sales')
+            ->assertOk()
+            ->assertSee('href="'.self::SITE_URL.'/product">مدیریت یکپارچه فروش و عملیات فورواردری</a>', false);
+
+        $this->get('/modules/transport-operations')
+            ->assertOk()
+            ->assertSee('href="'.self::SITE_URL.'/product"', false);
     }
 
     public function test_product_page_is_in_sitemap_once_with_real_dashboard_image(): void

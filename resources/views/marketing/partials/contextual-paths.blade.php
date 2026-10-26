@@ -36,28 +36,42 @@
 <section class="section soft contextual-paths" aria-labelledby="contextual-paths-title" data-internal-link-tier="{{ $linkingPage['tier'] }}" data-internal-link-cluster="{{ $linkingPage['cluster'] }}">
     <div class="container">
         <header class="section-head reveal">
-            <span class="section-label">مسیر ادامه بررسی</span>
-            <h2 class="section-title" id="contextual-paths-title">این موضوع در کدام بخش فرایند ادامه پیدا می‌کند؟</h2>
-            <p class="section-sub">این مسیرها بر اساس ارتباط واقعی فرایندها انتخاب شده‌اند؛ هر لینک دامنه مستقل صفحه مقصد را توضیح می‌دهد.</p>
+            @if(request()->routeIs('product'))
+                <span class="section-label">قابلیت‌های مرتبط</span>
+                <h2 class="section-title" id="contextual-paths-title">آشنایی بیشتر با قابلیت‌های سپند</h2>
+                <p class="section-sub">برای بررسی دقیق‌تر هر بخش از نرم‌افزار فورواردری سپند، می‌توانید امکانات مدیریت مشتریان، نرخ‌دهی و فروش، عملیات حمل، مالی چندارزی و پرتال مشتریان را به‌صورت جداگانه مشاهده کنید.</p>
+            @else
+                <span class="section-label">مسیر ادامه بررسی</span>
+                <h2 class="section-title" id="contextual-paths-title">این موضوع در کدام بخش فرایند ادامه پیدا می‌کند؟</h2>
+                <p class="section-sub">این مسیرها بر اساس ارتباط واقعی فرایندها انتخاب شده‌اند؛ هر لینک دامنه مستقل صفحه مقصد را توضیح می‌دهد.</p>
+            @endif
         </header>
         <div class="contextual-paths-copy">
-            @foreach($resolvedLinks->chunk(3) as $linkGroup)
+            @if(request()->routeIs('product'))
                 <p class="crm-intro reveal">
-                    @foreach($linkGroup as $link)
-                        @switch($link['sentence_variant'])
-                            @case(0)
-                                برای {{ $link['context'] }}، <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> را بررسی کنید.@break
-                            @case(1)
-                                اگر مسئله شما {{ $link['context'] }} است، <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> ادامه طبیعی این مسیر است.@break
-                            @case(2)
-                                جزئیات {{ $link['context'] }} در <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> توضیح داده شده است.@break
-                            @default
-                                برای تصمیم دقیق‌تر درباره {{ $link['context'] }}، <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> را کنار این صفحه ببینید.
-                        @endswitch
-                        @unless($loop->last) <span aria-hidden="true"> </span> @endunless
+                    @foreach($resolvedLinks as $link)
+                        <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a>@unless($loop->last)<span aria-hidden="true">، </span>@endunless
                     @endforeach
                 </p>
-            @endforeach
+            @else
+                @foreach($resolvedLinks->chunk(3) as $linkGroup)
+                    <p class="crm-intro reveal">
+                        @foreach($linkGroup as $link)
+                            @switch($link['sentence_variant'])
+                                @case(0)
+                                    برای {{ $link['context'] }}، <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> را بررسی کنید.@break
+                                @case(1)
+                                    اگر مسئله شما {{ $link['context'] }} است، <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> ادامه طبیعی این مسیر است.@break
+                                @case(2)
+                                    جزئیات {{ $link['context'] }} در <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> توضیح داده شده است.@break
+                                @default
+                                    برای تصمیم دقیق‌تر درباره {{ $link['context'] }}، <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a> را کنار این صفحه ببینید.
+                            @endswitch
+                            @unless($loop->last) <span aria-hidden="true"> </span> @endunless
+                        @endforeach
+                    </p>
+                @endforeach
+            @endif
         </div>
     </div>
 </section>
