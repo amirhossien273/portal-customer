@@ -136,37 +136,37 @@
     </div>
 </section>
 
-<section class="section" id="management-insights" aria-labelledby="management-insights-title">
+<section class="section modules-insights" id="management-insights" aria-labelledby="management-insights-title">
     <div class="container">
-        <div class="section-head reveal">
+        <div class="section-head modules-insights-head reveal">
             <span class="section-label">هوشمندی فروش و پیگیری</span>
             <h2 class="section-title" id="management-insights-title">گزارش‌هایی که فقط عدد نشان نمی‌دهند؛<br><span>اقدام بعدی را مشخص می‌کنند</span></h2>
             <p class="section-sub">قابلیت‌های تحلیلی جدید سپند به مدیر فروش کمک می‌کنند مشتری ارزشمند، تأمین‌کننده مناسب و پرونده‌ای را که نیازمند اقدام فوری است سریع‌تر تشخیص دهد.</p>
         </div>
-        <div class="crm-capability-grid">
-            <article class="crm-capability reveal">
-                <span class="crm-capability-num">01</span>
+        <div class="modules-insights-grid">
+            <article class="modules-insight-card reveal">
+                <span class="modules-insight-number" aria-hidden="true">01</span>
                 <h3>تحلیل درآمد و سود مشتریان</h3>
                 <p>مشتریان بر پایه دریافت‌های تأییدشده، پرداخت‌های انجام‌شده، سود خالص و تعداد کار عملیاتی رتبه‌بندی می‌شوند؛ نه بر اساس حدس یا حجم تماس.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-analytics">مشاهده تحلیل مشتریان</a>
+                <a class="modules-insight-link" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-analytics">مشاهده تحلیل مشتریان</a>
             </article>
-            <article class="crm-capability reveal">
-                <span class="crm-capability-num">02</span>
+            <article class="modules-insight-card reveal">
+                <span class="modules-insight-number" aria-hidden="true">02</span>
                 <h3>شناسایی مشتری پرکار یا کم‌حجمِ ارزشمند</h3>
                 <p>دو نمای مکمل نشان می‌دهند کدام مشتری کار زیادی با سود متوسط پایین ایجاد می‌کند و کدام مشتری با حجم کمتر، سود بیشتری به ازای هر کار دارد.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-analytics">بررسی فرمول‌ها</a>
+                <a class="modules-insight-link" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-analytics">بررسی فرمول‌ها</a>
             </article>
-            <article class="crm-capability reveal">
-                <span class="crm-capability-num">03</span>
+            <article class="modules-insight-card reveal">
+                <span class="modules-insight-number" aria-hidden="true">03</span>
                 <h3>مقایسه چندمعیاره تأمین‌کنندگان</h3>
                 <p>نرخ خرید، زمان حمل، مستقیم یا غیرمستقیم‌بودن مسیر، اعتبار نرخ، زمان آزاد، سابقه تأخیر، کیفیت پاسخ و شرایط پرداخت کنار هم دیده می‌شوند.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}#pricing-intelligence">مشاهده مقایسه تأمین‌کننده</a>
+                <a class="modules-insight-link" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}#pricing-intelligence">مشاهده مقایسه تأمین‌کننده</a>
             </article>
-            <article class="crm-capability reveal">
-                <span class="crm-capability-num">04</span>
+            <article class="modules-insight-card reveal">
+                <span class="modules-insight-number" aria-hidden="true">04</span>
                 <h3>هشدار نرخ و پیش‌فاکتور نیازمند اقدام</h3>
                 <p>داشبورد نرخ‌های رو به انقضا را پیش از پایان اعتبار برجسته می‌کند و گزارش ۴۸ ساعته، پیش‌فاکتورهای متوقف‌شده را با نام ایجادکننده نمایش می‌دهد.</p>
-                <a class="tag" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}#pricing-intelligence">مشاهده هشدارهای فروش</a>
+                <a class="modules-insight-link" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}#pricing-intelligence">مشاهده هشدارهای فروش</a>
             </article>
         </div>
     </div>
