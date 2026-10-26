@@ -223,6 +223,8 @@ img, svg { display: block; }
 .service-link { position: relative; z-index: 2; display: inline-flex; width: fit-content; margin-top: auto; padding-top: 18px; align-items: center; gap: 7px; color: var(--teal-dark); font-size: 11px; font-weight: 700; }
 .service-link svg { width: 15px; transition: transform .2s; }
 .service-card:hover .service-link svg { transform: translateX(-4px); }
+.section-directory-link { margin: 34px 0 0; text-align: center; }
+.section-directory-link .service-link { margin: 0 auto; }
 
 .transport-modes { padding-top: 110px; border-top: 1px solid #edf2f2; }
 .transport-head { max-width: 780px; margin-bottom: 52px; }

@@ -195,7 +195,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261024-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261026-1">
 @endpush
 
 @section('content')
@@ -267,7 +267,7 @@
                 <h2 id="product-flow-title">یک پرونده در سپند چه مسیری را طی می‌کند؟</h2>
                 <p>سپند مجموعه‌ای از ماژول‌های جدا از هم نیست. اطلاعات پرونده از اولین ارتباط با مشتری تا عملیات و امور مالی همراه همان پرونده حرکت می‌کند.</p>
             </div>
-            <p class="product-flow-context reveal">برای یک فورواردر، نرم‌افزار مدیریت شرکت حمل‌ونقل زمانی ارزشمند است که CRM حمل‌ونقل، مدیریت Booking و مدیریت عملیات حمل را به همان پرونده متصل کند؛ مسیر زیر همین پیوستگی را نشان می‌دهد.</p>
+            <p class="product-flow-context reveal">برای یک فورواردر، نرم‌افزار مدیریت شرکت حمل‌ونقل زمانی ارزشمند است که CRM حمل‌ونقل، مدیریت Booking و مدیریت عملیات حمل را به همان پرونده متصل کند؛ مسیر زیر همین پیوستگی را نشان می‌دهد. برای بررسی جداگانه هر قابلیت، <a href="{{ route('modules') }}">ماژول‌های نرم‌افزار حمل‌ونقل سپند</a> را ببینید.</p>
             <nav class="product-flow-steps reveal" aria-label="مراحل فرایند سپند">
                 @foreach($flowSteps as $step)
                     <a href="#{{ $step['id'] }}">
