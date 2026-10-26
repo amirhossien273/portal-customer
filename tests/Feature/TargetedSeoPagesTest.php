@@ -47,6 +47,38 @@ class TargetedSeoPagesTest extends TestCase
         }
     }
 
+    public function test_pricing_sales_page_targets_rate_quotation_and_sales_intent(): void
+    {
+        $response = $this->get('/modules/pricing-sales')->assertOk();
+        $content = $response->getContent();
+
+        $response
+            ->assertSee('<title>نرم‌افزار نرخ‌دهی حمل‌ونقل و مدیریت استعلام | سپند</title>', false)
+            ->assertSee('<meta name="description" content="نرم‌افزار نرخ‌دهی حمل‌ونقل سپند برای ثبت استعلام، مقایسه نرخ خرید، کنترل اعتبار و حاشیه سود، تهیه Quotation و پیگیری پیشنهاد تا Booking.">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/pricing-sales">', false)
+            ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
+            ->assertSee('نرم‌افزار نرخ‌دهی و فروش', false)
+            ->assertSee('خدمات حمل‌ونقل', false)
+            ->assertSee('استعلام‌های متعدد مشتریان، نرخ‌های خرید تأمین‌کنندگان، اعتبار نرخ، حاشیه فروش', false)
+            ->assertSee('Rate Master و منطق Rate Break در راهکار مدیریت نرخ نگهداری می‌شوند', false)
+            ->assertSee('مشاهده دموی نرخ‌دهی و فروش سپند', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/booking"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/rate-management"', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp', false)
+            ->assertSee('alt="برد مراحل استعلام و پیشنهاد نرخ در ماژول فروش سپند"', false);
+
+        $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertValidJsonLd($content);
+
+        foreach (['/modules/crm', '/product', '/modules', '/solutions/rate-management'] as $sourcePath) {
+            $this->get($sourcePath)
+                ->assertOk()
+                ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"', false);
+        }
+    }
+
     private function assertValidJsonLd(string $content): void
     {
         preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $content, $structuredData);
