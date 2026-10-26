@@ -169,6 +169,8 @@ class MarketingSeoTest extends TestCase
         }
         $this->assertSame(1, substr_count($modulesContent, '<h1'));
         $this->assertSame(14, substr_count($modulesContent, 'data-module-card='));
+        $this->assertSame(4, substr_count($modulesContent, 'class="modules-insight-card'));
+        $this->assertStringContainsString('class="modules-insights-grid"', $modulesContent);
         $this->assertStringNotContainsString('داده فقط یک‌بار ثبت می‌شود', $modulesContent);
         $this->assertStringNotContainsString('یک منبع قابل‌اعتماد', $modulesContent);
         $this->assertStringNotContainsString('هر لینک دامنه مستقل صفحه مقصد را توضیح می‌دهد', $modulesContent);

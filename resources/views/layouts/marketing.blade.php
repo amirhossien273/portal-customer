@@ -40,7 +40,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
     @stack('head')
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20261026-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20261026-2">
     <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
     @stack('styles')
 </head>
