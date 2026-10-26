@@ -202,6 +202,15 @@
 <section class="section" aria-labelledby="module-integration-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="module-integration-title">{{ $page['integration_heading'] }}</h2><p class="section-sub">{{ $page['integration_intro'] }}</p></div>
+        @if(in_array($slug, ['pricing-sales', 'transport-operations'], true))
+            <p class="section-sub reveal">
+                @if($slug === 'pricing-sales')
+                    برای دیدن اتصال این بخش به Booking، عملیات و مالی، <a href="{{ route('product') }}">مدیریت فروش و عملیات فورواردری</a> را در نمای کامل محصول بررسی کنید.
+                @else
+                    برای دیدن ارتباط عملیات با CRM، نرخ‌دهی و مالی، <a href="{{ route('product') }}">نرم‌افزار مدیریت فرایندهای فورواردری</a> را در نمای کامل محصول بررسی کنید.
+                @endif
+            </p>
+        @endif
         @if($slug === 'transport-operations')
             <nav class="section-sub reveal" aria-label="روش‌های حمل مرتبط">مدیریت عملیات در سپند برای <a href="{{ route('site.transport-modes.show', ['mode' => 'air']) }}">حمل هوایی</a>، <a href="{{ route('site.transport-modes.show', ['mode' => 'sea']) }}">حمل دریایی</a>، <a href="{{ route('site.transport-modes.show', ['mode' => 'road']) }}">حمل زمینی</a> و <a href="{{ route('site.transport-modes.show', ['mode' => 'rail']) }}">حمل ریلی</a> در دسترس است.</nav>
         @endif
