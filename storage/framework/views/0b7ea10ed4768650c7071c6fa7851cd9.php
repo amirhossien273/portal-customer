@@ -1,0 +1,20 @@
+<details class="nav-solutions" <?php if(request()->routeIs('solutions.*')): ?> data-active="true" <?php endif; ?>>
+    <summary <?php if(request()->routeIs('solutions.*')): ?> aria-current="page" <?php endif; ?>>
+        راهکارها
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </summary>
+    <div class="solutions-menu" aria-label="فهرست راهکارهای سپند">
+        <a class="solutions-hub-link" href="<?php echo e(route('solutions.index')); ?>" <?php if(request()->routeIs('solutions.index')): ?> aria-current="page" <?php endif; ?>>
+            <span>همه راهکارها</span>
+            <small>انتخاب بر اساس مسئله، شواهد محصول و عمق عملیاتی</small>
+        </a>
+        <span class="solutions-menu-heading">حوزه‌های اصلی</span>
+        <a href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>"><span>فروش و CRM</span><small>مشتری، نرخ، پیشنهاد و Booking</small></a>
+        <a href="<?php echo e(route('site.modules.show', ['module' => 'transport-operations'])); ?>"><span>عملیات و کنترل</span><small>اجرا، دیدپذیری، هشدار و Exception</small></a>
+        <a href="<?php echo e(route('site.modules.show', ['module' => 'finance-accounting'])); ?>"><span>مالی</span><small>هزینه، دریافت، پرداخت و سود پرونده</small></a>
+        <a href="<?php echo e(route('site.modules.show', ['module' => 'document-management'])); ?>"><span>اسناد</span><small>مخزن، تأیید، آمادگی و بارنامه</small></a>
+        <a href="<?php echo e(route('solutions.platform.show', ['solution' => 'fleet-management'])); ?>"><span>ناوگان</span><small>خودرو، راننده، برنامه‌ریزی و دیسپچ</small></a>
+        <a href="<?php echo e(route('solutions.nvocc')); ?>"><span>NVOCC و کانتینر</span><small>دریایی، کانتینر، Schedule و HBL/MBL</small></a>
+    </div>
+</details>
+<?php /**PATH C:\project\sepand\portal-customer\resources\views/layouts/partials/solutions-dropdown.blade.php ENDPATH**/ ?>

@@ -1,6 +1,7 @@
 <?php
     $capabilities = $page['capabilities'];
     $faqs = $page['faqs'];
+    $moduleCanonical = $canonical ?? route('site.modules.show', ['module' => $slug]);
 ?>
 
 <?php $__env->startPush('head'); ?>
@@ -8,12 +9,23 @@
     '@context' => 'https://schema.org',
     '@graph' => [
         [
+            '@type' => 'WebPage',
+            '@id' => $moduleCanonical.'#webpage',
+            'url' => $moduleCanonical,
+            'name' => $module['seo_title'],
+            'description' => $module['meta_description'],
+            'inLanguage' => 'fa-IR',
+            'breadcrumb' => ['@id' => $moduleCanonical.'#breadcrumb'],
+            'mainEntity' => [['@id' => $moduleCanonical.'#software'], ['@id' => $moduleCanonical.'#faq']],
+        ],
+        [
             '@type' => 'SoftwareApplication',
+            '@id' => $moduleCanonical.'#software',
             'name' => $page['h1'],
             'applicationCategory' => 'BusinessApplication',
             'operatingSystem' => 'Web',
             'description' => $module['meta_description'],
-            'url' => route('site.modules.show', ['module' => $slug]),
+            'url' => $moduleCanonical,
             'featureList' => array_column($capabilities, 'title'),
             'audience' => [
                 '@type' => 'BusinessAudience',
@@ -22,6 +34,7 @@
         ],
         [
             '@type' => 'FAQPage',
+            '@id' => $moduleCanonical.'#faq',
             'mainEntity' => array_map(static fn (array $faq): array => [
                 '@type' => 'Question',
                 'name' => $faq['question'],
@@ -33,6 +46,7 @@
         ],
         [
             '@type' => 'BreadcrumbList',
+            '@id' => $moduleCanonical.'#breadcrumb',
             'itemListElement' => [
                 ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
                 ['@type' => 'ListItem', 'position' => 2, 'name' => 'ماژول‌ها', 'item' => route('modules')],
@@ -97,6 +111,71 @@
     </div>
 </section>
 
+
+<?php if(! empty($page['workflow_stages'])): ?>
+<section class="section email-workflow-section" id="email-workflow-path" aria-labelledby="email-workflow-path-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">مسیر Email-to-Workflow</span>
+            <h2 class="section-title" id="email-workflow-path-title"><?php echo e($page['workflow_heading']); ?></h2>
+            <p class="section-sub"><?php echo e($page['workflow_intro']); ?></p>
+        </div>
+        <ol class="email-flow-grid" aria-label="مراحل تبدیل ایمیل به گردش کار حمل">
+            <?php $__currentLoopData = $page['workflow_stages']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $stage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li class="<?php echo \Illuminate\Support\Arr::toCssClasses(['email-flow-step', 'is-available' => $stage['status'] === 'available', 'is-planned' => $stage['status'] !== 'available', 'reveal']); ?>">
+                    <span class="email-flow-number" aria-hidden="true"><?php echo e(str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT)); ?></span>
+                    <span class="email-flow-status"><?php echo e($stage['status'] === 'available' ? 'زیرساخت فعال' : 'Roadmap'); ?></span>
+                    <h3 dir="ltr"><?php echo e($stage['label']); ?></h3>
+                    <p><?php echo e($stage['description']); ?></p>
+                </li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ol>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php if(! empty($page['scenarios'])): ?>
+<section class="section soft" id="email-classification-scenarios" aria-labelledby="email-scenarios-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">P1 · در مسیر توسعه</span>
+            <h2 class="section-title" id="email-scenarios-title"><?php echo e($page['scenarios_heading']); ?></h2>
+            <p class="section-sub"><?php echo e($page['scenarios_intro']); ?></p>
+        </div>
+        <div class="email-scenario-grid">
+            <?php $__currentLoopData = $page['scenarios']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $scenario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="email-scenario-card reveal">
+                    <span class="email-scenario-type" dir="ltr"><?php echo e($scenario['type']); ?></span>
+                    <blockquote dir="ltr">“<?php echo e($scenario['example']); ?>”</blockquote>
+                    <div class="email-scenario-action"><span>اقدام هدف</span><p><?php echo e($scenario['action']); ?></p></div>
+                </article>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php if(! empty($page['roadmap'])): ?>
+<section class="section email-roadmap-section" id="email-workflow-roadmap" aria-labelledby="email-roadmap-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">Roadmap محصول</span>
+            <h2 class="section-title" id="email-roadmap-title"><?php echo e($page['roadmap_heading']); ?></h2>
+            <p class="section-sub"><?php echo e($page['roadmap_intro']); ?></p>
+        </div>
+        <div class="email-roadmap-grid">
+            <?php $__currentLoopData = $page['roadmap']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $phase): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="email-roadmap-card is-<?php echo e($phase['tone']); ?> reveal">
+                    <header><span class="email-roadmap-phase"><?php echo e($phase['phase']); ?></span><span class="email-roadmap-status"><?php echo e($phase['status']); ?></span></header>
+                    <h3><?php echo e($phase['title']); ?></h3>
+                    <ul><?php $__currentLoopData = $phase['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><li><?php echo e($item); ?></li><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></ul>
+                </article>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <?php if(! empty($page['insights'])): ?>
 <section class="section" id="<?php echo e($slug === 'pricing-sales' ? 'pricing-intelligence' : 'module-insights'); ?>" aria-labelledby="module-insights-title">
     <div class="container">
@@ -121,6 +200,9 @@
 <section class="section" aria-labelledby="module-integration-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">فرایند یکپارچه</span><h2 class="section-title" id="module-integration-title"><?php echo e($page['integration_heading']); ?></h2><p class="section-sub"><?php echo e($page['integration_intro']); ?></p></div>
+        <?php if($slug === 'pricing-sales'): ?>
+            <p class="section-sub reveal">برای مشاهده ارتباط نرخ‌دهی با Booking، عملیات و مالی، <a href="<?php echo e(route('product')); ?>">مدیریت یکپارچه فروش و عملیات فورواردری</a> را در صفحه محصول ببینید.</p>
+        <?php endif; ?>
         <?php if($slug === 'transport-operations'): ?>
             <nav class="section-sub reveal" aria-label="روش‌های حمل مرتبط">مدیریت عملیات در سپند برای <a href="<?php echo e(route('site.transport-modes.show', ['mode' => 'air'])); ?>">حمل هوایی</a>، <a href="<?php echo e(route('site.transport-modes.show', ['mode' => 'sea'])); ?>">حمل دریایی</a>، <a href="<?php echo e(route('site.transport-modes.show', ['mode' => 'road'])); ?>">حمل زمینی</a> و <a href="<?php echo e(route('site.transport-modes.show', ['mode' => 'rail'])); ?>">حمل ریلی</a> در دسترس است.</nav>
         <?php endif; ?>
@@ -154,6 +236,8 @@
         </div>
     </div>
 </section>
+
+<?php echo $__env->make('marketing.partials.related-content-pages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <section class="section soft" aria-labelledby="module-faq-title">
     <div class="container">
