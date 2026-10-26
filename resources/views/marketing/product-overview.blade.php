@@ -145,9 +145,17 @@
     ];
 
     $audiences = [
-        ['title' => 'شرکت‌های فورواردری', 'text' => 'برای اتصال CRM، استعلام نرخ، Booking، عملیات، اسناد و سود هر پرونده.', 'route' => 'compare.best-freight-forwarding-software'],
-        ['title' => 'حمل‌ونقل بین‌المللی', 'text' => 'برای مدیریت پرونده‌های دریایی، هوایی، زمینی و ریلی روی یک داده مشترک.', 'route' => 'solutions.index'],
-        ['title' => 'عملیات چندوجهی و NVOCC', 'text' => 'برای هماهنگی مشتری، نماینده، رزرو، اسناد و کنترل اجرای حمل.', 'route' => 'solutions.nvocc'],
+        ['title' => 'شرکت‌های فورواردری', 'text' => 'برای اتصال مشتری، استعلام نرخ، Booking، عملیات، اسناد و سود هر پرونده.'],
+        ['title' => 'حمل‌ونقل بین‌المللی', 'text' => 'برای مدیریت پرونده‌های حمل و همکاری فروش، عملیات و مالی روی داده مشترک.'],
+        ['title' => 'عملیات حمل چندوجهی', 'text' => 'برای کنترل پرونده‌های دریایی، هوایی، زمینی و ریلی در یک جریان هماهنگ.'],
+    ];
+
+    $roles = [
+        ['title' => 'فروش', 'text' => 'مشتری، استعلام، پیشنهاد نرخ و پیگیری.'],
+        ['title' => 'عملیات', 'text' => 'Booking، پرونده حمل، نقاط کنترل و استثناها.'],
+        ['title' => 'اسناد', 'text' => 'مدارک، نسخه‌ها و وضعیت تأیید پرونده.'],
+        ['title' => 'مالی', 'text' => 'هزینه، دریافت، پرداخت، تسویه و سود.'],
+        ['title' => 'مدیریت', 'text' => 'شاخص‌ها، گلوگاه‌ها و عملکرد واحدها.'],
     ];
 
     $portalScreenshot = config('module_screenshots.customer-portal-tracking.0');
@@ -242,12 +250,11 @@
             </div>
             <div class="product-audience-grid">
                 @foreach($audiences as $audience)
-                    <a class="product-audience-card reveal" href="{{ route($audience['route']) }}">
+                    <article class="product-audience-card reveal">
                         <span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                         <h3>{{ $audience['title'] }}</h3>
                         <p>{{ $audience['text'] }}</p>
-                        <small>مشاهده راهکار مرتبط <b aria-hidden="true">←</b></small>
-                    </a>
+                    </article>
                 @endforeach
             </div>
         </div>
@@ -257,7 +264,7 @@
         <div class="container">
             <div class="product-section-head reveal">
                 <span>چرخه یک پرونده</span>
-                <h2 id="product-flow-title">یک پرونده حمل در سپند چگونه مدیریت می‌شود؟</h2>
+                <h2 id="product-flow-title">یک پرونده در سپند چه مسیری را طی می‌کند؟</h2>
                 <p>سپند مجموعه‌ای از ماژول‌های جدا از هم نیست. اطلاعات پرونده از اولین ارتباط با مشتری تا عملیات و امور مالی همراه همان پرونده حرکت می‌کند.</p>
             </div>
             <p class="product-flow-context reveal">برای یک فورواردر، نرم‌افزار مدیریت شرکت حمل‌ونقل زمانی ارزشمند است که CRM حمل‌ونقل، مدیریت Booking و مدیریت عملیات حمل را به همان پرونده متصل کند؛ مسیر زیر همین پیوستگی را نشان می‌دهد.</p>
@@ -281,7 +288,7 @@
         <div class="container">
             <div class="product-section-head reveal">
                 <span>تفاوت در جزئیات</span>
-                <h2 id="differentiators-title">قابلیت‌های تخصصی نرم‌افزار فورواردری</h2>
+                <h2 id="differentiators-title">قابلیت‌هایی که در کار روزانه تفاوت می‌سازند</h2>
                 <p>این‌ها قابلیت‌های تزئینی نیستند؛ هرکدام یک تصمیم یا پیگیری واقعی را از اطلاعات موجود در پرونده قابل انجام می‌کنند.</p>
             </div>
             <figure class="product-differentiator-evidence reveal">
@@ -339,12 +346,16 @@
         <div class="container">
             <div class="product-section-head reveal">
                 <span>یکپارچگی محصول</span>
-                <h2 id="integration-title">یکپارچگی فروش، عملیات و مالی</h2>
-                <p>اطلاعات یک بار وارد سیستم می‌شوند و در طول چرخه فروش، عملیات و مالی همراه همان پرونده حرکت می‌کنند؛ بدون تکرار دوباره جزئیات چرخه‌ای که در بخش‌های بالا دیدید.</p>
+                <h2 id="integration-title">مزیت اصلی سپند؛ اتصال فرایندها</h2>
+                <p>اطلاعات یک بار وارد می‌شوند و هر واحد همان پرونده را متناسب با مسئولیت خود می‌بیند؛ بدون بازگویی دوباره چرخه کامل بالا.</p>
             </div>
-            <div class="product-integration-track reveal" aria-label="اتصال مراحل پرونده در سپند">
-                @foreach(['مشتری', 'CRM', 'استعلام', 'پیشنهاد نرخ', 'Booking', 'عملیات حمل', 'مالی', 'گزارش مدیریتی'] as $item)
-                    <div><span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><b>{{ $item }}</b></div>
+            <div class="product-role-grid" aria-label="نمای واحدهای سازمان از پرونده مشترک">
+                @foreach($roles as $role)
+                    <article class="product-role-card reveal">
+                        <span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                        <h3>{{ $role['title'] }}</h3>
+                        <p>{{ $role['text'] }}</p>
+                    </article>
                 @endforeach
             </div>
         </div>
@@ -354,7 +365,7 @@
         <div class="container product-portal-proof-grid">
             <div class="product-portal-proof-copy reveal">
                 <span class="product-evidence-eyebrow">دید مشتری خارج از سازمان</span>
-                <h2 id="portal-proof-title">پرتال مشتری و خودکارسازی پیگیری‌ها</h2>
+                <h2 id="portal-proof-title">مشتری هم وضعیت پرونده را از همان داده واقعی می‌بیند</h2>
                 <p>پرتال مشتری پایگاه داده جداگانه‌ای برای ورود دوباره اطلاعات نیست. استعلام، محموله، رویدادهای مجاز رهگیری و اطلاعات مالی از پرونده‌های ثبت‌شده در سپند خوانده می‌شوند.</p>
                 <ul>
                     <li><strong>مسئله:</strong> تماس‌های مکرر برای وضعیت استعلام و محموله.</li>
@@ -392,7 +403,7 @@
             <div class="product-section-head reveal">
                 <span>تصمیم خرید سازمانی</span>
                 <h2 id="product-deployment-title">استقرار، آموزش و پشتیبانی</h2>
-                <p>مدل اجرا باید با زیرساخت، داده‌های موجود، نقش‌های کاربران و اتصال‌های موردنیاز هر شرکت هماهنگ شود. جزئیات زیر پیش از ارائه پیشنهاد رسمی با تیم شما بررسی می‌شوند.</p>
+                <p>جزئیات اجرا بر اساس زیرساخت، داده‌های موجود، نقش کاربران و اتصال‌های موردنیاز هر شرکت در پیشنهاد رسمی مشخص می‌شود.</p>
             </div>
             <div class="product-deployment-grid">
                 <article class="product-deployment-card reveal">
@@ -403,9 +414,9 @@
                 </article>
                 <article class="product-deployment-card reveal">
                     <span>راه‌اندازی</span>
-                    <h3>انتقال داده و آموزش کاربران</h3>
-                    <p>حجم و کیفیت داده‌های موجود، دامنه انتقال، نقش کاربران، سطح آموزش و معیار تحویل در جلسه ارزیابی تعیین می‌شوند تا برآورد اجرا قابل اتکا باشد.</p>
-                    <a href="{{ route('consultation.create') }}">ارزیابی نیازهای راه‌اندازی</a>
+                    <h3>آموزش و پشتیبانی</h3>
+                    <p>دامنه انتقال داده، آموزش کاربران، پشتیبانی و معیار تحویل متناسب با نیاز هر سازمان بررسی و در پیشنهاد همان استقرار ثبت می‌شود.</p>
+                    <a href="{{ route('consultation.create') }}">بررسی نیازهای راه‌اندازی</a>
                 </article>
                 <article class="product-deployment-card reveal">
                     <span>کنترل و اتصال</span>
@@ -421,12 +432,12 @@
         <div class="container">
             <div class="cta reveal">
                 <div class="cta-copy">
-                    <h2>مشاهده نرم‌افزار در یک دموی واقعی</h2>
+                    <h2>سپند را با فرایند واقعی شرکت خودتان ببینید</h2>
                     <p>در جلسه دمو، فرایند فروش، نرخ‌دهی، Booking، عملیات و مالی سپند را بر اساس سناریوی واقعی یک شرکت حمل‌ونقل بررسی می‌کنیم.</p>
                 </div>
                 <div class="product-cta-actions">
                     <a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="product_bottom_consultation">درخواست دمو</a>
-                    <a class="btn product-cta-secondary" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a>
+                    <a class="btn product-cta-secondary" href="{{ route('about') }}">تماس با ما</a>
                 </div>
             </div>
         </div>
