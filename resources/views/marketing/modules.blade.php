@@ -2,23 +2,54 @@
 
 @php
     $title = 'ماژول‌های نرم‌افزار حمل‌ونقل و لجستیک | سپند';
-    $description = 'ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM، تسک خودکار و نرخ‌دهی تا Booking، عملیات، مالی و پرتال مشتریان.';
+    $description = 'ماژول‌های نرم‌افزار حمل‌ونقل سپند شامل CRM، نرخ‌دهی، بوکینگ، عملیات حمل، مدیریت اسناد، مالی و اتوماسیون است. امکانات هر ماژول را جداگانه بررسی کنید.';
     $canonical = route('modules');
-    $moduleListItems = collect(config('site_modules'))
-        ->map(static fn (array $module, string $slug): array => [
-            '@type' => 'ListItem',
-            'position' => 0,
-            'name' => $module['name'],
-            'url' => route('site.modules.show', ['module' => $slug]),
-        ])
-        ->values();
-    $moduleListItems->splice(1, 0, [[
-        '@type' => 'ListItem',
-        'position' => 0,
+    $moduleGroups = [
+        [
+            'id' => 'sales-customer-modules',
+            'title' => 'فروش و مدیریت مشتریان',
+            'modules' => ['crm', 'marketing-sms', 'pricing-sales', 'email-workflow-automation'],
+        ],
+        [
+            'id' => 'transport-operation-modules',
+            'title' => 'مدیریت عملیات حمل',
+            'modules' => ['booking', 'transport-operations', 'operations-control-tower', 'fleet-dispatch'],
+        ],
+        [
+            'id' => 'documents-finance-modules',
+            'title' => 'مدیریت اسناد و امور مالی',
+            'modules' => ['document-management', 'document-checklists', 'finance-accounting'],
+        ],
+        [
+            'id' => 'automation-customer-service-modules',
+            'title' => 'اتوماسیون و خدمات مشتری',
+            'modules' => ['workflow-tasks', 'automatic-tasks', 'customer-portal-tracking'],
+        ],
+    ];
+    $marketingSmsModule = [
         'name' => 'بازاریابی و پیامک',
-        'url' => route('site.modules.show', ['module' => 'crm']).'#crm-sms',
-    ]]);
-    $moduleListItems = $moduleListItems
+        'short_name' => 'بازاریابی پیامکی',
+        'summary' => 'از پنل فراز اس‌ام‌اس یا مستقیماً از پرونده مشتری، لید و استعلام پیامک بفرستید و نتیجه هر ارسال را در تاریخچه ارتباطات نگه دارید.',
+        'benefits' => ['ارسال پیامک از پرونده CRM', 'لاگ متمرکز و پیگیری وضعیت ارسال', 'تنظیمات مستقل پنل برای هر سازمان'],
+    ];
+    $moduleListItems = collect($moduleGroups)
+        ->flatMap(static function (array $group) use ($marketingSmsModule): array {
+            return collect($group['modules'])
+                ->map(static function (string $slug) use ($marketingSmsModule): array {
+                    $module = $slug === 'marketing-sms' ? $marketingSmsModule : config('site_modules.'.$slug);
+
+                    return [
+                        '@type' => 'ListItem',
+                        'position' => 0,
+                        'name' => $module['name'],
+                        'url' => $slug === 'marketing-sms'
+                            ? route('site.modules.show', ['module' => 'crm']).'#crm-sms'
+                            : route('site.modules.show', ['module' => $slug]),
+                    ];
+                })
+                ->all();
+        })
+        ->values()
         ->map(static fn (array $item, int $index): array => [...$item, 'position' => $index + 1])
         ->all();
 @endphp
@@ -59,36 +90,47 @@
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>ماژول‌ها</span></div>
             <h1>ماژول‌های یکپارچه سپند؛<br><span>از جذب مشتری تا تصمیم‌گیری و عملیات</span></h1>
-            <p>در نرم‌افزار یکپارچه حمل‌ونقل سپند، CRM، ایمیل سازمانی، تسک خودکار، نرخ‌دهی، مقایسه تأمین‌کننده، Booking، عملیات، اسناد، مالی و پرتال مشتریان روی داده مشترک کار می‌کنند؛ بنابراین مکاتبات و رویدادهای فروش به پرونده و اقدام مشخص متصل می‌شوند.</p>
+            <p>ماژول‌های نرم‌افزار حمل‌ونقل سپند، فرآیندهای مدیریت مشتریان، نرخ‌دهی، رزرو حمل، عملیات، اسناد و امور مالی را در یک سیستم یکپارچه پوشش می‌دهند. هر ماژول برای پاسخ‌گویی به بخشی از نیازهای شرکت‌های فورواردری و حمل‌ونقل بین‌المللی طراحی شده است.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#all-modules">مشاهده ماژول‌ها <svg viewBox="0 0 24 24" fill="none"><path d="m8 10 4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a><a class="btn btn-outline" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a></div>
         </div>
         <div class="hero-art reveal">
-            <div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 0h6v6h-6v-6Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="art-chip">اکوسیستم یکپارچه</span></div><h2 class="art-title">مرکز فرمان کسب‌وکار شما</h2><p class="art-desc">داده‌های هماهنگ، فرایندهای متصل و دید مدیریتی کامل</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+            <div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 0h6v6h-6v-6Z" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="art-chip">اکوسیستم یکپارچه</span></div><p class="art-title">مرکز فرمان کسب‌وکار شما</p><p class="art-desc">داده‌های هماهنگ، فرایندهای متصل و دید مدیریتی کامل</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
         </div>
     </div>
 </section>
 
 <section class="section" id="all-modules">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">ماژول‌های اصلی</span><h2 class="section-title">ابزارهای تخصصی برای<br><span>فروش، عملیات و خدمات مشتری</span></h2><p class="section-sub">هر ماژول به‌تنهایی کاربردی است و در کنار سایر بخش‌ها، رویدادهای CRM را به پیگیری خودکار متصل می‌کند و تصویری کامل از مشتری، عملیات و وضعیت مالی می‌سازد.</p></div>
-        <div class="card-grid">
-            @foreach(config('site_modules') as $slug => $module)
-                <article class="content-card reveal">
-                    <span class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-                    <h3>{{ $module['name'] }}</h3>
-                    <p>{{ $module['summary'] }}</p>
-                    <ul class="feature-list">@foreach($module['benefits'] as $benefit)<li>{{ $benefit }}</li>@endforeach</ul>
-                    <a class="tag" href="{{ route('site.modules.show', ['module' => $slug]) }}" aria-label="مشاهده جزئیات ماژول {{ $module['name'] }}">مشاهده ماژول {{ $module['short_name'] }}</a>
-                </article>
-                @if($slug === 'crm')
-                    <article class="content-card reveal">
-                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-                        <h3>بازاریابی و پیامک</h3>
-                        <p>از پنل فراز اس‌ام‌اس یا مستقیماً از پرونده مشتری، لید و استعلام پیامک بفرستید و نتیجه هر ارسال را در تاریخچه ارتباطات نگه دارید.</p>
-                        <ul class="feature-list"><li>ارسال پیامک از پرونده CRM</li><li>لاگ متمرکز و پیگیری وضعیت ارسال</li><li>تنظیمات مستقل پنل برای هر سازمان</li></ul>
-                        <a class="tag" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-sms" aria-label="مشاهده امکانات بازاریابی پیامکی سپند">مشاهده بازاریابی پیامکی</a>
-                    </article>
-                @endif
+        <div class="section-head reveal"><span class="section-label">۱۴ ماژول در چهار گروه</span><h2 class="section-title">ابزارهای تخصصی برای<br><span>فروش، عملیات و خدمات مشتری</span></h2><p class="section-sub">ماژول‌های نرم‌افزار فورواردری سپند را بر اساس نیاز تیم خود انتخاب و جزئیات هر بخش را در صفحه اختصاصی آن بررسی کنید.</p></div>
+        <nav class="module-group-nav reveal" aria-label="دسترسی سریع به گروه‌های ماژول‌ها">
+            @foreach($moduleGroups as $group)
+                <a href="#{{ $group['id'] }}">{{ $group['title'] }}</a>
+            @endforeach
+        </nav>
+        <div class="module-groups">
+            @foreach($moduleGroups as $group)
+                <section class="module-group" id="{{ $group['id'] }}" aria-labelledby="{{ $group['id'] }}-title">
+                    <div class="module-group-head reveal">
+                        <span class="section-label">گروه {{ $loop->iteration }}</span>
+                        <h2 class="section-title" id="{{ $group['id'] }}-title">{{ $group['title'] }}</h2>
+                    </div>
+                    <div class="card-grid">
+                        @foreach($group['modules'] as $slug)
+                            @php($module = $slug === 'marketing-sms' ? $marketingSmsModule : config('site_modules.'.$slug))
+                            <article class="content-card reveal" data-module-card="{{ $slug }}">
+                                <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v14H4V5Zm4 4h8m-8 4h8m-8 4h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                                <h3>{{ $module['name'] }}</h3>
+                                <p>{{ $module['summary'] }}</p>
+                                <ul class="feature-list">@foreach($module['benefits'] as $benefit)<li>{{ $benefit }}</li>@endforeach</ul>
+                                @if($slug === 'marketing-sms')
+                                    <a class="tag" href="{{ route('site.modules.show', ['module' => 'crm']) }}#crm-sms" aria-label="مشاهده امکانات بازاریابی پیامکی سپند">مشاهده بازاریابی پیامکی</a>
+                                @else
+                                    <a class="tag" href="{{ route('site.modules.show', ['module' => $slug]) }}" aria-label="مشاهده جزئیات ماژول {{ $module['name'] }}">مشاهده ماژول {{ $module['short_name'] }}</a>
+                                @endif
+                            </article>
+                        @endforeach
+                    </div>
+                </section>
             @endforeach
         </div>
     </div>
@@ -132,10 +174,8 @@
 
 <section class="section soft">
     <div class="container split">
-        <div class="split-copy reveal"><span class="section-label">یکپارچگی واقعی</span><h2 class="section-title">داده فقط یک‌بار ثبت می‌شود؛<br><span>در تمام چرخه جریان دارد</span></h2><p>ماژول‌های سپند جزیره‌های جدا از هم نیستند. اطلاعات مشتری از CRM و استعلام به Booking و عملیات می‌رسد، در مالی تکمیل می‌شود و بخش مجاز آن در پرتال اختصاصی همان مشتری نمایش داده می‌شود.</p><div class="check-grid"><span class="check"><i>✓</i>کاهش ورود اطلاعات تکراری</span><span class="check"><i>✓</i>گزارش‌های مدیریتی دقیق</span><span class="check"><i>✓</i>خدمات سلف‌سرویس مشتری</span><span class="check"><i>✓</i>دسترسی تفکیک‌شده و امن</span></div></div>
-        <div class="visual-box reveal"><span class="section-label">نتیجه یکپارچگی</span><h2 class="marketing-visual-heading">یک منبع قابل‌اعتماد<br>برای تیم و مشتری</h2><div class="feature-list marketing-visual-list"><li>دید کامل بر عملکرد تیم‌ها</li><li>کاهش خطا و دوباره‌کاری</li><li>رهگیری شفاف‌تر برای مشتری</li><li>هماهنگی فروش، عملیات و مالی</li></div></div>
+        <div class="split-copy reveal"><span class="section-label">یکپارچگی واقعی</span><h2 class="section-title">ماژول‌های متصل، اطلاعات یکپارچه</h2><p>ماژول‌های سپند اطلاعات مشتری، استعلام، رزرو حمل، عملیات و مالی را در یک جریان مشترک مدیریت می‌کنند. هر واحد به اطلاعات مرتبط با مسئولیت خود دسترسی دارد و تغییرات پرونده بدون نیاز به ثبت دوباره اطلاعات در اختیار بخش‌های مرتبط قرار می‌گیرد.</p><p>این ساختار به کاهش دوباره‌کاری، هماهنگی بیشتر تیم‌ها و تصمیم‌گیری دقیق‌تر بر اساس اطلاعات ثبت‌شده کمک می‌کند.</p><p class="module-product-link">برای مشاهده ارتباط این ماژول‌ها در جریان کامل محصول، <a href="{{ route('product') }}">آشنایی با نرم‌افزار فورواردری سپند</a> را ادامه دهید.</p><div class="check-grid"><span class="check"><i>✓</i>کاهش ورود اطلاعات تکراری</span><span class="check"><i>✓</i>گزارش‌های مدیریتی دقیق</span><span class="check"><i>✓</i>خدمات سلف‌سرویس مشتری</span><span class="check"><i>✓</i>دسترسی تفکیک‌شده و امن</span></div></div>
+        <div class="visual-box reveal"><span class="section-label">نتیجه در کار روزانه</span><h3 class="marketing-visual-heading">هماهنگی بیشتر<br>برای تیم و مشتری</h3><div class="feature-list marketing-visual-list"><li>دید کامل بر عملکرد تیم‌ها</li><li>کاهش خطا و دوباره‌کاری</li><li>رهگیری شفاف‌تر برای مشتری</li><li>هماهنگی فروش، عملیات و مالی</li></div></div>
     </div>
 </section>
-
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>کدام ماژول‌ها برای فرایند شما مناسب‌اند؟</h2><p>از CRM و بازاریابی پیامکی تا عملیات، مالی و پرتال مشتریان، نیازهای فعلی شما را بررسی و ترکیب مناسب ماژول‌ها را پیشنهاد می‌کنیم.</p></div><div class="cta-action"><a class="btn" href="{{ route('pricing') }}">انتخاب پلن مناسب</a></div></div></div></section>
 @endsection

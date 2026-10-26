@@ -40,6 +40,10 @@
                 <span class="section-label">قابلیت‌های مرتبط</span>
                 <h2 class="section-title" id="contextual-paths-title">آشنایی بیشتر با قابلیت‌های سپند</h2>
                 <p class="section-sub">برای بررسی دقیق‌تر هر بخش از نرم‌افزار فورواردری سپند، می‌توانید امکانات مدیریت مشتریان، نرخ‌دهی و فروش، عملیات حمل، مالی چندارزی و پرتال مشتریان را به‌صورت جداگانه مشاهده کنید.</p>
+            @elseif(request()->routeIs('modules'))
+                <span class="section-label">انتخاب و ارزیابی</span>
+                <h2 class="section-title" id="contextual-paths-title">ماژول مناسب کسب‌وکار خود را انتخاب کنید</h2>
+                <p class="section-sub">هر شرکت حمل‌ونقل بر اساس نوع خدمات، ساختار تیم و فرآیندهای عملیاتی خود به امکانات متفاوتی نیاز دارد. می‌توانید قابلیت‌های هر ماژول را به‌صورت جداگانه بررسی کنید یا برای شناسایی ترکیب مناسب ماژول‌های سپند، درخواست مشاوره و دموی نرم‌افزار ثبت کنید.</p>
             @else
                 <span class="section-label">مسیر ادامه بررسی</span>
                 <h2 class="section-title" id="contextual-paths-title">این موضوع در کدام بخش فرایند ادامه پیدا می‌کند؟</h2>
@@ -47,12 +51,17 @@
             @endif
         </header>
         <div class="contextual-paths-copy">
-            @if(request()->routeIs('product'))
+            @if(request()->routeIs('product', 'modules'))
                 <p class="crm-intro reveal">
                     @foreach($resolvedLinks as $link)
                         <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a>@unless($loop->last)<span aria-hidden="true">، </span>@endunless
                     @endforeach
                 </p>
+                @if(request()->routeIs('modules'))
+                    <div class="contextual-paths-action reveal">
+                        <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="modules_consultation">درخواست مشاوره و دموی نرم‌افزار</a>
+                    </div>
+                @endif
             @else
                 @foreach($resolvedLinks->chunk(3) as $linkGroup)
                     <p class="crm-intro reveal">

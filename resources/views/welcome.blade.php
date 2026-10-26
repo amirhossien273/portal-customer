@@ -59,7 +59,7 @@
         ],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20260907-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20261026-1">
     <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
 </head>
 <body>
@@ -268,6 +268,7 @@
                         @endif
                     @endforeach
                 </div>
+                <p class="section-directory-link reveal"><a class="service-link" href="{{ route('modules') }}">مشاهده همه ماژول‌های نرم‌افزار حمل‌ونقل <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a></p>
             </div>
         </section>
 

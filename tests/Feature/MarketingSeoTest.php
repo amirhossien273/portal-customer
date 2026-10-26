@@ -115,7 +115,8 @@ class MarketingSeoTest extends TestCase
             ->assertSee('سود و ارزش هر مشتری', false)
             ->assertSee('مقایسه تأمین‌کنندگان', false)
             ->assertSee('هشدار پیش از انقضا', false)
-            ->assertSee('پیش‌فاکتورهای ۴۸ ساعته', false);
+            ->assertSee('پیش‌فاکتورهای ۴۸ ساعته', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules">مشاهده همه ماژول‌های نرم‌افزار حمل‌ونقل', false);
         $this->assertSame(1, substr_count($homeContent, '<h1'));
 
         $modules = $this->get('/modules')->assertOk();
@@ -123,19 +124,58 @@ class MarketingSeoTest extends TestCase
 
         $modules
             ->assertSee('<title>ماژول‌های نرم‌افزار حمل‌ونقل و لجستیک | سپند</title>', false)
-            ->assertSee('<meta name="description" content="ماژول‌های نرم‌افزار حمل‌ونقل سپند؛ از CRM، تسک خودکار و نرخ‌دهی تا Booking، عملیات، مالی و پرتال مشتریان.">', false)
+            ->assertSee('<meta name="description" content="ماژول‌های نرم‌افزار حمل‌ونقل سپند شامل CRM، نرخ‌دهی، بوکینگ، عملیات حمل، مدیریت اسناد، مالی و اتوماسیون است. امکانات هر ماژول را جداگانه بررسی کنید.">', false)
             ->assertSee('از جذب مشتری تا تصمیم‌گیری و عملیات', false)
+            ->assertSee('ماژول‌های نرم‌افزار حمل‌ونقل سپند، فرآیندهای مدیریت مشتریان، نرخ‌دهی، رزرو حمل، عملیات، اسناد و امور مالی را در یک سیستم یکپارچه پوشش می‌دهند.', false)
+            ->assertSee('فروش و مدیریت مشتریان', false)
+            ->assertSee('مدیریت عملیات حمل', false)
+            ->assertSee('مدیریت اسناد و امور مالی', false)
+            ->assertSee('اتوماسیون و خدمات مشتری', false)
             ->assertSee('تنظیمات مستقل پنل برای هر سازمان', false)
             ->assertSee('خدمات سلف‌سرویس مشتری', false)
             ->assertSee('گزارش‌هایی که فقط عدد نشان نمی‌دهند', false)
             ->assertSee('تحلیل درآمد و سود مشتریان', false)
             ->assertSee('مقایسه چندمعیاره تأمین‌کنندگان', false)
+            ->assertSee('ماژول‌های متصل، اطلاعات یکپارچه', false)
+            ->assertSee('ماژول‌های سپند اطلاعات مشتری، استعلام، رزرو حمل، عملیات و مالی را در یک جریان مشترک مدیریت می‌کنند.', false)
+            ->assertSee('href="'.self::SITE_URL.'/product">آشنایی با نرم‌افزار فورواردری سپند</a>', false)
+            ->assertSee('ماژول مناسب کسب‌وکار خود را انتخاب کنید', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
+            ->assertSee('درخواست مشاوره و دموی نرم‌افزار', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/crm#crm-sms"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/customer-portal-tracking"', false)
             ->assertSee('"@type":"CollectionPage"', false)
             ->assertSee('"@type":"ItemList"', false)
+            ->assertSee('"numberOfItems":14', false)
             ->assertSee('"@type":"BreadcrumbList"', false);
+        foreach ([
+            'crm' => '/modules/crm',
+            'marketing-sms' => '/modules/crm#crm-sms',
+            'pricing-sales' => '/modules/pricing-sales',
+            'email-workflow-automation' => '/modules/email-workflow-automation',
+            'booking' => '/modules/booking',
+            'transport-operations' => '/modules/transport-operations',
+            'operations-control-tower' => '/modules/operations-control-tower',
+            'fleet-dispatch' => '/modules/fleet-dispatch',
+            'document-management' => '/modules/document-management',
+            'document-checklists' => '/modules/document-checklists',
+            'finance-accounting' => '/modules/finance-accounting',
+            'workflow-tasks' => '/modules/workflow-tasks',
+            'automatic-tasks' => '/modules/automatic-tasks',
+            'customer-portal-tracking' => '/modules/customer-portal-tracking',
+        ] as $moduleSlug => $modulePath) {
+            $this->assertSame(1, substr_count($modulesContent, 'data-module-card="'.$moduleSlug.'"'));
+            $modules->assertSee('href="'.self::SITE_URL.$modulePath.'"', false);
+        }
         $this->assertSame(1, substr_count($modulesContent, '<h1'));
+        $this->assertSame(14, substr_count($modulesContent, 'data-module-card='));
+        $this->assertStringNotContainsString('داده فقط یک‌بار ثبت می‌شود', $modulesContent);
+        $this->assertStringNotContainsString('یک منبع قابل‌اعتماد', $modulesContent);
+        $this->assertStringNotContainsString('هر لینک دامنه مستقل صفحه مقصد را توضیح می‌دهد', $modulesContent);
+
+        $this->get('/product')
+            ->assertOk()
+            ->assertSee('href="'.self::SITE_URL.'/modules">ماژول‌های نرم‌افزار حمل‌ونقل سپند</a>', false);
 
         $crm = $this->get('/modules/crm')->assertOk();
         $crmContent = $crm->getContent();

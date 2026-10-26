@@ -225,6 +225,7 @@ html { scroll-padding-top: 105px; }
 }
 .product-section-head p { margin: 0; color: var(--muted); font-size: var(--product-copy-size); line-height: 2; }
 .product-flow-context { max-width: 880px; margin: -18px auto 34px; color: #617588; text-align: center; font-size: var(--product-small-size); line-height: 2; }
+.product-flow-context a { color: var(--product-teal-dark); font-weight: 800; text-decoration: underline; text-decoration-color: rgba(47, 145, 150, .35); text-underline-offset: 5px; }
 .product-flow-steps {
     position: relative;
     display: grid;
