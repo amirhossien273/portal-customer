@@ -140,8 +140,10 @@ class MarketingSeoTest extends TestCase
             ->assertSee('ماژول‌های سپند اطلاعات مشتری، استعلام، رزرو حمل، عملیات و مالی را در یک جریان مشترک مدیریت می‌کنند.', false)
             ->assertSee('href="'.self::SITE_URL.'/product">آشنایی با نرم‌افزار فورواردری سپند</a>', false)
             ->assertSee('ماژول مناسب کسب‌وکار خود را انتخاب کنید', false)
-            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
-            ->assertSee('درخواست مشاوره و دموی نرم‌افزار', false)
+            ->assertSee('class="btn btn-primary" href="'.self::SITE_URL.'/consultation"', false)
+            ->assertSee('درخواست دمو و مشاوره', false)
+            ->assertSee('class="btn btn-outline" href="'.self::SITE_URL.'/pricing"', false)
+            ->assertSee('انتخاب پلن مناسب', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/crm#crm-sms"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/customer-portal-tracking"', false)
             ->assertSee('"@type":"CollectionPage"', false)
@@ -166,6 +168,16 @@ class MarketingSeoTest extends TestCase
         ] as $moduleSlug => $modulePath) {
             $this->assertSame(1, substr_count($modulesContent, 'data-module-card="'.$moduleSlug.'"'));
             $modules->assertSee('href="'.self::SITE_URL.$modulePath.'"', false);
+        }
+        foreach ([
+            'sales-customer-modules' => 'فروش و مدیریت مشتریان',
+            'transport-operation-modules' => 'مدیریت عملیات حمل',
+            'documents-finance-modules' => 'مدیریت اسناد و امور مالی',
+            'automation-customer-service-modules' => 'اتوماسیون و خدمات مشتری',
+        ] as $groupId => $groupTitle) {
+            $this->assertSame(1, substr_count($modulesContent, 'href="#'.$groupId.'"'));
+            $this->assertSame(1, substr_count($modulesContent, 'id="'.$groupId.'"'));
+            $modules->assertSee('id="'.$groupId.'-title">'.$groupTitle.'</h2>', false);
         }
         $this->assertSame(1, substr_count($modulesContent, '<h1'));
         $this->assertSame(14, substr_count($modulesContent, 'data-module-card='));

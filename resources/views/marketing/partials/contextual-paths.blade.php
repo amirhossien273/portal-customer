@@ -59,7 +59,8 @@
                 </p>
                 @if(request()->routeIs('modules'))
                     <div class="contextual-paths-action reveal">
-                        <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="modules_consultation">درخواست مشاوره و دموی نرم‌افزار</a>
+                        <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="modules_consultation">درخواست دمو و مشاوره</a>
+                        <a class="btn btn-outline" href="{{ route('pricing') }}" data-ga-event="cta_click" data-ga-label="modules_pricing">انتخاب پلن مناسب</a>
                     </div>
                 @endif
             @else
