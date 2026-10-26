@@ -128,7 +128,7 @@ return [
         '/modules/crm' => $page(1, 'Sales', ['pricing-sales', 'sales-automation', 'booking', 'product', 'automatic-tasks', 'email-workflow']),
         '/modules/pricing-sales' => $page(1, 'Sales', ['crm', 'booking', 'rate', 'supplier', 'finance']),
         '/modules/booking' => $page(2, 'Sales', ['pricing-sales', 'transport-operations', 'documents', 'finance']),
-        '/modules/transport-operations' => $page(1, 'Operations', ['visibility', 'control-tower', 'operations-automation', 'exception', 'finance', 'product']),
+        '/modules/transport-operations' => $page(1, 'Operations', ['visibility', 'control-tower', 'operations-automation', 'exception', 'workflow', 'finance', 'product']),
         '/modules/document-management' => $page(2, 'Documents', ['document-approval', 'document-readiness', 'bill-of-lading', 'document-checklists']),
         '/modules/finance-accounting' => $page(1, 'Finance', ['freight-finance', 'payment', 'booking-reconciliation', 'pricing-sales', 'transport-operations']),
         '/modules/workflow-tasks' => $page(3, 'Operations', ['automatic-tasks', 'operations-automation', 'transport-operations', 'operational-workflow']),

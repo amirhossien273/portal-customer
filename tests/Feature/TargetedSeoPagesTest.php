@@ -79,6 +79,38 @@ class TargetedSeoPagesTest extends TestCase
         }
     }
 
+    public function test_workflow_tasks_page_targets_human_workflow_in_transport_companies(): void
+    {
+        $response = $this->get('/modules/workflow-tasks')->assertOk();
+        $content = $response->getContent();
+
+        $response
+            ->assertSee('<title>نرم‌افزار مدیریت گردش کار و وظایف حمل‌ونقل | سپند</title>', false)
+            ->assertSee('<meta name="description" content="نرم‌افزار مدیریت گردش کار و وظایف سپند برای تعیین مسئول، مهلت و وضعیت اقدامات مرتبط با مشتری و پرونده حمل و هماهنگی تیم‌های فروش، عملیات و اسناد.">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/workflow-tasks">', false)
+            ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
+            ->assertSee('مدیریت گردش کار و وظایف', false)
+            ->assertSee('در شرکت‌های حمل‌ونقل', false)
+            ->assertSee('پیگیری‌ها فراموش می‌شوند، مسئول اقدام روشن نیست و مدیر دید کافی از وضعیت کارها ندارد', false)
+            ->assertSee('بررسی یک سند از «ارجاع به کارشناس» تا «کنترل، اصلاح و تأیید نهایی»', false)
+            ->assertSee('درخواست دموی مدیریت گردش کار سپند', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/automatic-tasks"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/operational-workflow-management"', false)
+            ->assertSee('assets/images/marketing/product-showcase/desktop-calendar.webp', false)
+            ->assertSee('alt="تقویم فعالیت‌ها و وظایف تیم در ماژول گردش کار سپند"', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/workflow-notifications.webp', false);
+
+        $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertValidJsonLd($content);
+
+        foreach (['/modules', '/product', '/modules/transport-operations'] as $sourcePath) {
+            $this->get($sourcePath)
+                ->assertOk()
+                ->assertSee('href="'.self::SITE_URL.'/modules/workflow-tasks"', false);
+        }
+    }
+
     private function assertValidJsonLd(string $content): void
     {
         preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $content, $structuredData);

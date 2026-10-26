@@ -96,7 +96,7 @@ return [
             'priority' => 'P1',
             'pillar' => '/modules/workflow-tasks',
             'pages' => [
-                '/modules/workflow-tasks' => ['query' => 'مدیریت گردش کار و وظایف حمل و نقل', 'intent' => 'فرایند و Task انسانی', 'audience' => 'مدیر تیم و کاربران مسئول اقدام', 'outcome' => 'وظیفه انسانی با مالک و مهلت'],
+                '/modules/workflow-tasks' => ['query' => 'نرم افزار مدیریت گردش کار حمل و نقل', 'intent' => 'فرایند و Task انسانی', 'audience' => 'مدیر تیم و کاربران مسئول اقدام', 'outcome' => 'وظیفه انسانی با مالک و مهلت'],
                 '/modules/automatic-tasks' => ['query' => 'ساخت خودکار تسک CRM', 'intent' => 'یک Trigger رویدادی برای ساخت Task', 'audience' => 'مدیر فروش و CRM', 'outcome' => 'پیگیری خودکار رویداد فروش'],
                 '/solutions/operations-automation' => ['query' => 'اتوماسیون عملیات حمل و نقل', 'intent' => 'Rule چندمرحله‌ای تا Exception و Escalation', 'audience' => 'مالک فرایند عملیات', 'outcome' => 'کنترل عملیاتی خودکار'],
                 '/solutions/operational-workflow-management' => ['query' => 'چک لیست اجرای عملیات فورواردری', 'intent' => 'الگوی SOP، کنترل عبور مرحله و شواهد انجام کار', 'audience' => 'مالک رویه و سرپرست عملیات', 'outcome' => 'اجرای یکنواخت عملیات'],
