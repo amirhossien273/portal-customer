@@ -1,8 +1,8 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'نرم‌افزار فورواردری سپند | معرفی محصول و گردش‌کار یکپارچه';
-    $description = 'نرم‌افزار فورواردری سپند، مدیریت مشتری، نرخ‌دهی، رزرو، عملیات حمل، اسناد و امور مالی را در یک گردش‌کار متصل می‌کند؛ بخش‌های واقعی محصول را ببینید.';
+    $title = 'نرم‌افزار فورواردری سپند | مدیریت فروش، عملیات و مالی';
+    $description = 'نرم‌افزار فورواردری سپند، مدیریت مشتریان، استعلام نرخ، بوکینگ، عملیات حمل، اسناد و مالی را در یک سیستم یکپارچه فراهم می‌کند. امکانات را ببینید و دمو بگیرید.';
     $canonical = route('product');
     $image = asset('assets/images/marketing/product-showcase/desktop-dashboard.webp');
     $imageAlt = 'داشبورد واقعی نرم‌افزار مدیریت شرکت حمل‌ونقل سپند';
@@ -144,12 +144,10 @@
         ['group' => 'گردش‌کار', 'title' => 'قانون وظیفه و تقویم‌های جدا', 'text' => 'وظیفه خودکار، تقویم فعالیت تیم و تقویم حرکت محموله هر کدام در بستر خود نمایش داده می‌شوند.', 'href' => '#workflow-evidence'],
     ];
 
-    $roles = [
-        ['title' => 'فروش', 'text' => 'مشتری، سرنخ فروش، استعلام، پیشنهاد نرخ، پیگیری و تحلیل ارزش مشتری.'],
-        ['title' => 'عملیات', 'text' => 'Booking، پرونده حمل، وظیفه، نقاط کنترل، تقویم حرکت و استثناها.'],
-        ['title' => 'اسناد', 'text' => 'مدارک، نسخه‌ها، وضعیت تأیید و فایل‌های مرتبط با پرونده.'],
-        ['title' => 'مالی', 'text' => 'هزینه، پرداخت، دریافت، نرخ تبدیل، تسویه و سود پرونده.'],
-        ['title' => 'مدیریت', 'text' => 'داشبورد، شاخص‌های کلیدی عملکرد، گزارش روند، گلوگاه و عملکرد واحدها.'],
+    $audiences = [
+        ['title' => 'شرکت‌های فورواردری', 'text' => 'برای اتصال CRM، استعلام نرخ، Booking، عملیات، اسناد و سود هر پرونده.', 'route' => 'compare.best-freight-forwarding-software'],
+        ['title' => 'حمل‌ونقل بین‌المللی', 'text' => 'برای مدیریت پرونده‌های دریایی، هوایی، زمینی و ریلی روی یک داده مشترک.', 'route' => 'solutions.index'],
+        ['title' => 'عملیات چندوجهی و NVOCC', 'text' => 'برای هماهنگی مشتری، نماینده، رزرو، اسناد و کنترل اجرای حمل.', 'route' => 'solutions.nvocc'],
     ];
 
     $portalScreenshot = config('module_screenshots.customer-portal-tracking.0');
@@ -167,6 +165,11 @@
                 'description' => $description,
                 'image' => $image,
                 'inLanguage' => 'fa-IR',
+                'featureList' => ['CRM حمل‌ونقل', 'استعلام نرخ و فروش', 'Booking', 'عملیات حمل', 'مدیریت اسناد', 'مالی چندارزی', 'پرتال مشتری'],
+                'audience' => [
+                    '@type' => 'BusinessAudience',
+                    'audienceType' => 'شرکت‌های فورواردری و حمل‌ونقل بین‌المللی',
+                ],
             ],
             [
                 '@type' => 'BreadcrumbList',
@@ -184,7 +187,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20260826-4">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261024-1">
 @endpush
 
 @section('content')
@@ -230,11 +233,31 @@
         </div>
     </section>
 
+    <section class="product-audience" aria-labelledby="product-audience-title">
+        <div class="container">
+            <div class="product-section-head reveal">
+                <span>مخاطبان محصول</span>
+                <h2 id="product-audience-title">سپند برای چه شرکت‌هایی مناسب است؟</h2>
+                <p>سپند برای شرکت‌های فورواردری و حمل‌ونقل بین‌المللی طراحی شده که می‌خواهند اطلاعات مشتریان، استعلام نرخ، رزرو حمل، عملیات و امور مالی را در یک سیستم مدیریت کنند. شرکت‌هایی که هم‌زمان چندین پرونده حمل، مشتری و تأمین‌کننده دارند، می‌توانند فرایندهای خود را در یک محیط یکپارچه پیگیری کنند.</p>
+            </div>
+            <div class="product-audience-grid">
+                @foreach($audiences as $audience)
+                    <a class="product-audience-card reveal" href="{{ route($audience['route']) }}">
+                        <span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                        <h3>{{ $audience['title'] }}</h3>
+                        <p>{{ $audience['text'] }}</p>
+                        <small>مشاهده راهکار مرتبط <b aria-hidden="true">←</b></small>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <section class="product-flow" id="product-flow" aria-labelledby="product-flow-title">
         <div class="container">
             <div class="product-section-head reveal">
                 <span>چرخه یک پرونده</span>
-                <h2 id="product-flow-title">یک پرونده در سپند چه مسیری را طی می‌کند؟</h2>
+                <h2 id="product-flow-title">یک پرونده حمل در سپند چگونه مدیریت می‌شود؟</h2>
                 <p>سپند مجموعه‌ای از ماژول‌های جدا از هم نیست. اطلاعات پرونده از اولین ارتباط با مشتری تا عملیات و امور مالی همراه همان پرونده حرکت می‌کند.</p>
             </div>
             <p class="product-flow-context reveal">برای یک فورواردر، نرم‌افزار مدیریت شرکت حمل‌ونقل زمانی ارزشمند است که CRM حمل‌ونقل، مدیریت Booking و مدیریت عملیات حمل را به همان پرونده متصل کند؛ مسیر زیر همین پیوستگی را نشان می‌دهد.</p>
@@ -258,7 +281,7 @@
         <div class="container">
             <div class="product-section-head reveal">
                 <span>تفاوت در جزئیات</span>
-                <h2 id="differentiators-title">قابلیت‌هایی که در کار روزانه تفاوت می‌سازند</h2>
+                <h2 id="differentiators-title">قابلیت‌های تخصصی نرم‌افزار فورواردری</h2>
                 <p>این‌ها قابلیت‌های تزئینی نیستند؛ هرکدام یک تصمیم یا پیگیری واقعی را از اطلاعات موجود در پرونده قابل انجام می‌کنند.</p>
             </div>
             <figure class="product-differentiator-evidence reveal">
@@ -316,8 +339,8 @@
         <div class="container">
             <div class="product-section-head reveal">
                 <span>یکپارچگی محصول</span>
-                <h2 id="integration-title">مزیت اصلی سپند یک قابلیت نیست؛ اتصال فرایندها به یکدیگر است</h2>
-                <p>اطلاعات یک بار وارد سیستم می‌شوند و در طول چرخه فروش، عملیات و مالی همراه همان پرونده حرکت می‌کنند.</p>
+                <h2 id="integration-title">یکپارچگی فروش، عملیات و مالی</h2>
+                <p>اطلاعات یک بار وارد سیستم می‌شوند و در طول چرخه فروش، عملیات و مالی همراه همان پرونده حرکت می‌کنند؛ بدون تکرار دوباره جزئیات چرخه‌ای که در بخش‌های بالا دیدید.</p>
             </div>
             <div class="product-integration-track reveal" aria-label="اتصال مراحل پرونده در سپند">
                 @foreach(['مشتری', 'CRM', 'استعلام', 'پیشنهاد نرخ', 'Booking', 'عملیات حمل', 'مالی', 'گزارش مدیریتی'] as $item)
@@ -331,7 +354,7 @@
         <div class="container product-portal-proof-grid">
             <div class="product-portal-proof-copy reveal">
                 <span class="product-evidence-eyebrow">دید مشتری خارج از سازمان</span>
-                <h2 id="portal-proof-title">مشتری هم وضعیت پرونده را از همان داده واقعی می‌بیند</h2>
+                <h2 id="portal-proof-title">پرتال مشتری و خودکارسازی پیگیری‌ها</h2>
                 <p>پرتال مشتری پایگاه داده جداگانه‌ای برای ورود دوباره اطلاعات نیست. استعلام، محموله، رویدادهای مجاز رهگیری و اطلاعات مالی از پرونده‌های ثبت‌شده در سپند خوانده می‌شوند.</p>
                 <ul>
                     <li><strong>مسئله:</strong> تماس‌های مکرر برای وضعیت استعلام و محموله.</li>
@@ -364,20 +387,32 @@
         </div>
     </section>
 
-    <section class="product-roles" aria-labelledby="roles-title">
+    <section class="product-deployment" aria-labelledby="product-deployment-title">
         <div class="container">
             <div class="product-section-head reveal">
-                <span>یک پرونده، چند زاویه</span>
-                <h2 id="roles-title">هر واحد، همان پرونده را از زاویه خودش می‌بیند</h2>
+                <span>تصمیم خرید سازمانی</span>
+                <h2 id="product-deployment-title">استقرار، آموزش و پشتیبانی</h2>
+                <p>مدل اجرا باید با زیرساخت، داده‌های موجود، نقش‌های کاربران و اتصال‌های موردنیاز هر شرکت هماهنگ شود. جزئیات زیر پیش از ارائه پیشنهاد رسمی با تیم شما بررسی می‌شوند.</p>
             </div>
-            <div class="product-role-grid">
-                @foreach($roles as $role)
-                    <article class="product-role-card reveal">
-                        <span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
-                        <h3>{{ $role['title'] }}</h3>
-                        <p>{{ $role['text'] }}</p>
-                    </article>
-                @endforeach
+            <div class="product-deployment-grid">
+                <article class="product-deployment-card reveal">
+                    <span>استقرار</span>
+                    <h3>زیرساخت متناسب با سازمان</h3>
+                    <p>استقرار داخلی سپند تأیید شده است. محل داده، پشتیبان‌گیری، بازیابی و مدل‌های دیگر استقرار باید در پیشنهاد فنی همان پروژه مشخص شوند.</p>
+                    <a href="{{ route('solutions.on-premise') }}">جزئیات استقرار روی سرور سازمانی</a>
+                </article>
+                <article class="product-deployment-card reveal">
+                    <span>راه‌اندازی</span>
+                    <h3>انتقال داده و آموزش کاربران</h3>
+                    <p>حجم و کیفیت داده‌های موجود، دامنه انتقال، نقش کاربران، سطح آموزش و معیار تحویل در جلسه ارزیابی تعیین می‌شوند تا برآورد اجرا قابل اتکا باشد.</p>
+                    <a href="{{ route('consultation.create') }}">ارزیابی نیازهای راه‌اندازی</a>
+                </article>
+                <article class="product-deployment-card reveal">
+                    <span>کنترل و اتصال</span>
+                    <h3>دسترسی‌ها و یکپارچه‌سازی</h3>
+                    <p>سطح دسترسی کاربران در سپند قابل‌کنترل است. اتصال به حسابداری یا سامانه بیرونی نیز بر اساس سیستم مقصد، داده‌های موردنیاز و مستندات فنی جداگانه تأیید می‌شود.</p>
+                    <a href="{{ route('pricing') }}">بررسی دامنه و تعرفه‌ها</a>
+                </article>
             </div>
         </div>
     </section>
@@ -386,12 +421,12 @@
         <div class="container">
             <div class="cta reveal">
                 <div class="cta-copy">
-                    <h2>سپند را با فرایند واقعی شرکت خودتان ببینید</h2>
+                    <h2>مشاهده نرم‌افزار در یک دموی واقعی</h2>
                     <p>در جلسه دمو، فرایند فروش، نرخ‌دهی، Booking، عملیات و مالی سپند را بر اساس سناریوی واقعی یک شرکت حمل‌ونقل بررسی می‌کنیم.</p>
                 </div>
                 <div class="product-cta-actions">
                     <a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="product_bottom_consultation">درخواست دمو</a>
-                    <a class="btn product-cta-secondary" href="{{ route('about') }}">تماس با ما</a>
+                    <a class="btn product-cta-secondary" href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a>
                 </div>
             </div>
         </div>

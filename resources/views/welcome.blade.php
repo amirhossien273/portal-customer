@@ -393,7 +393,7 @@
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>محاسبه سود بر پایه هزینه واقعی</div>
                         <div class="about-list-item"><span><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>ورود با کد یک‌بارمصرف و رهگیری کنترل‌شده مشتری</div>
                     </div>
-                    <a class="btn btn-primary" href="{{ route('product') }}">معرفی کامل محصول <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+                    <a class="btn btn-primary" href="{{ route('product') }}">نرم‌افزار فورواردری سپند <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
                 </div>
             </div>
         </section>
