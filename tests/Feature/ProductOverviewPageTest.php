@@ -99,6 +99,8 @@ class ProductOverviewPageTest extends TestCase
         ] as $path => $anchor) {
             $response->assertSee('href="'.self::SITE_URL.$path.'">'.$anchor.'</a>', false);
         }
+        $response->assertSee('href="'.self::SITE_URL.'/solutions/bill-of-lading-management">', false)
+            ->assertSee('مدیریت تخصصی بارنامه HBL و MBL', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertSame(1, substr_count($content, 'product-flow-steps reveal'));

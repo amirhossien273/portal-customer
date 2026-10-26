@@ -130,6 +130,12 @@
                     {{ $section['cta'] }}
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
                 </a>
+                @if(! empty($section['secondary_cta']) && ! empty($section['secondary_cta_route']))
+                    <a href="{{ route($section['secondary_cta_route']) }}">
+                        {{ $section['secondary_cta'] }}
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

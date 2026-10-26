@@ -40,7 +40,7 @@ return [
                 '/modules/document-management' => ['query' => 'نرم افزار مدیریت اسناد حمل و نقل', 'intent' => 'قابلیت محصول برای مدیریت، نسخه و آرشیو سند', 'audience' => 'تیم اسناد و عملیات', 'outcome' => 'مرجع واحد اسناد'],
                 '/solutions/document-management' => ['query' => 'چرخه تأیید اسناد حمل', 'intent' => 'Draft، بازبینی، اصلاح، Approval و کنترل نسخه', 'audience' => 'مالک فرایند سند', 'outcome' => 'تأیید کنترل‌شده سند'],
                 '/solutions/document-readiness' => ['query' => 'کنترل آماده بودن مدارک حمل', 'intent' => 'معیار کامل‌بودن مجموعه مدارک پیش از نقطه حساس', 'audience' => 'کارشناس کنترل مدارک', 'outcome' => 'پرونده آماده مرحله بعد'],
-                '/solutions/bill-of-lading-management' => ['query' => 'نرم افزار مدیریت بارنامه HBL و MBL', 'intent' => 'پیش‌نویس، اصلاح، تأیید و آرشیو بارنامه', 'audience' => 'تیم اسناد دریایی', 'outcome' => 'بارنامه نهایی بدون نسخه مبهم'],
+                '/solutions/bill-of-lading-management' => ['query' => 'نرم افزار مدیریت بارنامه', 'intent' => 'پیش‌نویس، اصلاح، تأیید و آرشیو بارنامه', 'audience' => 'تیم اسناد دریایی', 'outcome' => 'بارنامه نهایی بدون نسخه مبهم'],
                 '/modules/document-checklists' => ['query' => 'چک لیست مدارک حمل', 'intent' => 'تعریف اقلام موردنیاز هر روش و خدمت', 'audience' => 'طراح فرایند و کنترل اسناد', 'outcome' => 'فهرست استاندارد و قابل اجرای مدارک'],
             ],
         ],

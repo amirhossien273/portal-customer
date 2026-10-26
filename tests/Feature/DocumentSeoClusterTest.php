@@ -53,7 +53,7 @@ class DocumentSeoClusterTest extends TestCase
             '/modules/document-management' => 'نرم افزار مدیریت اسناد حمل و نقل',
             '/solutions/document-management' => 'چرخه تأیید اسناد حمل',
             '/solutions/document-readiness' => 'کنترل آماده بودن مدارک حمل',
-            '/solutions/bill-of-lading-management' => 'نرم افزار مدیریت بارنامه HBL و MBL',
+            '/solutions/bill-of-lading-management' => 'نرم افزار مدیریت بارنامه',
             '/modules/document-checklists' => 'چک لیست مدارک حمل',
         ];
         $documentPages = config('site_seo_strategy.clusters.documents.pages');
