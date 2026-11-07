@@ -34,6 +34,12 @@
                 @if($inquiry->description)
                     <div class="profile-notice"><x-portal.icon name="inquiries" /><span><strong>توضیحات درخواست:</strong> {{ $inquiry->description }}</span></div>
                 @endif
+                @if($inquiry->status === 'failed' && filled($inquiry->failed_description))
+                    <div class="profile-notice"><x-portal.icon name="close" /><span><strong>علت بسته‌شدن استعلام:</strong> {{ $inquiry->failed_description }}</span></div>
+                @endif
+                @if(in_array($inquiry->booking?->status, ['rejected', 'canceled'], true) && filled($inquiry->booking?->status_reason))
+                    <div class="profile-notice"><x-portal.icon name="close" /><span><strong>علت توقف بوکینگ:</strong> {{ $inquiry->booking->status_reason }}</span></div>
+                @endif
             </section>
 
             <section class="detail-panel">

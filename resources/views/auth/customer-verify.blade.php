@@ -10,7 +10,7 @@
         </a>
         <span class="portal-pill"><i></i>تأیید هویت</span>
         <h1>{{ $customerName }}، کد را وارد کنید</h1>
-        <p class="auth-lead">کد ۶ رقمی ورود برای شماره <b dir="ltr">{{ $maskedMobile }}</b> ایجاد شد. این کد تا دو دقیقه معتبر است.</p>
+        <p class="auth-lead">کد ۶ رقمی ورود برای شماره <b dir="ltr">{{ $maskedMobile }}</b> ارسال شد. این کد تا دو دقیقه معتبر است.</p>
 
         @if($accountCount > 1)
             <div class="multi-account-note">

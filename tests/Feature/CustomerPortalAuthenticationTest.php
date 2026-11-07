@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Http\Client\Request as HttpRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
@@ -51,6 +53,80 @@ class CustomerPortalAuthenticationTest extends TestCase
         $this->post(route('login.verify.submit'), ['digits' => str_split($otp)])
             ->assertRedirect(route('portal.dashboard'))
             ->assertSessionHas('customer_portal.customer_id', 'customer-a');
+    }
+
+    public function test_registered_customer_receives_the_configured_faraz_sms_pattern(): void
+    {
+        $this->seedCustomer('customer-a', 'personal-a', '09121234567');
+        config([
+            'customer_portal.otp.preview' => false,
+            'customer_portal.otp.pattern_code' => 'hYZj70Dh83',
+            'services.farazsms.url' => 'https://api.iranpayamak.test',
+            'services.farazsms.api_key' => 'test-api-key',
+            'services.farazsms.line_number' => '983000505',
+            'services.farazsms.timeout' => 10,
+        ]);
+        Http::fake([
+            'https://api.iranpayamak.test/ws/v1/sms/pattern' => Http::response([
+                'status' => 'success',
+            ], 201),
+        ]);
+
+        $response = $this->post(route('login.otp'), ['mobile' => '09121234567']);
+
+        $response->assertRedirect(route('login.verify'))
+            ->assertSessionHas('customer_portal_otp')
+            ->assertSessionMissing('preview_otp');
+        Http::assertSentCount(1);
+        Http::assertSent(function (HttpRequest $request): bool {
+            $otp = data_get($request->data(), 'attributes.code');
+
+            return $request->url() === 'https://api.iranpayamak.test/ws/v1/sms/pattern'
+                && $request->hasHeader('Api-Key', 'test-api-key')
+                && $request['code'] === 'hYZj70Dh83'
+                && is_string($otp)
+                && preg_match('/^\d{6}$/', $otp) === 1
+                && $request['recipient'] === '09121234567'
+                && $request['line_number'] === '3000505'
+                && $request['number_format'] === 'english';
+        });
+    }
+
+    public function test_an_otp_session_is_not_created_when_sms_delivery_fails(): void
+    {
+        $this->seedCustomer('customer-a', 'personal-a', '09121234567');
+        config([
+            'customer_portal.otp.preview' => false,
+            'services.farazsms.api_key' => null,
+            'services.farazsms.line_number' => null,
+        ]);
+        Http::fake();
+
+        $this->from(route('login'))
+            ->post(route('login.otp'), ['mobile' => '09121234567'])
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('mobile')
+            ->assertSessionMissing('customer_portal_otp');
+
+        Http::assertNothingSent();
+    }
+
+    public function test_otp_requests_are_limited_per_mobile_and_ip(): void
+    {
+        $this->seedCustomer('customer-a', 'personal-a', '09121234567');
+        config([
+            'customer_portal.otp.max_requests' => 1,
+            'customer_portal.otp.request_decay_seconds' => 600,
+        ]);
+
+        $this->post(route('login.otp'), ['mobile' => '09121234567'])
+            ->assertRedirect(route('login.verify'));
+
+        $this->from(route('login'))
+            ->post(route('login.otp'), ['mobile' => '09121234567'])
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('mobile')
+            ->assertSessionHas('customer_portal_otp');
     }
 
     public function test_unregistered_mobile_cannot_request_an_otp(): void
@@ -173,6 +249,47 @@ class CustomerPortalAuthenticationTest extends TestCase
             ->assertDontSee('یادداشت محرمانه عملیات');
     }
 
+    public function test_customer_sees_inquiry_rejection_reason_and_financial_records(): void
+    {
+        $this->seedCustomer('customer-a', 'personal-a', '09121234567');
+        $this->seedInquiry('inquiry-a', 'customer-a');
+
+        DB::connection('crm')->table('transactions')->where('id', 'inquiry-a')->update([
+            'status' => 'failed',
+            'failed_description' => 'نرخ پیشنهادی با بودجه حمل مشتری هم‌خوانی نداشت.',
+        ]);
+        DB::connection('crm')->table('invoices')->insert([
+            'id' => 'invoice-a', 'tenant_id' => $this->tenantId, 'customer_id' => 'customer-a',
+            'invoice_number' => 'INV-1405-0012', 'proforma_invoice_number' => 'PI-1405-0012',
+            'status' => 'issued', 'payable_amount' => 320000000, 'total_items_amount' => 320000000,
+            'payment_type' => 'online', 'proforma_at' => now(), 'created_at' => now(), 'updated_at' => now(),
+        ]);
+        DB::connection('crm')->table('receipts')->insert([
+            'id' => 'receipt-a', 'tenant_id' => $this->tenantId, 'customer_id' => 'customer-a',
+            'code' => 'REC-1405-0007', 'invoice_number' => 'INV-1405-0012', 'purpose' => 'پیش‌پرداخت حمل',
+            'amount' => 160000000, 'status' => 'approved', 'created_at' => now(), 'updated_at' => now(),
+        ]);
+
+        $session = [
+            'customer_portal' => [
+                'customer_id' => 'customer-a', 'personal_id' => 'personal-a', 'tenant_id' => $this->tenantId,
+                'mobile' => '09121234567', 'authenticated_at' => now()->timestamp,
+            ],
+        ];
+
+        $this->withSession($session)->get(route('portal.inquiries.show', 'inquiry-a'))
+            ->assertOk()
+            ->assertSee('علت بسته‌شدن استعلام')
+            ->assertSee('نرخ پیشنهادی با بودجه حمل مشتری هم‌خوانی نداشت.');
+
+        $this->withSession($session)->get(route('portal.financials'))
+            ->assertOk()
+            ->assertSee('INV-1405-0012')
+            ->assertSee('REC-1405-0007')
+            ->assertSee('320,000,000')
+            ->assertSee('160,000,000');
+    }
+
     private function seedCustomer(
         string $customerId,
         string $personalId,
@@ -240,11 +357,13 @@ class CustomerPortalAuthenticationTest extends TestCase
             $table->string('volume_cbm')->nullable(); $table->integer('quantity')->nullable(); $table->string('shipping_term')->nullable();
             $table->string('hs_code')->nullable(); $table->boolean('need_clearance')->default(false); $table->boolean('need_warehousing')->default(false);
             $table->decimal('approximate_amount')->nullable(); $table->text('description')->nullable(); $table->json('routes')->nullable();
+            $table->text('failed_description')->nullable();
             $table->timestamps(); $table->softDeletes();
         });
         $schema->create('bookings', function (Blueprint $table): void {
             $table->string('id')->primary(); $table->string('tenant_id'); $table->string('transaction_id'); $table->string('customer_id')->nullable();
             $table->string('code')->nullable(); $table->string('status')->default('draft'); $table->timestamp('booking_date')->nullable();
+            $table->text('status_reason')->nullable();
             $table->json('transaction_data')->nullable(); $table->json('offer_data')->nullable(); $table->json('totals')->nullable();
             $table->timestamps(); $table->softDeletes();
         });

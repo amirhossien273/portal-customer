@@ -113,6 +113,37 @@
     </div>
 </section>
 
+@if(! empty($page['use_case']))
+<section class="section" id="module-use-case" aria-labelledby="module-use-case-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">{{ $page['use_case']['label'] ?? 'سناریوی کاربردی' }}</span>
+            <h2 class="section-title" id="module-use-case-title">{{ $page['use_case']['heading'] }}</h2>
+            <p class="section-sub">{{ $page['use_case']['intro'] }}</p>
+        </div>
+        @if(! empty($page['use_case']['note']))
+            <p class="crm-intro reveal">{{ $page['use_case']['note'] }}</p>
+        @endif
+        <ol class="crm-process-grid module-use-case-grid">
+            @foreach($page['use_case']['steps'] as $step)
+                <li class="crm-process reveal">
+                    <span class="crm-process-step">{{ $loop->iteration }}</span>
+                    <h3>{{ $step['title'] }}</h3>
+                    <p>{{ $step['description'] }}</p>
+                    @if(! empty($step['details']))
+                        <dl class="module-use-case-meta">
+                            @foreach($step['details'] as $detail)
+                                <div><dt>{{ $detail['label'] }}</dt><dd>{{ $detail['value'] }}</dd></div>
+                            @endforeach
+                        </dl>
+                    @endif
+                </li>
+            @endforeach
+        </ol>
+    </div>
+</section>
+@endif
+
 {{-- Module-specific narrative blocks are rendered only when their configuration is present. --}}
 @if(! empty($page['workflow_stages']))
 <section class="section email-workflow-section" id="email-workflow-path" aria-labelledby="email-workflow-path-title">

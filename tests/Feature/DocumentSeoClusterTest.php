@@ -108,8 +108,8 @@ class DocumentSeoClusterTest extends TestCase
 
         $this->get('/solutions/bill-of-lading-management')
             ->assertOk()
-            ->assertSee('Draft، Revision و Approval', false)
-            ->assertSee('گردش تأیید Draft بارنامه', false)
+            ->assertSee('پیش‌نویس، اصلاح و تأیید', false)
+            ->assertSee('گردش تأیید پیش‌نویس بارنامه', false)
             ->assertSee('href="'.self::SITE_URL.'/solutions/document-management"', false);
 
         $this->get('/modules/document-checklists')

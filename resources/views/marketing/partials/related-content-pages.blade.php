@@ -3,8 +3,8 @@
     <div class="container">
         <div class="section-head reveal">
             <span class="section-label">راهنماها و راهکارهای مرتبط</span>
-            <h2 class="section-title" id="related-content-pages-title">از این ماژول در تصمیم و سناریوی درست استفاده کنید</h2>
-            <p class="section-sub">هر لینک یک نیت مستقل دارد: راهنمای انتخاب برای مقایسه گزینه‌ها و صفحه راهکار برای اجرای یک فرایند بین‌ماژولی.</p>
+            <h2 class="section-title" id="related-content-pages-title">{{ $page['related_heading'] ?? 'آشنایی بیشتر با قابلیت‌های سپند' }}</h2>
+            <p class="section-sub">{{ $page['related_intro'] ?? 'برای بررسی دقیق‌تر امکانات مرتبط، ماژول‌ها و راهکارهای تخصصی سپند را مشاهده کنید.' }}</p>
         </div>
         <div class="crm-audience-grid">
             @foreach($relatedContentPages as $relatedPage)

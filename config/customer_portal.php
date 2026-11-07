@@ -37,14 +37,16 @@ return [
 
     'otp' => [
         'length' => 6,
+        'pattern_code' => env('CUSTOMER_PORTAL_OTP_PATTERN_CODE', 'hYZj70Dh83'),
         'expires_in_seconds' => (int) env('CUSTOMER_PORTAL_OTP_EXPIRES', 120),
         'resend_after_seconds' => (int) env('CUSTOMER_PORTAL_OTP_RESEND_AFTER', 45),
         'max_attempts' => (int) env('CUSTOMER_PORTAL_OTP_MAX_ATTEMPTS', 5),
         'max_requests' => (int) env('CUSTOMER_PORTAL_OTP_MAX_REQUESTS', 5),
         'request_decay_seconds' => (int) env('CUSTOMER_PORTAL_OTP_REQUEST_DECAY', 600),
 
-        // Temporary delivery channel requested for the first portal release.
-        'preview' => filter_var(env('CUSTOMER_PORTAL_PREVIEW_OTP', true), FILTER_VALIDATE_BOOL),
+        // Keep this disabled outside local/testing environments. When enabled,
+        // the code is rendered in the verification page instead of being sent.
+        'preview' => filter_var(env('CUSTOMER_PORTAL_PREVIEW_OTP', false), FILTER_VALIDATE_BOOL),
     ],
 
     'support_phone' => env('CUSTOMER_PORTAL_SUPPORT_PHONE', '۰۲۱-۹۱۰۹۹۹۹۹'),
