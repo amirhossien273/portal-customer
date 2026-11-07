@@ -62,13 +62,13 @@
             <a href="{{ route('faq') }}" @class(['active' => request()->routeIs('faq')])>سؤالات متداول</a>
             <a href="{{ route('why-sepand') }}" @class(['active' => request()->routeIs('why-sepand')])>چرا سپند؟</a>
             <div class="portal-actions mobile-portals">
-                <a @class(['portal-link', 'process-review', 'active' => request()->routeIs('consultation.create')]) href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="mobile_process_review" @if(request()->routeIs('consultation.create')) aria-current="page" @endif><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
+                <a @class(['portal-link', 'process-review', 'active' => request()->routeIs('process-review.create')]) href="{{ route('process-review.create') }}" data-ga-event="cta_click" data-ga-label="mobile_process_review" @if(request()->routeIs('process-review.create')) aria-current="page" @endif><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
                 <a class="portal-link" href="{{ route('login') }}">پورتال مشتریان</a>
                 <a class="portal-link primary" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="mobile_organization_portal">پرتال سازمان</a>
             </div>
         </nav>
         <div class="portal-actions desktop-portals">
-            <a @class(['portal-link', 'process-review', 'active' => request()->routeIs('consultation.create')]) href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="desktop_process_review" @if(request()->routeIs('consultation.create')) aria-current="page" @endif><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
+            <a @class(['portal-link', 'process-review', 'active' => request()->routeIs('process-review.create')]) href="{{ route('process-review.create') }}" data-ga-event="cta_click" data-ga-label="desktop_process_review" @if(request()->routeIs('process-review.create')) aria-current="page" @endif><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
             <a class="portal-link" href="{{ route('login') }}">پورتال مشتریان</a>
             <a class="portal-link primary" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">پرتال سازمان</a>
         </div>

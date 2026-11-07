@@ -29,6 +29,7 @@ class FloatingConsultationCtaTest extends TestCase
             '/compare/sepand-vs-other-transport-software',
             '/modules/crm',
             '/transport-modes/air',
+            '/consultation',
             '/consultation/process-review',
         ];
 
@@ -55,13 +56,13 @@ class FloatingConsultationCtaTest extends TestCase
                 strpos($content, 'data-floating-consultation-cta="desktop-floating"')
             );
 
-            if ($path === '/consultation/process-review') {
+            if ($path === '/consultation') {
                 $response
                     ->assertSee('href="#consultation-form"', false)
                     ->assertSee('data-ga-label="floating_consultation_form"', false);
             } else {
                 $response
-                    ->assertSee('href="'.self::SITE_URL.'/consultation/process-review"', false)
+                    ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
                     ->assertSee('data-ga-label="floating_consultation_global"', false);
             }
         }

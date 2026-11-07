@@ -93,11 +93,40 @@ class ConsultationLandingPageTest extends TestCase
         }
     }
 
-    public function test_legacy_consultation_url_redirects_to_the_process_review(): void
+    public function test_demo_page_remains_available_separately_from_the_process_review(): void
     {
-        $this->get('/consultation?utm_source=legacy')
-            ->assertStatus(301)
-            ->assertRedirect(self::SITE_URL.'/consultation/process-review?utm_source=legacy');
+        $this->get('/consultation')
+            ->assertOk()
+            ->assertSee('<title>درخواست دمو نرم‌افزار حمل‌ونقل و مشاوره خرید | سپند</title>', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/consultation">', false)
+            ->assertSee('درخواست دمو و مشاوره خرید', false)
+            ->assertSee('action="'.self::SITE_URL.'/consultation"', false)
+            ->assertSee('name="company_type"', false)
+            ->assertSee('name="primary_need"', false)
+            ->assertDontSee('مرحله ۱ از ۶', false);
+    }
+
+    public function test_demo_form_uses_the_original_submission_flow(): void
+    {
+        $response = $this->post('/consultation', [
+            'name' => 'علی رضایی',
+            'company' => 'حمل‌ونقل نمونه',
+            'mobile' => '09121234567',
+            'email' => 'ali@example.com',
+            'company_type' => 'شرکت حمل‌ونقل بین‌المللی',
+            'approximate_users' => '6 تا 15 نفر',
+            'primary_need' => 'CRM و فروش',
+            'message' => 'درخواست نمایش فرایند فروش و پیگیری مشتریان.',
+        ]);
+
+        $response
+            ->assertRedirect(self::SITE_URL.'/consultation')
+            ->assertSessionHas('status', 'درخواست شما ثبت شد. اطلاعات اولیه بررسی می‌شود و برای هماهنگی جلسه دمو با شما تماس می‌گیریم.');
+
+        $stored = ConsultationRequest::query()->sole();
+        $this->assertSame('شرکت حمل‌ونقل بین‌المللی', $stored->company_type);
+        $this->assertSame('CRM و فروش', $stored->primary_need);
+        $this->assertNull($stored->topic);
     }
 
     public function test_form_rejects_an_answer_that_does_not_belong_to_the_selected_path(): void

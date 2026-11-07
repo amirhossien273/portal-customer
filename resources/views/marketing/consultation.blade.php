@@ -117,7 +117,7 @@
                 <a class="btn btn-outline" href="{{ route('product') }}">آشنایی بیشتر با سپند</a>
             </section>
         @else
-            <form class="consultation-wizard reveal" id="consultation-form" method="POST" action="{{ route('consultation.store') }}" data-consultation-form data-initial-step="{{ $initialStep }}" data-current-topic="{{ $selectedTopic }}" novalidate>
+            <form class="consultation-wizard reveal" id="consultation-form" method="POST" action="{{ route('process-review.store') }}" data-consultation-form data-initial-step="{{ $initialStep }}" data-current-topic="{{ $selectedTopic }}" novalidate>
                 @csrf
                 <input type="hidden" name="source_page" value="{{ old('source_page', $sourcePage) }}">
                 @foreach($utmParameters as $key => $value)

@@ -84,7 +84,7 @@
                 <a href="{{ route('faq') }}">سؤالات متداول</a>
                 <a href="{{ route('why-sepand') }}">چرا سپند؟</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
-                    <a class="portal-link process-review" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="mobile_process_review">
+                    <a class="portal-link process-review" href="{{ route('process-review.create') }}" data-ga-event="cta_click" data-ga-label="mobile_process_review">
                         <span class="portal-new">رایگان</span>
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6m-7 3h8m-9 4h10m-8 4 2 2 4-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 4.5h12a2 2 0 0 1 2 2V20H4V6.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
                         راهکار مناسب شما
@@ -100,7 +100,7 @@
                 </div>
             </nav>
             <div class="portal-actions desktop-portals" aria-label="ورود به سامانه‌های سپند">
-                <a class="portal-link process-review" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="desktop_process_review">
+                <a class="portal-link process-review" href="{{ route('process-review.create') }}" data-ga-event="cta_click" data-ga-label="desktop_process_review">
                     <span class="portal-new">رایگان</span>
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6m-7 3h8m-9 4h10m-8 4 2 2 4-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 4.5h12a2 2 0 0 1 2 2V20H4V6.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
                     راهکار مناسب شما
