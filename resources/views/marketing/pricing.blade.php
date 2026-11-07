@@ -10,7 +10,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-pricing-calculator.css') }}?v=20261107-2">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-pricing-calculator.css') }}?v=20261107-3">
 @endpush
 
 @section('content')
