@@ -40,7 +40,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('favicon.ico')); ?>?v=20260801">
     <?php echo $__env->yieldPushContent('head'); ?>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing.css')); ?>?v=20260805-1">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing.css')); ?>?v=20261026-3">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-floating-cta.css')); ?>?v=20260827-1">
     <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
@@ -56,6 +56,7 @@
         <nav class="main-nav" id="main-nav" aria-label="منوی اصلی">
             <a href="<?php echo e(route('product')); ?>" class="<?php echo \Illuminate\Support\Arr::toCssClasses(['active' => request()->routeIs('product')]); ?>">معرفی محصول</a>
             <a href="<?php echo e(route('modules')); ?>" class="<?php echo \Illuminate\Support\Arr::toCssClasses(['active' => request()->routeIs('modules', 'site.modules.show', 'site.transport-modes.show')]); ?>">ماژول‌ها</a>
+            <?php echo $__env->make('layouts.partials.solutions-dropdown', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <a href="<?php echo e(route('pricing')); ?>" class="<?php echo \Illuminate\Support\Arr::toCssClasses(['active' => request()->routeIs('pricing')]); ?>">تعرفه‌ها</a>
             <a href="<?php echo e(route('about')); ?>" class="<?php echo \Illuminate\Support\Arr::toCssClasses(['active' => request()->routeIs('about')]); ?>">درباره ما</a>
             <a href="<?php echo e(route('faq')); ?>" class="<?php echo \Illuminate\Support\Arr::toCssClasses(['active' => request()->routeIs('faq')]); ?>">سؤالات متداول</a>
@@ -74,13 +75,25 @@
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="باز کردن منو"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     </div>
 </header>
-<main id="main-content"><?php echo $__env->yieldContent('content'); ?></main>
+<main id="main-content">
+    <?php echo $__env->yieldContent('content'); ?>
+    <?php echo $__env->make('marketing.partials.contextual-paths', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+</main>
 <footer class="site-footer">
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand"><a href="<?php echo e(route('home')); ?>"><img src="<?php echo e(asset('assets/images/brand/sepand-provided-header.png')); ?>" alt="سپند"></a><p>نرم‌افزار یکپارچه سپند برای مدیریت CRM، فروش، عملیات حمل، مالی و پرتال مشتریان شرکت‌های فورواردری و لجستیک.</p></div>
-            <div class="footer-col"><h3>محصول</h3><a href="<?php echo e(route('product')); ?>">معرفی محصول در عمل</a><a href="<?php echo e(route('modules')); ?>">ماژول‌های نرم‌افزار</a><a href="<?php echo e(route('site.modules.show', ['module' => 'automatic-tasks'])); ?>">تسک خودکار CRM</a><a href="<?php echo e(route('site.modules.show', ['module' => 'customer-portal-tracking'])); ?>">پرتال مشتریان و رهگیری</a><a href="<?php echo e(route('pricing')); ?>">تعرفه‌ها</a><a href="<?php echo e(route('site.modules.show', ['module' => 'transport-operations'])); ?>">عملیات حمل</a></div>
-            <div class="footer-col"><h3>سپند</h3><a href="<?php echo e(route('about')); ?>">درباره ما</a><a href="<?php echo e(route('faq')); ?>">سؤالات متداول نرم‌افزار</a><a href="<?php echo e(route('compare.index')); ?>">مرکز مقایسه نرم‌افزارها</a><a href="<?php echo e(route('why-sepand')); ?>">چرا سپند؟</a><a href="<?php echo e(route('home')); ?>#process">گردش کار هوشمند محصول</a></div>
+            <div class="footer-col"><h3>محصول</h3><a href="<?php echo e(route('product')); ?>">معرفی محصول در عمل</a><a href="<?php echo e(route('modules')); ?>">ماژول‌های نرم‌افزار</a><a href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>">CRM و مدیریت مشتری</a><a href="<?php echo e(route('site.modules.show', ['module' => 'email-workflow-automation'])); ?>">اتوماسیون ایمیل حمل</a><a href="<?php echo e(route('site.modules.show', ['module' => 'transport-operations'])); ?>">مدیریت عملیات حمل</a><a href="<?php echo e(route('site.modules.show', ['module' => 'finance-accounting'])); ?>">مالی و حسابداری حمل</a><a href="<?php echo e(route('pricing')); ?>">تعرفه‌ها</a></div>
+            <div class="footer-col">
+                <h3>راهکارهای سپند</h3>
+                <a href="<?php echo e(route('solutions.index')); ?>">همه راهکارهای سپند</a>
+                <a href="<?php echo e(route('site.modules.show', ['module' => 'operations-control-tower'])); ?>">برج کنترل عملیات</a>
+                <a href="<?php echo e(route('solutions.operational-workflow-management')); ?>">گردش کار عملیات</a>
+                <a href="<?php echo e(route('site.modules.show', ['module' => 'document-management'])); ?>">مدیریت اسناد حمل</a>
+                <a href="<?php echo e(route('solutions.platform.show', ['solution' => 'fleet-management'])); ?>">مدیریت ناوگان</a>
+                <a href="<?php echo e(route('solutions.nvocc')); ?>">راهکار NVOCC</a>
+            </div>
+            <div class="footer-col"><h3>سپند</h3><a href="<?php echo e(route('about')); ?>">درباره ما</a><a href="<?php echo e(route('faq')); ?>">سؤالات متداول نرم‌افزار</a><a href="<?php echo e(route('compare.index')); ?>">مرکز مقایسه نرم‌افزارها</a><a href="<?php echo e(route('case-studies.show', ['caseStudy' => 'operational-control-snapshot'])); ?>">مطالعه موردی واقعی</a><a href="<?php echo e(route('why-sepand')); ?>">چرا سپند؟</a><a href="<?php echo e(route('home')); ?>#process">گردش کار هوشمند محصول</a></div>
             <div class="footer-col"><h3>شروع همکاری</h3><a href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="footer_consultation">درخواست دمو و مشاوره</a><a href="<?php echo e(route('login')); ?>">پورتال مشتریان</a><a href="<?php echo e(route('organization.portal')); ?>">پرتال سازمان</a></div>
         </div>
         <div class="footer-bottom"><span>© <?php echo e(date('Y')); ?> سپند؛ تمامی حقوق محفوظ است.</span><span>طراحی‌شده برای تجربه‌ای شفاف‌تر</span></div>
@@ -88,7 +101,7 @@
 </footer>
 <?php echo $__env->make('layouts.partials.floating-consultation-cta', ['placement' => 'desktop-floating'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <script>
-(()=>{const menu=document.getElementById('main-nav'),toggle=document.getElementById('menu-toggle');toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}));const track=(eventName,eventLabel,url)=>{const payload={event_category:'marketing',event_label:eventLabel,link_url:url||window.location.href};if(typeof window.gtag==='function')window.gtag('event',eventName,payload);else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:eventName,...payload})}};document.addEventListener('click',event=>{const link=event.target.closest('[data-ga-event]');if(link)track(link.dataset.gaEvent,link.dataset.gaLabel||link.textContent.trim(),link.href)});document.querySelectorAll('[data-ga-form]').forEach(form=>form.addEventListener('submit',()=>track(form.dataset.gaForm,'consultation_form_submit',form.action)));const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
+(()=>{const menu=document.getElementById('main-nav'),toggle=document.getElementById('menu-toggle'),solutions=document.querySelector('.nav-solutions');toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open)});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('menu-open')}));document.addEventListener('click',event=>{if(solutions&&solutions.open&&!solutions.contains(event.target))solutions.open=false});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&solutions)solutions.open=false});const track=(eventName,eventLabel,url)=>{const payload={event_category:'marketing',event_label:eventLabel,link_url:url||window.location.href};if(typeof window.gtag==='function')window.gtag('event',eventName,payload);else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:eventName,...payload})}};document.addEventListener('click',event=>{const link=event.target.closest('[data-ga-event]');if(link)track(link.dataset.gaEvent,link.dataset.gaLabel||link.textContent.trim(),link.href)});document.querySelectorAll('[data-ga-form]').forEach(form=>form.addEventListener('submit',()=>track(form.dataset.gaForm,'consultation_form_submit',form.action)));const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
 </script>
 <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>

@@ -93,6 +93,8 @@
             'outcome' => 'تیم سریع‌تر به سند موردنیاز می‌رسد و ارتباط مدرک با پرونده حمل، مشتری و مرحله عملیات حفظ می‌شود.',
             'module' => 'document-management',
             'cta' => 'مشاهده ماژول مدیریت اسناد',
+            'secondary_cta' => 'مدیریت تخصصی بارنامه HBL و MBL',
+            'secondary_cta_route' => 'solutions.bill-of-lading-management',
             'images' => [
                 ['path' => 'modules/screenshots/document-attachment-upload.webp', 'width' => 1600, 'height' => 790, 'alt' => 'پنجره واقعی بارگذاری فایل پیوست برای پرونده استعلام در نرم‌افزار سپند', 'caption' => 'بارگذاری فایل پیوست با عنوان اختیاری و اتصال مستقیم آن به پرونده استعلام'],
             ],
@@ -195,7 +197,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261026-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261026-2">
 @endpush
 
 @section('content')

@@ -40,7 +40,7 @@ return [
                 '/modules/document-management' => ['query' => 'نرم افزار مدیریت اسناد حمل و نقل', 'intent' => 'قابلیت محصول برای مدیریت، نسخه و آرشیو سند', 'audience' => 'تیم اسناد و عملیات', 'outcome' => 'مرجع واحد اسناد'],
                 '/solutions/document-management' => ['query' => 'چرخه تأیید اسناد حمل', 'intent' => 'Draft، بازبینی، اصلاح، Approval و کنترل نسخه', 'audience' => 'مالک فرایند سند', 'outcome' => 'تأیید کنترل‌شده سند'],
                 '/solutions/document-readiness' => ['query' => 'کنترل آماده بودن مدارک حمل', 'intent' => 'معیار کامل‌بودن مجموعه مدارک پیش از نقطه حساس', 'audience' => 'کارشناس کنترل مدارک', 'outcome' => 'پرونده آماده مرحله بعد'],
-                '/solutions/bill-of-lading-management' => ['query' => 'نرم افزار مدیریت بارنامه HBL و MBL', 'intent' => 'پیش‌نویس، اصلاح، تأیید و آرشیو بارنامه', 'audience' => 'تیم اسناد دریایی', 'outcome' => 'بارنامه نهایی بدون نسخه مبهم'],
+                '/solutions/bill-of-lading-management' => ['query' => 'نرم افزار مدیریت بارنامه', 'intent' => 'پیش‌نویس، اصلاح، تأیید و آرشیو بارنامه', 'audience' => 'تیم اسناد دریایی', 'outcome' => 'بارنامه نهایی بدون نسخه مبهم'],
                 '/modules/document-checklists' => ['query' => 'چک لیست مدارک حمل', 'intent' => 'تعریف اقلام موردنیاز هر روش و خدمت', 'audience' => 'طراح فرایند و کنترل اسناد', 'outcome' => 'فهرست استاندارد و قابل اجرای مدارک'],
             ],
         ],
@@ -77,7 +77,7 @@ return [
             'pillar' => '/modules/crm',
             'pages' => [
                 '/modules/crm' => ['query' => 'نرم افزار CRM حمل و نقل', 'intent' => 'رابطه مشتری، Lead، Opportunity و Pipeline', 'audience' => 'مدیر فروش و کارشناس CRM', 'outcome' => 'رابطه و قیف فروش قابل پیگیری'],
-                '/modules/pricing-sales' => ['query' => 'نرم افزار قیمت گذاری فروش حمل', 'intent' => 'فرایند محصول از Inquiry تا Quotation', 'audience' => 'کارشناس Pricing و فروش', 'outcome' => 'پیشنهاد معتبر و قابل ارسال'],
+                '/modules/pricing-sales' => ['query' => 'نرم افزار نرخ دهی حمل و نقل', 'intent' => 'فرایند محصول از Inquiry تا Quotation', 'audience' => 'کارشناس Pricing و فروش', 'outcome' => 'پیشنهاد معتبر و قابل ارسال'],
                 '/solutions/rate-management' => ['query' => 'مدیریت نرخ و تعرفه حمل و نقل', 'intent' => 'Rate Repository، اعتبار و منطق محاسبه', 'audience' => 'مالک Rate Master', 'outcome' => 'نرخ معتبر و قابل استفاده مجدد'],
                 '/solutions/freight-sales-automation' => ['query' => 'اتوماسیون پیگیری فروش حمل و نقل', 'intent' => 'Follow-up رویدادمحور، SLA و Handoff', 'audience' => 'مدیر فروش و RevOps', 'outcome' => 'فرصت بدون اقدام کمتر'],
                 '/compare/best-crm-for-transport-companies' => ['query' => 'بهترین CRM برای شرکت حمل و نقل', 'intent' => 'مقایسه و انتخاب CRM', 'audience' => 'خریدار و مدیر فروش', 'outcome' => 'Shortlist و چک‌لیست خرید'],
@@ -96,7 +96,7 @@ return [
             'priority' => 'P1',
             'pillar' => '/modules/workflow-tasks',
             'pages' => [
-                '/modules/workflow-tasks' => ['query' => 'مدیریت گردش کار و وظایف حمل و نقل', 'intent' => 'فرایند و Task انسانی', 'audience' => 'مدیر تیم و کاربران مسئول اقدام', 'outcome' => 'وظیفه انسانی با مالک و مهلت'],
+                '/modules/workflow-tasks' => ['query' => 'نرم افزار مدیریت گردش کار حمل و نقل', 'intent' => 'فرایند و Task انسانی', 'audience' => 'مدیر تیم و کاربران مسئول اقدام', 'outcome' => 'وظیفه انسانی با مالک و مهلت'],
                 '/modules/automatic-tasks' => ['query' => 'ساخت خودکار تسک CRM', 'intent' => 'یک Trigger رویدادی برای ساخت Task', 'audience' => 'مدیر فروش و CRM', 'outcome' => 'پیگیری خودکار رویداد فروش'],
                 '/solutions/operations-automation' => ['query' => 'اتوماسیون عملیات حمل و نقل', 'intent' => 'Rule چندمرحله‌ای تا Exception و Escalation', 'audience' => 'مالک فرایند عملیات', 'outcome' => 'کنترل عملیاتی خودکار'],
                 '/solutions/operational-workflow-management' => ['query' => 'چک لیست اجرای عملیات فورواردری', 'intent' => 'الگوی SOP، کنترل عبور مرحله و شواهد انجام کار', 'audience' => 'مالک رویه و سرپرست عملیات', 'outcome' => 'اجرای یکنواخت عملیات'],

@@ -327,7 +327,7 @@ html { scroll-padding-top: 105px; }
 .product-evidence-details article.is-outcome:before { background: #25a678; border-color: #dff4eb; }
 .product-evidence-details span { display: block; margin-bottom: 3px; color: var(--navy); font-size: 13px; font-weight: 700; }
 .product-evidence-details p { margin: 0; color: #617588; font-size: var(--product-small-size); line-height: 1.95; }
-.product-evidence-link { grid-area: link; align-self: start; }
+.product-evidence-link { grid-area: link; display: flex; align-self: start; flex-wrap: wrap; gap: 10px 24px; }
 .product-evidence-link a,
 .product-workflow-links a {
     display: inline-flex;

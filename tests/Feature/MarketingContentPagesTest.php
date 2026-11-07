@@ -32,7 +32,7 @@ class MarketingContentPagesTest extends TestCase
             '/solutions/nvocc' => ['title' => 'نرم‌افزار NVOCC | مدیریت عملیات، اسناد و مالی', 'h1' => 'عملیات NVOCC را از رزرو تا سود پرونده یکپارچه مدیریت کنید'],
             '/solutions/container-management' => ['title' => 'نرم‌افزار مدیریت کانتینر | کنترل چرخه و هزینه', 'h1' => 'کانتینر، مهلت‌ها و هزینه‌ها را در متن همان پرونده حمل مدیریت کنید'],
             '/solutions/on-premise' => ['title' => 'نرم‌افزار حمل‌ونقل On-Premise | راهنمای استقرار', 'h1' => 'استقرار On-Premise نرم‌افزار حمل‌ونقل را با مسئولیت‌های روشن انتخاب کنید'],
-            '/solutions/bill-of-lading-management' => ['title' => 'نرم افزار مدیریت بارنامه HBL و MBL | سپند', 'h1' => 'بارنامه‌های HBL و MBL را در ارتباط با Booking کنترل کنید'],
+            '/solutions/bill-of-lading-management' => ['title' => 'نرم‌افزار مدیریت بارنامه حمل‌ونقل | سپند', 'h1' => 'مدیریت بارنامه‌های حمل‌ونقل با نرم‌افزار سپند'],
             '/solutions/freight-sales-automation' => ['title' => 'اتوماسیون پیگیری فروش حمل؛ SLA و Handoff | سپند', 'h1' => 'پیگیری فروش حمل را رویدادمحور کنید؛ از پاسخ تا Handoff'],
         ];
 
@@ -207,8 +207,11 @@ class MarketingContentPagesTest extends TestCase
 
         $this->get('/solutions/bill-of-lading-management')
             ->assertOk()
+            ->assertSee('شرکت‌های حمل‌ونقل و فورواردری زمانی با خطا و تأخیر روبه‌رو می‌شوند', false)
             ->assertSee('صدور رسمی بارنامه جاده‌ای یا اتصال حاکمیتی در دامنه این صفحه ادعا نمی‌شود', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/document-management"', false);
+            ->assertSee('href="'.self::SITE_URL.'/modules/document-management"', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
+            ->assertSee('درخواست دموی مدیریت بارنامه در سپند', false);
     }
 
     private function assertValidJsonLd(string $content): void
