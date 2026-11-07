@@ -1,12 +1,16 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'قیمت نرم‌افزار حمل‌ونقل بین‌المللی | سپند';
-    $description = 'تعرفه شفاف نرم‌افزار حمل‌ونقل سپند را بر اساس تعداد کاربران و نوع پرداخت ماهانه یا سالانه محاسبه کنید.';
+    $title = 'قیمت نرم افزار حمل و نقل و خرید نرم افزار فورواردری | سپند';
+    $description = 'قیمت نرم افزار حمل و نقل سپند را بر اساس تعداد کاربران محاسبه کنید و برای خرید نرم افزار فورواردری، دمو و مشاوره تخصصی دریافت کنید.';
 @endphp
 
+@push('head')
+    <meta name="keywords" content="قیمت نرم افزار حمل و نقل، خرید نرم افزار فورواردری، خرید نرم افزار فورواردی، تعرفه نرم افزار حمل و نقل">
+@endpush
+
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-pricing-calculator.css') }}?v=20261107-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-pricing-calculator.css') }}?v=20261107-2">
 @endpush
 
 @section('content')
@@ -14,8 +18,8 @@
     <div class="container hero-inner">
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>تعرفه‌ها</span></div>
-            <h1>قیمت و تعرفه<br><span>نرم‌افزار حمل‌ونقل</span></h1>
-            <p>تعداد کاربران و دوره پرداخت را انتخاب کنید تا هزینه اشتراک نرم‌افزار سپند همان لحظه محاسبه شود.</p>
+            <h1>قیمت نرم افزار حمل و نقل<br><span>و خرید نرم افزار فورواردری</span></h1>
+            <p>قیمت نرم افزار حمل و نقل سپند را بر اساس تعداد کاربران محاسبه کنید و برای خرید نرم افزار فورواردری، دوره پرداخت مناسب تیم خود را انتخاب کنید.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#plans">محاسبه تعرفه</a><a class="btn btn-outline" href="{{ route('modules') }}">مشاهده ماژول‌ها</a></div>
         </div>
         <div class="hero-art reveal"><div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16v12H4V7Zm3-3h10v3H7V4Zm2 8h6m-3-3v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="art-chip">تعرفه شفاف</span></div><h2 class="art-title">متناسب با اندازه تیم شما</h2><p class="art-desc">هرچه تعداد کاربران بیشتر شود، نرخ هر کاربر کاهش پیدا می‌کند</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
@@ -57,26 +61,24 @@
                     <p id="pricing-user-help">برای تیم‌های بیش از ۱۰۰ کاربر، همین نرخ بازه آخر مبناست و جزئیات استقرار جداگانه بررسی می‌شود.</p>
                 </div>
 
-                <div class="pricing-tier-list" aria-label="بازه‌های تعرفه هر کاربر">
-                    <article class="is-active" data-price-tier data-min-users="5" data-max-users="10" data-monthly-rate="2500000" data-annual-rate="2200000" aria-current="true"><strong>۵ تا ۱۰ کاربر</strong><span>ماهانه ۲٬۵۰۰٬۰۰۰</span><span>سالانه ۲٬۲۰۰٬۰۰۰ تومان</span></article>
-                    <article data-price-tier data-min-users="11" data-max-users="15" data-monthly-rate="2200000" data-annual-rate="1900000"><strong>۱۱ تا ۱۵ کاربر</strong><span>ماهانه ۲٬۲۰۰٬۰۰۰</span><span>سالانه ۱٬۹۰۰٬۰۰۰ تومان</span></article>
-                    <article data-price-tier data-min-users="16" data-max-users="25" data-monthly-rate="1900000" data-annual-rate="1600000"><strong>۱۶ تا ۲۵ کاربر</strong><span>ماهانه ۱٬۹۰۰٬۰۰۰</span><span>سالانه ۱٬۶۰۰٬۰۰۰ تومان</span></article>
-                    <article data-price-tier data-min-users="26" data-max-users="100" data-monthly-rate="1600000" data-annual-rate="1300000"><strong>۲۶ کاربر به بالا</strong><span>ماهانه ۱٬۶۰۰٬۰۰۰</span><span>سالانه ۱٬۳۰۰٬۰۰۰ تومان</span></article>
-                </div>
             </div>
 
-            <aside class="pricing-summary" aria-live="polite">
-                <div class="pricing-summary__top"><span data-billing-title>اشتراک سالانه</span><strong data-tier-label>بازه ۵ تا ۱۰ کاربر</strong></div>
-                <div class="pricing-summary__unit"><span data-per-user-price>۲٬۲۰۰٬۰۰۰</span><small>تومان برای هر کاربر در ماه</small></div>
-                <dl>
-                    <div><dt>تعداد کاربران</dt><dd><span data-summary-users>۵</span> کاربر</dd></div>
-                    <div><dt>معادل هزینه ماهانه تیم</dt><dd><span data-monthly-total>۱۱٬۰۰۰٬۰۰۰</span> تومان</dd></div>
-                    <div class="pricing-summary__payable"><dt data-payable-label>مبلغ پرداخت یک‌ساله</dt><dd><span data-payable-total>۱۳۲٬۰۰۰٬۰۰۰</span> تومان</dd></div>
-                    <div class="pricing-summary__saving" data-annual-saving><dt>صرفه‌جویی سالانه</dt><dd><span data-saving-total>۱۸٬۰۰۰٬۰۰۰</span> تومان</dd></div>
-                </dl>
-                <a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="pricing_calculator_consultation">درخواست دمو و مشاوره خرید</a>
-                <p>مبالغ فوق مربوط به اشتراک کاربران است. هزینه استقرار، سفارشی‌سازی، مالیات و خدمات خارج از اشتراک پس از بررسی نیاز اعلام می‌شود.</p>
-            </aside>
+            <div class="pricing-result" aria-live="polite">
+                <div class="pricing-result__heading"><span data-billing-title>اشتراک سالانه</span><strong><span data-summary-users>۵</span> کاربر</strong></div>
+                <div class="pricing-result__grid">
+                    <div><small>هر کاربر در ماه</small><strong><span data-per-user-price>۲٬۲۰۰٬۰۰۰</span><i>تومان</i></strong></div>
+                    <div><small>هزینه ماهانه تیم</small><strong><span data-monthly-total>۱۱٬۰۰۰٬۰۰۰</span><i>تومان</i></strong></div>
+                    <div><small data-payable-label>مبلغ پرداخت یک‌ساله</small><strong><span data-payable-total>۱۳۲٬۰۰۰٬۰۰۰</span><i>تومان</i></strong></div>
+                    <div class="pricing-result__saving" data-annual-saving><small>صرفه‌جویی سالانه</small><strong><span data-saving-total>۱۸٬۰۰۰٬۰۰۰</span><i>تومان</i></strong></div>
+                </div>
+                <p>مبالغ مربوط به اشتراک کاربران است؛ هزینه استقرار، سفارشی‌سازی، مالیات و خدمات خارج از اشتراک جداگانه اعلام می‌شود.</p>
+            </div>
+        </section>
+
+        <section class="custom-panel reveal" aria-labelledby="custom-panel-title">
+            <span class="custom-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4V5Zm0 4h16M9 9v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 12h5m-5 3h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <div class="custom-panel__copy"><span>برای نیازهای ویژه سازمان</span><h3 id="custom-panel-title">پنل اختصاصی</h3><p>اگر به ساختار، فرایند، سطح دسترسی یا گزارش‌های اختصاصی نیاز دارید، سناریوی شرکت شما در جلسه دمو بررسی و مسیر مناسب پیشنهاد می‌شود.</p></div>
+            <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="pricing_custom_panel_demo">درخواست دموی پنل اختصاصی</a>
         </section>
     </div>
 </section>
@@ -114,15 +116,12 @@
     if(!calculator)return;
     const range=calculator.querySelector('[data-user-range]');
     const billingButtons=[...calculator.querySelectorAll('[data-billing]')];
-    const tierElements=[...calculator.querySelectorAll('[data-price-tier]')];
-    const tiers=tierElements.map(element=>({
-        element,
-        min:Number(element.dataset.minUsers),
-        max:Number(element.dataset.maxUsers),
-        monthly:Number(element.dataset.monthlyRate),
-        annual:Number(element.dataset.annualRate),
-        label:element.querySelector('strong').textContent.trim(),
-    }));
+    const tiers=[
+        {min:5,max:10,monthly:2500000,annual:2200000},
+        {min:11,max:15,monthly:2200000,annual:1900000},
+        {min:16,max:25,monthly:1900000,annual:1600000},
+        {min:26,max:100,monthly:1600000,annual:1300000},
+    ];
     const formatter=new Intl.NumberFormat('fa-IR');
     let billing='annual';
 
@@ -140,7 +139,6 @@
         range.style.setProperty('--range-progress',progress+'%');
         setText('[data-user-output]',formatter.format(users));
         setText('[data-summary-users]',formatter.format(users));
-        setText('[data-tier-label]','بازه '+tier.label);
         setText('[data-per-user-price]',formatter.format(perUser));
         setText('[data-monthly-total]',formatter.format(monthlyTotal));
         setText('[data-payable-total]',formatter.format(payable));
@@ -150,12 +148,6 @@
         calculator.querySelector('[data-annual-saving]').hidden=billing!=='annual';
 
         billingButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.billing===billing)));
-        tiers.forEach(item=>{
-            const active=item===tier;
-            item.element.classList.toggle('is-active',active);
-            if(active)item.element.setAttribute('aria-current','true');
-            else item.element.removeAttribute('aria-current');
-        });
     };
 
     range.addEventListener('input',render);

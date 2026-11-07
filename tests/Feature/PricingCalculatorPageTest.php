@@ -24,16 +24,21 @@ class PricingCalculatorPageTest extends TestCase
         $content = $response->getContent();
 
         $response
+            ->assertSee('<title>قیمت نرم افزار حمل و نقل و خرید نرم افزار فورواردری | سپند</title>', false)
+            ->assertSee('<meta name="description" content="قیمت نرم افزار حمل و نقل سپند را بر اساس تعداد کاربران محاسبه کنید و برای خرید نرم افزار فورواردری، دمو و مشاوره تخصصی دریافت کنید.">', false)
+            ->assertSee('<meta name="keywords" content="قیمت نرم افزار حمل و نقل، خرید نرم افزار فورواردری، خرید نرم افزار فورواردی، تعرفه نرم افزار حمل و نقل">', false)
             ->assertSee('assets/css/marketing-pricing-calculator.css', false)
             ->assertSee('data-pricing-calculator', false)
             ->assertSee('type="range" min="5" max="100" step="1" value="5"', false)
             ->assertSee('data-billing="monthly" aria-pressed="false"', false)
             ->assertSee('data-billing="annual" aria-pressed="true"', false)
-            ->assertSee('درخواست دمو و مشاوره خرید', false)
+            ->assertSee('پنل اختصاصی', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation" data-ga-event="cta_click" data-ga-label="pricing_custom_panel_demo"', false)
+            ->assertDontSee('pricing-tier-list', false)
+            ->assertDontSee('pricing-summary', false)
+            ->assertDontSee('data-price-tier', false)
             ->assertDontSee('استعلام تعرفه', false);
 
-        preg_match_all('/<article[^>]+data-price-tier\b/', $content, $tierElements);
-        $this->assertCount(4, $tierElements[0]);
         $this->assertSame(1, substr_count($content, '<h1'));
     }
 
@@ -42,15 +47,12 @@ class PricingCalculatorPageTest extends TestCase
         $response = $this->get('/pricing')->assertOk();
 
         foreach ([
-            ['5', '10', '2500000', '2200000'],
-            ['11', '15', '2200000', '1900000'],
-            ['16', '25', '1900000', '1600000'],
-            ['26', '100', '1600000', '1300000'],
-        ] as [$min, $max, $monthly, $annual]) {
-            $response->assertSee(
-                'data-min-users="'.$min.'" data-max-users="'.$max.'" data-monthly-rate="'.$monthly.'" data-annual-rate="'.$annual.'"',
-                false
-            );
+            '{min:5,max:10,monthly:2500000,annual:2200000}',
+            '{min:11,max:15,monthly:2200000,annual:1900000}',
+            '{min:16,max:25,monthly:1900000,annual:1600000}',
+            '{min:26,max:100,monthly:1600000,annual:1300000}',
+        ] as $tier) {
+            $response->assertSee($tier, false);
         }
 
         $response
