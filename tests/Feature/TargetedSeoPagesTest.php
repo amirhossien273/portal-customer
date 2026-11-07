@@ -25,12 +25,16 @@ class TargetedSeoPagesTest extends TestCase
 
         $response
             ->assertSee('<title>نرم‌افزار مدیریت بارنامه حمل‌ونقل | سپند</title>', false)
-            ->assertSee('<meta name="description" content="نرم‌افزار مدیریت بارنامه سپند برای کنترل اطلاعات HBL و MBL، ارتباط House/Master، نسخه‌های Draft و نهایی و اتصال بارنامه به Booking و پرونده حمل.">', false)
+            ->assertSee('<meta name="description" content="نرم‌افزار مدیریت بارنامه حمل‌ونقل سپند برای سامان‌دهی فایل و اطلاعات HBL و MBL در پرونده حمل؛ جزئیات House/Master، Draft، تأیید و خروجی در دمو بررسی می‌شود.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/solutions/bill-of-lading-management">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
             ->assertSee('<h1>مدیریت بارنامه‌های حمل‌ونقل با نرم‌افزار سپند</h1>', false)
             ->assertSee('شرکت‌های حمل‌ونقل و فورواردری زمانی با خطا و تأخیر روبه‌رو می‌شوند', false)
-            ->assertSee('درخواست دموی مدیریت بارنامه در سپند', false)
+            ->assertSee('درخواست دموی مدیریت بارنامه سپند', false)
+            ->assertSee('امکانات موجود و قابل نمایش در سپند', false)
+            ->assertSee('نیازمندی‌های قابل بررسی در زمان استقرار', false)
+            ->assertSee('از ثبت اطلاعات بارنامه تا تأیید نهایی', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/document-attachment-upload.webp', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
             ->assertSee('href="'.self::SITE_URL.'/transport-modes/sea"', false)
             ->assertSee('href="'.self::SITE_URL.'/solutions/nvocc"', false)
@@ -61,7 +65,9 @@ class TargetedSeoPagesTest extends TestCase
             ->assertSee('خدمات حمل‌ونقل', false)
             ->assertSee('استعلام‌های متعدد مشتریان، نرخ‌های خرید تأمین‌کنندگان، اعتبار نرخ، حاشیه فروش', false)
             ->assertSee('Rate Master و منطق Rate Break در راهکار مدیریت نرخ نگهداری می‌شوند', false)
-            ->assertSee('مشاهده دموی نرخ‌دهی و فروش سپند', false)
+            ->assertSee('درخواست دموی نرخ‌دهی و فروش سپند', false)
+            ->assertSee('از دریافت استعلام حمل تا صدور پیشنهاد قیمت', false)
+            ->assertSee('خروجی عملی داشبورد نرخ‌دهی و فروش', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/booking"', false)
@@ -93,7 +99,11 @@ class TargetedSeoPagesTest extends TestCase
             ->assertSee('در شرکت‌های حمل‌ونقل', false)
             ->assertSee('پیگیری‌ها فراموش می‌شوند، مسئول اقدام روشن نیست و مدیر دید کافی از وضعیت کارها ندارد', false)
             ->assertSee('بررسی یک سند از «ارجاع به کارشناس» تا «کنترل، اصلاح و تأیید نهایی»', false)
-            ->assertSee('درخواست دموی مدیریت گردش کار سپند', false)
+            ->assertSee('درخواست دموی مدیریت وظایف سپند', false)
+            ->assertSee('مدیریت وظایف در یک پرونده حمل چگونه انجام می‌شود؟', false)
+            ->assertSee('تیم فروش و نرخ‌دهی', false)
+            ->assertSee('تیم عملیات و اسناد', false)
+            ->assertSee('مدیران و سرپرستان', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/automatic-tasks"', false)
             ->assertSee('href="'.self::SITE_URL.'/solutions/operational-workflow-management"', false)
@@ -102,6 +112,7 @@ class TargetedSeoPagesTest extends TestCase
             ->assertSee('assets/images/marketing/modules/screenshots/workflow-notifications.webp', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertSame(3, count(config('site_module_pages.workflow-tasks.audiences')));
         $this->assertValidJsonLd($content);
 
         foreach (['/modules', '/product', '/modules/transport-operations'] as $sourcePath) {

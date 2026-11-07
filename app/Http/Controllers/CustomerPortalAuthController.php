@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CustomerPortalRepository;
+use App\Services\CustomerPortalOtpSender;
 use App\Support\MobileNumber;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,9 +18,10 @@ class CustomerPortalAuthController extends Controller
 {
     private const OTP_SESSION_KEY = 'customer_portal_otp';
 
-    public function __construct(private readonly CustomerPortalRepository $customers)
-    {
-    }
+    public function __construct(
+        private readonly CustomerPortalRepository $customers,
+        private readonly CustomerPortalOtpSender $otpSender,
+    ) {}
 
     public function showLogin(Request $request): View|RedirectResponse
     {
@@ -40,16 +42,6 @@ class CustomerPortalAuthController extends Controller
             ]);
         }
 
-        // TODO: Re-enable the per-mobile OTP limiter after the temporary
-        // preview/testing phase is finished.
-        // $rateKey = $this->rateKey($request, $mobile);
-        // if (RateLimiter::tooManyAttempts($rateKey, config('customer_portal.otp.max_requests'))) {
-        //     return back()->withInput()->withErrors([
-        //         'mobile' => 'تعداد درخواست‌ها بیش از حد مجاز است. چند دقیقه دیگر دوباره تلاش کنید.',
-        //     ]);
-        // }
-        // RateLimiter::hit($rateKey, config('customer_portal.otp.request_decay_seconds'));
-
         try {
             $personals = $this->customers->findPersonalsByMobile($mobile);
         } catch (Throwable $exception) {
@@ -66,7 +58,7 @@ class CustomerPortalAuthController extends Controller
             ]);
         }
 
-        return $this->issueOtp($request, $personals, $mobile);
+        return $this->issueOtp($request, $personals, $mobile, 'mobile');
     }
 
     public function showVerify(Request $request): View|RedirectResponse
@@ -106,16 +98,17 @@ class CustomerPortalAuthController extends Controller
             return redirect()->route('login')->with('auth_error', 'اعتبار کد ورود تمام شده است؛ کد تازه‌ای بگیرید.');
         }
 
-        $pending['attempts'] = (int) ($pending['attempts'] ?? 0) + 1;
-        $request->session()->put(self::OTP_SESSION_KEY, $pending);
-
-        if ($pending['attempts'] > config('customer_portal.otp.max_attempts')) {
-            $request->session()->forget(self::OTP_SESSION_KEY);
-
-            return redirect()->route('login')->with('auth_error', 'تعداد تلاش‌های ناموفق بیش از حد مجاز بود؛ دوباره کد بگیرید.');
-        }
-
         if (! Hash::check($otp, $pending['hash'])) {
+            $pending['attempts'] = (int) ($pending['attempts'] ?? 0) + 1;
+
+            if ($pending['attempts'] >= config('customer_portal.otp.max_attempts')) {
+                $request->session()->forget(self::OTP_SESSION_KEY);
+
+                return redirect()->route('login')->with('auth_error', 'تعداد تلاش‌های ناموفق بیش از حد مجاز بود؛ دوباره کد بگیرید.');
+            }
+
+            $request->session()->put(self::OTP_SESSION_KEY, $pending);
+
             return back()->withErrors(['otp' => 'کد واردشده صحیح نیست. دوباره بررسی کنید.']);
         }
 
@@ -208,7 +201,7 @@ class CustomerPortalAuthController extends Controller
             return redirect()->route('login')->with('auth_error', 'امکان ارسال مجدد کد وجود ندارد.');
         }
 
-        return $this->issueOtp($request, $personals, $pending['mobile']);
+        return $this->issueOtp($request, $personals, $pending['mobile'], 'otp');
     }
 
     public function logout(Request $request): RedirectResponse
@@ -221,8 +214,21 @@ class CustomerPortalAuthController extends Controller
     }
 
     /** @param Collection<int, \App\Models\Crm\CustomerPersonal> $personals */
-    private function issueOtp(Request $request, Collection $personals, string $mobile): RedirectResponse
-    {
+    private function issueOtp(
+        Request $request,
+        Collection $personals,
+        string $mobile,
+        string $errorKey,
+    ): RedirectResponse {
+        $rateKey = $this->rateKey($request, $mobile);
+        if (RateLimiter::tooManyAttempts($rateKey, config('customer_portal.otp.max_requests'))) {
+            return back()->withInput()->withErrors([
+                $errorKey => 'تعداد درخواست‌های کد بیش از حد مجاز است. چند دقیقه دیگر دوباره تلاش کنید.',
+            ]);
+        }
+
+        RateLimiter::hit($rateKey, config('customer_portal.otp.request_decay_seconds'));
+
         $personal = $personals->first();
         $accounts = $personals
             ->map(fn ($item): array => $this->customers->accountSummary($item))
@@ -231,6 +237,21 @@ class CustomerPortalAuthController extends Controller
         $otp = (string) random_int(100000, 999999);
         $expiresAt = now()->addSeconds(config('customer_portal.otp.expires_in_seconds'))->timestamp;
         $resendAt = now()->addSeconds(config('customer_portal.otp.resend_after_seconds'))->timestamp;
+
+        if (! config('customer_portal.otp.preview')) {
+            try {
+                $this->otpSender->send($mobile, $otp);
+            } catch (Throwable $exception) {
+                Log::warning('Customer portal OTP could not be delivered.', [
+                    'recipient' => hash('sha256', $mobile),
+                    'exception' => $exception::class,
+                ]);
+
+                return back()->withInput()->withErrors([
+                    $errorKey => 'ارسال کد ورود انجام نشد. لطفاً چند لحظه دیگر دوباره تلاش کنید.',
+                ]);
+            }
+        }
 
         $request->session()->put(self::OTP_SESSION_KEY, [
             'hash' => Hash::make($otp),

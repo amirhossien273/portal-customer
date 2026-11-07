@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ConsultationRequest;
+use App\Services\ConsultationSmsNotifier;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class MarketingConsultationController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, ConsultationSmsNotifier $smsNotifier): RedirectResponse
     {
         $companyTypes = [
             'شرکت حمل‌ونقل بین‌المللی',
@@ -79,6 +80,7 @@ class MarketingConsultationController extends Controller
         unset($validated['website']);
 
         ConsultationRequest::create($validated);
+        $smsNotifier->send();
 
         return redirect()
             ->route('consultation.create')

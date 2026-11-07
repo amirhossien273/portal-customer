@@ -36,11 +36,9 @@ return [
     ],
 
     'farazsms' => [
-        'url'          => env('FARAZSMS_URL', 'https://edge.ippanel.com/v1/'),
-        'api_key'      => env('FARAZSMS_API_KEY'),
-        'username'     => env('FARAZSMS_USERNAME'),
-        'password'     => env('FARAZSMS_PASSWORD'),
-        'from'         => env('FARAZSMS_FROM'),
-        'pattern_code' => env('FARAZSMS_PATTERN_CODE'),
+        'url' => env('FARAZSMS_WS_URL', 'https://api.iranpayamak.com'),
+        'api_key' => env('FARAZSMS_API_KEY'),
+        'line_number' => env('FARAZSMS_LINE_NUMBER', env('FARAZSMS_FROM')),
+        'timeout' => (int) env('FARAZSMS_TIMEOUT', 20),
     ],
 ];

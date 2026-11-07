@@ -132,6 +132,8 @@
         <nav class="content-toc" aria-label="فهرست مطالب">
             <span>در این صفحه</span>
             <a href="#outcomes-section">خروجی‌ها</a>
+            @if(isset($page['capability_status']))<a href="#capability-status-section">وضعیت قابلیت‌ها</a>@endif
+            @if(isset($page['product_evidence']))<a href="#product-evidence-section">شواهد محصول</a>@endif
             @if(isset($page['specialist_difference']))<a href="#specialist-difference-section">تفاوت دو دسته</a>@endif
             <a href="#diagnostic-section">تشخیص نیاز</a>
             <a href="#decision-framework">اجزای اصلی</a>
@@ -154,6 +156,46 @@
         </div>
     </div>
 </section>
+
+@if(isset($page['capability_status']))
+<section class="section soft" id="capability-status-section" aria-labelledby="capability-status-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">مرز قابلیت و نیازمندی</span>
+            <h2 class="section-title" id="capability-status-title">{{ $page['capability_status']['heading'] }}</h2>
+            <p class="section-sub">{{ $page['capability_status']['intro'] }}</p>
+        </div>
+        <div class="content-difference-grid">
+            @foreach(['available', 'review'] as $statusKey)
+                @php($status = $page['capability_status'][$statusKey])
+                <article class="content-difference-card reveal">
+                    <span>{{ $statusKey === 'available' ? 'قابل نمایش' : 'وابسته به نیازسنجی' }}</span>
+                    <h3>{{ $status['title'] }}</h3>
+                    <p>{{ $status['description'] }}</p>
+                    <ul>@foreach($status['items'] as $item)<li>{{ $item }}</li>@endforeach</ul>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+@if(isset($page['product_evidence']))
+<section class="section content-evidence-section" id="product-evidence-section" aria-labelledby="product-evidence-title">
+    <div class="container content-evidence-layout">
+        <figure class="content-evidence-media reveal">
+            <img src="{{ asset('assets/images/marketing/'.$page['product_evidence']['image']) }}" alt="{{ $page['product_evidence']['alt'] }}" width="{{ $page['product_evidence']['width'] }}" height="{{ $page['product_evidence']['height'] }}" loading="lazy">
+            <figcaption>{{ $page['product_evidence']['caption'] }}</figcaption>
+        </figure>
+        <div class="content-evidence-copy reveal">
+            <span class="section-label">تصویر واقعی محصول</span>
+            <h2 class="section-title" id="product-evidence-title">{{ $page['product_evidence']['heading'] }}</h2>
+            <p>{{ $page['product_evidence']['description'] }}</p>
+            <strong>{{ $page['product_evidence']['note'] }}</strong>
+        </div>
+    </div>
+</section>
+@endif
 
 @if(isset($page['specialist_difference']))
 <section class="section soft content-specialist-difference" id="specialist-difference-section" aria-labelledby="specialist-difference-title">
@@ -300,7 +342,7 @@
 
 <section class="section soft" id="boundaries-section" aria-labelledby="boundaries-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">مسیرهای مرتبط</span><h2 class="section-title" id="boundaries-title">{{ $page['boundary_heading'] }}</h2><p class="section-sub">برای ادامه بررسی هر بخش، از مسیر تخصصی مرتبط استفاده کنید.</p></div>
+        <div class="section-head reveal"><span class="section-label">مسیرهای مرتبط</span><h2 class="section-title" id="boundaries-title">{{ $page['boundary_heading'] }}</h2><p class="section-sub">{{ $page['boundary_intro'] ?? 'برای ادامه بررسی، ماژول یا راهکار تخصصی مرتبط را مشاهده کنید.' }}</p></div>
         <div class="content-boundaries-grid">
             @foreach($page['boundaries'] as $boundary)
                 <article class="content-boundary-card reveal"><h3>{{ $boundary['title'] }}</h3><p>{{ $boundary['description'] }}</p><a href="{{ $linkUrl($boundary['link']) }}">{{ $boundary['link']['label'] }} <span aria-hidden="true">←</span></a></article>

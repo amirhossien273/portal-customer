@@ -5,6 +5,21 @@
     $linkingPages = config('site_internal_linking.pages', []);
     $linkingPage = $linkingPages[$requestPath] ?? null;
     $linkTargets = config('site_internal_linking.targets', []);
+    $targetedContextualCopy = match ($slug ?? null) {
+        'pricing-sales' => [
+            'title' => 'آشنایی بیشتر با فرایند فروش حمل',
+            'text' => 'برای بررسی دقیق‌تر مسیر مشتری، نرخ مرجع، پیشنهاد فروش و تحویل به Booking، ماژول‌ها و راهکارهای مرتبط سپند را ببینید.',
+        ],
+        'bill-of-lading-management' => [
+            'title' => 'آشنایی بیشتر با فرایند بارنامه',
+            'text' => 'برای بررسی دقیق‌تر مخزن اسناد، Booking، حمل دریایی و فرایند NVOCC، صفحه‌های تخصصی مرتبط را ببینید.',
+        ],
+        'workflow-tasks' => [
+            'title' => 'آشنایی بیشتر با مدیریت وظایف سپند',
+            'text' => 'برای تفکیک وظایف انسانی، ساخت خودکار تسک و مدیریت جریان‌های عملیاتی، ماژول یا راهکار تخصصی هر بخش را بررسی کنید.',
+        ],
+        default => null,
+    };
     $resolvedLinks = collect($linkingPage['links'] ?? [])
         ->map(function (string $targetKey) use ($linkTargets, $linkingPages, $requestPath): ?array {
             $target = $linkTargets[$targetKey] ?? null;
@@ -44,6 +59,10 @@
                 <span class="section-label">انتخاب و ارزیابی</span>
                 <h2 class="section-title" id="contextual-paths-title">ماژول مناسب کسب‌وکار خود را انتخاب کنید</h2>
                 <p class="section-sub">هر شرکت حمل‌ونقل بر اساس نوع خدمات، ساختار تیم و فرآیندهای عملیاتی خود به امکانات متفاوتی نیاز دارد. می‌توانید قابلیت‌های هر ماژول را به‌صورت جداگانه بررسی کنید یا برای شناسایی ترکیب مناسب ماژول‌های سپند، درخواست مشاوره و دموی نرم‌افزار ثبت کنید.</p>
+            @elseif($targetedContextualCopy)
+                <span class="section-label">قابلیت‌های مرتبط</span>
+                <h2 class="section-title" id="contextual-paths-title">{{ $targetedContextualCopy['title'] }}</h2>
+                <p class="section-sub">{{ $targetedContextualCopy['text'] }}</p>
             @else
                 <span class="section-label">مسیر ادامه بررسی</span>
                 <h2 class="section-title" id="contextual-paths-title">این موضوع در کدام بخش فرایند ادامه پیدا می‌کند؟</h2>

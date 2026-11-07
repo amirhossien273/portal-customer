@@ -211,7 +211,7 @@ class MarketingContentPagesTest extends TestCase
             ->assertSee('صدور رسمی بارنامه جاده‌ای یا اتصال حاکمیتی در دامنه این صفحه ادعا نمی‌شود', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/document-management"', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
-            ->assertSee('درخواست دموی مدیریت بارنامه در سپند', false);
+            ->assertSee('درخواست دموی مدیریت بارنامه سپند', false);
     }
 
     private function assertValidJsonLd(string $content): void
