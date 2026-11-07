@@ -44,3 +44,41 @@
 @media(max-width:1000px){.platform-hub-hero .platform-hub-hero-grid{grid-template-columns:1fr;gap:52px}.platform-hub-hero-copy{max-width:760px}.platform-hub-command{max-width:720px}.platform-journey{grid-template-columns:repeat(2,1fr)}.platform-specialized-groups{grid-template-columns:1fr}.platform-specialized-group>header{min-height:0}.platform-hub-guide-grid{gap:45px}}
 @media(max-width:760px){.platform-hub-grid,.platform-hub-evidence-grid,.platform-journey-head,.platform-hub-guide-grid{grid-template-columns:1fr}.platform-journey-head{gap:18px}.platform-finder-filters{flex-wrap:nowrap;margin-inline:-20px;padding-inline:20px;overflow-x:auto;scrollbar-width:none}.platform-finder-filters::-webkit-scrollbar{display:none}.platform-finder-filters button{flex:0 0 auto}.platform-hub-card{min-height:0}.platform-hub-guide-grid{gap:38px}}
 @media(max-width:580px){.platform-hub-hero{padding:100px 0 68px}.platform-hub-hero .platform-hub-hero-grid{width:calc(100% - 28px)}.platform-hub-hero h1{font-size:38px;letter-spacing:-1.4px}.platform-hub-hero p{font-size:13px}.platform-hub-stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%}.platform-hub-stats div{min-width:0;padding:0 10px!important;text-align:center;border-right:1px solid rgba(15,48,91,.12)!important}.platform-hub-stats div:first-child{border-right:0!important}.platform-hub-stats dt{font-size:22px}.platform-hub-stats dd{font-size:8px}.platform-hub-command{padding:14px;border-radius:23px}.platform-hub-command-head{align-items:center}.platform-hub-command-core{padding:21px}.platform-hub-command-core strong{font-size:17px}.platform-hub-command-grid{grid-template-columns:1fr}.platform-hub-command-grid a:last-child{grid-column:auto}.platform-hub-command-grid a{min-height:76px}.platform-finder{padding:15px;border-radius:18px}.platform-finder-filters{margin-inline:-15px;padding-inline:15px}.platform-hub-card{padding:23px;border-radius:20px}.platform-hub-card h3{font-size:20px}.platform-journey-section,.platform-hub-guide{padding:78px 0}.platform-journey{grid-template-columns:1fr}.platform-journey li{min-height:0}.platform-hub-evidence-card>div{padding:19px}.platform-specialized-group{padding:18px}.platform-hub-guide-steps{padding:12px;border-radius:20px}}
+
+/* Problem-led solutions index */
+.platform-hub-hero-simple{position:relative;z-index:1;width:min(920px,calc(100% - 40px));max-width:none;margin-inline:auto;text-align:right}
+.platform-hub-hero-simple h1{max-width:900px;margin-top:12px;font-size:clamp(39px,5vw,62px);line-height:1.45}
+.platform-hub-hero-simple>p{max-width:830px;font-size:16px;line-height:2.15}
+.solution-problem-groups{display:grid;gap:64px;margin-top:46px}
+.solution-problem-group[hidden]{display:none!important}
+.solution-problem-group-head{display:flex;align-items:flex-start;gap:17px;margin-bottom:22px}
+.solution-problem-group-number{display:grid;width:43px;height:43px;min-width:43px;place-items:center;color:var(--teal-dark);background:#e9f5f4;border:1px solid #d5e9e7;border-radius:13px;font-size:11px;font-weight:900}
+.solution-problem-group-head h3{margin:0;color:var(--navy);font-size:25px;line-height:1.45}
+.solution-problem-group-head p{max-width:720px;margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.9}
+.solution-problem-group .platform-hub-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.solution-problem-group .platform-hub-card:only-child{grid-column:1/-1;width:100%;max-width:760px;margin-inline:auto}
+.solution-problem-group .platform-hub-card{min-height:365px;padding:27px}
+.solution-problem-group .platform-hub-card:before{height:4px;width:100%;transform:scaleX(.18);transform-origin:right}
+.solution-problem-group .platform-hub-card:hover:before{transform:scaleX(1)}
+.solution-problem-group .platform-hub-card-category{align-self:flex-start;margin-bottom:14px}
+.solution-problem-group .platform-hub-card h4{margin:0 0 16px;color:var(--navy);font-size:20px;line-height:1.55}
+.solution-problem-group .platform-hub-card-copy{gap:9px}
+.solution-problem-group .platform-hub-card-copy p{font-size:12px;line-height:1.95}
+.solution-problem-group .platform-hub-card-copy b{font-size:10px}
+.solution-problem-group .platform-hub-card>a{margin-top:auto;padding-top:20px;font-size:12px}
+.platform-connected-section{padding:90px 0;color:#fff;background:linear-gradient(145deg,#091e38,#0e435b)}
+.platform-connected-grid{display:grid;grid-template-columns:.8fr 1.2fr;align-items:start;gap:70px}
+.platform-connected-section .section-label{color:#75ded9}
+.platform-connected-section h2{margin:6px 0 0;color:#fff;font-size:clamp(29px,4vw,41px);line-height:1.55}
+.platform-connected-section p{margin:0;color:rgba(255,255,255,.72);font-size:13px;line-height:2.15}
+.platform-connected-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.platform-connected-links a{padding:10px 14px;color:#c0f3f0;background:rgba(108,223,216,.09);border:1px solid rgba(108,223,216,.24);border-radius:10px;font-size:10px;font-weight:900}
+.platform-connected-links a:hover{color:#fff;background:rgba(108,223,216,.16)}
+.platform-hub-guide-note{padding:30px;color:#fff;background:linear-gradient(145deg,#0f305b,#115063);border-radius:24px;box-shadow:0 25px 60px rgba(15,48,91,.17)}
+.platform-hub-guide-note strong{font-size:14px}
+.platform-hub-guide-note ul{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none;counter-reset:guide-note}
+.platform-hub-guide-note li{position:relative;padding:13px 44px 13px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:12px;font-size:10px;line-height:1.8;counter-increment:guide-note}
+.platform-hub-guide-note li:before{content:counter(guide-note,decimal-leading-zero);position:absolute;right:13px;top:13px;color:#75ded9;font-weight:900}
+.platform-connected-links a:focus-visible,.platform-hub-guide-note a:focus-visible,.platform-hub-card>a:focus-visible{outline:3px solid rgba(18,214,210,.45);outline-offset:3px}
+@media(max-width:760px){.solution-problem-group .platform-hub-grid,.platform-connected-grid{grid-template-columns:1fr}.platform-connected-grid{gap:25px}.solution-problem-groups{gap:52px}.solution-problem-group .platform-hub-card{min-height:0}}
+@media(max-width:580px){.platform-hub-hero-simple{width:calc(100% - 28px)}.platform-hub-hero-simple h1{font-size:35px;letter-spacing:-1px}.platform-hub-hero-simple>p{font-size:13px}.solution-problem-group-head{gap:12px}.solution-problem-group-number{width:38px;height:38px;min-width:38px}.solution-problem-group-head h3{font-size:21px}.solution-problem-group .platform-hub-card{padding:21px}.platform-connected-section{padding:72px 0}.platform-connected-links{display:grid}.platform-connected-links a{text-align:center}.platform-hub-guide-note{padding:20px}}

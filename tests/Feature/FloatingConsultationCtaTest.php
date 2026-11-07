@@ -29,7 +29,7 @@ class FloatingConsultationCtaTest extends TestCase
             '/compare/sepand-vs-other-transport-software',
             '/modules/crm',
             '/transport-modes/air',
-            '/consultation',
+            '/consultation/process-review',
         ];
 
         foreach ($paths as $path) {
@@ -40,8 +40,8 @@ class FloatingConsultationCtaTest extends TestCase
                 ->assertSee('assets/css/marketing-floating-cta.css', false)
                 ->assertSee('درخواست دمو و مشاوره نرم‌افزار حمل‌ونقل سپند', false)
                 ->assertSee('درخواست دمو و مشاوره', false)
-                ->assertSee('data-floating-consultation-cta', false)
-                ->assertDontSee('target="_blank"', false);
+                ->assertSee('راهکار مناسب شما', false)
+                ->assertSee('data-floating-consultation-cta', false);
 
             $this->assertSame(2, substr_count($content, 'class="floating-consultation-cta '));
             $this->assertSame(1, substr_count($content, 'data-floating-consultation-cta="mobile-header"'));
@@ -55,15 +55,26 @@ class FloatingConsultationCtaTest extends TestCase
                 strpos($content, 'data-floating-consultation-cta="desktop-floating"')
             );
 
-            if ($path === '/consultation') {
+            if ($path === '/consultation/process-review') {
                 $response
                     ->assertSee('href="#consultation-form"', false)
                     ->assertSee('data-ga-label="floating_consultation_form"', false);
             } else {
                 $response
-                    ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
+                    ->assertSee('href="'.self::SITE_URL.'/consultation/process-review"', false)
                     ->assertSee('data-ga-label="floating_consultation_global"', false);
             }
         }
+    }
+
+    public function test_process_review_replaces_tracking_in_both_navigation_variants(): void
+    {
+        $content = $this->get('/')->assertOk()->getContent();
+
+        $this->assertSame(2, substr_count($content, 'راهکار مناسب شما'));
+        $this->assertStringContainsString('data-ga-label="mobile_process_review"', $content);
+        $this->assertStringContainsString('data-ga-label="desktop_process_review"', $content);
+        $this->assertStringNotContainsString('data-ga-label="mobile_tracking"', $content);
+        $this->assertStringNotContainsString('data-ga-label="desktop_tracking"', $content);
     }
 }

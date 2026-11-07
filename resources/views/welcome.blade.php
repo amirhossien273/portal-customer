@@ -59,7 +59,7 @@
         ],
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20261026-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v=20261107-1">
     <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
 </head>
 <body>
@@ -84,10 +84,10 @@
                 <a href="{{ route('faq') }}">سؤالات متداول</a>
                 <a href="{{ route('why-sepand') }}">چرا سپند؟</a>
                 <div class="portal-actions mobile-portals" aria-label="ورود به سامانه‌های سپند">
-                    <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking">
-                        <span class="portal-new">جدید</span>
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
-                        رهگیری محموله
+                    <a class="portal-link process-review" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="mobile_process_review">
+                        <span class="portal-new">رایگان</span>
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6m-7 3h8m-9 4h10m-8 4 2 2 4-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 4.5h12a2 2 0 0 1 2 2V20H4V6.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        راهکار مناسب شما
                     </a>
                     <a class="portal-link" href="{{ route('login') }}">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -100,10 +100,10 @@
                 </div>
             </nav>
             <div class="portal-actions desktop-portals" aria-label="ورود به سامانه‌های سپند">
-                <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="desktop_tracking">
-                    <span class="portal-new">جدید</span>
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15h13V6H7L3 10v5Zm13-6h3l2 3v3h-5V9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
-                    رهگیری محموله
+                <a class="portal-link process-review" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="desktop_process_review">
+                    <span class="portal-new">رایگان</span>
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6m-7 3h8m-9 4h10m-8 4 2 2 4-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 4.5h12a2 2 0 0 1 2 2V20H4V6.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    راهکار مناسب شما
                 </a>
                 <a class="portal-link" href="{{ route('login') }}">
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V8h16v11M2 19h20M8 8V5h8v3M8 12h2m4 0h2m-8 3h2m4 0h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>

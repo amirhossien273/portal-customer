@@ -195,7 +195,15 @@ class MarketingSeoTest extends TestCase
         $crmContent = $crm->getContent();
 
         $crm
+            ->assertSee('<title>نرم افزار CRM حمل و نقل و فورواردری | سپند</title>', false)
             ->assertSee('<meta name="description" content="'.e(config('site_modules.crm.meta_description')).'">', false)
+            ->assertSee('<meta property="og:title" content="نرم افزار CRM حمل و نقل و فورواردری | سپند">', false)
+            ->assertSee('<meta name="twitter:description" content="'.e(config('site_modules.crm.meta_description')).'">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/crm">', false)
+            ->assertSee('<span class="module-hero-title-main">نرم‌افزار CRM برای شرکت‌های</span>', false)
+            ->assertSee('<span class="module-hero-title-accent">حمل‌ونقل و فورواردری</span>', false)
+            ->assertSee('درخواست دموی CRM حمل‌ونقل', false)
+            ->assertSee('href="#crm-features">مشاهده امکانات CRM</a>', false)
             ->assertSee('id="crm-sms"', false)
             ->assertSee('ارسال پیامک و مشاهده سوابق', false)
             ->assertSee('در صفحه مشتری، لید یا استعلام', false)
@@ -203,30 +211,48 @@ class MarketingSeoTest extends TestCase
             ->assertSee('id="crm-analytics"', false)
             ->assertSee('دریافت‌های تأییدشده منهای پرداخت‌های انجام‌شده', false)
             ->assertSee('id="crm-follow-ups"', false)
-            ->assertSee('استعلام‌های دارای تسک عقب‌افتاده', false)
-            ->assertSee('استعلام‌های بدون پیگیری بعدی', false)
-            ->assertSee('تسک‌های باقی‌مانده امروز', false)
+            ->assertSee('پیگیری‌های عقب‌افتاده', false)
+            ->assertSee('موارد بدون اقدام بعدی', false)
+            ->assertSee('کارهای امروز', false)
             ->assertSee('پیگیری‌های آینده', false)
-            ->assertSee('اعلان داخلی به‌صورت پیش‌فرض فعال است', false)
-            ->assertSee('دریافت پیامک یادآوری را از تنظیمات پروفایل', false)
+            ->assertSee('product-showcase/desktop-dashboard.webp', false)
+            ->assertSee('مسئول، موعد و نتیجه پیگیری', false)
+            ->assertSee('id="crm-scenario"', false)
+            ->assertSee('حمل دریایی از نینگبو به بندرعباس', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/automatic-tasks"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/booking"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/freight-sales-automation">مشاهده راهکار پیگیری فروش حمل</a>', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
             ->assertSee('پیگیری پیش‌فاکتورهای ۴۸ ساعته', false)
-            ->assertSee('راهنمای تعاملی لید و مشتری', false)
+            ->assertSee('CRM حمل‌ونقل چه تفاوتی با CRM عمومی دارد؟', false)
+            ->assertSee('CRM چگونه به نرخ‌دهی و Booking متصل می‌شود؟', false)
             ->assertSee('"@type":"FAQPage"', false)
             ->assertSee('"@type":"BreadcrumbList"', false);
         $this->assertSame(1, substr_count($crmContent, '<h1'));
+        $this->assertLessThan(
+            strpos($crmContent, 'id="crm-features"'),
+            strpos($crmContent, 'id="crm-follow-ups"'),
+            'The follow-up dashboard should appear before the feature list.'
+        );
 
         $pricingSales = $this->get('/modules/pricing-sales')->assertOk();
         $pricingSalesContent = $pricingSales->getContent();
 
         $pricingSales
             ->assertSee('<meta name="description" content="'.e(config('site_modules.pricing-sales.meta_description')).'">', false)
-            ->assertSee('id="pricing-intelligence"', false)
-            ->assertSee('مقایسه تأمین‌کننده فراتر از ارزان‌ترین نرخ', false)
-            ->assertSee('هشدار انقضای نرخ در بازه هفت‌روزه', false)
-            ->assertSee('پیش‌فاکتور ۴۸ ساعته با مسئول مشخص', false)
-            ->assertSee('دسترسی درست برای هر کاربر', false)
+            ->assertSee('<title>نرم افزار نرخ دهی و پیشنهاد قیمت حمل و نقل | سپند</title>', false)
+            ->assertSee('id="pricing-comparison"', false)
+            ->assertSee('نرخ خرید را همراه', false)
+            ->assertSee('سابقه تأخیر و پاسخ‌گویی، اگر داده وجود داشته باشد', false)
+            ->assertSee('id="pricing-process"', false)
+            ->assertSee('ثبت درخواست نرخ', false)
+            ->assertSee('ادامه پیشنهاد تأییدشده در Booking', false)
             ->assertSee('assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/pricing-supplier-comparison.webp', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/pricing-proposed-rates.webp', false)
             ->assertSee('<meta property="og:image:width" content="1600">', false)
+            ->assertSee('"@type":"HowTo"', false)
             ->assertSee('"@type":"FAQPage"', false)
             ->assertSee('"@type":"BreadcrumbList"', false);
         $this->assertSame(1, substr_count($pricingSalesContent, '<h1'));
@@ -308,6 +334,32 @@ class MarketingSeoTest extends TestCase
         $this->assertSame('سیستم TMS حمل و نقل', $planned['primary_keyword']);
         $this->get($planned['url'])->assertNotFound();
         $this->get('/sitemap.xml')->assertDontSee($planned['url'], false);
+    }
+
+    public function test_crm_page_matches_the_transport_follow_up_brief(): void
+    {
+        $response = $this->get('/modules/crm')->assertOk();
+        $content = $response->getContent();
+
+        $response
+            ->assertSee('<title>نرم افزار CRM حمل و نقل و فورواردری | سپند</title>', false)
+            ->assertSee('<meta name="description" content="با CRM حمل‌ونقل سپند، مشتریان، سرنخ‌ها، استعلام‌ها و پیگیری‌های فروش را مدیریت کنید؛ کارهای عقب‌افتاده و فرصت‌های بدون اقدام بعدی را ببینید.">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/crm">', false)
+            ->assertSee('<span class="module-hero-title-main">نرم‌افزار CRM برای شرکت‌های</span>', false)
+            ->assertSee('<span class="module-hero-title-accent">حمل‌ونقل و فورواردری</span>', false)
+            ->assertSee('product-showcase/desktop-dashboard.webp', false)
+            ->assertSee('مسئول، موعد و نتیجه پیگیری', false)
+            ->assertSee('id="crm-scenario"', false)
+            ->assertSee('حمل دریایی از نینگبو به بندرعباس', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/automatic-tasks"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/booking"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/freight-sales-automation">مشاهده راهکار پیگیری فروش حمل</a>', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
+            ->assertSee('"@type":"FAQPage"', false);
+
+        $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertLessThan(strpos($content, 'id="crm-features"'), strpos($content, 'id="crm-follow-ups"'));
     }
 
     public function test_intent_mismatch_keywords_are_excluded_from_normal_secondary_maps(): void

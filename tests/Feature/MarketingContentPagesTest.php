@@ -33,7 +33,7 @@ class MarketingContentPagesTest extends TestCase
             '/solutions/container-management' => ['title' => 'نرم‌افزار مدیریت کانتینر | کنترل چرخه و هزینه', 'h1' => 'کانتینر، مهلت‌ها و هزینه‌ها را در متن همان پرونده حمل مدیریت کنید'],
             '/solutions/on-premise' => ['title' => 'نرم‌افزار حمل‌ونقل On-Premise | راهنمای استقرار', 'h1' => 'استقرار On-Premise نرم‌افزار حمل‌ونقل را با مسئولیت‌های روشن انتخاب کنید'],
             '/solutions/bill-of-lading-management' => ['title' => 'نرم‌افزار مدیریت بارنامه حمل‌ونقل | سپند', 'h1' => 'مدیریت بارنامه‌های حمل‌ونقل با نرم‌افزار سپند'],
-            '/solutions/freight-sales-automation' => ['title' => 'اتوماسیون پیگیری فروش حمل؛ SLA و Handoff | سپند', 'h1' => 'پیگیری فروش حمل را رویدادمحور کنید؛ از پاسخ تا Handoff'],
+            '/solutions/freight-sales-automation' => ['title' => 'پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند', 'h1' => 'راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل'],
         ];
 
         $renderedTitles = [];
@@ -50,20 +50,32 @@ class MarketingContentPagesTest extends TestCase
                 ->assertSee($expected['h1'], false)
                 ->assertSee('"@type":"WebPage"', false)
                 ->assertSee('"@type":"BreadcrumbList"', false)
-                ->assertSee('"@type":"ItemList"', false)
                 ->assertSee('"@type":"FAQPage"', false)
-                ->assertSee('id="diagnostic-section"', false)
-                ->assertSee('id="deep-dive-section"', false)
-                ->assertSee('id="metrics-section"', false)
-                ->assertSee('id="rollout-section"', false)
-                ->assertSee('آخرین بازبینی محتوایی: شهریور ۱۴۰۵', false)
                 ->assertSee('درخواست دمو و مشاوره', false)
                 ->assertDontSee('<meta name="keywords"', false)
                 ->assertDontSee('/integrations', false);
 
+            if ($path === '/solutions/freight-sales-automation') {
+                $response
+                    ->assertSee('"@type":"HowTo"', false)
+                    ->assertSee('id="sales-solutions"', false)
+                    ->assertSee('id="product-evidence"', false)
+                    ->assertSee('id="educational-scenario"', false)
+                    ->assertSee('id="manual-and-automatic"', false)
+                    ->assertSee('id="verifiable-results"', false);
+            } else {
+                $response
+                    ->assertSee('"@type":"ItemList"', false)
+                    ->assertSee('id="diagnostic-section"', false)
+                    ->assertSee('id="deep-dive-section"', false)
+                    ->assertSee('id="metrics-section"', false)
+                    ->assertSee('id="rollout-section"', false)
+                    ->assertSee('آخرین بازبینی محتوایی: شهریور ۱۴۰۵', false);
+            }
+
             $this->assertSame(1, substr_count($content, '<h1'));
-            $this->assertGreaterThanOrEqual(10, substr_count($content, '<h2'));
-            $this->assertGreaterThan(7000, mb_strlen(strip_tags($content)));
+            $this->assertGreaterThanOrEqual($path === '/solutions/freight-sales-automation' ? 8 : 10, substr_count($content, '<h2'));
+            $this->assertGreaterThan($path === '/solutions/freight-sales-automation' ? 5000 : 7000, mb_strlen(strip_tags($content)));
             $this->assertStringNotContainsString('noindex', strtolower($content));
             $this->assertValidJsonLd($content);
 
@@ -75,6 +87,52 @@ class MarketingContentPagesTest extends TestCase
 
         $this->assertSame($renderedTitles, array_values(array_unique($renderedTitles)));
         $this->assertSame($renderedDescriptions, array_values(array_unique($renderedDescriptions)));
+    }
+
+    public function test_freight_sales_solution_matches_the_customer_follow_up_brief(): void
+    {
+        $response = $this->get('/solutions/freight-sales-automation')->assertOk();
+        $content = $response->getContent();
+
+        $response
+            ->assertSee('<title>پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند</title>', false)
+            ->assertSee('<meta name="description" content="پیگیری مشتریان و استعلام‌های حمل را در سپند منظم کنید؛ مسئول، موعد، سابقه مذاکره و اقدام بعدی را ببینید و پیشنهادهای بی‌پیگیری را شناسایی کنید.">', false)
+            ->assertSee('<meta property="og:title" content="پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند">', false)
+            ->assertSee('<meta name="twitter:title" content="پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/solutions/freight-sales-automation">', false)
+            ->assertSee('<h1>راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل</h1>', false)
+            ->assertSee('درخواست دموی پیگیری فروش', false)
+            ->assertSee('href="#sales-solutions">ببینید سپند چگونه کمک می‌کند</a>', false)
+            ->assertSee('شش نقطه‌ای که پیگیری فروش حمل', false)
+            ->assertSee('پیشنهاد نرخ ارسال شده، اما پیگیری نمی‌شود', false)
+            ->assertSee('داشبورد «پیگیری‌های من»', false)
+            ->assertSee('سناریوی آموزشی', false)
+            ->assertSee('درخواست حمل دریایی از نینگبو', false)
+            ->assertSee('قالب‌های فعلی محصول', false)
+            ->assertSee('ثبت ارسال پیشنهاد نرخ: پیگیری دو روز بعد', false)
+            ->assertSee('چه اطلاعاتی واقعاً', false)
+            ->assertSee('شاخص پیشنهادی ارزیابی', false)
+            ->assertSee('به معنی وجود گزارش آماده', false)
+            ->assertSee('assets/images/marketing/product-showcase/desktop-dashboard.webp', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/automatic-task-rules.webp', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/crm"><strong>امکانات CRM حمل‌ونقل سپند</strong>', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"><strong>آماده‌سازی پیشنهاد نرخ حمل</strong>', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/automatic-tasks"><strong>پیگیری خودکار فروش</strong>', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/booking"><strong>ادامه پرونده در Booking</strong>', false)
+            ->assertSee('چگونه استعلام‌های بدون پیگیری را پیدا کنیم؟', false)
+            ->assertSee('چه پیگیری‌هایی به‌صورت خودکار ساخته می‌شوند؟', false)
+            ->assertSee('پیگیری یک استعلام واقعی را در سپند ببینید', false)
+            ->assertSee('"@type":"HowTo"', false)
+            ->assertSee('"@type":"FAQPage"', false)
+            ->assertDontSee('RevOps', false)
+            ->assertDontSee('Handoff', false)
+            ->assertDontSee('Escalation', false)
+            ->assertDontSee('Rule Catalog', false);
+
+        $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertSame(5, substr_count($content, '<details class="reveal">'));
+        $this->assertLessThan(strpos($content, 'id="product-evidence"'), strpos($content, 'id="sales-solutions"'));
+        $this->assertValidJsonLd($content);
     }
 
     public function test_every_page_has_unique_decision_depth_metrics_and_rollout_content(): void

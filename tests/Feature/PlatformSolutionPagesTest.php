@@ -16,7 +16,7 @@ class PlatformSolutionPagesTest extends TestCase
         'document-management' => 'چرخه تأیید اسناد حمل را از Draft تا نسخه نهایی کنترل کنید',
         'multimodal-transport' => 'مدیریت حمل چندوجهی؛ یک Journey، چند Leg هماهنگ',
         'schedule-management' => 'مدیریت برنامه حرکت؛ یک مرجع برای ETD، ETA و تغییرات',
-        'rate-management' => 'مدیریت نرخ حمل؛ محاسبه یکسان، معتبر و قابل ردیابی',
+        'rate-management' => 'راهکار مدیریت نرخ و تعرفه حمل‌ونقل',
         'security-access-management' => 'امنیت و مدیریت دسترسی؛ هر کاربر فقط در دامنه مسئولیت خودش',
         'payment-workflow' => 'درخواست پرداخت تا پرداخت نهایی؛ یک زنجیره کنترل‌شده و قابل ردیابی',
         'booking-reconciliation' => 'دریافت و تطبیق مالی Booking؛ هر مبلغ با منشأ و مصرف روشن',
@@ -37,34 +37,48 @@ class PlatformSolutionPagesTest extends TestCase
         $response = $this->get('/solutions')
             ->assertOk()
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/solutions">', false)
-            ->assertSee('از گلوگاه عملیاتی', false)
-            ->assertSee('راهنمای انتخاب راهکار', false)
+            ->assertSee('<title>راهکارهای نرم‌افزاری حمل‌ونقل و فورواردری | سپند</title>', false)
+            ->assertSee('راهکارهای نرم‌افزاری برای شرکت‌های حمل‌ونقل بین‌المللی', false)
+            ->assertSee('کدام مشکل شرکت شما را می‌خواهید حل کنید؟', false)
             ->assertSee('data-solution-finder', false)
-            ->assertSee('یک پرونده؛ شش نقطه تصمیم متصل', false)
-            ->assertSee('Product Evidence', false)
-            ->assertSee('"@type":"CollectionPage"', false);
+            ->assertSee('وقتی چند بخش شرکت درگیر یک مسئله‌اند', false)
+            ->assertSee('درخواست دمو بر اساس نیاز شرکت', false)
+            ->assertSee('"@type":"CollectionPage"', false)
+            ->assertSee('"@type":"ItemList"', false);
+
+        $this->assertSame(1, substr_count($response->getContent(), '<h1'));
 
         foreach (array_keys(self::PAGES) as $slug) {
             $response->assertSee('href="'.self::SITE_URL.'/solutions/'.$slug.'"', false);
         }
     }
 
-    public function test_solution_hub_covers_filters_evidence_and_every_specialized_scenario(): void
+    public function test_solution_hub_groups_every_existing_solution_once(): void
     {
         $response = $this->get('/solutions')->assertOk();
+        $groups = config('site_platform_solutions.hub.problem_groups');
+        $catalogUrls = [];
 
-        foreach (array_keys(config('site_platform_solutions.hub.categories')) as $category) {
-            $response->assertSee('data-solution-filter="'.$category.'"', false);
+        $response->assertSee('data-solution-filter="all"', false);
+        foreach ($groups as $groupKey => $group) {
+            $response->assertSee('data-solution-filter="'.$groupKey.'"', false)
+                ->assertSee($group['title'], false);
+
+            foreach ($group['solutions'] as $solution) {
+                $url = route($solution['route'], $solution['parameters'] ?? []);
+                $catalogUrls[] = $url;
+                $response->assertSee('href="'.$url.'"', false)
+                    ->assertSee($solution['problem'], false)
+                    ->assertSee($solution['link_label'], false);
+                $targetResponse = $this->get(parse_url($url, PHP_URL_PATH));
+                $this->assertSame(200, $targetResponse->getStatusCode(), 'Broken solution destination: '.$url);
+            }
         }
 
-        foreach (config('site_platform_solutions.hub.evidence') as $evidence) {
-            $response->assertSee($evidence['title'], false);
-            $this->assertFileExists(public_path('assets/images/marketing/'.$evidence['image']));
-        }
-
-        foreach (config('site_content_pages.solutions') as $solution) {
-            $response->assertSee('href="'.route($solution['route']).'"', false);
-        }
+        $this->assertCount(22, $catalogUrls);
+        $this->assertSame($catalogUrls, array_values(array_unique($catalogUrls)));
+        $this->assertStringContainsString('"numberOfItems":22', $response->getContent());
+        $this->assertStringContainsString("replace(/[\\u200c\\u200d\\s]+/g, ' ')", $response->getContent());
     }
 
     public function test_every_platform_solution_has_unique_seo_product_evidence_and_operational_depth(): void
@@ -146,5 +160,32 @@ class PlatformSolutionPagesTest extends TestCase
             ->assertSee('live/control-center-rules.png', false)
             ->assertSee('live/control-center-exceptions.png', false)
             ->assertSee('شفافیت داده:', false);
+    }
+
+    public function test_rate_management_page_focuses_on_validity_conditions_and_real_product_evidence(): void
+    {
+        $content = $this->get('/solutions/rate-management')
+            ->assertOk()
+            ->assertSee('<title>مدیریت نرخ و تعرفه حمل‌ونقل | راهکار سپند</title>', false)
+            ->assertSee('نرخ‌های خرید و شرایط حمل را در سپند منظم کنید', false)
+            ->assertSee('راهکار مدیریت نرخ و تعرفه حمل‌ونقل', false)
+            ->assertSee('درخواست دموی مدیریت نرخ', false)
+            ->assertSee('ببینید سپند چگونه کمک می‌کند', false)
+            ->assertSee('live/rate-management.png', false)
+            ->assertSee('pricing-supplier-comparison.webp', false)
+            ->assertSee('pricing-proposed-rates.webp', false)
+            ->assertSee('سناریوی آموزشی نینگبو تا بندرعباس', false)
+            ->assertSee('این اعداد نرخ بازار نیستند', false)
+            ->assertSee('پایین‌ترین مبلغ به‌تنهایی برنده نیست', false)
+            ->assertSee('انتقال خودکار', false)
+            ->assertSee('شاخص‌های پیشنهادی برای استقرار', false)
+            ->assertSee('نرخ‌های یک استعلام نمونه را در سپند مقایسه کنید', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/supplier-management"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/freight-sales-automation"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/booking"', false)
+            ->getContent();
+
+        $this->assertSame(1, substr_count($content, '<h1'));
     }
 }

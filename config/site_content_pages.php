@@ -458,16 +458,16 @@ $pages = [
 
         'freight-sales-automation' => [
             'route' => 'solutions.freight-sales-automation',
-            'nav_title' => 'اتوماسیون فروش حمل‌ونقل',
-            'nav_description' => 'از لید و نرخ تا پیگیری و تحویل به عملیات',
-            'title' => 'اتوماسیون فروش شرکت حمل‌ونقل و فورواردری',
-            'description' => 'راهکار اتوماسیون فروش حمل‌ونقل برای مدیریت لید، استعلام، نرخ، پیشنهاد، پیگیری خودکار، تأیید مشتری و تحویل بدون دوباره‌کاری به Booking.',
-            'image' => 'modules/screenshots/pricing-sales-workflow.webp',
-            'image_alt' => 'گردش اتوماسیون فروش از CRM و نرخ‌دهی تا Booking در سپند',
+            'nav_title' => 'پیگیری مشتریان و استعلام‌های حمل',
+            'nav_description' => 'مسئول، موعد، سابقه مذاکره و اقدام بعدی',
+            'title' => 'پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند',
+            'description' => 'پیگیری مشتریان و استعلام‌های حمل را در سپند منظم کنید؛ مسئول، موعد، سابقه مذاکره و اقدام بعدی را ببینید و پیشنهادهای بی‌پیگیری را شناسایی کنید.',
+            'image' => 'product-showcase/desktop-dashboard.webp',
+            'image_alt' => 'داشبورد واقعی پیگیری مشتریان و استعلام‌های حمل‌ونقل در سپند',
             'image_width' => 1600,
-            'image_height' => 1000,
-            'eyebrow' => 'راهکار اتوماسیون فروش فورواردری',
-            'h1' => 'فروش حمل‌ونقل را از لید تا Booking به یک جریان قابل پیگیری تبدیل کنید',
+            'image_height' => 799,
+            'eyebrow' => 'راهکار پیگیری مشتریان حمل‌ونقل',
+            'h1' => 'راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل',
             'lead' => 'فروش در شرکت حمل‌ونقل فقط ثبت یک فرصت نیست. نیاز مشتری باید به استعلام ساخت‌یافته، نرخ معتبر، پیشنهاد سودآور، پیگیری زمان‌دار و در نهایت Booking قابل اجرا تبدیل شود. راهکار اتوماسیون فروش سپند این زنجیره را میان CRM، نرخ‌دهی و وظایف هماهنگ می‌کند.',
             'answer' => 'اتوماسیون فروش حمل‌ونقل زمانی مؤثر است که اقدام بعدی را برای هر فرصت مشخص کند، نرخ و حاشیه سود را قبل از ارسال پیشنهاد کنترل کند، پیگیری را به رویدادهای واقعی بسپارد و اطلاعات تأییدشده را بدون ورود مجدد به Booking منتقل کند.',
             'intent_title' => 'این صفحه یک سناریوی بین‌ماژولی است',
@@ -522,14 +522,13 @@ $pages = [
     'module_relations' => [
         'crm' => [
             ['group' => 'guide', 'route' => 'compare.best-crm-for-transport-companies', 'title' => 'راهنمای انتخاب بهترین CRM حمل‌ونقل', 'description' => 'معیارهای مقایسه CRMهای تخصصی و عمومی را پیش از خرید بررسی کنید.'],
-            ['group' => 'solution', 'route' => 'solutions.freight-sales-automation', 'title' => 'راهکار اتوماسیون فروش حمل‌ونقل', 'description' => 'اتصال CRM، نرخ‌دهی، پیگیری و Booking را در یک سناریوی کامل ببینید.'],
         ],
         'pricing-sales' => [
-            ['group' => 'solution', 'route' => 'solutions.freight-sales-automation', 'title' => 'راهکار اتوماسیون فروش حمل‌ونقل', 'description' => 'مسیر لید، استعلام، پیشنهاد و تحویل به عملیات را بررسی کنید.'],
+            ['group' => 'solution', 'route' => 'solutions.freight-sales-automation', 'title' => 'راهکار پیگیری مشتریان و استعلام‌های حمل', 'description' => 'مسئول، موعد، سابقه مذاکره و اقدام بعدی پیشنهاد را بررسی کنید.'],
             ['group' => 'guide', 'route' => 'compare.best-freight-forwarding-software', 'title' => 'راهنمای انتخاب نرم‌افزار فورواردری', 'description' => 'نرخ‌دهی را در کنار عملیات، اسناد و مالی ارزیابی کنید.'],
         ],
         'automatic-tasks' => [
-            ['group' => 'solution', 'route' => 'solutions.freight-sales-automation', 'title' => 'راهکار اتوماسیون فروش حمل‌ونقل', 'description' => 'نقش تسک خودکار در جریان کامل فروش تا Booking را ببینید.'],
+            ['group' => 'solution', 'route' => 'solutions.freight-sales-automation', 'title' => 'راهکار پیگیری مشتریان و استعلام‌های حمل', 'description' => 'نقش تسک خودکار را در پیگیری استعلام و پیشنهاد ارسالی ببینید.'],
         ],
         'transport-operations' => [
             ['group' => 'solution', 'route' => 'solutions.nvocc', 'title' => 'راهکار مدیریت عملیات NVOCC', 'description' => 'فروش، رزرو، House/Master و مالی پرونده دریایی را هماهنگ کنید.'],

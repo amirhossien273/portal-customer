@@ -40,7 +40,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=20260801">
     @stack('head')
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20261026-3">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing.css') }}?v=20261107-1">
     <link rel="stylesheet" href="{{ asset('assets/css/marketing-floating-cta.css') }}?v=20260827-1">
     @stack('styles')
 </head>
@@ -62,13 +62,13 @@
             <a href="{{ route('faq') }}" @class(['active' => request()->routeIs('faq')])>سؤالات متداول</a>
             <a href="{{ route('why-sepand') }}" @class(['active' => request()->routeIs('why-sepand')])>چرا سپند؟</a>
             <div class="portal-actions mobile-portals">
-                <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="mobile_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
+                <a @class(['portal-link', 'process-review', 'active' => request()->routeIs('consultation.create')]) href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="mobile_process_review" @if(request()->routeIs('consultation.create')) aria-current="page" @endif><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
                 <a class="portal-link" href="{{ route('login') }}">پورتال مشتریان</a>
                 <a class="portal-link primary" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="mobile_organization_portal">پرتال سازمان</a>
             </div>
         </nav>
         <div class="portal-actions desktop-portals">
-            <a class="portal-link tracking" href="{{ route('tracking') }}" data-ga-event="portal_click" data-ga-label="desktop_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
+            <a @class(['portal-link', 'process-review', 'active' => request()->routeIs('consultation.create')]) href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="desktop_process_review" @if(request()->routeIs('consultation.create')) aria-current="page" @endif><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
             <a class="portal-link" href="{{ route('login') }}">پورتال مشتریان</a>
             <a class="portal-link primary" href="{{ route('organization.portal') }}" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">پرتال سازمان</a>
         </div>

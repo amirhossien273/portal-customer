@@ -3,7 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\ConsultationRequest;
+use App\Services\ConsultationSmsNotifier;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
+use Mockery;
 use Tests\TestCase;
 
 class ConsultationLandingPageTest extends TestCase
@@ -14,49 +19,73 @@ class ConsultationLandingPageTest extends TestCase
     {
         parent::setUp();
 
-        config(['app.url' => self::SITE_URL]);
+        config([
+            'app.url' => self::SITE_URL,
+            'database.default' => 'consultation_test',
+            'database.connections.consultation_test' => [
+                'driver' => 'sqlite',
+                'database' => ':memory:',
+                'prefix' => '',
+                'foreign_key_constraints' => true,
+            ],
+        ]);
+        DB::purge('consultation_test');
+        DB::setDefaultConnection('consultation_test');
         URL::forceRootUrl(self::SITE_URL);
         URL::forceScheme('https');
+
+        Schema::create('consultation_requests', function (Blueprint $table): void {
+            $table->id();
+            $table->string('name', 100);
+            $table->string('company', 150);
+            $table->string('mobile', 30);
+            $table->string('email', 190)->nullable();
+            $table->string('company_type', 100)->nullable();
+            $table->string('approximate_users', 30)->nullable();
+            $table->string('primary_need', 100)->nullable();
+            $table->string('topic', 60)->nullable();
+            $table->string('topic_label', 150)->nullable();
+            $table->json('answers')->nullable();
+            $table->text('message')->nullable();
+            $table->string('source_page', 2048)->nullable();
+            $table->json('utm_parameters')->nullable();
+            $table->timestamps();
+        });
+
+        $notifier = Mockery::mock(ConsultationSmsNotifier::class);
+        $notifier->shouldReceive('send')->zeroOrMoreTimes();
+        $this->app->instance(ConsultationSmsNotifier::class, $notifier);
     }
 
-    public function test_consultation_page_is_transactional_indexable_and_complete(): void
+    public function test_process_review_page_is_indexable_complete_and_uses_six_step_form(): void
     {
-        $response = $this->get('/consultation')->assertOk();
+        $response = $this->get('/consultation/process-review')->assertOk();
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>درخواست دمو نرم‌افزار حمل‌ونقل و مشاوره خرید | سپند</title>', false)
-            ->assertSee('<meta name="description" content="درخواست دموی نرم‌افزار مدیریت حمل‌ونقل سپند؛ فرایندهای فروش، Booking، عملیات، اسناد و مالی شرکت خود را بررسی و ماژول‌های مناسب را انتخاب کنید.">', false)
-            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/consultation">', false)
-            ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
-            ->assertSee('درخواست دمو و مشاوره خرید', false)
-            ->assertSee('نرم‌افزار حمل‌ونقل سپند', false)
-            ->assertSee('در جلسه دمو سپند چه چیزی بررسی می‌شود؟', false)
-            ->assertSee('دمو بر اساس فرایند واقعی شرکت شما', false)
-            ->assertSee('بعد از ثبت درخواست چه اتفاقی می‌افتد؟', false)
-            ->assertSee('سؤالات متداول درباره درخواست دمو سپند', false)
-            ->assertSee('قبل از درخواست دمو بیشتر بررسی کنید', false)
-            ->assertSee('ثبت درخواست دمو و نیازسنجی', false)
-            ->assertSee('نمای نرم‌افزار سپند با اطلاعات نمونه', false)
-            ->assertSee('alt="نمای نرم افزار مدیریت حمل و نقل سپند"', false)
-            ->assertSee('width="835" height="335" loading="eager" fetchpriority="high"', false)
-            ->assertSee('name="approximate_users"', false)
-            ->assertSee('name="primary_need" required', false)
-            ->assertSee('اطلاعات ثبت‌شده فقط برای بررسی و پیگیری درخواست دمو و مشاوره شما استفاده می‌شود.', false)
-            ->assertSee('href="'.self::SITE_URL.'/pricing"', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules"', false)
-            ->assertSee('href="'.self::SITE_URL.'/compare/sepand-vs-other-transport-software"', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/transport-operations"', false)
-            ->assertSee('"@type":"ContactPage"', false)
-            ->assertSee('"@type":"BreadcrumbList"', false)
-            ->assertSee('"@type":"FAQPage"', false)
-            ->assertDontSee('آیا جلسه دمو رایگان است؟', false)
-            ->assertDontSee('target="_blank"', false);
+            ->assertSee('<title>بررسی رایگان فرایندهای شرکت حمل‌ونقل | سپند</title>', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/consultation/process-review">', false)
+            ->assertSee('مشاوره رایگان ویژه شرکت‌های حمل‌ونقل بین‌المللی', false)
+            ->assertSee('کدام بخش از کار شرکت شما به', false)
+            ->assertSee('شروع بررسی رایگان', false)
+            ->assertSee('مرحله ۱ از ۶', false)
+            ->assertSee('data-stage="6"', false)
+            ->assertSee('ادامه بدون توضیح', false)
+            ->assertSee('ثبت درخواست بررسی رایگان', false)
+            ->assertSee('فروش، مشتریان و استعلام‌ها', false)
+            ->assertSee('نرخ‌گیری و ارتباط با تأمین‌کنندگان', false)
+            ->assertSee('بوکینگ و هماهنگی حمل', false)
+            ->assertSee('عملیات و پیگیری محموله‌ها', false)
+            ->assertSee('مدیریت اسناد و مدارک', false)
+            ->assertSee('امور مالی و پیگیری تسویه‌ها', false)
+            ->assertSee('گزارش‌گیری و نظارت مدیریتی', false)
+            ->assertSee('هماهنگی و انتقال اطلاعات بین بخش‌ها', false)
+            ->assertSee('consultation_process_step_complete', false)
+            ->assertDontSee('name="email"', false)
+            ->assertDontSee('name="company_type"', false)
+            ->assertDontSee('تضمین', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
-        $this->assertSame(5, substr_count($content, '<details'));
-
         preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $content, $structuredData);
         $this->assertNotEmpty($structuredData[1]);
         foreach ($structuredData[1] as $json) {
@@ -64,26 +93,99 @@ class ConsultationLandingPageTest extends TestCase
         }
     }
 
-    public function test_consultation_form_returns_persian_errors_for_invalid_qualification_data(): void
+    public function test_legacy_consultation_url_redirects_to_the_process_review(): void
     {
-        $this->from('/consultation')->post('/consultation', [
+        $this->get('/consultation?utm_source=legacy')
+            ->assertStatus(301)
+            ->assertRedirect(self::SITE_URL.'/consultation/process-review?utm_source=legacy');
+    }
+
+    public function test_form_rejects_an_answer_that_does_not_belong_to_the_selected_path(): void
+    {
+        $this->from('/consultation/process-review')->post('/consultation/process-review', [
+            'topic' => 'sales',
+            'responses' => [
+                2 => 'accounting_software',
+                3 => 'forgotten_followups',
+                4 => 'memory',
+            ],
             'name' => 'کاربر آزمایشی',
+            'mobile' => '۰۹۱۲۱۲۳۴۵۶۷',
             'company' => 'شرکت آزمایشی',
-            'mobile' => 'invalid-number',
-            'company_type' => 'شرکت فورواردری',
-            'primary_need' => 'گزینه نامعتبر',
-        ])->assertRedirect('/consultation')
+        ])->assertRedirect('/consultation/process-review')
             ->assertSessionHasErrors([
-                'mobile' => 'شماره تماس را با رقم‌های معتبر وارد کنید.',
-                'primary_need' => 'نیاز انتخاب‌شده معتبر نیست.',
+                'responses.2' => 'پاسخ انتخاب‌شده برای این مسیر معتبر نیست.',
             ]);
     }
 
-    public function test_consultation_model_accepts_the_new_qualification_fields(): void
+    public function test_valid_submission_normalizes_mobile_and_stores_structured_answers_and_utm(): void
     {
-        $request = new ConsultationRequest();
+        $response = $this->post('/consultation/process-review', [
+            'topic' => 'operations',
+            'responses' => [
+                2 => 'mixed',
+                3 => 'unknown_latest_status',
+                4 => 'ask_owner',
+            ],
+            'message' => 'پیگیری وضعیت هر پرونده زمان زیادی می‌گیرد.',
+            'name' => 'علی رضایی',
+            'mobile' => '۰۹۱۲-۱۲۳-۴۵۶۷',
+            'company' => 'حمل‌ونقل نمونه',
+            'source_page' => self::SITE_URL.'/consultation/process-review?utm_source=google',
+            'utm' => [
+                'utm_source' => 'google',
+                'utm_campaign' => 'process-review',
+            ],
+        ]);
 
-        $this->assertTrue($request->isFillable('approximate_users'));
-        $this->assertTrue($request->isFillable('primary_need'));
+        $response->assertRedirect(self::SITE_URL.'/consultation/process-review')
+            ->assertSessionHas('status', 'success');
+
+        $stored = ConsultationRequest::query()->sole();
+        $this->assertSame('09121234567', $stored->mobile);
+        $this->assertSame('operations', $stored->topic);
+        $this->assertSame('عملیات و پیگیری محموله‌ها', $stored->topic_label);
+        $this->assertSame('operations_status_storage', $stored->answers[0]['question_id']);
+        $this->assertSame('ترکیبی از چند روش', $stored->answers[0]['answer']);
+        $this->assertSame('google', $stored->utm_parameters['utm_source']);
+
+        $this->followRedirects($response)
+            ->assertOk()
+            ->assertSee('درخواست شما ثبت شد', false)
+            ->assertSee('آشنایی بیشتر با سپند', false)
+            ->assertDontSee('<form class="consultation-wizard', false);
+    }
+
+    public function test_storage_failure_keeps_the_answers_for_a_retry(): void
+    {
+        Schema::drop('consultation_requests');
+
+        $this->from('/consultation/process-review')->post('/consultation/process-review', [
+            'topic' => 'documents',
+            'responses' => [
+                2 => 'computer_folders',
+                3 => 'latest_version',
+                4 => 'manual_review',
+            ],
+            'message' => 'نسخه‌های مختلف سند پراکنده‌اند.',
+            'name' => 'کاربر آزمایشی',
+            'mobile' => '09121234567',
+            'company' => 'شرکت آزمایشی',
+        ])->assertRedirect('/consultation/process-review')
+            ->assertSessionHasErrors([
+                'submission' => 'ثبت درخواست انجام نشد. پاسخ‌های شما حفظ شده‌اند؛ لطفاً دوباره تلاش کنید.',
+            ])
+            ->assertSessionHasInput('topic', 'documents')
+            ->assertSessionHasInput('message', 'نسخه‌های مختلف سند پراکنده‌اند.');
+    }
+
+    public function test_consultation_model_casts_process_review_payloads(): void
+    {
+        $request = new ConsultationRequest;
+
+        $this->assertTrue($request->isFillable('topic'));
+        $this->assertTrue($request->isFillable('answers'));
+        $this->assertSame('array', $request->getCasts()['answers']);
+        $this->assertSame('array', $request->getCasts()['utm_parameters']);
     }
 }

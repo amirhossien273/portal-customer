@@ -12,9 +12,11 @@ class MarketingModuleController extends Controller
 
         abort_unless(isset($modules[$module]), 404);
 
-        $view = $module === 'crm'
-            ? 'marketing.module-crm'
-            : 'marketing.module-detail';
+        $view = match ($module) {
+            'crm' => 'marketing.module-crm',
+            'pricing-sales' => 'marketing.module-pricing-sales',
+            default => 'marketing.module-detail',
+        };
         $page = config('site_module_pages.'.$module);
         $screenshots = config('module_screenshots.'.$module, []);
         $primaryScreenshot = $screenshots[0] ?? null;

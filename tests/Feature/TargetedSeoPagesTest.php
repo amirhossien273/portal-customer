@@ -57,23 +57,31 @@ class TargetedSeoPagesTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>نرم‌افزار نرخ‌دهی حمل‌ونقل و مدیریت استعلام | سپند</title>', false)
-            ->assertSee('<meta name="description" content="نرم‌افزار نرخ‌دهی حمل‌ونقل سپند برای ثبت استعلام، مقایسه نرخ خرید، کنترل اعتبار و حاشیه سود، تهیه Quotation و پیگیری پیشنهاد تا Booking.">', false)
+            ->assertSee('<title>نرم افزار نرخ دهی و پیشنهاد قیمت حمل و نقل | سپند</title>', false)
+            ->assertSee('<meta name="description" content="با سپند، استعلام‌های حمل را ثبت کنید، نرخ و شرایط تأمین‌کنندگان را مقایسه کنید و پیشنهاد فروش را با کنترل اعتبار نرخ و حاشیه سود آماده کنید.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/pricing-sales">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
             ->assertSee('نرم‌افزار نرخ‌دهی و فروش', false)
             ->assertSee('خدمات حمل‌ونقل', false)
-            ->assertSee('استعلام‌های متعدد مشتریان، نرخ‌های خرید تأمین‌کنندگان، اعتبار نرخ، حاشیه فروش', false)
-            ->assertSee('Rate Master و منطق Rate Break در راهکار مدیریت نرخ نگهداری می‌شوند', false)
-            ->assertSee('درخواست دموی نرخ‌دهی و فروش سپند', false)
-            ->assertSee('از دریافت استعلام حمل تا صدور پیشنهاد قیمت', false)
-            ->assertSee('خروجی عملی داشبورد نرخ‌دهی و فروش', false)
+            ->assertSee('درخواست دموی نرخ‌دهی حمل‌ونقل', false)
+            ->assertSee('href="#pricing-process">مشاهده فرایند نرخ‌دهی</a>', false)
+            ->assertSee('نرخ خرید را همراه', false)
+            ->assertSee('از استعلام مشتری تا', false)
+            ->assertSee('مثال آموزشی — همه اعداد فرضی هستند', false)
+            ->assertSee('Quotation با پیش‌فاکتور یکی نیست', false)
+            ->assertSee('یک استعلام واقعی را در سپند نرخ‌دهی کنید', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/booking"', false)
             ->assertSee('href="'.self::SITE_URL.'/solutions/rate-management"', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/pricing-supplier-comparison.webp', false)
             ->assertSee('assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp', false)
-            ->assertSee('alt="برد مراحل استعلام و پیشنهاد نرخ در ماژول فروش سپند"', false);
+            ->assertSee('assets/images/marketing/modules/screenshots/pricing-proposed-rates.webp', false)
+            ->assertSee('alt="نمای واقعی مقایسه تأمین‌کنندگان با نرخ خرید، مسیر، اعتبار، زمان حمل و Free Time در سپند"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/supplier-management"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/freight-sales-automation"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/finance-accounting"', false)
+            ->assertSee('"@type":"HowTo"', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertValidJsonLd($content);

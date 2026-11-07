@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\MarketingConsultationController;
-use App\Http\Controllers\MarketingComparisonController;
+use App\Http\Controllers\CustomerPortalAuthController;
+use App\Http\Controllers\CustomerPortalController;
 use App\Http\Controllers\MarketingCaseStudyController;
+use App\Http\Controllers\MarketingComparisonController;
+use App\Http\Controllers\MarketingConsultationController;
 use App\Http\Controllers\MarketingContentPageController;
 use App\Http\Controllers\MarketingModuleController;
 use App\Http\Controllers\MarketingOperationalSolutionController;
 use App\Http\Controllers\MarketingPlatformSolutionController;
 use App\Http\Controllers\MarketingSitemapController;
 use App\Http\Controllers\MarketingTransportModeController;
-use App\Http\Controllers\CustomerPortalAuthController;
-use App\Http\Controllers\CustomerPortalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -113,10 +113,19 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
     Route::get('/customers/case-studies/{caseStudy}', [MarketingCaseStudyController::class, 'show'])
         ->whereIn('caseStudy', array_keys(config('site_case_studies', [])))
         ->name('case-studies.show');
-    Route::get('/consultation', [MarketingConsultationController::class, 'create'])->name('consultation.create');
+    Route::get('/consultation/process-review', [MarketingConsultationController::class, 'create'])
+        ->name('consultation.create');
+    Route::get('/consultation', function (Request $request): \Illuminate\Http\RedirectResponse {
+        return redirect()->route('consultation.create', $request->query(), 301);
+    })->name('consultation.legacy');
 });
 
-Route::post('/consultation', [MarketingConsultationController::class, 'store'])->name('consultation.store');
+Route::post('/consultation/process-review', [MarketingConsultationController::class, 'store'])
+    ->middleware('throttle:8,1')
+    ->name('consultation.store');
+Route::post('/consultation', [MarketingConsultationController::class, 'store'])
+    ->middleware('throttle:8,1')
+    ->name('consultation.store.legacy');
 Route::redirect('/organization-portal', '/login?purpose=organization')->name('organization.portal');
 
 Route::get('/login', [CustomerPortalAuthController::class, 'showLogin'])->name('login');

@@ -79,7 +79,7 @@ return [
                 '/modules/crm' => ['query' => 'نرم افزار CRM حمل و نقل', 'intent' => 'رابطه مشتری، Lead، Opportunity و Pipeline', 'audience' => 'مدیر فروش و کارشناس CRM', 'outcome' => 'رابطه و قیف فروش قابل پیگیری'],
                 '/modules/pricing-sales' => ['query' => 'نرم افزار نرخ دهی حمل و نقل', 'intent' => 'فرایند محصول از Inquiry تا Quotation', 'audience' => 'کارشناس Pricing و فروش', 'outcome' => 'پیشنهاد معتبر و قابل ارسال'],
                 '/solutions/rate-management' => ['query' => 'مدیریت نرخ و تعرفه حمل و نقل', 'intent' => 'Rate Repository، اعتبار و منطق محاسبه', 'audience' => 'مالک Rate Master', 'outcome' => 'نرخ معتبر و قابل استفاده مجدد'],
-                '/solutions/freight-sales-automation' => ['query' => 'اتوماسیون پیگیری فروش حمل و نقل', 'intent' => 'Follow-up رویدادمحور، SLA و Handoff', 'audience' => 'مدیر فروش و RevOps', 'outcome' => 'فرصت بدون اقدام کمتر'],
+                '/solutions/freight-sales-automation' => ['query' => 'پیگیری مشتریان حمل و نقل', 'intent' => 'مسئول، موعد، سابقه مذاکره و اقدام بعدی', 'audience' => 'مدیر فروش و کارشناس حمل', 'outcome' => 'استعلام بدون پیگیری کمتر'],
                 '/compare/best-crm-for-transport-companies' => ['query' => 'بهترین CRM برای شرکت حمل و نقل', 'intent' => 'مقایسه و انتخاب CRM', 'audience' => 'خریدار و مدیر فروش', 'outcome' => 'Shortlist و چک‌لیست خرید'],
             ],
         ],

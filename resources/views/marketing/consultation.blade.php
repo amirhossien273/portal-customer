@@ -1,28 +1,6 @@
 @extends('layouts.marketing')
 
 @php
-    $faqs = [
-        [
-            'question' => 'در جلسه دمو چه بخش‌هایی نمایش داده می‌شود؟',
-            'answer' => 'پس از بررسی نیاز شرکت، بخش‌های مرتبط سپند مانند CRM و فروش، Booking، عملیات، اسناد، مالی یا گزارش‌ها نمایش داده می‌شوند؛ بنابراین جلسه به مرور عمومی همه امکانات محدود نیست.',
-        ],
-        [
-            'question' => 'آیا دمو بر اساس فرایند شرکت ما انجام می‌شود؟',
-            'answer' => 'اطلاعات اولیه درباره نوع فعالیت، روش حمل، ساختار تیم و مسئله اصلی کمک می‌کند جلسه روی فرایندهای مرتبط شرکت شما متمرکز شود؛ دامنه دقیق در هماهنگی پیش از جلسه مشخص می‌شود.',
-        ],
-        [
-            'question' => 'برای درخواست دمو چه اطلاعاتی لازم است؟',
-            'answer' => 'نام متقاضی و شرکت، شماره تماس، نوع کسب‌وکار و مهم‌ترین نیاز فعلی لازم است. ایمیل، تعداد تقریبی کاربران و توضیحات تکمیلی اختیاری هستند.',
-        ],
-        [
-            'question' => 'بعد از جلسه دمو چگونه ماژول‌های مناسب مشخص می‌شوند؟',
-            'answer' => 'نیازها و گلوگاه‌های مطرح‌شده با دامنه ماژول‌های سپند تطبیق داده می‌شوند تا بخش‌های مرتبط و موضوعات نیازمند بررسی بیشتر برای ادامه تصمیم‌گیری مشخص شوند.',
-        ],
-        [
-            'question' => 'آیا سپند برای شرکت‌های حمل‌ونقل بین‌المللی و شرکت‌های فورواردری مناسب است؟',
-            'answer' => 'سپند برای فرایندهای شرکت‌های حمل‌ونقل بین‌المللی و فورواردری طراحی شده است و CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی پرونده حمل را پوشش می‌دهد. تناسب دقیق در جلسه نیازسنجی بررسی می‌شود.',
-        ],
-    ];
     $structuredData = [
         '@context' => 'https://schema.org',
         '@graph' => [
@@ -33,7 +11,7 @@
                 'description' => $description,
                 'url' => $canonical,
                 'inLanguage' => 'fa-IR',
-                'dateModified' => '2026-08-18',
+                'dateModified' => '2026-11-07',
                 'isPartOf' => ['@id' => route('home').'#website'],
                 'about' => [
                     '@type' => 'SoftwareApplication',
@@ -46,20 +24,33 @@
                 '@id' => $canonical.'#breadcrumb',
                 'itemListElement' => [
                     ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'درخواست دمو و مشاوره خرید', 'item' => $canonical],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'بررسی رایگان فرایندها', 'item' => $canonical],
                 ],
-            ],
-            [
-                '@type' => 'FAQPage',
-                '@id' => $canonical.'#faq',
-                'mainEntity' => array_map(static fn (array $faq): array => [
-                    '@type' => 'Question',
-                    'name' => $faq['question'],
-                    'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['answer']],
-                ], $faqs),
             ],
         ],
     ];
+
+    $initialStep = 1;
+    foreach ([2, 3, 4] as $responseStep) {
+        if ($errors->has('responses.'.$responseStep)) {
+            $initialStep = $responseStep;
+            break;
+        }
+    }
+    if ($errors->has('message')) {
+        $initialStep = 5;
+    }
+    if ($errors->hasAny(['name', 'mobile', 'company', 'source_page', 'utm', 'submission'])) {
+        $initialStep = 6;
+    }
+    if ($errors->has('topic')) {
+        $initialStep = 1;
+    }
+    $selectedTopic = old('topic');
+    $initialStepLabel = strtr((string) $initialStep, [
+        '0' => '۰', '1' => '۱', '2' => '۲', '3' => '۳', '4' => '۴',
+        '5' => '۵', '6' => '۶', '7' => '۷', '8' => '۸', '9' => '۹',
+    ]);
 @endphp
 
 @push('head')
@@ -67,171 +58,285 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-consultation.css') }}?v=20260818-1">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-consultation.css') }}?v=20261107-1">
 @endpush
 
 @section('content')
-<section class="page-hero consultation-hero">
-    <div class="container hero-inner">
-        <div class="hero-copy reveal">
-            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>درخواست دمو و مشاوره</span></div>
-            <h1><span class="h1-primary">درخواست دمو و مشاوره خرید</span><br><span>نرم‌افزار حمل‌ونقل سپند</span></h1>
-            <p>جلسه دمو سپند صرفاً نمایش عمومی فهرست امکانات نیست. ابتدا نوع فعالیت، روش‌های حمل، ساختار تیم و فرایند فعلی فروش، Booking، عملیات، اسناد و مالی شرکت شما بررسی می‌شود. سپس بخش‌ها و ماژول‌های مرتبط نرم‌افزار حمل‌ونقل سپند با تمرکز بر مسئله‌های اصلی تیم نمایش داده می‌شوند. هدف این جلسه آن است که پیش از تصمیم خرید، مشخص شود کدام قسمت‌های سپند CRM با نیازهای واقعی شرکت تطابق دارند، چه موضوعاتی به بررسی بیشتر نیاز دارند و ادامه ارزیابی یا استقرار باید با چه دامنه‌ای انجام شود.</p>
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="#consultation-form" data-ga-event="cta_click" data-ga-label="consultation_hero_form">ثبت درخواست دمو و نیازسنجی</a>
+<section class="page-hero process-review-hero">
+    <div class="container process-review-hero__layout">
+        <div class="process-review-hero__copy reveal">
+            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>بررسی رایگان فرایندها</span></div>
+            <p class="process-review-kicker">مشاوره رایگان ویژه شرکت‌های حمل‌ونقل بین‌المللی</p>
+            <h1>کدام بخش از کار شرکت شما به <span>راهکار بهتری</span> نیاز دارد؟</h1>
+            <p class="process-review-lead">از فروش و نرخ‌گیری تا بوکینگ، عملیات و امور مالی؛ به چند سؤال کوتاه پاسخ دهید تا مسئله شرکت شما را بررسی کنیم و برای بهبود فرایندها راهکار پیشنهاد بدهیم.</p>
+            <div class="process-review-hero__action">
+                <a class="btn btn-primary" href="#consultation-form" data-form-start>شروع بررسی رایگان</a>
+                <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6v6l4 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>چند سؤال کوتاه، متناسب با نیاز شرکت شما</span>
             </div>
         </div>
-        <figure class="consultation-product-shot hero-art reveal">
-            <div class="product-shot-frame">
-                <span class="product-shot-label">نمای واقعی محصول</span>
-                <img src="{{ asset('assets/images/marketing/sepand-cargo-details.webp') }}" width="835" height="335" loading="eager" fetchpriority="high" alt="نمای نرم افزار مدیریت حمل و نقل سپند">
+
+        <div class="process-review-map reveal" aria-label="مسیر بررسی درخواست">
+            <div class="process-review-map__head">
+                <span>بررسی مسئله شرکت شما</span>
+                <span class="process-review-map__badge">۶ مرحله کوتاه</span>
             </div>
-            <figcaption>نمای نرم‌افزار سپند با اطلاعات نمونه</figcaption>
-        </figure>
+            <ol>
+                <li><span class="process-review-map__number">۱</span><div><strong>انتخاب مسئله اصلی</strong><small>فروش، نرخ، بوکینگ، عملیات، اسناد، مالی یا مدیریت</small></div></li>
+                <li><span class="process-review-map__number">۲</span><div><strong>پاسخ‌های مرتبط</strong><small>فقط سؤال‌هایی که به موضوع انتخابی شما مربوط‌اند</small></div></li>
+                <li><span class="process-review-map__number">۳</span><div><strong>بررسی توسط تیم سپند</strong><small>برای پیشنهاد راهکار متناسب با فرایند شرکت شما</small></div></li>
+            </ol>
+        </div>
     </div>
 </section>
 
-<section class="section consultation-section" aria-label="فرم درخواست دمو و جزئیات جلسه">
-    <div class="container consultation-layout">
-        <div class="consultation-side">
-            <section class="consultation-copy reveal" aria-labelledby="demo-review-title">
-                <span class="consultation-eyebrow">مسیر جلسه</span>
-                <h2 id="demo-review-title">در جلسه دمو سپند چه چیزی بررسی می‌شود؟</h2>
-                <ol class="demo-steps">
-                    <li><span>شناخت ساختار و فرایند فعلی شرکت</span></li>
-                    <li><span>بررسی گلوگاه‌ها و نیازهای اصلی</span></li>
-                    <li><span>نمایش بخش‌های مرتبط سپند</span></li>
-                    <li><span>مشخص‌کردن ماژول‌ها و قابلیت‌های موردنیاز</span></li>
-                    <li><span>پیشنهاد مسیر مناسب برای ادامه بررسی یا استقرار</span></li>
-                </ol>
-            </section>
-
-            <section class="consultation-focus reveal" aria-labelledby="process-based-demo-title">
-                <span class="consultation-eyebrow">جلسه متمرکز</span>
-                <h2 id="process-based-demo-title">دمو بر اساس فرایند واقعی شرکت شما</h2>
-                <p>اگر نوع فعالیت، روش‌های حمل، ساختار تیم و مسئله اصلی را در فرم مشخص کنید، نمایش محصول روی بخش‌های مرتبط متمرکز می‌شود. این اطلاعات به معنی شخصی‌سازی قطعی محصول نیست و دامنه نهایی پس از بررسی دقیق‌تر مشخص خواهد شد.</p>
-            </section>
-        </div>
-
-        <form class="consultation-form reveal" id="consultation-form" method="POST" action="{{ route('consultation.store') }}" data-ga-form="consultation_submit" data-consultation-form aria-labelledby="consultation-form-title">
-            @csrf
-            <input type="hidden" name="source_page" value="{{ old('source_page', url()->previous()) }}">
-            <div class="honeypot" aria-hidden="true"><label for="website">وب‌سایت</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-            <div class="form-heading">
-                <span class="consultation-eyebrow">اطلاعات اولیه</span>
-                <p class="form-title" id="consultation-form-title">برای هماهنگی دمو، این فرم کوتاه را تکمیل کنید</p>
-                <p>فیلدهای ستاره‌دار برای بررسی اولیه درخواست لازم هستند.</p>
-            </div>
-            @if(session('status'))<div class="form-status" id="consultation-form-status" role="status" tabindex="-1">{{ session('status') }}</div>@endif
-            <div class="form-grid">
-                <div class="field">
-                    <label for="name">نام و نام خانوادگی <span aria-hidden="true">*</span></label>
-                    <input id="name" name="name" type="text" value="{{ old('name') }}" maxlength="100" autocomplete="name" required @error('name') aria-invalid="true" aria-describedby="name-error" @enderror>
-                    @error('name')<span class="form-error" id="name-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field">
-                    <label for="company">نام شرکت <span aria-hidden="true">*</span></label>
-                    <input id="company" name="company" type="text" value="{{ old('company') }}" maxlength="150" autocomplete="organization" required @error('company') aria-invalid="true" aria-describedby="company-error" @enderror>
-                    @error('company')<span class="form-error" id="company-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field">
-                    <label for="mobile">شماره تماس <span aria-hidden="true">*</span></label>
-                    <input id="mobile" name="mobile" type="tel" value="{{ old('mobile') }}" maxlength="30" inputmode="tel" autocomplete="tel" required @error('mobile') aria-invalid="true" aria-describedby="mobile-error" @enderror>
-                    @error('mobile')<span class="form-error" id="mobile-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field">
-                    <label for="email">ایمیل سازمانی <span class="optional">اختیاری</span></label>
-                    <input id="email" name="email" type="email" value="{{ old('email') }}" maxlength="190" inputmode="email" autocomplete="email" @error('email') aria-invalid="true" aria-describedby="email-error" @enderror>
-                    @error('email')<span class="form-error" id="email-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field">
-                    <label for="company_type">نوع کسب‌وکار <span aria-hidden="true">*</span></label>
-                    <select id="company_type" name="company_type" required @error('company_type') aria-invalid="true" aria-describedby="company-type-error" @enderror>
-                        <option value="">انتخاب کنید</option>
-                        @foreach(['شرکت حمل‌ونقل بین‌المللی','شرکت فورواردری','NVOCC','نماینده خط حمل','شرکت لجستیک','سایر'] as $type)
-                            <option value="{{ $type }}" @selected(old('company_type') === $type)>{{ $type }}</option>
-                        @endforeach
-                    </select>
-                    @error('company_type')<span class="form-error" id="company-type-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field">
-                    <label for="approximate_users">تعداد تقریبی کاربران <span class="optional">اختیاری</span></label>
-                    <select id="approximate_users" name="approximate_users" @error('approximate_users') aria-invalid="true" aria-describedby="approximate-users-error" @enderror>
-                        <option value="">انتخاب کنید</option>
-                        @foreach(['1 تا 5 نفر','6 تا 15 نفر','16 تا 30 نفر','بیش از 30 نفر'] as $range)
-                            <option value="{{ $range }}" @selected(old('approximate_users') === $range)>{{ $range }}</option>
-                        @endforeach
-                    </select>
-                    @error('approximate_users')<span class="form-error" id="approximate-users-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field full">
-                    <label for="primary_need">مهم‌ترین نیاز فعلی شرکت شما چیست؟ <span aria-hidden="true">*</span></label>
-                    <select id="primary_need" name="primary_need" required @error('primary_need') aria-invalid="true" aria-describedby="primary-need-error" @enderror>
-                        <option value="">انتخاب کنید</option>
-                        @foreach(['CRM و فروش','استعلام و نرخ‌دهی','Booking','عملیات حمل','مدیریت اسناد','مالی','پرتال مشتری','گزارش‌های مدیریتی','یکپارچه‌سازی فرایندها','سایر'] as $need)
-                            <option value="{{ $need }}" @selected(old('primary_need') === $need)>{{ $need }}</option>
-                        @endforeach
-                    </select>
-                    @error('primary_need')<span class="form-error" id="primary-need-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field full">
-                    <label for="message">توضیحات تکمیلی <span class="optional">اختیاری</span></label>
-                    <textarea id="message" name="message" maxlength="2000" placeholder="مثلاً روش‌های حمل، ساختار تیم یا گلوگاهی که می‌خواهید در جلسه بررسی شود" @error('message') aria-invalid="true" aria-describedby="message-error" @enderror>{{ old('message') }}</textarea>
-                    @error('message')<span class="form-error" id="message-error">{{ $message }}</span>@enderror
-                </div>
-                <div class="field full form-submit">
-                    <button class="btn btn-primary" type="submit" data-submit-button><span data-submit-label>ثبت درخواست دمو و نیازسنجی</span></button>
-                    <p class="form-help">اطلاعات ثبت‌شده فقط برای بررسی و پیگیری درخواست دمو و مشاوره شما استفاده می‌شود.</p>
-                </div>
-            </div>
-        </form>
-    </div>
-</section>
-
-<section class="section soft after-submit" aria-labelledby="after-submit-title">
+<section class="review-outcomes" aria-labelledby="review-outcomes-title">
     <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">مسیر بعدی</span>
-            <h2 class="section-title" id="after-submit-title">بعد از ثبت درخواست چه اتفاقی می‌افتد؟</h2>
+        <div class="review-outcomes__heading"><span>خروجی این بررسی</span><h2 id="review-outcomes-title">یک تصویر روشن‌تر از مسئله و اقدام بعدی</h2></div>
+        <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg><span>بررسی چالش اصلی شرکت شما</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg><span>پیشنهاد اقدام‌های عملی برای بهبود فرایند</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg><span>بررسی اینکه سپند چگونه می‌تواند به اجرای راهکار کمک کند</span></li>
+        </ul>
+    </div>
+</section>
+
+<section class="process-review-form-section" aria-labelledby="process-review-form-section-title">
+    <div class="container">
+        <div class="process-review-form-section__head reveal">
+            <span>شروع بررسی</span>
+            <h2 id="process-review-form-section-title">مسئله اصلی شرکتتان را قدم‌به‌قدم بررسی کنیم</h2>
+            <p>در هر مرحله فقط یک سؤال می‌بینید و پاسخ‌ها هنگام رفت‌وبرگشت حفظ می‌شوند.</p>
         </div>
-        <ol class="after-submit-grid">
-            <li class="reveal"><span>۰۱</span><p>اطلاعات اولیه درخواست بررسی می‌شود.</p></li>
-            <li class="reveal"><span>۰۲</span><p>برای هماهنگی جلسه دمو با متقاضی تماس گرفته می‌شود.</p></li>
-            <li class="reveal"><span>۰۳</span><p>در جلسه، نیازها و بخش‌های مرتبط نرم‌افزار حمل‌ونقل سپند بررسی می‌شوند.</p></li>
+
+        @if(session('status') === 'success')
+            <section class="consultation-success" id="consultation-form" data-consultation-success tabindex="-1" aria-labelledby="consultation-success-title">
+                <div class="consultation-success__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m7 12.5 3.1 3L17.5 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg></div>
+                <p class="consultation-success__eyebrow">ثبت با موفقیت انجام شد</p>
+                <h2 id="consultation-success-title">درخواست شما ثبت شد</h2>
+                <p>پاسخ‌های شما برای تیم سپند ارسال شد. برای بررسی مسئله شرکتتان و گفت‌وگو درباره راهکارهای پیشنهادی با شما تماس می‌گیریم.</p>
+                <a class="btn btn-outline" href="{{ route('product') }}">آشنایی بیشتر با سپند</a>
+            </section>
+        @else
+            <form class="consultation-wizard reveal" id="consultation-form" method="POST" action="{{ route('consultation.store') }}" data-consultation-form data-initial-step="{{ $initialStep }}" data-current-topic="{{ $selectedTopic }}" novalidate>
+                @csrf
+                <input type="hidden" name="source_page" value="{{ old('source_page', $sourcePage) }}">
+                @foreach($utmParameters as $key => $value)
+                    <input type="hidden" name="utm[{{ $key }}]" value="{{ old('utm.'.$key, $value) }}">
+                @endforeach
+                <div class="honeypot" aria-hidden="true"><label for="website">وب‌سایت</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+                <div class="consultation-wizard__progress">
+                    <div class="consultation-wizard__progress-copy"><span data-step-label>مرحله {{ $initialStepLabel }} از ۶</span><strong data-step-context>انتخاب موضوع</strong></div>
+                    <div class="consultation-wizard__progress-track" role="progressbar" aria-label="پیشرفت فرم" aria-valuemin="1" aria-valuemax="6" aria-valuenow="{{ $initialStep }}" data-progressbar><span data-progress-fill style="width: {{ ($initialStep / 6) * 100 }}%"></span></div>
+                </div>
+
+                <div class="consultation-wizard__body">
+                    <fieldset class="consultation-stage" data-stage="1" @if($initialStep !== 1) hidden @endif>
+                        <legend class="sr-only">انتخاب موضوع</legend>
+                        <div class="consultation-question"><span class="consultation-question__number">۱</span><div><h3 tabindex="-1" data-question-heading>کدام بخش از شرکت شما بیشتر به بهبود نیاز دارد؟</h3><p>اگر چند موضوع دارید، مهم‌ترین مورد را انتخاب کنید.</p></div></div>
+                        <div class="consultation-options consultation-options--topics">
+                            @foreach($topics as $topicKey => $topic)
+                                <label class="consultation-option">
+                                    <input type="radio" name="topic" value="{{ $topicKey }}" @checked($selectedTopic === $topicKey)>
+                                    <span class="consultation-option__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span>{{ $topic['label'] }}</span>
+                                </label>
+                            @endforeach
+                        </div>
+                        <p class="consultation-step-error" data-step-error="1" role="alert">@error('topic'){{ $message }}@enderror</p>
+                    </fieldset>
+
+                    @foreach($topics as $topicKey => $topic)
+                        @foreach($topic['questions'] as $questionStep => $question)
+                            <fieldset class="consultation-stage" data-stage="{{ $questionStep }}" data-topic="{{ $topicKey }}" @if($initialStep !== $questionStep || $selectedTopic !== $topicKey) hidden @endif>
+                                <legend class="sr-only">{{ $question['text'] }}</legend>
+                                <div class="consultation-question"><span class="consultation-question__number">{{ $questionStep }}</span><div><span class="consultation-question__topic">{{ $topic['label'] }}</span><h3 tabindex="-1" data-question-heading>{{ $question['text'] }}</h3></div></div>
+                                <div class="consultation-options">
+                                    @foreach($question['options'] as $optionKey => $optionLabel)
+                                        <label class="consultation-option">
+                                            <input type="radio" name="responses[{{ $questionStep }}]" value="{{ $optionKey }}" @checked(old('responses.'.$questionStep) === $optionKey)>
+                                            <span class="consultation-option__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                            <span>{{ $optionLabel }}</span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                                <p class="consultation-step-error" data-step-error="{{ $questionStep }}" role="alert">@error('responses.'.$questionStep){{ $message }}@enderror</p>
+                            </fieldset>
+                        @endforeach
+                    @endforeach
+
+                    <section class="consultation-stage" data-stage="5" @if($initialStep !== 5) hidden @endif aria-labelledby="optional-note-title">
+                        <div class="consultation-question"><span class="consultation-question__number">۵</span><div><span class="consultation-question__topic">اختیاری</span><h3 id="optional-note-title" tabindex="-1" data-question-heading>درباره مسئله شرکتتان، چه نکته دیگری باید بدانیم؟</h3><p>اگر توضیح بیشتری ندارید، می‌توانید از این مرحله عبور کنید.</p></div></div>
+                        <div class="consultation-textarea-field">
+                            <label class="sr-only" for="message">توضیح اختیاری درباره مسئله شرکت</label>
+                            <textarea id="message" name="message" maxlength="2000" rows="5" placeholder="مثلاً مشکلی که مرتب تکرار می‌شود یا کاری که وقت زیادی از تیم شما می‌گیرد.">{{ old('message') }}</textarea>
+                            <div><span>اختیاری</span><span data-message-count>۰ از ۲۰۰۰</span></div>
+                            @error('message')<p class="consultation-step-error" role="alert">{{ $message }}</p>@enderror
+                        </div>
+                    </section>
+
+                    <section class="consultation-stage" data-stage="6" @if($initialStep !== 6) hidden @endif aria-labelledby="contact-details-title">
+                        <div class="consultation-question"><span class="consultation-question__number">۶</span><div><span class="consultation-question__topic">اطلاعات تماس</span><h3 id="contact-details-title" tabindex="-1" data-question-heading>برای بررسی پاسخ‌ها و ارائه راهکار، چطور با شما در ارتباط باشیم؟</h3><p>تیم سپند پاسخ‌های شما را بررسی می‌کند و برای گفت‌وگو درباره مسئله شرکتتان و راهکارهای پیشنهادی با شما تماس می‌گیرد.</p></div></div>
+                        <div class="consultation-contact-fields">
+                            <div class="field">
+                                <label for="name">نام و نام خانوادگی <span aria-hidden="true">*</span></label>
+                                <input id="name" name="name" type="text" value="{{ old('name') }}" maxlength="100" autocomplete="name" required @error('name') aria-invalid="true" aria-describedby="name-error" @enderror>
+                                @error('name')<span class="form-error" id="name-error">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="field">
+                                <label for="mobile">شماره موبایل <span aria-hidden="true">*</span></label>
+                                <input id="mobile" name="mobile" type="tel" value="{{ old('mobile') }}" maxlength="20" inputmode="tel" autocomplete="tel" placeholder="۰۹۱۲۱۲۳۴۵۶۷" dir="ltr" required @error('mobile') aria-invalid="true" aria-describedby="mobile-error" @enderror>
+                                @error('mobile')<span class="form-error" id="mobile-error">{{ $message }}</span>@enderror
+                            </div>
+                            <div class="field field--company">
+                                <label for="company">نام شرکت <span aria-hidden="true">*</span></label>
+                                <input id="company" name="company" type="text" value="{{ old('company') }}" maxlength="150" autocomplete="organization" required @error('company') aria-invalid="true" aria-describedby="company-error" @enderror>
+                                @error('company')<span class="form-error" id="company-error">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
+                        @error('submission')<p class="consultation-submit-error" role="alert">{{ $message }}</p>@enderror
+                    </section>
+                </div>
+
+                <div class="consultation-wizard__actions">
+                    <button class="btn consultation-back" type="button" data-back @if($initialStep === 1) hidden @endif><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 6-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>مرحله قبل</button>
+                    <button class="btn btn-primary consultation-next" type="button" data-next @if($initialStep === 6) hidden @endif><span data-next-label>{{ $initialStep === 5 && blank(old('message')) ? 'ادامه بدون توضیح' : 'ادامه' }}</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="btn btn-primary consultation-submit" type="submit" data-submit-button @if($initialStep !== 6) hidden @endif><span data-submit-label>ثبت درخواست بررسی رایگان</span></button>
+                </div>
+                <p class="consultation-privacy">اطلاعات تماس شما فقط برای بررسی و پیگیری همین درخواست استفاده می‌شود.</p>
+                <noscript><p class="consultation-noscript">برای تکمیل فرم مرحله‌ای، جاوااسکریپت مرورگر باید فعال باشد.</p></noscript>
+            </form>
+        @endif
+    </div>
+</section>
+
+<section class="review-process" aria-labelledby="review-process-title">
+    <div class="container">
+        <div class="review-process__head reveal"><span>روند کار</span><h2 id="review-process-title">از انتخاب مسئله تا گفت‌وگو درباره راهکار</h2></div>
+        <ol class="review-process__steps">
+            <li class="reveal"><span>۱</span><div><strong>موضوع موردنظر را انتخاب می‌کنید</strong><p>مهم‌ترین بخشی را که اکنون به بهبود نیاز دارد مشخص می‌کنید.</p></div></li>
+            <li class="reveal"><span>۲</span><div><strong>به سؤال‌های مرتبط پاسخ می‌دهید</strong><p>سه سؤال کوتاه فقط بر اساس همان موضوع نمایش داده می‌شود.</p></div></li>
+            <li class="reveal"><span>۳</span><div><strong>تیم سپند با شما تماس می‌گیرد</strong><p>پاسخ‌ها برای بررسی مسئله و ارائه راهکار متناسب مرور می‌شوند.</p></div></li>
         </ol>
-    </div>
-</section>
-
-<section class="section consultation-faq" aria-labelledby="consultation-faq-title">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">پیش از ثبت درخواست</span>
-            <h2 class="section-title" id="consultation-faq-title">سؤالات متداول درباره درخواست دمو سپند</h2>
-        </div>
-        <div class="faq">
-            @foreach($faqs as $faq)
-                <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<section class="consultation-links" aria-labelledby="consultation-links-title">
-    <div class="container">
-        <h2 id="consultation-links-title">قبل از درخواست دمو بیشتر بررسی کنید</h2>
-        <nav aria-label="صفحات مرتبط با انتخاب نرم‌افزار سپند">
-            <a href="{{ route('pricing') }}">تعرفه‌های سپند</a>
-            <a href="{{ route('modules') }}">ماژول‌های نرم‌افزار سپند</a>
-            <a href="{{ route('compare.sepand-other-transport-software') }}">مقایسه سپند با سایر نرم‌افزارهای حمل‌ونقل</a>
-            <a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM حمل‌ونقل</a>
-            <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">عملیات حمل</a>
-        </nav>
     </div>
 </section>
 @endsection
 
 @push('scripts')
 <script>
-(()=>{const form=document.querySelector('[data-consultation-form]');if(!form)return;form.addEventListener('submit',event=>{if(form.dataset.submitting==='true'){event.preventDefault();return}form.dataset.submitting='true';const button=form.querySelector('[data-submit-button]'),label=form.querySelector('[data-submit-label]');if(button){button.disabled=true;button.setAttribute('aria-busy','true')}if(label)label.textContent='در حال ثبت درخواست…'});const status=document.getElementById('consultation-form-status');if(status)status.focus()})();
+(()=>{
+    const form=document.querySelector('[data-consultation-form]');
+    const success=document.querySelector('[data-consultation-success]');
+    const track=(name,detail={})=>{
+        const payload={event_category:'consultation_process_review',form_id:'process_review',...detail};
+        if(typeof window.gtag==='function')window.gtag('event',name,payload);
+        else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:name,...payload})}
+    };
+    if(success){success.focus({preventScroll:true});track('consultation_process_success');return}
+    if(!form)return;
+
+    const panels=[...form.querySelectorAll('[data-stage]')];
+    const progress=form.querySelector('[data-progressbar]');
+    const progressFill=form.querySelector('[data-progress-fill]');
+    const stepLabel=form.querySelector('[data-step-label]');
+    const stepContext=form.querySelector('[data-step-context]');
+    const back=form.querySelector('[data-back]');
+    const next=form.querySelector('[data-next]');
+    const nextLabel=form.querySelector('[data-next-label]');
+    const submit=form.querySelector('[data-submit-button]');
+    const message=form.querySelector('#message');
+    const messageCount=form.querySelector('[data-message-count]');
+    const contexts=['','انتخاب موضوع','سؤال مرتبط اول','سؤال مرتبط دوم','سؤال مرتبط سوم','توضیح اختیاری','اطلاعات تماس'];
+    let step=Number(form.dataset.initialStep||1);
+    let topic=form.querySelector('input[name="topic"]:checked')?.value||'';
+    let started=false;
+
+    const activePanel=(targetStep)=>panels.find(panel=>Number(panel.dataset.stage)===targetStep&&(!panel.dataset.topic||panel.dataset.topic===topic));
+    const setError=(targetStep,message='')=>{
+        const panel=activePanel(targetStep);
+        const error=panel?.querySelector(`[data-step-error="${targetStep}"]`);
+        if(error)error.textContent=message;
+    };
+    const startTracking=()=>{if(started)return;started=true;track('consultation_process_start')};
+    const updateMessageMeta=()=>{
+        if(!message)return;
+        if(messageCount)messageCount.textContent=`${message.value.length.toLocaleString('fa-IR')} از ۲۰۰۰`;
+        if(step===5&&nextLabel)nextLabel.textContent=message.value.trim()?'ادامه':'ادامه بدون توضیح';
+    };
+    const render=(focusQuestion=false)=>{
+        panels.forEach(panel=>panel.hidden=true);
+        const panel=activePanel(step);
+        if(!panel){step=1;topic='';return render(focusQuestion)}
+        panel.hidden=false;
+        stepLabel.textContent=`مرحله ${step.toLocaleString('fa-IR')} از ۶`;
+        stepContext.textContent=contexts[step];
+        progress.setAttribute('aria-valuenow',String(step));
+        progressFill.style.width=`${(step/6)*100}%`;
+        back.hidden=step===1;
+        next.hidden=step===6;
+        submit.hidden=step!==6;
+        updateMessageMeta();
+        if(focusQuestion){
+            const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            form.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
+            window.setTimeout(()=>panel.querySelector('[data-question-heading]')?.focus({preventScroll:true}),reduceMotion?0:260);
+        }
+    };
+    const validateStep=(targetStep)=>{
+        if(targetStep===1){
+            const checked=form.querySelector('input[name="topic"]:checked');
+            if(!checked){setError(1,'لطفاً یک موضوع را انتخاب کنید.');return false}
+            topic=checked.value;
+            return true;
+        }
+        if(targetStep>=2&&targetStep<=4){
+            const panel=activePanel(targetStep);
+            const checked=panel?.querySelector(`input[name="responses[${targetStep}]"]:checked`);
+            if(!checked){setError(targetStep,'لطفاً یک گزینه را انتخاب کنید.');return false}
+        }
+        return true;
+    };
+
+    form.addEventListener('focusin',startTracking,{once:true});
+    document.querySelector('[data-form-start]')?.addEventListener('click',startTracking,{once:true});
+    form.addEventListener('change',event=>{
+        if(event.target.name==='topic'){
+            const previousTopic=topic;
+            topic=event.target.value;
+            form.dataset.currentTopic=topic;
+            setError(1);
+            if(previousTopic&&previousTopic!==topic){
+                form.querySelectorAll('input[name^="responses["]').forEach(input=>input.checked=false);
+                [2,3,4].forEach(responseStep=>setError(responseStep));
+            }
+        }
+        if(event.target.matches('input[name^="responses["]'))setError(step);
+    });
+    message?.addEventListener('input',updateMessageMeta);
+    next.addEventListener('click',()=>{
+        startTracking();
+        if(!validateStep(step))return;
+        track('consultation_process_step_complete',{step_number:step,topic:topic||undefined});
+        step=Math.min(6,step+1);
+        render(true);
+    });
+    back.addEventListener('click',()=>{step=Math.max(1,step-1);render(true)});
+    form.addEventListener('submit',event=>{
+        if(form.dataset.submitting==='true'){event.preventDefault();return}
+        for(let requiredStep=1;requiredStep<=4;requiredStep++){
+            if(!validateStep(requiredStep)){event.preventDefault();step=requiredStep;render(true);return}
+        }
+        const fields=[form.querySelector('#name'),form.querySelector('#mobile'),form.querySelector('#company')];
+        const invalid=fields.find(field=>field&&!field.checkValidity());
+        if(invalid){event.preventDefault();invalid.reportValidity();invalid.focus();return}
+        form.dataset.submitting='true';
+        submit.disabled=true;
+        submit.setAttribute('aria-busy','true');
+        form.querySelector('[data-submit-label]').textContent='در حال ثبت درخواست…';
+        track('consultation_process_submit',{step_number:6,topic:topic||undefined});
+    });
+    updateMessageMeta();
+    render(false);
+})();
 </script>
 @endpush

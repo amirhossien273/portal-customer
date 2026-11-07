@@ -249,7 +249,7 @@ class CustomerPortalAuthenticationTest extends TestCase
             ->assertDontSee('یادداشت محرمانه عملیات');
     }
 
-    public function test_customer_sees_inquiry_rejection_reason_and_financial_records(): void
+    public function test_customer_does_not_see_inquiry_rejection_reason_and_sees_financial_records(): void
     {
         $this->seedCustomer('customer-a', 'personal-a', '09121234567');
         $this->seedInquiry('inquiry-a', 'customer-a');
@@ -279,8 +279,8 @@ class CustomerPortalAuthenticationTest extends TestCase
 
         $this->withSession($session)->get(route('portal.inquiries.show', 'inquiry-a'))
             ->assertOk()
-            ->assertSee('علت بسته‌شدن استعلام')
-            ->assertSee('نرخ پیشنهادی با بودجه حمل مشتری هم‌خوانی نداشت.');
+            ->assertDontSee('علت بسته‌شدن استعلام')
+            ->assertDontSee('نرخ پیشنهادی با بودجه حمل مشتری هم‌خوانی نداشت.');
 
         $this->withSession($session)->get(route('portal.financials'))
             ->assertOk()

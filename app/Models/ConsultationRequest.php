@@ -17,7 +17,16 @@ class ConsultationRequest extends Model
         'company_type',
         'approximate_users',
         'primary_need',
+        'topic',
+        'topic_label',
+        'answers',
         'message',
         'source_page',
+        'utm_parameters',
+    ];
+
+    protected $casts = [
+        'answers' => 'array',
+        'utm_parameters' => 'array',
     ];
 }
