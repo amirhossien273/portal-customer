@@ -34,12 +34,13 @@ class PricingCalculatorPageTest extends TestCase
             ->assertSee('data-billing="annual" aria-pressed="true"', false)
             ->assertSee('پنل اختصاصی', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation" data-ga-event="cta_click" data-ga-label="pricing_custom_panel_demo"', false)
-            ->assertDontSee('pricing-tier-list', false)
-            ->assertDontSee('pricing-summary', false)
-            ->assertDontSee('data-price-tier', false)
+            ->assertSee('pricing-tier-list', false)
+            ->assertSee('pricing-summary', false)
+            ->assertSee('data-price-tier', false)
             ->assertDontSee('استعلام تعرفه', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertSame(4, preg_match_all('/<article[^>]+data-price-tier/', $content));
     }
 
     public function test_all_user_tiers_and_default_annual_totals_are_rendered(): void
@@ -47,10 +48,10 @@ class PricingCalculatorPageTest extends TestCase
         $response = $this->get('/pricing')->assertOk();
 
         foreach ([
-            '{min:5,max:10,monthly:2500000,annual:2200000}',
-            '{min:11,max:15,monthly:2200000,annual:1900000}',
-            '{min:16,max:25,monthly:1900000,annual:1600000}',
-            '{min:26,max:100,monthly:1600000,annual:1300000}',
+            'data-min-users="5" data-max-users="10" data-monthly-rate="2500000" data-annual-rate="2200000"',
+            'data-min-users="11" data-max-users="15" data-monthly-rate="2200000" data-annual-rate="1900000"',
+            'data-min-users="16" data-max-users="25" data-monthly-rate="1900000" data-annual-rate="1600000"',
+            'data-min-users="26" data-max-users="100" data-monthly-rate="1600000" data-annual-rate="1300000"',
         ] as $tier) {
             $response->assertSee($tier, false);
         }
