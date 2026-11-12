@@ -28,11 +28,11 @@ class MarketingContentPagesTest extends TestCase
         $pages = [
             '/compare/best-freight-forwarding-software' => ['title' => 'بهترین نرم‌افزار فورواردری | راهنمای انتخاب حرفه‌ای', 'h1' => 'بهترین نرم‌افزار فورواردری را چگونه انتخاب کنیم؟'],
             '/compare/best-crm-for-transport-companies' => ['title' => 'بهترین CRM برای شرکت حمل‌ونقل | چک‌لیست انتخاب', 'h1' => 'بهترین CRM برای شرکت حمل‌ونقل چه ویژگی‌هایی دارد؟'],
-            '/compare/best-transport-accounting-software' => ['title' => 'بهترین نرم‌افزار حسابداری حمل‌ونقل بین‌المللی', 'h1' => 'بهترین نرم‌افزار حسابداری حمل‌ونقل بین‌المللی چه معیارهایی دارد؟'],
+            '/compare/best-transport-accounting-software' => ['title' => 'بهترین نرم افزار حسابداری حمل و نقل | راهنمای انتخاب', 'h1' => 'بهترین نرم افزار حسابداری حمل و نقل چه معیارهایی دارد؟'],
             '/solutions/nvocc' => ['title' => 'نرم‌افزار NVOCC | مدیریت عملیات، اسناد و مالی', 'h1' => 'عملیات NVOCC را از رزرو تا سود پرونده یکپارچه مدیریت کنید'],
-            '/solutions/container-management' => ['title' => 'نرم‌افزار مدیریت کانتینر | کنترل چرخه و هزینه', 'h1' => 'کانتینر، مهلت‌ها و هزینه‌ها را در متن همان پرونده حمل مدیریت کنید'],
+            '/solutions/container-management' => ['title' => 'نرم افزار مدیریت کانتینر، دپو و اجاره | سپند', 'h1' => 'نرم افزار مدیریت کانتینر؛ از Depot و Lease تا Return'],
             '/solutions/on-premise' => ['title' => 'نرم‌افزار حمل‌ونقل On-Premise | راهنمای استقرار', 'h1' => 'استقرار On-Premise نرم‌افزار حمل‌ونقل را با مسئولیت‌های روشن انتخاب کنید'],
-            '/solutions/bill-of-lading-management' => ['title' => 'نرم‌افزار مدیریت بارنامه حمل‌ونقل | سپند', 'h1' => 'مدیریت بارنامه‌های حمل‌ونقل با نرم‌افزار سپند'],
+            '/solutions/bill-of-lading-management' => ['title' => 'کنترل بارنامه HBL و MBL با نرم افزار سپند', 'h1' => 'کنترل بارنامه‌های HBL و MBL از Draft تا نسخه نهایی'],
             '/solutions/freight-sales-automation' => ['title' => 'پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند', 'h1' => 'راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل'],
         ];
 
@@ -265,7 +265,7 @@ class MarketingContentPagesTest extends TestCase
 
         $this->get('/solutions/bill-of-lading-management')
             ->assertOk()
-            ->assertSee('شرکت‌های حمل‌ونقل و فورواردری زمانی با خطا و تأخیر روبه‌رو می‌شوند', false)
+            ->assertSee('کنترل بارنامه یعنی اطلاعات طرف‌ها و محموله', false)
             ->assertSee('صدور رسمی بارنامه جاده‌ای یا اتصال حاکمیتی در دامنه این صفحه ادعا نمی‌شود', false)
             ->assertSee('href="'.self::SITE_URL.'/modules/document-management"', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation"', false)

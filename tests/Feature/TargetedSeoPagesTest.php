@@ -24,15 +24,15 @@ class TargetedSeoPagesTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>نرم‌افزار مدیریت بارنامه حمل‌ونقل | سپند</title>', false)
-            ->assertSee('<meta name="description" content="نرم‌افزار مدیریت بارنامه حمل‌ونقل سپند برای سامان‌دهی فایل و اطلاعات HBL و MBL در پرونده حمل؛ جزئیات House/Master، Draft، تأیید و خروجی در دمو بررسی می‌شود.">', false)
+            ->assertSee('<title>کنترل بارنامه HBL و MBL با نرم افزار سپند</title>', false)
+            ->assertSee('<meta name="description" content="بارنامه‌های HBL و MBL، Draft، Revision، تأیید و نسخه نهایی را در ارتباط با Booking و پرونده حمل کنترل کنید؛ دامنه قابل نمایش سپند را ببینید.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/solutions/bill-of-lading-management">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
-            ->assertSee('<h1>مدیریت بارنامه‌های حمل‌ونقل با نرم‌افزار سپند</h1>', false)
-            ->assertSee('شرکت‌های حمل‌ونقل و فورواردری زمانی با خطا و تأخیر روبه‌رو می‌شوند', false)
+            ->assertSee('<h1>کنترل بارنامه‌های HBL و MBL از Draft تا نسخه نهایی</h1>', false)
+            ->assertSee('کنترل بارنامه یعنی اطلاعات طرف‌ها و محموله', false)
             ->assertSee('درخواست دموی مدیریت بارنامه سپند', false)
-            ->assertSee('امکانات موجود و قابل نمایش در سپند', false)
-            ->assertSee('نیازمندی‌های قابل بررسی در زمان استقرار', false)
+            ->assertSee('دامنه تأییدشده نسخه فعلی سپند', false)
+            ->assertSee('فیلدهای تخصصی، کنترل نسخه، شماره‌گذاری و خروجی باید در دمو بررسی شوند', false)
             ->assertSee('از ثبت اطلاعات بارنامه تا تأیید نهایی', false)
             ->assertSee('assets/images/marketing/modules/screenshots/document-attachment-upload.webp', false)
             ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
@@ -99,12 +99,12 @@ class TargetedSeoPagesTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>نرم‌افزار مدیریت گردش کار و وظایف حمل‌ونقل | سپند</title>', false)
-            ->assertSee('<meta name="description" content="نرم‌افزار مدیریت گردش کار و وظایف سپند برای تعیین مسئول، مهلت و وضعیت اقدامات مرتبط با مشتری و پرونده حمل و هماهنگی تیم‌های فروش، عملیات و اسناد.">', false)
+            ->assertSee('<title>نرم افزار گردش کار و مدیریت وظایف حمل‌ونقل | سپند</title>', false)
+            ->assertSee('<meta name="description" content="نرم افزار گردش کار سپند، مراحل، وظایف، مسئول، مهلت و وضعیت اقدامات انسانی را به مشتری، Booking و پرونده حمل متصل می‌کند.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/workflow-tasks">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
-            ->assertSee('مدیریت گردش کار و وظایف', false)
-            ->assertSee('در شرکت‌های حمل‌ونقل', false)
+            ->assertSee('نرم افزار مدیریت گردش کار حمل و نقل', false)
+            ->assertSee('مرحله، مسئول، مهلت و نتیجه قابل پیگیری', false)
             ->assertSee('پیگیری‌ها فراموش می‌شوند، مسئول اقدام روشن نیست و مدیر دید کافی از وضعیت کارها ندارد', false)
             ->assertSee('بررسی یک سند از «ارجاع به کارشناس» تا «کنترل، اصلاح و تأیید نهایی»', false)
             ->assertSee('درخواست دموی مدیریت وظایف سپند', false)

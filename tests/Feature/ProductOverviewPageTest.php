@@ -24,11 +24,12 @@ class ProductOverviewPageTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>نرم‌افزار فورواردری سپند | مدیریت فروش، عملیات و مالی</title>', false)
-            ->assertSee('<meta name="description" content="نرم‌افزار فورواردری سپند، مدیریت مشتریان، استعلام نرخ، بوکینگ، عملیات حمل، اسناد و مالی را در یک سیستم یکپارچه فراهم می‌کند. امکانات را ببینید و دمو بگیرید.">', false)
+            ->assertSee('<title>نرم افزار سپند برای شرکت‌های حمل‌ونقل | معرفی محصول</title>', false)
+            ->assertSee('<meta name="description" content="امکانات نرم افزار سپند را برای CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی با تصاویر واقعی محصول ببینید و برای دمو درخواست دهید.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/product">', false)
-            ->assertSee('از اولین تماس مشتری تا تسویه پرونده', false)
-            ->assertSee('نرم‌افزار فورواردری سپند؛', false)
+            ->assertSee('سپند در عمل', false)
+            ->assertSee('نرم افزار سپند؛', false)
+            ->assertSee('مدیریت یکپارچه فروش، عملیات و مالی حمل‌ونقل', false)
             ->assertSee('سپند برای چه شرکت‌هایی مناسب است؟', false)
             ->assertSee('شرکت‌های فورواردری', false)
             ->assertSee('عملیات حمل چندوجهی', false)
@@ -91,7 +92,7 @@ class ProductOverviewPageTest extends TestCase
 
         foreach ([
             '/modules/crm' => 'مدیریت مشتریان شرکت حمل',
-            '/modules/pricing-sales' => 'مدیریت نرخ و Quotation',
+            '/modules/pricing-sales' => 'مدیریت نرخ و پیشنهاد',
             '/modules/transport-operations' => 'پرونده عملیاتی محموله',
             '/modules/finance-accounting' => 'مالی چندارزی فورواردری',
             '/modules/customer-portal-tracking' => 'پرتال مشتریان و رهگیری',

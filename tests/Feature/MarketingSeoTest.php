@@ -195,9 +195,9 @@ class MarketingSeoTest extends TestCase
         $crmContent = $crm->getContent();
 
         $crm
-            ->assertSee('<title>نرم افزار CRM حمل و نقل و فورواردری | سپند</title>', false)
+            ->assertSee('<title>نرم افزار CRM حمل و نقل؛ فروش و پیگیری | سپند</title>', false)
             ->assertSee('<meta name="description" content="'.e(config('site_modules.crm.meta_description')).'">', false)
-            ->assertSee('<meta property="og:title" content="نرم افزار CRM حمل و نقل و فورواردری | سپند">', false)
+            ->assertSee('<meta property="og:title" content="نرم افزار CRM حمل و نقل؛ فروش و پیگیری | سپند">', false)
             ->assertSee('<meta name="twitter:description" content="'.e(config('site_modules.crm.meta_description')).'">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/crm">', false)
             ->assertSee('<span class="module-hero-title-main">نرم‌افزار CRM برای شرکت‌های</span>', false)
@@ -342,8 +342,8 @@ class MarketingSeoTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>نرم افزار CRM حمل و نقل و فورواردری | سپند</title>', false)
-            ->assertSee('<meta name="description" content="با CRM حمل‌ونقل سپند، مشتریان، سرنخ‌ها، استعلام‌ها و پیگیری‌های فروش را مدیریت کنید؛ کارهای عقب‌افتاده و فرصت‌های بدون اقدام بعدی را ببینید.">', false)
+            ->assertSee('<title>نرم افزار CRM حمل و نقل؛ فروش و پیگیری | سپند</title>', false)
+            ->assertSee('<meta name="description" content="نرم افزار CRM حمل و نقل سپند، مشتری، لید، استعلام، فرصت فروش، مسئول و اقدام بعدی را تا تحویل به نرخ‌دهی و Booking در یک پرونده پیگیری می‌کند.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/modules/crm">', false)
             ->assertSee('<span class="module-hero-title-main">نرم‌افزار CRM برای شرکت‌های</span>', false)
             ->assertSee('<span class="module-hero-title-accent">حمل‌ونقل و فورواردری</span>', false)

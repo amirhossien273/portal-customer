@@ -1,8 +1,8 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'نرم‌افزار فورواردری سپند | مدیریت فروش، عملیات و مالی';
-    $description = 'نرم‌افزار فورواردری سپند، مدیریت مشتریان، استعلام نرخ، بوکینگ، عملیات حمل، اسناد و مالی را در یک سیستم یکپارچه فراهم می‌کند. امکانات را ببینید و دمو بگیرید.';
+    $title = 'نرم افزار سپند برای شرکت‌های حمل‌ونقل | معرفی محصول';
+    $description = 'امکانات نرم افزار سپند را برای CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی با تصاویر واقعی محصول ببینید و برای دمو درخواست دهید.';
     $canonical = route('product');
     $image = asset('assets/images/marketing/product-showcase/desktop-dashboard.webp');
     $imageAlt = 'داشبورد واقعی نرم‌افزار مدیریت شرکت حمل‌ونقل سپند';
@@ -168,7 +168,7 @@
             [
                 '@type' => 'SoftwareApplication',
                 '@id' => route('product').'#software',
-                'name' => 'سپند CRM',
+                'name' => 'نرم افزار سپند',
                 'applicationCategory' => 'BusinessApplication',
                 'operatingSystem' => 'Web',
                 'url' => route('product'),
@@ -210,8 +210,8 @@
                     <span>معرفی محصول</span>
                 </nav>
                 <span class="product-kicker">سپند در عمل</span>
-                <h1 id="product-title">نرم‌افزار فورواردری سپند؛ <span>از اولین تماس مشتری تا تسویه پرونده</span></h1>
-                <p>سپند CRM، نرخ‌دهی، Booking، عملیات حمل، اسناد و امور مالی شرکت‌های حمل‌ونقل و فورواردری را در یک جریان یکپارچه به هم متصل می‌کند. اینجا هر ادعا با بخشی واقعی از نرم‌افزار همراه است.</p>
+                <h1 id="product-title">نرم افزار سپند؛ <span>مدیریت یکپارچه فروش، عملیات و مالی حمل‌ونقل</span></h1>
+                <p>نرم افزار سپند، CRM، نرخ‌دهی، Booking، عملیات حمل، اسناد و مالی شرکت‌های حمل‌ونقل و فورواردری را در یک پرونده پیوسته به هم متصل می‌کند. این صفحه معرفی محصول و شواهد واقعی آن است؛ راهنمای خرید و مقایسه در بخش مقایسه باقی می‌ماند.</p>
                 <div class="product-hero-actions">
                     <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="product_hero_consultation">درخواست دمو</a>
                     <a class="btn btn-outline" href="#product-flow">مشاهده فرایند سپند</a>

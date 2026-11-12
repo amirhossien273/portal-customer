@@ -114,7 +114,7 @@ class SeoClusterOwnershipTest extends TestCase
 
         $fleetDispatch = $this->get('/modules/fleet-dispatch')
             ->assertOk()
-            ->assertSee('دیسپچ اجرایی ناوگان', false)
+            ->assertSee('دیسپچ ناوگان چیست؟', false)
             ->assertSee('modules/screenshots/operations-calendar-list.webp', false)
             ->assertSee('Start، Complete یا Cancel', false);
 

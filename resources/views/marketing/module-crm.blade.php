@@ -115,6 +115,25 @@
     </div>
 </section>
 
+@if (! empty($page['search_answer'] ?? null))
+<section class="section soft" id="crm-search-answer">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">پاسخ کوتاه برای انتخاب درست</span>
+            <h2 class="section-title">{{ $page['search_answer']['heading'] }}</h2>
+            <p class="crm-intro">{{ $page['search_answer']['text'] }}</p>
+        </div>
+        @if (! empty($page['search_answer']['items'] ?? []))
+            <div class="crm-outcomes">
+                @foreach ($page['search_answer']['items'] as $item)
+                    <div class="crm-outcome reveal">{{ $item }}</div>
+                @endforeach
+            </div>
+        @endif
+    </div>
+</section>
+@endif
+
 <section class="section soft" id="crm-follow-ups" aria-labelledby="crm-follow-ups-title">
     <div class="container">
         <div class="section-head reveal">

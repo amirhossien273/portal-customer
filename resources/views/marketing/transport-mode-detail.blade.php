@@ -101,6 +101,25 @@
     </div>
 </section>
 
+@if(! empty($mode['search_answer']))
+<section class="section soft" id="transport-search-answer" aria-labelledby="transport-search-answer-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">پاسخ کوتاه</span>
+            <h2 class="section-title" id="transport-search-answer-title">{{ $mode['search_answer']['heading'] }}</h2>
+        </div>
+        <p class="crm-intro reveal">{{ $mode['search_answer']['text'] }}</p>
+        @if(! empty($mode['search_answer']['items']))
+            <ul class="crm-outcomes">
+                @foreach($mode['search_answer']['items'] as $item)
+                    <li class="reveal">{{ $item }}</li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+</section>
+@endif
+
 <section class="section soft" id="transport-features" aria-labelledby="transport-features-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">امکانات تخصصی</span><h2 class="section-title" id="transport-features-title">{{ $mode['features_heading'] }}</h2><p class="section-sub">{{ $mode['features_intro'] }}</p></div>
@@ -111,6 +130,28 @@
         </div>
     </div>
 </section>
+
+@if(! empty($mode['context_links']))
+<section class="section" id="transport-context-links" aria-labelledby="transport-context-links-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">مرزبندی موضوعی</span>
+            <h2 class="section-title" id="transport-context-links-title">برای هر نیاز، صفحه تخصصی درست را انتخاب کنید</h2>
+            <p class="section-sub">این صفحه مالک اجرای پرونده در روش حمل است؛ دارایی، سند تخصصی و مدل کسب‌وکار در صفحات مستقل بررسی می‌شوند.</p>
+        </div>
+        <div class="crm-process-grid">
+            @foreach($mode['context_links'] as $link)
+                <article class="crm-process reveal">
+                    <span class="crm-process-step">{{ $loop->iteration }}</span>
+                    <h3>{{ $link['title'] }}</h3>
+                    <p>{{ $link['description'] }}</p>
+                    <a href="{{ route($link['route'], $link['parameters'] ?? []) }}">{{ $link['label'] }}</a>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
 
 @if($slug === 'air')
     @include('marketing.transport-modes.air-shipment-overview')

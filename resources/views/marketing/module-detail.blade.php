@@ -84,6 +84,25 @@
     </div>
 </section>
 
+@if(! empty($page['search_answer']))
+<section class="section soft" id="module-search-answer" aria-labelledby="module-search-answer-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">{{ $page['search_answer']['label'] ?? 'پاسخ کوتاه' }}</span>
+            <h2 class="section-title" id="module-search-answer-title">{{ $page['search_answer']['heading'] }}</h2>
+        </div>
+        <p class="crm-intro reveal">{{ $page['search_answer']['text'] }}</p>
+        @if(! empty($page['search_answer']['items']))
+            <ul class="crm-outcomes">
+                @foreach($page['search_answer']['items'] as $item)
+                    <li class="reveal">{{ $item }}</li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+</section>
+@endif
+
 <section class="section" aria-labelledby="module-problems-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">مسئله و راهکار</span><h2 class="section-title" id="module-problems-title">{{ $page['problem_heading'] }}</h2></div>

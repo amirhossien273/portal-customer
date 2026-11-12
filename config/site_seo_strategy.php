@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'updated_at' => '2026-09-08',
+    'updated_at' => '2026-11-12',
 
     /*
      * Consolidated URLs must not remain in any indexable collection. These
@@ -31,6 +31,7 @@ return [
                 '/solutions/operation-exception-management' => ['query' => 'مدیریت استثناهای عملیات حمل', 'intent' => 'رسیدگی، مالکیت و بستن Exception', 'audience' => 'کارشناس رسیدگی و سرپرست عملیات', 'outcome' => 'Exception حل‌شده و قابل ممیزی'],
                 '/solutions/transport-governance' => ['query' => 'حاکمیت عملیاتی شرکت حمل و نقل', 'intent' => 'سیاست، اختیار و تصمیم بین‌واحدی', 'audience' => 'مدیر ارشد و مالک سیاست', 'outcome' => 'تصمیم سازمانی قابل ممیزی'],
                 '/solutions/operational-workflow-management' => ['query' => 'چک لیست اجرای عملیات فورواردری', 'intent' => 'استانداردسازی SOP، کنترل مرحله و مدرک عبور', 'audience' => 'مالک رویه و سرپرست عملیات', 'outcome' => 'اجرای یکنواخت و مستند فرایند'],
+                '/modules/booking' => ['query' => 'نرم افزار بوکینگ حمل و نقل', 'intent' => 'تبدیل پیشنهاد تأییدشده به رزرو قابل تحویل به عملیات', 'audience' => 'کارشناس رزرو و عملیات', 'outcome' => 'Booking کامل بدون ورود دوباره داده'],
             ],
         ],
         'documents' => [
@@ -58,7 +59,7 @@ return [
             'pillar' => '/solutions/fleet-management',
             'pages' => [
                 '/solutions/fleet-management' => ['query' => 'نرم افزار مدیریت ناوگان حمل و نقل', 'intent' => 'دارایی، راننده، نگهداری، Compliance و Availability', 'audience' => 'مدیر ناوگان', 'outcome' => 'منبع آماده و منطبق'],
-                '/modules/fleet-dispatch' => ['query' => 'دیسپچ اجرایی ناوگان', 'intent' => 'تخصیص نهایی و کنترل اجرای مأموریت جاری', 'audience' => 'دیسپچر شیفت', 'outcome' => 'مأموریت تخصیص‌یافته و قابل کنترل'],
+                '/modules/fleet-dispatch' => ['query' => 'نرم افزار دیسپچ ناوگان', 'intent' => 'تخصیص نهایی و کنترل اجرای مأموریت جاری', 'audience' => 'دیسپچر شیفت', 'outcome' => 'مأموریت تخصیص‌یافته و قابل کنترل'],
                 '/solutions/fleet-dispatch-planning' => ['query' => 'برنامه ریزی اعزام ناوگان', 'intent' => 'برنامه‌ریزی پیش از اجرا برای ظرفیت، بازه و Assignment', 'audience' => 'برنامه‌ریز ظرفیت', 'outcome' => 'برنامه بدون تداخل پیش از اعزام'],
             ],
         ],
@@ -110,6 +111,13 @@ return [
                 '/compare/sepand-vs-other-transport-software' => ['query' => 'مقایسه انواع نرم افزار حمل و نقل', 'intent' => 'مقایسه دسته‌ها و معماری‌های نرم‌افزار', 'audience' => 'تیم ارزیابی راهکار', 'outcome' => 'شناخت Trade-off دسته‌ها'],
                 '/compare/best-transport-software' => ['query' => 'نرم افزار مدیریت حمل و نقل', 'intent' => 'چارچوب انتخاب عمومی', 'audience' => 'کمیته خرید نرم‌افزار', 'outcome' => 'امتیازدهی و Shortlist'],
                 '/compare/best-freight-forwarding-software' => ['query' => 'بهترین نرم افزار فورواردری', 'intent' => 'چارچوب انتخاب تخصصی Freight Forwarder', 'audience' => 'مدیر شرکت فورواردری', 'outcome' => 'Shortlist عمودی و سناریوی دمو'],
+            ],
+        ],
+        'product_core' => [
+            'priority' => 'P1',
+            'pillar' => '/product',
+            'pages' => [
+                '/product' => ['query' => 'نرم افزار سپند', 'intent' => 'معرفی قابلیت‌ها، ارتباط ماژول‌ها و شواهد محصول یکپارچه سپند', 'audience' => 'مدیر شرکت و تیم ارزیابی نرم افزار', 'outcome' => 'درک دامنه محصول و انتخاب مسیر دموی مناسب'],
             ],
         ],
     ],

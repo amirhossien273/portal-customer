@@ -12,7 +12,7 @@ class PlatformSolutionPagesTest extends TestCase
     private const PAGES = [
         'operations-automation' => 'اتوماسیون عملیات حمل‌ونقل؛ از سیگنال تا اقدام قابل پیگیری',
         'freight-finance' => 'مدیریت مالی حمل‌ونقل؛ از هزینه تعهدی تا سود واقعی پرونده',
-        'fleet-management' => 'مدیریت ناوگان؛ آمادگی خودرو و راننده پیش از تصمیم اعزام',
+        'fleet-management' => 'نرم افزار مدیریت ناوگان؛ آمادگی خودرو و راننده پیش از اعزام',
         'document-management' => 'چرخه تأیید اسناد حمل را از Draft تا نسخه نهایی کنترل کنید',
         'multimodal-transport' => 'مدیریت حمل چندوجهی؛ یک Journey، چند Leg هماهنگ',
         'schedule-management' => 'مدیریت برنامه حرکت؛ یک مرجع برای ETD، ETA و تغییرات',
