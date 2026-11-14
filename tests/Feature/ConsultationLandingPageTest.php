@@ -129,6 +129,42 @@ class ConsultationLandingPageTest extends TestCase
         $this->assertNull($stored->topic);
     }
 
+    public function test_demo_form_is_stored_and_succeeds_when_sms_notification_fails(): void
+    {
+        $notifier = Mockery::mock(ConsultationSmsNotifier::class);
+        $notifier->shouldReceive('send')
+            ->once()
+            ->andReturnUsing(function (): void {
+                $this->assertDatabaseHas('consultation_requests', [
+                    'mobile' => '09121234567',
+                ]);
+
+                throw new \RuntimeException('SMS provider is unavailable.');
+            });
+        $this->app->instance(ConsultationSmsNotifier::class, $notifier);
+
+        $response = $this->post('/consultation', [
+            'name' => 'علی رضایی',
+            'company' => 'حمل‌ونقل نمونه',
+            'mobile' => '09121234567',
+            'email' => 'ali@example.com',
+            'company_type' => 'شرکت حمل‌ونقل بین‌المللی',
+            'approximate_users' => '6 تا 15 نفر',
+            'primary_need' => 'CRM و فروش',
+            'message' => 'درخواست نمایش فرایند فروش و پیگیری مشتریان.',
+        ]);
+
+        $response
+            ->assertRedirect(self::SITE_URL.'/consultation')
+            ->assertSessionHas('status', 'درخواست شما ثبت شد. اطلاعات اولیه بررسی می‌شود و برای هماهنگی جلسه دمو با شما تماس می‌گیریم.');
+
+        $this->assertDatabaseHas('consultation_requests', [
+            'name' => 'علی رضایی',
+            'company' => 'حمل‌ونقل نمونه',
+            'mobile' => '09121234567',
+        ]);
+    }
+
     public function test_form_rejects_an_answer_that_does_not_belong_to_the_selected_path(): void
     {
         $this->from('/consultation/process-review')->post('/consultation/process-review', [
@@ -183,6 +219,44 @@ class ConsultationLandingPageTest extends TestCase
             ->assertSee('درخواست شما ثبت شد', false)
             ->assertSee('آشنایی بیشتر با سپند', false)
             ->assertDontSee('<form class="consultation-wizard', false);
+    }
+
+    public function test_process_review_is_stored_and_succeeds_when_sms_notification_fails(): void
+    {
+        $notifier = Mockery::mock(ConsultationSmsNotifier::class);
+        $notifier->shouldReceive('send')
+            ->once()
+            ->andReturnUsing(function (): void {
+                $this->assertDatabaseHas('consultation_requests', [
+                    'mobile' => '09121234567',
+                    'topic' => 'operations',
+                ]);
+
+                throw new \RuntimeException('SMS provider is unavailable.');
+            });
+        $this->app->instance(ConsultationSmsNotifier::class, $notifier);
+
+        $response = $this->post('/consultation/process-review', [
+            'topic' => 'operations',
+            'responses' => [
+                2 => 'mixed',
+                3 => 'unknown_latest_status',
+                4 => 'ask_owner',
+            ],
+            'name' => 'علی رضایی',
+            'mobile' => '09121234567',
+            'company' => 'حمل‌ونقل نمونه',
+        ]);
+
+        $response->assertRedirect(self::SITE_URL.'/consultation/process-review')
+            ->assertSessionHas('status', 'success');
+
+        $this->assertDatabaseHas('consultation_requests', [
+            'name' => 'علی رضایی',
+            'company' => 'حمل‌ونقل نمونه',
+            'mobile' => '09121234567',
+            'topic' => 'operations',
+        ]);
     }
 
     public function test_storage_failure_keeps_the_answers_for_a_retry(): void

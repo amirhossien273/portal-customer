@@ -109,7 +109,7 @@ class MarketingConsultationController extends Controller
         unset($validated['website']);
 
         ConsultationRequest::create($validated);
-        $smsNotifier->send();
+        $this->sendSmsNotification($smsNotifier);
 
         return redirect()
             ->route('consultation.create')
@@ -168,10 +168,22 @@ class MarketingConsultationController extends Controller
                 ]);
         }
 
-        $smsNotifier->send();
+        $this->sendSmsNotification($smsNotifier);
 
         return redirect()
             ->route('process-review.create')
             ->with('status', 'success');
+    }
+
+    private function sendSmsNotification(ConsultationSmsNotifier $smsNotifier): void
+    {
+        try {
+            $smsNotifier->send();
+        } catch (Throwable $exception) {
+            Log::warning('Consultation request was stored, but its SMS notification failed.', [
+                'exception_class' => $exception::class,
+                'error_code' => $exception->getCode(),
+            ]);
+        }
     }
 }
