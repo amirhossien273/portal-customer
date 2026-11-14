@@ -96,6 +96,7 @@ $targets = [
     'governance' => $target('/solutions/transport-governance', 'solutions.transport-governance', [], 'تعریف سیاست و تصمیم قابل ممیزی بین واحدها', ['حاکمیت عملیات حمل', 'کنترل‌های مدیریتی حمل', 'Transport Governance', 'سیاست‌گذاری عملیات']),
     'document-readiness' => $target('/solutions/document-readiness', 'solutions.document-readiness', [], 'سنجش کامل‌بودن مدارک پیش از Gate عملیاتی', ['کنترل آماده بودن مدارک', 'Document Readiness حمل', 'کنترل کسری اسناد', 'آمادگی مدارک پیش از عملیات']),
     'dispatch-planning' => $target('/solutions/fleet-dispatch-planning', 'solutions.fleet-dispatch-planning', [], 'برنامه‌ریزی ظرفیت و تخصیص بدون تداخل', ['برنامه‌ریزی اعزام ناوگان', 'تخصیص بدون تداخل مأموریت', 'Dispatch Planning', 'برنامه ظرفیت خودرو و راننده']),
+    'truck-movement' => $target('/solutions/truck-movement-planning', 'solutions.truck-movement-planning', [], 'پوشش تقاضای کامیون با تعهد مرحله‌ای و چند موج حرکت', ['برنامه حرکت و اعزام کامیون', 'تأمین مرحله‌ای ظرفیت کامیون', 'برنامه چندموجه خروج بار', 'کنترل مانده ظرفیت حمل']),
     'operational-workflow' => $target('/solutions/operational-workflow-management', 'solutions.operational-workflow-management', [], 'استانداردسازی مرحله، مسئول، مهلت و مدرک', ['مدیریت گردش کار عملیات', 'چک‌لیست هوشمند عملیات حمل', 'استانداردسازی فرایند فورواردری', 'کنترل مرحله‌های عملیات']),
 ];
 
@@ -137,16 +138,16 @@ return [
         '/modules/email-workflow-automation' => $page(2, 'Sales / Operations', ['crm', 'pricing-sales', 'documents', 'transport-operations']),
         '/modules/operations-control-tower' => $page(3, 'Operations', ['transport-operations', 'visibility', 'exception', 'operational-workflow']),
         '/modules/document-checklists' => $page(3, 'Documents', ['documents', 'document-readiness', 'document-approval']),
-        '/modules/fleet-dispatch' => $page(3, 'Road / Fleet', ['road', 'dispatch-planning', 'fleet-management']),
+        '/modules/fleet-dispatch' => $page(3, 'Road / Fleet', ['road', 'truck-movement', 'dispatch-planning', 'fleet-management']),
 
         '/transport-modes/air' => $page(1, 'Air Freight', ['pricing-sales', 'booking', 'transport-operations', 'documents', 'finance']),
-        '/transport-modes/road' => $page(1, 'Road / Fleet', ['fleet-management', 'dispatch-planning', 'fleet-dispatch', 'transport-operations', 'finance']),
+        '/transport-modes/road' => $page(1, 'Road / Fleet', ['fleet-management', 'truck-movement', 'dispatch-planning', 'fleet-dispatch', 'transport-operations', 'finance']),
         '/transport-modes/sea' => $page(1, 'Sea / NVOCC', ['nvocc', 'container', 'bill-of-lading', 'schedule', 'finance', 'transport-operations']),
         '/transport-modes/rail' => $page(3, 'Multimodal', ['multimodal', 'schedule', 'transport-operations']),
 
         '/solutions/operations-automation' => $page(2, 'Operations', ['transport-operations', 'control-tower', 'exception', 'workflow']),
         '/solutions/freight-finance' => $page(2, 'Finance', ['finance', 'payment', 'pricing-sales', 'transport-operations']),
-        '/solutions/fleet-management' => $page(2, 'Road / Fleet', ['road', 'dispatch-planning', 'fleet-dispatch', 'transport-operations']),
+        '/solutions/fleet-management' => $page(2, 'Road / Fleet', ['road', 'truck-movement', 'dispatch-planning', 'fleet-dispatch', 'transport-operations']),
         '/solutions/document-management' => $page(3, 'Documents', ['documents', 'document-readiness', 'bill-of-lading']),
         '/solutions/multimodal-transport' => $page(3, 'Multimodal', ['transport-operations', 'air', 'sea', 'rail']),
         '/solutions/schedule-management' => $page(2, 'Sea / NVOCC', ['sea', 'nvocc', 'transport-operations', 'multimodal']),
@@ -154,7 +155,7 @@ return [
         '/solutions/security-access-management' => $page(3, 'Core', ['product', 'on-premise', 'governance']),
         '/solutions/payment-workflow' => $page(3, 'Finance', ['finance', 'freight-finance', 'booking-reconciliation']),
         '/solutions/booking-reconciliation' => $page(3, 'Finance', ['finance', 'booking', 'freight-finance']),
-        '/solutions/supplier-management' => $page(3, 'Sales', ['pricing-sales', 'rate', 'crm']),
+        '/solutions/supplier-management' => $page(3, 'Sales', ['pricing-sales', 'rate', 'truck-movement', 'crm']),
 
         '/solutions/nvocc' => $page(2, 'Sea / NVOCC', ['sea', 'container', 'bill-of-lading', 'finance']),
         '/solutions/container-management' => $page(2, 'Sea / NVOCC', ['sea', 'nvocc', 'schedule', 'finance']),
@@ -165,7 +166,8 @@ return [
         '/solutions/operation-exception-management' => $page(3, 'Operations', ['transport-operations', 'operations-automation', 'control-tower']),
         '/solutions/transport-governance' => $page(3, 'Operations', ['transport-operations', 'finance', 'security']),
         '/solutions/document-readiness' => $page(3, 'Documents', ['documents', 'document-checklists', 'document-approval']),
-        '/solutions/fleet-dispatch-planning' => $page(3, 'Road / Fleet', ['road', 'fleet-management', 'fleet-dispatch']),
+        '/solutions/fleet-dispatch-planning' => $page(3, 'Road / Fleet', ['road', 'truck-movement', 'fleet-management', 'fleet-dispatch']),
+        '/solutions/truck-movement-planning' => $page(2, 'Road / Fleet', ['transport-operations', 'supplier', 'dispatch-planning', 'road']),
         '/solutions/operational-workflow-management' => $page(2, 'Operations', ['transport-operations', 'control-tower', 'workflow', 'documents', 'schedule']),
     ],
 ];

@@ -75,9 +75,9 @@ class PlatformSolutionPagesTest extends TestCase
             }
         }
 
-        $this->assertCount(22, $catalogUrls);
+        $this->assertCount(23, $catalogUrls);
         $this->assertSame($catalogUrls, array_values(array_unique($catalogUrls)));
-        $this->assertStringContainsString('"numberOfItems":22', $response->getContent());
+        $this->assertStringContainsString('"numberOfItems":23', $response->getContent());
         $this->assertStringContainsString("replace(/[\\u200c\\u200d\\s]+/g, ' ')", $response->getContent());
     }
 

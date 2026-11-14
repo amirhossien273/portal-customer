@@ -61,6 +61,7 @@ return [
                 '/solutions/fleet-management' => ['query' => 'نرم افزار مدیریت ناوگان حمل و نقل', 'intent' => 'دارایی، راننده، نگهداری، Compliance و Availability', 'audience' => 'مدیر ناوگان', 'outcome' => 'منبع آماده و منطبق'],
                 '/modules/fleet-dispatch' => ['query' => 'نرم افزار دیسپچ ناوگان', 'intent' => 'تخصیص نهایی و کنترل اجرای مأموریت جاری', 'audience' => 'دیسپچر شیفت', 'outcome' => 'مأموریت تخصیص‌یافته و قابل کنترل'],
                 '/solutions/fleet-dispatch-planning' => ['query' => 'برنامه ریزی اعزام ناوگان', 'intent' => 'برنامه‌ریزی پیش از اجرا برای ظرفیت، بازه و Assignment', 'audience' => 'برنامه‌ریز ظرفیت', 'outcome' => 'برنامه بدون تداخل پیش از اعزام'],
+                '/solutions/truck-movement-planning' => ['query' => 'برنامه حرکت و اعزام کامیون', 'intent' => 'پوشش یک تقاضای حمل با تعهد چند تأمین‌کننده و چند موج حرکت', 'audience' => 'مدیر عملیات بندری و مسئول تأمین کامیون', 'outcome' => 'پوشش کامل نیاز با مانده ظرفیت شفاف'],
             ],
         ],
         'finance' => [

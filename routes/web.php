@@ -99,6 +99,10 @@ Route::middleware('marketing.trailing-slash')->group(function (): void {
         ->defaults('contentGroup', 'solutions')
         ->defaults('contentSlug', 'fleet-dispatch-planning')
         ->name('solutions.fleet-dispatch-planning');
+    Route::get('/solutions/truck-movement-planning', [MarketingContentPageController::class, 'show'])
+        ->defaults('contentGroup', 'solutions')
+        ->defaults('contentSlug', 'truck-movement-planning')
+        ->name('solutions.truck-movement-planning');
     Route::get('/solutions/operations-control-tower', [MarketingOperationalSolutionController::class, 'show'])
         ->defaults('solution', 'operations-control-tower')
         ->name('solutions.operations-control-tower');

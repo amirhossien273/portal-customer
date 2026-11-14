@@ -80,7 +80,7 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-content-page.css') }}?v=20260908-1">
+<link rel="stylesheet" href="{{ asset('assets/css/marketing-content-page.css') }}?v=20261114-1">
 @endpush
 
 @section('content')
@@ -131,6 +131,7 @@
         </div>
         <nav class="content-toc" aria-label="فهرست مطالب">
             <span>در این صفحه</span>
+            @if(isset($page['operational_scenario']))<a href="#operational-scenario-section">سناریوی واقعی</a>@endif
             <a href="#outcomes-section">خروجی‌ها</a>
             @if(isset($page['capability_status']))<a href="#capability-status-section">وضعیت قابلیت‌ها</a>@endif
             @if(isset($page['product_evidence']))<a href="#product-evidence-section">شواهد محصول</a>@endif
@@ -145,6 +146,45 @@
         </nav>
     </div>
 </section>
+
+@if(isset($page['operational_scenario']))
+@php($scenario = $page['operational_scenario'])
+<section class="section content-scenario-section" id="operational-scenario-section" aria-labelledby="operational-scenario-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">{{ $scenario['label'] }}</span>
+            <h2 class="section-title" id="operational-scenario-title">{{ $scenario['heading'] }}</h2>
+            <p class="section-sub">{{ $scenario['intro'] }}</p>
+        </div>
+        <div class="content-scenario-layout">
+            <article class="content-scenario-demand reveal">
+                <span>{{ $scenario['demand']['label'] }}</span>
+                <h3>{{ $scenario['demand']['title'] }}</h3>
+                <strong>{{ $scenario['demand']['quantity'] }}</strong>
+                <p>{{ $scenario['demand']['description'] }}</p>
+                <div class="content-scenario-controls">
+                    @foreach($scenario['controls'] as $control)
+                        <div><h4>{{ $control['title'] }}</h4><p>{{ $control['description'] }}</p></div>
+                    @endforeach
+                </div>
+            </article>
+            <div class="content-scenario-plan reveal">
+                <div class="content-scenario-waves">
+                    @foreach($scenario['waves'] as $wave)
+                        <article>
+                            <div><span>{{ $wave['label'] }}</span><strong>{{ $wave['time'] }}</strong></div>
+                            <b>{{ $wave['quantity'] }}</b>
+                            <em>{{ $wave['status'] }}</em>
+                            <p>{{ $wave['description'] }}</p>
+                        </article>
+                    @endforeach
+                </div>
+                <p class="content-scenario-result">{{ $scenario['result'] }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 
 <section class="section" id="outcomes-section" aria-labelledby="outcomes-title">
     <div class="container">
