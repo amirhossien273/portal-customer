@@ -142,6 +142,29 @@ class ConsultationLandingPageTest extends TestCase
             ->assertSee("event:'consultation_success'", false);
     }
 
+    public function test_truck_movement_source_is_carried_into_the_demo_form_and_stored(): void
+    {
+        $sourcePage = self::SITE_URL.'/solutions/truck-movement-planning';
+
+        $this->get('/consultation?source_page='.rawurlencode($sourcePage))
+            ->assertOk()
+            ->assertSee('name="source_page" value="'.$sourcePage.'"', false);
+
+        $this->post('/consultation', [
+            'name' => 'مدیر عملیات',
+            'company' => 'حمل بندری نمونه',
+            'mobile' => '09121234567',
+            'company_type' => 'شرکت حمل‌ونقل بین‌المللی',
+            'primary_need' => 'عملیات حمل',
+            'source_page' => $sourcePage,
+        ])->assertRedirect(self::SITE_URL.'/consultation');
+
+        $this->assertDatabaseHas('consultation_requests', [
+            'company' => 'حمل بندری نمونه',
+            'source_page' => $sourcePage,
+        ]);
+    }
+
     public function test_demo_form_uses_the_original_submission_flow(): void
     {
         $response = $this->post('/consultation', [

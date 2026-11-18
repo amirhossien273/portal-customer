@@ -5,9 +5,13 @@
     $depth = $page['depth'];
     $parentLabel = $isGuide ? 'مرکز مقایسه' : 'راهکارها';
     $parentUrl = $isGuide ? route('compare.index') : route('solutions.index');
+    $isTruckMovement = $group === 'solutions' && $slug === 'truck-movement-planning';
+    $consultationUrl = $isTruckMovement
+        ? route('consultation.create', ['source_page' => $canonical])
+        : route('consultation.create');
     $linkUrl = static fn (array $link): string => route($link['route'], $link['parameters'] ?? []);
     $significantLinks = array_values(array_unique(array_merge(
-        [$canonical, route('consultation.create')],
+        [$canonical, $consultationUrl],
         $isGuide ? [route('compare.index')] : [],
         array_map(static fn (array $item): string => $linkUrl($item['link']), $page['pillars']),
         array_map(static fn (array $item): string => $linkUrl($item['link']), $page['boundaries']),
@@ -81,6 +85,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/marketing-content-page.css') }}?v=20261114-1">
+@if($isTruckMovement)<link rel="stylesheet" href="{{ asset('assets/css/marketing-truck-movement.css') }}?v=20261118-1">@endif
 @endpush
 
 @section('content')
@@ -98,8 +103,13 @@
             <h1>{{ $page['h1'] }}</h1>
             <p>{{ $page['lead'] }}</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="#decision-framework">{{ $page['hero_primary_label'] ?? ($isGuide ? 'مشاهده معیارهای انتخاب' : 'مشاهده اجزای راهکار') }}</a>
-                <a class="btn btn-outline" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_hero_consultation">{{ $page['hero_secondary_label'] ?? 'درخواست دمو و مشاوره' }}</a>
+                @if($isTruckMovement)
+                    <a class="btn btn-primary" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="truck-movement-planning_hero_consultation">{{ $page['hero_primary_label'] }}</a>
+                    <a class="btn btn-outline" href="#truck-dispatch-example">{{ $page['hero_secondary_label'] }}</a>
+                @else
+                    <a class="btn btn-primary" href="#decision-framework">{{ $page['hero_primary_label'] ?? ($isGuide ? 'مشاهده معیارهای انتخاب' : 'مشاهده اجزای راهکار') }}</a>
+                    <a class="btn btn-outline" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_hero_consultation">{{ $page['hero_secondary_label'] ?? 'درخواست دمو و مشاوره' }}</a>
+                @endif
             </div>
         </div>
         <aside class="content-answer-card reveal" aria-label="پاسخ کوتاه">
@@ -113,6 +123,22 @@
         </aside>
     </div>
 </section>
+
+@if($isTruckMovement && isset($page['operational_scenario']))
+@php($scenario = $page['operational_scenario'])
+<section class="section truck-dispatch-example" id="truck-dispatch-example" aria-labelledby="truck-dispatch-example-title">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">{{ $scenario['label'] }}</span><h2 class="section-title" id="truck-dispatch-example-title">{{ $scenario['heading'] }}</h2><p class="section-sub">{{ $scenario['intro'] }}</p></div>
+        <div class="truck-scenario-summary reveal">
+            <div><span>{{ $scenario['demand']['label'] }}</span><strong>{{ $scenario['demand']['quantity'] }}</strong><p>{{ $scenario['demand']['description'] }}</p></div>
+            @foreach($scenario['waves'] as $wave)<article><span>{{ $wave['label'] }} · {{ $wave['time'] }}</span><strong>{{ $wave['quantity'] }}</strong><em>{{ $wave['status'] }}</em><p>{{ $wave['description'] }}</p></article>@endforeach
+        </div>
+        <div class="truck-scenario-table-wrap reveal"><table class="truck-scenario-table"><caption>نمونه سناریو</caption><thead><tr><th scope="col">مرحله</th><th scope="col">امروز</th><th scope="col">فردا</th><th scope="col">اثر بر وضعیت</th></tr></thead><tbody>@foreach($scenario['rows'] as $row)<tr><th scope="row">{{ $row['stage'] }}</th><td>{{ $row['today'] }}</td><td>{{ $row['tomorrow'] }}</td><td>{{ $row['effect'] }}</td></tr>@endforeach</tbody></table></div>
+        <div class="truck-scenario-controls">@foreach($scenario['controls'] as $control)<article class="reveal"><h3>{{ $control['title'] }}</h3><p>{{ $control['description'] }}</p></article>@endforeach</div>
+        <p class="truck-scenario-result reveal">{{ $scenario['result'] }}</p>
+    </div>
+</section>
+@endif
 
 <section class="content-intent-strip" aria-labelledby="content-intent-title">
     <div class="container">
@@ -131,7 +157,7 @@
         </div>
         <nav class="content-toc" aria-label="فهرست مطالب">
             <span>در این صفحه</span>
-            @if(isset($page['operational_scenario']))<a href="#operational-scenario-section">سناریوی واقعی</a>@endif
+            @if(isset($page['operational_scenario']))<a href="{{ $isTruckMovement ? '#truck-dispatch-example' : '#operational-scenario-section' }}">سناریوی واقعی</a>@endif
             <a href="#outcomes-section">خروجی‌ها</a>
             @if(isset($page['capability_status']))<a href="#capability-status-section">وضعیت قابلیت‌ها</a>@endif
             @if(isset($page['product_evidence']))<a href="#product-evidence-section">شواهد محصول</a>@endif
@@ -147,7 +173,7 @@
     </div>
 </section>
 
-@if(isset($page['operational_scenario']))
+@if(isset($page['operational_scenario']) && !$isTruckMovement)
 @php($scenario = $page['operational_scenario'])
 <section class="section content-scenario-section" id="operational-scenario-section" aria-labelledby="operational-scenario-title">
     <div class="container">
@@ -182,6 +208,15 @@
                 <p class="content-scenario-result">{{ $scenario['result'] }}</p>
             </div>
         </div>
+    </div>
+</section>
+@endif
+
+@if($isTruckMovement && isset($page['use_cases']))
+<section class="section soft" id="truck-use-cases" aria-labelledby="truck-use-cases-title">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">کاربردهای عملیاتی</span><h2 class="section-title" id="truck-use-cases-title">{{ $page['use_cases_heading'] }}</h2><p class="section-sub">محور اصلی این صفحه خروج بار بندری است؛ همین منطق در عملیات کارخانه‌ای و پروژه‌ای نیز برای مدیریت اعزام کامیون کاربرد دارد.</p></div>
+        <div class="content-outcomes-grid">@foreach($page['use_cases'] as $useCase)<article class="content-outcome-card reveal"><span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><h3>{{ $useCase['title'] }}</h3><p>{{ $useCase['description'] }}</p></article>@endforeach</div>
     </div>
 </section>
 @endif
@@ -398,5 +433,5 @@
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta_title'] }}</h2><p>{{ $page['cta_text'] }}</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_bottom_consultation">{{ $page['cta_button'] ?? 'درخواست دمو و مشاوره' }}</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta_title'] }}</h2><p>{{ $page['cta_text'] }}</p></div><div class="cta-action"><a class="btn" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="{{ $slug }}_bottom_consultation">{{ $page['cta_button'] ?? 'درخواست دمو و مشاوره' }}</a></div></div></div></section>
 @endsection

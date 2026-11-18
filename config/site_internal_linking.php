@@ -96,7 +96,7 @@ $targets = [
     'governance' => $target('/solutions/transport-governance', 'solutions.transport-governance', [], 'تعریف سیاست و تصمیم قابل ممیزی بین واحدها', ['حاکمیت عملیات حمل', 'کنترل‌های مدیریتی حمل', 'Transport Governance', 'سیاست‌گذاری عملیات']),
     'document-readiness' => $target('/solutions/document-readiness', 'solutions.document-readiness', [], 'سنجش کامل‌بودن مدارک پیش از Gate عملیاتی', ['کنترل آماده بودن مدارک', 'Document Readiness حمل', 'کنترل کسری اسناد', 'آمادگی مدارک پیش از عملیات']),
     'dispatch-planning' => $target('/solutions/fleet-dispatch-planning', 'solutions.fleet-dispatch-planning', [], 'برنامه‌ریزی ظرفیت و تخصیص بدون تداخل', ['برنامه‌ریزی اعزام ناوگان', 'تخصیص بدون تداخل مأموریت', 'Dispatch Planning', 'برنامه ظرفیت خودرو و راننده']),
-    'truck-movement' => $target('/solutions/truck-movement-planning', 'solutions.truck-movement-planning', [], 'پوشش تقاضای کامیون با تعهد مرحله‌ای و چند موج حرکت', ['برنامه حرکت و اعزام کامیون', 'تأمین مرحله‌ای ظرفیت کامیون', 'برنامه چندموجه خروج بار', 'کنترل مانده ظرفیت حمل']),
+    'truck-movement' => $target('/solutions/truck-movement-planning', 'solutions.truck-movement-planning', [], 'نرم‌افزار برنامه‌ریزی اعزام کامیون برای چند روز و شیفت', ['مدیریت اعزام کامیون', 'زمان‌بندی اعزام کامیون', 'برنامه‌ریزی اعزام چندنوبتی کامیون', 'تأمین مرحله‌ای ظرفیت کامیون']),
     'operational-workflow' => $target('/solutions/operational-workflow-management', 'solutions.operational-workflow-management', [], 'استانداردسازی مرحله، مسئول، مهلت و مدرک', ['مدیریت گردش کار عملیات', 'چک‌لیست هوشمند عملیات حمل', 'استانداردسازی فرایند فورواردری', 'کنترل مرحله‌های عملیات']),
 ];
 

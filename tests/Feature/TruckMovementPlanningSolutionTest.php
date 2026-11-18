@@ -27,26 +27,36 @@ class TruckMovementPlanningSolutionTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>برنامه حرکت و اعزام کامیون؛ تأمین مرحله‌ای ظرفیت | سپند</title>', false)
-            ->assertSee('<meta name="description" content="راهکار برنامه حرکت کامیون در سپند برای ثبت نیاز کل بار، تأمین مرحله‌ای کامیون، تقسیم اعزام به چند نوبت و کنترل ظرفیت باقی‌مانده.">', false)
+            ->assertSee('<title>نرم‌افزار برنامه‌ریزی اعزام کامیون | سپند</title>', false)
+            ->assertSee('<meta name="description" content="در سپند، تعداد کامیون موردنیاز، تعهد هر تأمین‌کننده و اعزام واقعی را در یک پرونده ثبت کنید. حرکت کامیون‌ها را در چند نوبت برنامه‌ریزی کنید و کسری را ببینید.">', false)
+            ->assertSee('<meta property="og:title" content="نرم‌افزار برنامه‌ریزی اعزام کامیون | سپند">', false)
+            ->assertSee('<meta name="twitter:title" content="نرم‌افزار برنامه‌ریزی اعزام کامیون | سپند">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/solutions/truck-movement-planning">', false)
-            ->assertSee('<h1>برنامه حرکت و اعزام کامیون؛ وقتی ظرفیت در چند نوبت تأمین می‌شود</h1>', false)
-            ->assertSee('اگر ظرفیت موردنیاز در دو نوبت فراهم شود چه اتفاقی می‌افتد؟', false)
-            ->assertSee('فرض کنید یک بار برای خروج از بندر به ۱۰ کامیون نیاز دارد', false)
-            ->assertSee('ظرفیت تأییدشده', false)
+            ->assertSee('<h1>نرم‌افزار برنامه‌ریزی اعزام کامیون برای حمل‌های چندنوبتی</h1>', false)
+            ->assertSee('برای خروج بار ۱۰ کامیون لازم دارید، اما فقط ۵ دستگاه امروز آماده‌اند؟', false)
+            ->assertSee('مثال اعزام ۱۰ کامیون برای خروج یک بار از بندر', false)
+            ->assertSee('<caption>نمونه سناریو</caption>', false)
+            ->assertSee('فقط پس از ثبت حرکت هر کامیون', false)
             ->assertSee('قول تأمین‌کننده برای فردا', false)
-            ->assertSee('مانده ظرفیت', false)
+            ->assertSee('فرق مانده تأمین و مانده اعزام چیست؟', false)
+            ->assertSee('این تعریف مفهومی است', false)
             ->assertSee('ثبت قول تأمین‌کننده', false)
-            ->assertSee('تقسیم برنامه به نوبت‌های حرکت', false)
+            ->assertSee('برنامه‌ریزی نوبت‌ها', false)
             ->assertSee('نرخ پوشش نیاز حمل', false)
-            ->assertSee('درخواست نمایش برنامه حرکت', false)
-            ->assertSee('id="operational-scenario-section"', false)
+            ->assertSee('درخواست دموی برنامه اعزام کامیون', false)
+            ->assertSee('href="#truck-dispatch-example">مشاهده مثال اعزام ۱۰ کامیون</a>', false)
+            ->assertSee('id="truck-dispatch-example"', false)
+            ->assertSee('source_page=https%3A%2F%2Fsepandcrm.ir%2Fsolutions%2Ftruck-movement-planning', false)
             ->assertSee('assets/images/marketing/modules/screenshots/operations-calendar-month.webp', false)
             ->assertSee('href="'.self::SITE_URL.'/solutions/fleet-dispatch-planning"', false)
-            ->assertSee('href="'.self::SITE_URL.'/solutions/supplier-management"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/fleet-dispatch"', false)
             ->assertSee('href="'.self::SITE_URL.'/transport-modes/road"', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/transport-operations"', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/fleet-management"', false)
+            ->assertSee('مدیریت اعزام کامیون', false)
+            ->assertSee('زمان‌بندی اعزام کامیون', false)
+            ->assertSee('برنامه‌ریزی اعزام چندنوبتی کامیون', false)
             ->assertSee('"@type":"WebPage"', false)
+            ->assertSee('"name":"نرم‌افزار برنامه‌ریزی اعزام کامیون | سپند"', false)
             ->assertSee('"@type":"BreadcrumbList"', false)
             ->assertSee('"@type":"FAQPage"', false)
             ->assertDontSee('noindex', false);
@@ -55,6 +65,11 @@ class TruckMovementPlanningSolutionTest extends TestCase
         $this->assertGreaterThanOrEqual(11, substr_count($content, '<h2'));
         $this->assertGreaterThan(7000, mb_strlen(strip_tags($content)));
         $this->assertValidJsonLd($content);
+
+        $this->assertLessThan(
+            strpos($content, 'فرق مانده تأمین و مانده اعزام چیست؟'),
+            strpos($content, 'id="truck-dispatch-example"')
+        );
     }
 
     public function test_page_is_discoverable_from_solution_hub_related_pages_and_sitemap(): void
