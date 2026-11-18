@@ -127,7 +127,7 @@
             </div>
 
             <aside class="why-case-snapshot reveal" aria-labelledby="case-snapshot-title">
-                <div><span>مشاهده در یک مقطع زمانی</span><h2 id="case-snapshot-title">صف اقدام در یک محیط عملیاتی واقعی</h2><p>در یک شرکت حمل‌ونقل که از سپند استفاده می‌کرد، داشبورد در زمان ثبت تصویر {{ $actionMetric['value'] }} مورد نیازمند اقدام نشان داد؛ {{ $actionMetric['meaning'] }}.</p><small>این اعداد یک Snapshot ناشناس هستند و به‌تنهایی نتیجه قبل و بعد یا درصد بهبود را اثبات نمی‌کنند.</small></div>
+                <div><span>مشاهده در یک مقطع زمانی</span><h2 id="case-snapshot-title">صف اقدام در یک محیط عملیاتی واقعی</h2><p>در یک شرکت حمل‌ونقل که از سپند استفاده می‌کرد، داشبورد در زمان ثبت تصویر {{ $actionMetric['value'] }} مورد نیازمند اقدام نشان داد؛ {{ $actionMetric['meaning'] }}.</p></div>
                 <a class="btn btn-outline" href="{{ route('case-studies.show', ['caseStudy' => $caseStudy['slug']]) }}" data-ga-event="cta_click" data-ga-label="why_case_study">مطالعه کامل کنترل عملیات</a>
             </aside>
         </div>
