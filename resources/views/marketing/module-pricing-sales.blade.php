@@ -119,7 +119,7 @@
             <p class="crm-lead">درخواست حمل به مشتری و اطلاعات محموله متصل است؛ نرخ خرید و شرایط تأمین‌کنندگان کنار هم بررسی می‌شوند و کارشناس بر پایه اطلاعات تأییدشده، پیشنهاد فروش را آماده و وضعیت آن را پیگیری می‌کند.</p>
             <p class="crm-lead">وقتی نرخ‌ها میان ایمیل و فایل‌های مختلف پخش‌اند، قالب شرایط یکسان نیست و اعتبار نرخ یا هزینه جانبی ممکن است هنگام آماده‌سازی قیمت نادیده بماند. سپند این داده‌ها را در پرونده همان استعلام نگه می‌دارد.</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="{{ route('consultation.legacy') }}" data-ga-event="cta_click" data-ga-label="pricing_sales_hero_consultation">درخواست دموی نرخ‌دهی حمل‌ونقل</a>
+                <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="pricing_sales_hero_consultation">درخواست دموی نرخ‌دهی حمل‌ونقل</a>
                 <a class="btn btn-outline" href="#pricing-process">مشاهده فرایند نرخ‌دهی</a>
             </div>
         </div>
@@ -243,5 +243,5 @@
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>یک استعلام واقعی را در سپند نرخ‌دهی کنید</h2><p>در دمو، مسیر ثبت درخواست، مقایسه پیشنهادها و آماده‌سازی قیمت فروش را با یک سناریوی نمونه بررسی می‌کنیم؛ مطابق روال واقعی دمو.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.legacy') }}" data-ga-event="cta_click" data-ga-label="pricing_sales_bottom_consultation">درخواست دموی نرخ‌دهی و فروش</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>یک استعلام واقعی را در سپند نرخ‌دهی کنید</h2><p>در دمو، مسیر ثبت درخواست، مقایسه پیشنهادها و آماده‌سازی قیمت فروش را با یک سناریوی نمونه بررسی می‌کنیم؛ مطابق روال واقعی دمو.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="pricing_sales_bottom_consultation">درخواست دموی نرخ‌دهی و فروش</a></div></div></div></section>
 @endsection
