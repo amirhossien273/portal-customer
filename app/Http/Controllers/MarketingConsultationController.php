@@ -14,8 +14,31 @@ use Throwable;
 
 class MarketingConsultationController extends Controller
 {
-    public function create(): View
+    public function create(Request $request): View
     {
+        $pricingUsers = $request->integer('pricing_users');
+        $billing = $request->query('billing');
+        $pricingConfig = config('marketing_pricing');
+        $pricingSelection = null;
+
+        if (
+            $pricingUsers >= $pricingConfig['min_users']
+            && $pricingUsers <= $pricingConfig['max_users']
+            && in_array($billing, ['monthly', 'annual'], true)
+        ) {
+            $pricingSelection = [
+                'users' => $pricingUsers,
+                'billing' => $billing,
+                'billing_label' => $billing === 'annual' ? 'پرداخت سالانه' : 'پرداخت ماهانه',
+                'approximate_users' => match (true) {
+                    $pricingUsers <= 5 => '1 تا 5 نفر',
+                    $pricingUsers <= 15 => '6 تا 15 نفر',
+                    $pricingUsers <= 30 => '16 تا 30 نفر',
+                    default => 'بیش از 30 نفر',
+                },
+            ];
+        }
+
         return view('marketing.consultation-demo', [
             'title' => 'درخواست دمو نرم‌افزار حمل‌ونقل و مشاوره خرید | سپند',
             'description' => 'درخواست دموی نرم‌افزار مدیریت حمل‌ونقل سپند؛ فرایندهای فروش، Booking، عملیات، اسناد و مالی شرکت خود را بررسی و ماژول‌های مناسب را انتخاب کنید.',
@@ -24,6 +47,7 @@ class MarketingConsultationController extends Controller
             'imageAlt' => 'نمای نرم افزار مدیریت حمل و نقل سپند',
             'imageWidth' => 835,
             'imageHeight' => 335,
+            'pricingSelection' => $pricingSelection,
         ]);
     }
 

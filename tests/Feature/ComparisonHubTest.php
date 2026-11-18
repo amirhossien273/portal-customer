@@ -27,17 +27,39 @@ class ComparisonHubTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>مرکز مقایسه نرم‌افزار حمل‌ونقل | سپند</title>', false)
+            ->assertSee('<title>مقایسه و راهنمای انتخاب نرم‌افزار حمل‌ونقل | سپند</title>', false)
+            ->assertSee('<meta name="description" content="نرم‌افزارهای حمل‌ونقل را از نظر امکانات، گردش کار، هزینه استقرار، آموزش و پشتیبانی بررسی کنید و راهنمای مناسب انتخاب را بیابید.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/compare">', false)
-            ->assertSee('مقایسه نرم‌افزار سپند با سایر نرم‌افزارهای حمل‌ونقل', false)
-            ->assertSee('سپند در برابر رویان', false)
-            ->assertSee('سپند در برابر سبا سیستم', false)
-            ->assertSee('سپند در برابر سایر نرم‌افزارهای حمل‌ونقل', false)
-            ->assertSee('راهنمای نرم‌افزار مدیریت حمل‌ونقل', false)
+            ->assertSee('<h1>مقایسه و راهنمای انتخاب نرم‌افزار حمل‌ونقل</h1>', false)
+            ->assertSee('امکانات، گردش کار، هزینه استقرار، آموزش و پشتیبانی', false)
+            ->assertSee('مقایسه سپند با نرم‌افزارهای دیگر', false)
+            ->assertSee('راهنمای انتخاب نرم‌افزار فورواردری', false)
+            ->assertSee('راهنمای انتخاب CRM حمل‌ونقل', false)
+            ->assertSee('راهنمای انتخاب حسابداری حمل‌ونقل', false)
+            ->assertSee('پوشش فرایندها', false)
+            ->assertSee('اتصال فروش به عملیات', false)
+            ->assertSee('مدیریت اسناد', false)
+            ->assertSee('مالی چندارزی', false)
+            ->assertSee('گزارش سود پرونده', false)
+            ->assertSee('انتقال اطلاعات', false)
+            ->assertSee('استقرار', false)
+            ->assertSee('آموزش و پشتیبانی', false)
+            ->assertSee('این مرکز مقایسه توسط سپند منتشر شده است', false)
+            ->assertSee('نبود اطلاعات عمومی به معنی نبود قابلیت نیست', false)
+            ->assertSee('سپند را با فرایند شرکت خودتان ارزیابی کنید', false)
+            ->assertSee('href="'.self::SITE_URL.'/consultation"', false)
             ->assertSee('"@type":"CollectionPage"', false)
             ->assertSee('"@type":"BreadcrumbList"', false)
             ->assertSee('"@type":"ItemList"', false)
-            ->assertSee('"@type":"FAQPage"', false);
+            ->assertSee('"@type":"FAQPage"', false)
+            ->assertDontSee('هاب مسیریابی', false)
+            ->assertDontSee('صفحه مالک همان Query', false)
+            ->assertDontSee('Intent', false)
+            ->assertDontSee('صفحات Cluster', false)
+            ->assertDontSee('Comparison Hub', false)
+            ->assertDontSee('مسیر ادامه بررسی', false)
+            ->assertDontSee('ادامه طبیعی این مسیر است', false)
+            ->assertDontSee('سپند بهترین است', false);
 
         foreach ($this->clusterPaths() as $path) {
             $response->assertSee('href="'.self::SITE_URL.$path.'"', false);
@@ -178,6 +200,9 @@ class ComparisonHubTest extends TestCase
             '/compare/sepand-vs-saba',
             '/compare/sepand-vs-other-transport-software',
             '/compare/best-transport-software',
+            '/compare/best-freight-forwarding-software',
+            '/compare/best-crm-for-transport-companies',
+            '/compare/best-transport-accounting-software',
         ];
     }
 

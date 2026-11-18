@@ -5,7 +5,18 @@
     $linkingPages = config('site_internal_linking.pages', []);
     $linkingPage = $linkingPages[$requestPath] ?? null;
     $linkTargets = config('site_internal_linking.targets', []);
-    $targetedContextualCopy = match ($slug ?? null) {
+    $targetedContextualCopy = match (true) {
+        request()->routeIs('compare.index') => [
+            'label' => 'منابع تکمیلی',
+            'title' => 'برای بررسی بیشتر',
+            'text' => 'پس از مشخص‌کردن معیارها، معرفی محصول، فهرست ماژول‌ها و روش محاسبه هزینه را بررسی کنید.',
+        ],
+        request()->routeIs('pricing') => [
+            'label' => 'منابع مرتبط',
+            'title' => 'پیش از دریافت پیشنهاد نهایی',
+            'text' => 'دامنه محصول، ماژول‌های موردنیاز و معیارهای مقایسه را بررسی کنید یا برای دریافت پیشنهاد متناسب درخواست دمو بدهید.',
+        ],
+        default => match ($slug ?? null) {
         'pricing-sales' => [
             'title' => 'آشنایی بیشتر با فرایند فروش حمل',
             'text' => 'برای بررسی دقیق‌تر مسیر مشتری، نرخ مرجع، پیشنهاد فروش و تحویل به Booking، ماژول‌ها و راهکارهای مرتبط سپند را ببینید.',
@@ -18,7 +29,8 @@
             'title' => 'آشنایی بیشتر با مدیریت وظایف سپند',
             'text' => 'برای تفکیک وظایف انسانی، ساخت خودکار تسک و مدیریت جریان‌های عملیاتی، ماژول یا راهکار تخصصی هر بخش را بررسی کنید.',
         ],
-        default => null,
+            default => null,
+        },
     };
     $resolvedLinks = collect($linkingPage['links'] ?? [])
         ->map(function (string $targetKey) use ($linkTargets, $linkingPages, $requestPath): ?array {
@@ -60,7 +72,7 @@
                 <h2 class="section-title" id="contextual-paths-title">ماژول مناسب کسب‌وکار خود را انتخاب کنید</h2>
                 <p class="section-sub">هر شرکت حمل‌ونقل بر اساس نوع خدمات، ساختار تیم و فرآیندهای عملیاتی خود به امکانات متفاوتی نیاز دارد. می‌توانید قابلیت‌های هر ماژول را به‌صورت جداگانه بررسی کنید یا برای شناسایی ترکیب مناسب ماژول‌های سپند، درخواست مشاوره و دموی نرم‌افزار ثبت کنید.</p>
             @elseif($targetedContextualCopy)
-                <span class="section-label">قابلیت‌های مرتبط</span>
+                <span class="section-label">{{ $targetedContextualCopy['label'] ?? 'قابلیت‌های مرتبط' }}</span>
                 <h2 class="section-title" id="contextual-paths-title">{{ $targetedContextualCopy['title'] }}</h2>
                 <p class="section-sub">{{ $targetedContextualCopy['text'] }}</p>
             @else
@@ -70,7 +82,7 @@
             @endif
         </header>
         <div class="contextual-paths-copy">
-            @if(request()->routeIs('product', 'modules'))
+            @if(request()->routeIs('product', 'modules', 'compare.index', 'pricing'))
                 <p class="crm-intro reveal">
                     @foreach($resolvedLinks as $link)
                         <a class="contextual-link" href="{{ route($link['route'], $link['parameters']) }}">{{ $link['anchor'] }}</a>@unless($loop->last)<span aria-hidden="true">، </span>@endunless

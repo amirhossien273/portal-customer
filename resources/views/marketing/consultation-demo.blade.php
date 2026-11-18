@@ -60,6 +60,9 @@
             ],
         ],
     ];
+    $pricingMessage = $pricingSelection
+        ? 'انتخاب از محاسبه‌گر تعرفه: '.$pricingSelection['users'].' کاربر، '.$pricingSelection['billing_label'].'.'
+        : null;
 @endphp
 
 @push('head')
@@ -121,6 +124,9 @@
                 <span class="consultation-eyebrow">اطلاعات اولیه</span>
                 <p class="form-title" id="consultation-form-title">برای هماهنگی دمو، این فرم کوتاه را تکمیل کنید</p>
                 <p>فیلدهای ستاره‌دار برای بررسی اولیه درخواست لازم هستند.</p>
+                @if($pricingSelection)
+                    <p class="consultation-pricing-context">انتخاب محاسبه‌گر منتقل شد: <strong>{{ $pricingSelection['users'] }} کاربر، {{ $pricingSelection['billing_label'] }}</strong></p>
+                @endif
             </div>
             @if(session('status'))<div class="form-status" id="consultation-form-status" role="status" tabindex="-1">{{ session('status') }}</div>@endif
             <div class="form-grid">
@@ -159,7 +165,7 @@
                     <select id="approximate_users" name="approximate_users" @error('approximate_users') aria-invalid="true" aria-describedby="approximate-users-error" @enderror>
                         <option value="">انتخاب کنید</option>
                         @foreach(['1 تا 5 نفر','6 تا 15 نفر','16 تا 30 نفر','بیش از 30 نفر'] as $range)
-                            <option value="{{ $range }}" @selected(old('approximate_users') === $range)>{{ $range }}</option>
+                            <option value="{{ $range }}" @selected(old('approximate_users', $pricingSelection['approximate_users'] ?? null) === $range)>{{ $range }}</option>
                         @endforeach
                     </select>
                     @error('approximate_users')<span class="form-error" id="approximate-users-error">{{ $message }}</span>@enderror
@@ -176,7 +182,7 @@
                 </div>
                 <div class="field full">
                     <label for="message">توضیحات تکمیلی <span class="optional">اختیاری</span></label>
-                    <textarea id="message" name="message" maxlength="2000" placeholder="مثلاً روش‌های حمل، ساختار تیم یا گلوگاهی که می‌خواهید در جلسه بررسی شود" @error('message') aria-invalid="true" aria-describedby="message-error" @enderror>{{ old('message') }}</textarea>
+                    <textarea id="message" name="message" maxlength="2000" placeholder="مثلاً روش‌های حمل، ساختار تیم یا گلوگاهی که می‌خواهید در جلسه بررسی شود" @error('message') aria-invalid="true" aria-describedby="message-error" @enderror>{{ old('message', $pricingMessage) }}</textarea>
                     @error('message')<span class="form-error" id="message-error">{{ $message }}</span>@enderror
                 </div>
                 <div class="field full form-submit">

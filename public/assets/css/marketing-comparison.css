@@ -71,19 +71,30 @@
 .comparison-hub-hero .hero-copy,.comparison-competitor-hero .hero-copy{max-width:720px}
 .comparison-hub-hero h1,.comparison-competitor-hero h1{font-size:clamp(34px,4.1vw,58px);line-height:1.5}
 .hub-visual{width:min(100%,430px);padding:39px;color:#fff;background:linear-gradient(145deg,rgba(47,145,150,.94),rgba(15,48,91,.92));border:1px solid rgba(255,255,255,.2);border-radius:30px;box-shadow:0 28px 70px rgba(5,25,50,.24)}
-.hub-visual>span{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;opacity:.75}
+.hub-visual>span{font-size:12px;font-weight:800;opacity:.82}
 .hub-visual>strong{display:block;margin:17px 0 25px;font-size:34px;line-height:1.55}
 .hub-visual ul{display:grid;gap:10px;margin:0;padding:0;list-style:none}
 .hub-visual li{position:relative;padding:10px 39px 10px 13px;color:#e5f3f4;background:rgba(255,255,255,.09);border-radius:12px;font-size:13px}
 .hub-visual li:before{content:'✓';position:absolute;right:13px;top:9px;display:grid;width:21px;height:21px;place-items:center;color:#154b62;background:#77dad4;border-radius:7px;font-size:10px;font-weight:900}
 .hub-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.hub-card{position:relative;min-height:260px;padding:34px 34px 30px;color:inherit;background:#fff;border:1px solid #dce8e8;border-radius:25px;box-shadow:0 16px 45px rgba(15,48,91,.06);transition:transform .22s,border-color .22s,box-shadow .22s}
+.hub-card{position:relative;display:flex;min-height:360px;flex-direction:column;padding:34px 34px 30px;color:inherit;background:#fff;border:1px solid #dce8e8;border-radius:25px;box-shadow:0 16px 45px rgba(15,48,91,.06);transition:transform .22s,border-color .22s,box-shadow .22s}
 .hub-card:hover{transform:translateY(-4px);border-color:rgba(47,145,150,.52);box-shadow:0 22px 55px rgba(15,48,91,.11)}
 .hub-card-number{position:absolute;top:28px;left:30px;color:#9aabb7;font-size:12px;font-weight:900}
 .hub-card small{color:var(--teal-dark);font-size:11px;font-weight:850}
-.hub-card h2{max-width:480px;margin:14px 0 11px;color:var(--navy-900);font-size:23px;line-height:1.75}
-.hub-card p{max-width:520px;margin:0 0 25px;color:var(--muted);font-size:14px;line-height:2}
-.hub-card b{position:absolute;right:34px;bottom:26px;color:var(--teal-dark);font-size:12px}
+.hub-card h3{max-width:480px;margin:14px 0 11px;color:var(--navy-900);font-size:23px;line-height:1.75}
+.hub-card p{max-width:520px;margin:0 0 18px;color:var(--muted);font-size:14px;line-height:2}
+.hub-card .hub-card-question{padding:13px 15px;color:#53687a;background:#f3f8f8;border-radius:14px;font-size:13px;line-height:1.95}
+.hub-card-question strong{color:var(--navy-900)}
+.hub-card-actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px 16px;margin-top:auto;padding-top:7px}
+.hub-card-actions a{font-size:12px;font-weight:850}
+.hub-card-primary{color:var(--teal-dark)}
+.hub-card-primary:hover,.hub-card-secondary:hover{color:var(--navy-900)}
+.hub-card-secondary{padding:6px 10px;color:#63788a;background:#f5f8f8;border:1px solid #e0e9e9;border-radius:99px}
+.comparison-publisher-strip{padding:19px 0;color:#486173;background:#ecf7f6;border-bottom:1px solid #d8ecea}
+.comparison-publisher-strip .container{display:grid;grid-template-columns:auto 1fr;align-items:start;gap:10px 20px}
+.comparison-publisher-strip strong{color:var(--navy-900);font-size:13px;white-space:nowrap}
+.comparison-publisher-strip p{margin:0;font-size:13px;line-height:2}
+.comparison-hub-criteria .criteria-card{min-height:190px}
 .criteria-card p{margin:0;color:var(--muted);font-size:14px;line-height:2.05}
 .comparison-source-strip{padding:17px 0;color:#405b6e;background:#ecf7f6;border-bottom:1px solid #d8ecea}
 .comparison-source-strip .container{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:2}
@@ -131,4 +142,4 @@
 .best-workflow{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:1040px){.workflow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.comparison-cluster-grid,.transport-check-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:840px){.comparison-hero .hero-copy,.comparison-hub-hero .hero-copy,.comparison-competitor-hero .hero-copy{max-width:none}.comparison-visual{max-width:620px;margin:auto}.hub-visual{margin:auto}.criteria-grid,.decision-grid,.hub-card-grid{grid-template-columns:1fr}.comparison-links .container{align-items:flex-start;flex-direction:column}.comparison-links nav{justify-content:flex-start}.capability-detail-grid{grid-template-columns:1fr}.mobile-table-hint{display:block}}
-@media(max-width:580px){.comparison-hero,.comparison-hub-hero,.comparison-competitor-hero{padding-bottom:80px}.comparison-hub-hero h1,.comparison-competitor-hero h1{font-size:30px;line-height:1.6}.comparison-visual{grid-template-columns:1fr;padding:18px}.comparison-visual-option,.competitor-visual .comparison-visual-option{min-height:160px}.comparison-visual-vs{margin:-4px auto}.hub-visual{padding:28px 24px}.hub-visual>strong{font-size:28px}.hub-card{min-height:250px;padding:28px 24px}.hub-card-number{top:24px;left:23px}.hub-card h2{font-size:20px}.hub-card b{right:24px}.criteria-card{padding:26px 60px 26px 20px}.criteria-number{top:27px;right:21px}.criteria-card li{font-size:13px}.verification-note,.table-footnote{font-size:12px}.comparison-table th,.comparison-table td{padding:15px 14px;font-size:12px}.competitor-table{min-width:920px}.competitor-table th:nth-child(1){width:140px}.competitor-table th:nth-child(2),.competitor-table th:nth-child(3){width:290px}.competitor-table th:nth-child(4){width:160px}.comparison-source-strip .container{display:block}.comparison-source-strip strong{display:block}.category-difference-card{grid-template-columns:1fr;padding:25px 22px}.category-difference-card h2{font-size:19px}.category-difference-card p{font-size:13px}.workflow-grid{grid-template-columns:1fr}.workflow-card{min-height:auto}.workflow-formula{font-size:11px}.decision-card{padding:25px 22px}.comparison-answer{padding:30px 24px}.comparison-answer h2{font-size:23px}.comparison-answer p{font-size:13px}.comparison-cluster-grid,.transport-check-grid{grid-template-columns:1fr}.comparison-cluster-card{min-height:210px}.comparison-cluster-card.is-current{display:none}}
+@media(max-width:580px){.comparison-hero,.comparison-hub-hero,.comparison-competitor-hero{padding-bottom:80px}.comparison-hub-hero h1,.comparison-competitor-hero h1{font-size:30px;line-height:1.6}.comparison-visual{grid-template-columns:1fr;padding:18px}.comparison-visual-option,.competitor-visual .comparison-visual-option{min-height:160px}.comparison-visual-vs{margin:-4px auto}.hub-visual{padding:28px 24px}.hub-visual>strong{font-size:28px}.comparison-publisher-strip .container{display:block}.comparison-publisher-strip strong{display:block;margin-bottom:4px}.hub-card{min-height:auto;padding:28px 24px}.hub-card-number{top:24px;left:23px}.hub-card h3{font-size:20px}.hub-card-actions{align-items:stretch;flex-direction:column}.hub-card-actions a{width:100%}.hub-card-primary{padding:8px 0}.hub-card-secondary{text-align:center}.criteria-card{padding:26px 60px 26px 20px}.criteria-number{top:27px;right:21px}.criteria-card li{font-size:13px}.verification-note,.table-footnote{font-size:12px}.comparison-table th,.comparison-table td{padding:15px 14px;font-size:12px}.competitor-table{min-width:920px}.competitor-table th:nth-child(1){width:140px}.competitor-table th:nth-child(2),.competitor-table th:nth-child(3){width:290px}.competitor-table th:nth-child(4){width:160px}.comparison-source-strip .container{display:block}.comparison-source-strip strong{display:block}.category-difference-card{grid-template-columns:1fr;padding:25px 22px}.category-difference-card h2{font-size:19px}.category-difference-card p{font-size:13px}.workflow-grid{grid-template-columns:1fr}.workflow-card{min-height:auto}.workflow-formula{font-size:11px}.decision-card{padding:25px 22px}.comparison-answer{padding:30px 24px}.comparison-answer h2{font-size:23px}.comparison-answer p{font-size:13px}.comparison-cluster-grid,.transport-check-grid{grid-template-columns:1fr}.comparison-cluster-card{min-height:210px}.comparison-cluster-card.is-current{display:none}}

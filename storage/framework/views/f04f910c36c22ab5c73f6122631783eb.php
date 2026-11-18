@@ -5,6 +5,33 @@
     $linkingPages = config('site_internal_linking.pages', []);
     $linkingPage = $linkingPages[$requestPath] ?? null;
     $linkTargets = config('site_internal_linking.targets', []);
+    $targetedContextualCopy = match (true) {
+        request()->routeIs('compare.index') => [
+            'label' => 'منابع تکمیلی',
+            'title' => 'برای بررسی بیشتر',
+            'text' => 'پس از مشخص‌کردن معیارها، معرفی محصول، فهرست ماژول‌ها و روش محاسبه هزینه را بررسی کنید.',
+        ],
+        request()->routeIs('pricing') => [
+            'label' => 'منابع مرتبط',
+            'title' => 'پیش از دریافت پیشنهاد نهایی',
+            'text' => 'دامنه محصول، ماژول‌های موردنیاز و معیارهای مقایسه را بررسی کنید یا برای دریافت پیشنهاد متناسب درخواست دمو بدهید.',
+        ],
+        default => match ($slug ?? null) {
+        'pricing-sales' => [
+            'title' => 'آشنایی بیشتر با فرایند فروش حمل',
+            'text' => 'برای بررسی دقیق‌تر مسیر مشتری، نرخ مرجع، پیشنهاد فروش و تحویل به Booking، ماژول‌ها و راهکارهای مرتبط سپند را ببینید.',
+        ],
+        'bill-of-lading-management' => [
+            'title' => 'آشنایی بیشتر با فرایند بارنامه',
+            'text' => 'برای بررسی دقیق‌تر مخزن اسناد، Booking، حمل دریایی و فرایند NVOCC، صفحه‌های تخصصی مرتبط را ببینید.',
+        ],
+        'workflow-tasks' => [
+            'title' => 'آشنایی بیشتر با مدیریت وظایف سپند',
+            'text' => 'برای تفکیک وظایف انسانی، ساخت خودکار تسک و مدیریت جریان‌های عملیاتی، ماژول یا راهکار تخصصی هر بخش را بررسی کنید.',
+        ],
+            default => null,
+        },
+    };
     $resolvedLinks = collect($linkingPage['links'] ?? [])
         ->map(function (string $targetKey) use ($linkTargets, $linkingPages, $requestPath): ?array {
             $target = $linkTargets[$targetKey] ?? null;
@@ -44,6 +71,10 @@
                 <span class="section-label">انتخاب و ارزیابی</span>
                 <h2 class="section-title" id="contextual-paths-title">ماژول مناسب کسب‌وکار خود را انتخاب کنید</h2>
                 <p class="section-sub">هر شرکت حمل‌ونقل بر اساس نوع خدمات، ساختار تیم و فرآیندهای عملیاتی خود به امکانات متفاوتی نیاز دارد. می‌توانید قابلیت‌های هر ماژول را به‌صورت جداگانه بررسی کنید یا برای شناسایی ترکیب مناسب ماژول‌های سپند، درخواست مشاوره و دموی نرم‌افزار ثبت کنید.</p>
+            <?php elseif($targetedContextualCopy): ?>
+                <span class="section-label"><?php echo e($targetedContextualCopy['label'] ?? 'قابلیت‌های مرتبط'); ?></span>
+                <h2 class="section-title" id="contextual-paths-title"><?php echo e($targetedContextualCopy['title']); ?></h2>
+                <p class="section-sub"><?php echo e($targetedContextualCopy['text']); ?></p>
             <?php else: ?>
                 <span class="section-label">مسیر ادامه بررسی</span>
                 <h2 class="section-title" id="contextual-paths-title">این موضوع در کدام بخش فرایند ادامه پیدا می‌کند؟</h2>
@@ -51,7 +82,7 @@
             <?php endif; ?>
         </header>
         <div class="contextual-paths-copy">
-            <?php if(request()->routeIs('product', 'modules')): ?>
+            <?php if(request()->routeIs('product', 'modules', 'compare.index', 'pricing')): ?>
                 <p class="crm-intro reveal">
                     <?php $__currentLoopData = $resolvedLinks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <a class="contextual-link" href="<?php echo e(route($link['route'], $link['parameters'])); ?>"><?php echo e($link['anchor']); ?></a><?php if (! ($loop->last)): ?><span aria-hidden="true">، </span><?php endif; ?>

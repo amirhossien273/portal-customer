@@ -54,9 +54,22 @@
 .pricing-summary>.btn:hover{background:var(--cyan);transform:translateY(-2px)}
 .pricing-summary>p{margin:14px 0 0;color:rgba(255,255,255,.48);font-size:9px;line-height:1.9;text-align:center}
 
+.pricing-scope-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.pricing-scope-card{display:flex;min-height:235px;flex-direction:column;padding:27px;background:#fff;border:1px solid #dce8e8;border-radius:22px;box-shadow:0 14px 38px rgba(15,48,91,.05)}
+.pricing-scope-card>span{color:var(--teal-dark);font-size:10px;font-weight:900}
+.pricing-scope-card h3,.pricing-deployment-card h3{margin:10px 0 9px;color:var(--navy-900);font-size:19px;line-height:1.7}
+.pricing-scope-card p,.pricing-deployment-card p{margin:0;color:var(--muted);font-size:13px;line-height:2.05}
+.pricing-scope-card a,.pricing-deployment-card a{align-self:flex-start;margin-top:auto;padding-top:16px;color:var(--teal-dark);font-size:12px;font-weight:850;text-decoration:underline;text-decoration-color:rgba(47,145,150,.3);text-underline-offset:4px}
+.pricing-deployment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:1020px;margin:auto}
+.pricing-deployment-card{display:flex;min-height:220px;flex-direction:column;padding:29px;background:#f8fbfb;border:1px solid #dce8e8;border-radius:22px}
+
 @media(max-width:980px){
     .pricing-calculator{grid-template-columns:1fr}
     .pricing-summary{position:relative;top:auto}
+}
+@media(max-width:840px){
+    .pricing-scope-grid,.pricing-deployment-grid{grid-template-columns:1fr}
+    .pricing-scope-card,.pricing-deployment-card{min-height:auto}
 }
 @media(max-width:620px){
     .pricing-calculator{padding:10px;border-radius:22px}
@@ -71,6 +84,8 @@
     .pricing-summary__unit>span{font-size:33px}
     .pricing-summary dl>div{align-items:flex-start;flex-direction:column;gap:4px}
     .pricing-summary dd{text-align:right}
+    .pricing-summary>.btn{min-height:52px}
+    .pricing-scope-card,.pricing-deployment-card{padding:23px 20px}
 }
 @media(prefers-reduced-motion:reduce){
     .pricing-billing-toggle button,.pricing-user-stepper button,.pricing-tier-list article{transition:none}

@@ -9,7 +9,7 @@ class MarketingComparisonController extends Controller
     public function index(): View
     {
         return view('marketing.compare-index', [
-            'comparisons' => config('site_comparisons.pages'),
+            'hubGuides' => config('site_comparisons.hub_guides'),
         ]);
     }
 

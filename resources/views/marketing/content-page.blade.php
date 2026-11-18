@@ -341,7 +341,7 @@
         <div class="content-metrics-grid">
             @foreach($depth['metrics']['items'] as $item)
                 <article class="content-metric-card reveal">
-                    <span>KPI {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span>{{ $depth['metrics']['item_label'] ?? 'KPI' }} {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                     <h3>{{ $item['name'] }}</h3>
                     <p>{{ $item['description'] }}</p>
                     <small>{{ $item['source'] }}</small>

@@ -29,6 +29,8 @@
 .form-heading{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #e8efef}
 .form-title{margin:0;color:var(--navy);font-size:21px;font-weight:900}
 .form-heading>p:last-child{margin:7px 0 0;color:var(--muted);font-size:12px}
+.form-heading>p.consultation-pricing-context{margin:14px 0 0;padding:11px 13px;color:#31566f;background:#edf8f7;border:1px solid #d4e9e7;border-radius:11px;font-size:12px;line-height:1.8}
+.consultation-pricing-context strong{color:var(--teal-dark)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .field{display:grid;gap:7px;align-content:start}
 .field.full{grid-column:1/-1}
