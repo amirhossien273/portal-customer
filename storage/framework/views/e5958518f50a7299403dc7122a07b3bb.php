@@ -99,6 +99,25 @@
     </div>
 </section>
 
+<?php if(! empty($mode['search_answer'])): ?>
+<section class="section soft" id="transport-search-answer" aria-labelledby="transport-search-answer-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">پاسخ کوتاه</span>
+            <h2 class="section-title" id="transport-search-answer-title"><?php echo e($mode['search_answer']['heading']); ?></h2>
+        </div>
+        <p class="crm-intro reveal"><?php echo e($mode['search_answer']['text']); ?></p>
+        <?php if(! empty($mode['search_answer']['items'])): ?>
+            <ul class="crm-outcomes">
+                <?php $__currentLoopData = $mode['search_answer']['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li class="reveal"><?php echo e($item); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>
+
 <section class="section soft" id="transport-features" aria-labelledby="transport-features-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">امکانات تخصصی</span><h2 class="section-title" id="transport-features-title"><?php echo e($mode['features_heading']); ?></h2><p class="section-sub"><?php echo e($mode['features_intro']); ?></p></div>
@@ -109,6 +128,28 @@
         </div>
     </div>
 </section>
+
+<?php if(! empty($mode['context_links'])): ?>
+<section class="section" id="transport-context-links" aria-labelledby="transport-context-links-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">مرزبندی موضوعی</span>
+            <h2 class="section-title" id="transport-context-links-title">برای هر نیاز، صفحه تخصصی درست را انتخاب کنید</h2>
+            <p class="section-sub">این صفحه مالک اجرای پرونده در روش حمل است؛ دارایی، سند تخصصی و مدل کسب‌وکار در صفحات مستقل بررسی می‌شوند.</p>
+        </div>
+        <div class="crm-process-grid">
+            <?php $__currentLoopData = $mode['context_links']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="crm-process reveal">
+                    <span class="crm-process-step"><?php echo e($loop->iteration); ?></span>
+                    <h3><?php echo e($link['title']); ?></h3>
+                    <p><?php echo e($link['description']); ?></p>
+                    <a href="<?php echo e(route($link['route'], $link['parameters'] ?? [])); ?>"><?php echo e($link['label']); ?></a>
+                </article>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <?php if($slug === 'air'): ?>
     <?php echo $__env->make('marketing.transport-modes.air-shipment-overview', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

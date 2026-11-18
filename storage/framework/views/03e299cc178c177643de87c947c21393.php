@@ -82,6 +82,25 @@
     </div>
 </section>
 
+<?php if(! empty($page['search_answer'])): ?>
+<section class="section soft" id="module-search-answer" aria-labelledby="module-search-answer-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label"><?php echo e($page['search_answer']['label'] ?? 'پاسخ کوتاه'); ?></span>
+            <h2 class="section-title" id="module-search-answer-title"><?php echo e($page['search_answer']['heading']); ?></h2>
+        </div>
+        <p class="crm-intro reveal"><?php echo e($page['search_answer']['text']); ?></p>
+        <?php if(! empty($page['search_answer']['items'])): ?>
+            <ul class="crm-outcomes">
+                <?php $__currentLoopData = $page['search_answer']['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li class="reveal"><?php echo e($item); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>
+
 <section class="section" aria-labelledby="module-problems-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">مسئله و راهکار</span><h2 class="section-title" id="module-problems-title"><?php echo e($page['problem_heading']); ?></h2></div>
@@ -110,6 +129,37 @@
         </div>
     </div>
 </section>
+
+<?php if(! empty($page['use_case'])): ?>
+<section class="section" id="module-use-case" aria-labelledby="module-use-case-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label"><?php echo e($page['use_case']['label'] ?? 'سناریوی کاربردی'); ?></span>
+            <h2 class="section-title" id="module-use-case-title"><?php echo e($page['use_case']['heading']); ?></h2>
+            <p class="section-sub"><?php echo e($page['use_case']['intro']); ?></p>
+        </div>
+        <?php if(! empty($page['use_case']['note'])): ?>
+            <p class="crm-intro reveal"><?php echo e($page['use_case']['note']); ?></p>
+        <?php endif; ?>
+        <ol class="crm-process-grid module-use-case-grid">
+            <?php $__currentLoopData = $page['use_case']['steps']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $step): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li class="crm-process reveal">
+                    <span class="crm-process-step"><?php echo e($loop->iteration); ?></span>
+                    <h3><?php echo e($step['title']); ?></h3>
+                    <p><?php echo e($step['description']); ?></p>
+                    <?php if(! empty($step['details'])): ?>
+                        <dl class="module-use-case-meta">
+                            <?php $__currentLoopData = $step['details']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div><dt><?php echo e($detail['label']); ?></dt><dd><?php echo e($detail['value']); ?></dd></div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </dl>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ol>
+    </div>
+</section>
+<?php endif; ?>
 
 
 <?php if(! empty($page['workflow_stages'])): ?>

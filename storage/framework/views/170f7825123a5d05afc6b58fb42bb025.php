@@ -40,7 +40,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('favicon.ico')); ?>?v=20260801">
     <?php echo $__env->yieldPushContent('head'); ?>
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing.css')); ?>?v=20261026-3">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing.css')); ?>?v=20261107-1">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-floating-cta.css')); ?>?v=20260827-1">
     <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
@@ -62,13 +62,13 @@
             <a href="<?php echo e(route('faq')); ?>" class="<?php echo \Illuminate\Support\Arr::toCssClasses(['active' => request()->routeIs('faq')]); ?>">سؤالات متداول</a>
             <a href="<?php echo e(route('why-sepand')); ?>" class="<?php echo \Illuminate\Support\Arr::toCssClasses(['active' => request()->routeIs('why-sepand')]); ?>">چرا سپند؟</a>
             <div class="portal-actions mobile-portals">
-                <a class="portal-link tracking" href="<?php echo e(route('tracking')); ?>" data-ga-event="portal_click" data-ga-label="mobile_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
+                <a class="<?php echo \Illuminate\Support\Arr::toCssClasses(['portal-link', 'process-review', 'active' => request()->routeIs('process-review.create')]); ?>" href="<?php echo e(route('process-review.create')); ?>" data-ga-event="cta_click" data-ga-label="mobile_process_review" <?php if(request()->routeIs('process-review.create')): ?> aria-current="page" <?php endif; ?>><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
                 <a class="portal-link" href="<?php echo e(route('login')); ?>">پورتال مشتریان</a>
                 <a class="portal-link primary" href="<?php echo e(route('organization.portal')); ?>" data-ga-event="portal_click" data-ga-label="mobile_organization_portal">پرتال سازمان</a>
             </div>
         </nav>
         <div class="portal-actions desktop-portals">
-            <a class="portal-link tracking" href="<?php echo e(route('tracking')); ?>" data-ga-event="portal_click" data-ga-label="desktop_tracking"><span class="new-badge">جدید</span>رهگیری محموله</a>
+            <a class="<?php echo \Illuminate\Support\Arr::toCssClasses(['portal-link', 'process-review', 'active' => request()->routeIs('process-review.create')]); ?>" href="<?php echo e(route('process-review.create')); ?>" data-ga-event="cta_click" data-ga-label="desktop_process_review" <?php if(request()->routeIs('process-review.create')): ?> aria-current="page" <?php endif; ?>><span class="new-badge">رایگان</span>راهکار مناسب شما</a>
             <a class="portal-link" href="<?php echo e(route('login')); ?>">پورتال مشتریان</a>
             <a class="portal-link primary" href="<?php echo e(route('organization.portal')); ?>" data-ga-event="portal_click" data-ga-label="desktop_organization_portal">پرتال سازمان</a>
         </div>

@@ -108,6 +108,50 @@
 <?php unset($__componentOriginal521d2f2530af53bb74d9e325c280cd3c); ?>
 <?php endif; ?><span><strong>توضیحات درخواست:</strong> <?php echo e($inquiry->description); ?></span></div>
                 <?php endif; ?>
+                <?php if($inquiry->status === 'failed' && filled($inquiry->failed_description)): ?>
+                    <div class="profile-notice"><?php if (isset($component)) { $__componentOriginal521d2f2530af53bb74d9e325c280cd3c = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal521d2f2530af53bb74d9e325c280cd3c = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.portal.icon','data' => ['name' => 'close']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('portal.icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['name' => 'close']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal521d2f2530af53bb74d9e325c280cd3c)): ?>
+<?php $attributes = $__attributesOriginal521d2f2530af53bb74d9e325c280cd3c; ?>
+<?php unset($__attributesOriginal521d2f2530af53bb74d9e325c280cd3c); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal521d2f2530af53bb74d9e325c280cd3c)): ?>
+<?php $component = $__componentOriginal521d2f2530af53bb74d9e325c280cd3c; ?>
+<?php unset($__componentOriginal521d2f2530af53bb74d9e325c280cd3c); ?>
+<?php endif; ?><span><strong>علت بسته‌شدن استعلام:</strong> <?php echo e($inquiry->failed_description); ?></span></div>
+                <?php endif; ?>
+                <?php if(in_array($inquiry->booking?->status, ['rejected', 'canceled'], true) && filled($inquiry->booking?->status_reason)): ?>
+                    <div class="profile-notice"><?php if (isset($component)) { $__componentOriginal521d2f2530af53bb74d9e325c280cd3c = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal521d2f2530af53bb74d9e325c280cd3c = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.portal.icon','data' => ['name' => 'close']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('portal.icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['name' => 'close']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal521d2f2530af53bb74d9e325c280cd3c)): ?>
+<?php $attributes = $__attributesOriginal521d2f2530af53bb74d9e325c280cd3c; ?>
+<?php unset($__attributesOriginal521d2f2530af53bb74d9e325c280cd3c); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal521d2f2530af53bb74d9e325c280cd3c)): ?>
+<?php $component = $__componentOriginal521d2f2530af53bb74d9e325c280cd3c; ?>
+<?php unset($__componentOriginal521d2f2530af53bb74d9e325c280cd3c); ?>
+<?php endif; ?><span><strong>علت توقف بوکینگ:</strong> <?php echo e($inquiry->booking->status_reason); ?></span></div>
+                <?php endif; ?>
             </section>
 
             <section class="detail-panel">

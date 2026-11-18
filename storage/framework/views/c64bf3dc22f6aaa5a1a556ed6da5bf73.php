@@ -78,7 +78,7 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('styles'); ?>
-<link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-content-page.css')); ?>?v=20260908-1">
+<link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-content-page.css')); ?>?v=20261114-1">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -129,7 +129,10 @@
         </div>
         <nav class="content-toc" aria-label="فهرست مطالب">
             <span>در این صفحه</span>
+            <?php if(isset($page['operational_scenario'])): ?><a href="#operational-scenario-section">سناریوی واقعی</a><?php endif; ?>
             <a href="#outcomes-section">خروجی‌ها</a>
+            <?php if(isset($page['capability_status'])): ?><a href="#capability-status-section">وضعیت قابلیت‌ها</a><?php endif; ?>
+            <?php if(isset($page['product_evidence'])): ?><a href="#product-evidence-section">شواهد محصول</a><?php endif; ?>
             <?php if(isset($page['specialist_difference'])): ?><a href="#specialist-difference-section">تفاوت دو دسته</a><?php endif; ?>
             <a href="#diagnostic-section">تشخیص نیاز</a>
             <a href="#decision-framework">اجزای اصلی</a>
@@ -142,6 +145,45 @@
     </div>
 </section>
 
+<?php if(isset($page['operational_scenario'])): ?>
+<?php ($scenario = $page['operational_scenario']); ?>
+<section class="section content-scenario-section" id="operational-scenario-section" aria-labelledby="operational-scenario-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label"><?php echo e($scenario['label']); ?></span>
+            <h2 class="section-title" id="operational-scenario-title"><?php echo e($scenario['heading']); ?></h2>
+            <p class="section-sub"><?php echo e($scenario['intro']); ?></p>
+        </div>
+        <div class="content-scenario-layout">
+            <article class="content-scenario-demand reveal">
+                <span><?php echo e($scenario['demand']['label']); ?></span>
+                <h3><?php echo e($scenario['demand']['title']); ?></h3>
+                <strong><?php echo e($scenario['demand']['quantity']); ?></strong>
+                <p><?php echo e($scenario['demand']['description']); ?></p>
+                <div class="content-scenario-controls">
+                    <?php $__currentLoopData = $scenario['controls']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $control): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div><h4><?php echo e($control['title']); ?></h4><p><?php echo e($control['description']); ?></p></div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+            </article>
+            <div class="content-scenario-plan reveal">
+                <div class="content-scenario-waves">
+                    <?php $__currentLoopData = $scenario['waves']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $wave): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <article>
+                            <div><span><?php echo e($wave['label']); ?></span><strong><?php echo e($wave['time']); ?></strong></div>
+                            <b><?php echo e($wave['quantity']); ?></b>
+                            <em><?php echo e($wave['status']); ?></em>
+                            <p><?php echo e($wave['description']); ?></p>
+                        </article>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+                <p class="content-scenario-result"><?php echo e($scenario['result']); ?></p>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <section class="section" id="outcomes-section" aria-labelledby="outcomes-title">
     <div class="container">
         <div class="section-head reveal"><span class="section-label">خروجی مورد انتظار</span><h2 class="section-title" id="outcomes-title"><?php echo e($page['outcomes_heading']); ?></h2></div>
@@ -152,6 +194,46 @@
         </div>
     </div>
 </section>
+
+<?php if(isset($page['capability_status'])): ?>
+<section class="section soft" id="capability-status-section" aria-labelledby="capability-status-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">مرز قابلیت و نیازمندی</span>
+            <h2 class="section-title" id="capability-status-title"><?php echo e($page['capability_status']['heading']); ?></h2>
+            <p class="section-sub"><?php echo e($page['capability_status']['intro']); ?></p>
+        </div>
+        <div class="content-difference-grid">
+            <?php $__currentLoopData = ['available', 'review']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $statusKey): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php ($status = $page['capability_status'][$statusKey]); ?>
+                <article class="content-difference-card reveal">
+                    <span><?php echo e($statusKey === 'available' ? 'قابل نمایش' : 'وابسته به نیازسنجی'); ?></span>
+                    <h3><?php echo e($status['title']); ?></h3>
+                    <p><?php echo e($status['description']); ?></p>
+                    <ul><?php $__currentLoopData = $status['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><li><?php echo e($item); ?></li><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></ul>
+                </article>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php if(isset($page['product_evidence'])): ?>
+<section class="section content-evidence-section" id="product-evidence-section" aria-labelledby="product-evidence-title">
+    <div class="container content-evidence-layout">
+        <figure class="content-evidence-media reveal">
+            <img src="<?php echo e(asset('assets/images/marketing/'.$page['product_evidence']['image'])); ?>" alt="<?php echo e($page['product_evidence']['alt']); ?>" width="<?php echo e($page['product_evidence']['width']); ?>" height="<?php echo e($page['product_evidence']['height']); ?>" loading="lazy">
+            <figcaption><?php echo e($page['product_evidence']['caption']); ?></figcaption>
+        </figure>
+        <div class="content-evidence-copy reveal">
+            <span class="section-label">تصویر واقعی محصول</span>
+            <h2 class="section-title" id="product-evidence-title"><?php echo e($page['product_evidence']['heading']); ?></h2>
+            <p><?php echo e($page['product_evidence']['description']); ?></p>
+            <strong><?php echo e($page['product_evidence']['note']); ?></strong>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <?php if(isset($page['specialist_difference'])): ?>
 <section class="section soft content-specialist-difference" id="specialist-difference-section" aria-labelledby="specialist-difference-title">
@@ -257,7 +339,7 @@
         <div class="content-metrics-grid">
             <?php $__currentLoopData = $depth['metrics']['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <article class="content-metric-card reveal">
-                    <span>KPI <?php echo e(str_pad($loop->iteration, 2, '0', STR_PAD_LEFT)); ?></span>
+                    <span><?php echo e($depth['metrics']['item_label'] ?? 'KPI'); ?> <?php echo e(str_pad($loop->iteration, 2, '0', STR_PAD_LEFT)); ?></span>
                     <h3><?php echo e($item['name']); ?></h3>
                     <p><?php echo e($item['description']); ?></p>
                     <small><?php echo e($item['source']); ?></small>
@@ -298,7 +380,7 @@
 
 <section class="section soft" id="boundaries-section" aria-labelledby="boundaries-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">مسیرهای مرتبط</span><h2 class="section-title" id="boundaries-title"><?php echo e($page['boundary_heading']); ?></h2><p class="section-sub">برای ادامه بررسی هر بخش، از مسیر تخصصی مرتبط استفاده کنید.</p></div>
+        <div class="section-head reveal"><span class="section-label">مسیرهای مرتبط</span><h2 class="section-title" id="boundaries-title"><?php echo e($page['boundary_heading']); ?></h2><p class="section-sub"><?php echo e($page['boundary_intro'] ?? 'برای ادامه بررسی، ماژول یا راهکار تخصصی مرتبط را مشاهده کنید.'); ?></p></div>
         <div class="content-boundaries-grid">
             <?php $__currentLoopData = $page['boundaries']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $boundary): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <article class="content-boundary-card reveal"><h3><?php echo e($boundary['title']); ?></h3><p><?php echo e($boundary['description']); ?></p><a href="<?php echo e($linkUrl($boundary['link'])); ?>"><?php echo e($boundary['link']['label']); ?> <span aria-hidden="true">←</span></a></article>

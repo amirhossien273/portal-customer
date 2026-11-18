@@ -1,12 +1,32 @@
 <?php
-    $title = 'مرکز مقایسه و راهنمای انتخاب نرم‌افزار حمل‌ونقل | سپند';
-    $description = 'هاب مقایسه نرم‌افزارهای حمل‌ونقل؛ انتخاب میان مقایسه مستقیم، مقایسه دسته‌های نرم‌افزار، راهنمای عمومی خرید و راهنمای تخصصی فورواردری.';
+    $pageName = 'مقایسه و راهنمای انتخاب نرم‌افزار حمل‌ونقل';
+    $title = $pageName.' | سپند';
+    $description = 'نرم‌افزارهای حمل‌ونقل را از نظر امکانات، گردش کار، هزینه استقرار، آموزش و پشتیبانی بررسی کنید و راهنمای مناسب انتخاب را بیابید.';
     $canonical = route('compare.index');
-    $faqs = [
-        ['question' => 'چطور یک نرم‌افزار حمل‌ونقل را بی‌طرفانه مقایسه کنیم؟', 'answer' => 'سناریوی یکسانی را از ثبت مشتری و استعلام تا نرخ، Booking، عملیات، اسناد، مالی و گزارش سود در هر محصول اجرا کنید و فقط قابلیت‌های نمایش‌داده‌شده یا تعهدشده در قرارداد را قطعی بدانید.'],
-        ['question' => 'آیا اطلاعات صفحات مقایسه جایگزین دمو است؟', 'answer' => 'خیر. اطلاعات عمومی ممکن است کامل یا به‌روز نباشد. نسخه، پلن، استقرار، قیمت، انتقال داده و پشتیبانی باید در دموی رسمی و پیشنهاد مکتوب بررسی شوند.'],
-        ['question' => 'برای دریافت قیمت چه اطلاعاتی آماده کنیم؟', 'answer' => 'تعداد کاربران، روش‌های حمل، ماژول‌های لازم، حجم داده مهاجرت، مدل استقرار، اتصال‌های فنی و سطح آموزش و پشتیبانی موردنیاز را مشخص کنید.'],
+    $evaluationCriteria = [
+        ['number' => '۰۱', 'title' => 'پوشش فرایندها', 'description' => 'بررسی کنید نرم‌افزار کدام مراحل را از ثبت مشتری و استعلام تا عملیات، مالی و بستن پرونده پوشش می‌دهد.'],
+        ['number' => '۰۲', 'title' => 'اتصال فروش به عملیات', 'description' => 'مشخص کنید اطلاعات تأییدشده فروش چگونه و با چه میزان ورود دوباره اطلاعات به تیم عملیات می‌رسد.'],
+        ['number' => '۰۳', 'title' => 'مدیریت اسناد', 'description' => 'ثبت، نسخه‌بندی، تأیید، مهلت و دسترسی به اسناد را در همان پرونده حمل آزمایش کنید.'],
+        ['number' => '۰۴', 'title' => 'مالی چندارزی', 'description' => 'نرخ ارز، هزینه و درآمد، دریافت‌وپرداخت و مانده حساب طرف‌های پرونده را با نمونه واقعی بسنجید.'],
+        ['number' => '۰۵', 'title' => 'گزارش سود پرونده', 'description' => 'ببینید سود هر پرونده چگونه محاسبه می‌شود و مدیر تا چه سطحی می‌تواند جزئیات آن را پیگیری کند.'],
+        ['number' => '۰۶', 'title' => 'انتقال اطلاعات', 'description' => 'دامنه انتقال اطلاعات قبلی، پاک‌سازی داده‌ها و اتصال به سامانه‌های موردنیاز شرکت را مکتوب کنید.'],
+        ['number' => '۰۷', 'title' => 'استقرار', 'description' => 'زمان‌بندی، مسئولیت‌ها، زیرساخت، آزمون نهایی و هزینه‌های اجرای نرم‌افزار را در پیشنهاد رسمی بررسی کنید.'],
+        ['number' => '۰۸', 'title' => 'آموزش و پشتیبانی', 'description' => 'روش آموزش کاربران، زمان پاسخ‌گویی، دامنه پشتیبانی و هزینه خدمات پس از راه‌اندازی را روشن کنید.'],
     ];
+    $faqs = [
+        ['question' => 'چطور نرم‌افزارهای حمل‌ونقل را منصفانه مقایسه کنیم؟', 'answer' => 'یک سناریوی واقعی و یکسان را در همه نرم‌افزارها اجرا کنید و قابلیت نمایش‌داده‌شده، تعهد مکتوب و مورد نیازمند توسعه را جداگانه ثبت کنید.'],
+        ['question' => 'اگر درباره یکی از نرم‌افزارها اطلاعات عمومی پیدا نشد چه نتیجه‌ای بگیریم؟', 'answer' => 'نبود اطلاعات عمومی به معنی نبود قابلیت نیست. وجود قابلیت، قیمت و محدودیت‌ها باید با منبع رسمی دارای تاریخ بررسی، جلسه نمایش و پیشنهاد مکتوب تأمین‌کننده تأیید شود.'],
+        ['question' => 'آیا این مرکز مقایسه بی‌طرف است؟', 'answer' => 'این مرکز توسط سپند منتشر شده است. برای کاهش جانبداری، پیشنهاد می‌کنیم هر گزینه را با سناریوی یکسان، منابع رسمی و تعهدات مکتوب ارزیابی کنید.'],
+    ];
+    $listedGuides = collect($hubGuides)->flatMap(static function (array $guide): array {
+        return [
+            ['title' => $guide['title'], 'route' => $guide['route']],
+            ...array_map(static fn (array $link): array => [
+                'title' => $link['label'],
+                'route' => $link['route'],
+            ], $guide['secondary_links']),
+        ];
+    })->values()->all();
 ?>
 
 <?php $__env->startPush('head'); ?>
@@ -16,31 +36,32 @@
         [
             '@type' => 'CollectionPage',
             '@id' => $canonical.'#webpage',
-            'name' => $title,
+            'name' => $pageName,
             'description' => $description,
             'url' => $canonical,
             'inLanguage' => 'fa-IR',
             'isPartOf' => ['@id' => route('home').'#website'],
-            'mainEntity' => ['@id' => $canonical.'#comparisons'],
+            'publisher' => ['@type' => 'Organization', 'name' => 'سپند', 'url' => route('home')],
+            'mainEntity' => ['@id' => $canonical.'#guides'],
         ],
         [
             '@type' => 'BreadcrumbList',
             '@id' => $canonical.'#breadcrumb',
             'itemListElement' => [
                 ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => 'مرکز مقایسه نرم‌افزارها', 'item' => $canonical],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => $pageName, 'item' => $canonical],
             ],
         ],
         [
             '@type' => 'ItemList',
-            '@id' => $canonical.'#comparisons',
-            'name' => 'صفحات مقایسه نرم‌افزار حمل‌ونقل',
+            '@id' => $canonical.'#guides',
+            'name' => 'راهنماهای مقایسه و انتخاب نرم‌افزار حمل‌ونقل',
             'itemListElement' => array_map(static fn (array $item, int $index): array => [
                 '@type' => 'ListItem',
                 'position' => $index + 1,
                 'name' => $item['title'],
                 'url' => route($item['route']),
-            ], $comparisons, array_keys($comparisons)),
+            ], $listedGuides, array_keys($listedGuides)),
         ],
         [
             '@type' => 'FAQPage',
@@ -56,7 +77,7 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('styles'); ?>
-<link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-comparison.css')); ?>?v=20260818-2">
+<link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-comparison.css')); ?>?v=20261114-1">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -64,58 +85,85 @@
     <div class="container hero-inner">
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="<?php echo e(route('home')); ?>">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>مرکز مقایسه</span></div>
-            <h1>مرکز مقایسه و راهنمای انتخاب نرم‌افزار حمل‌ونقل</h1>
-            <p>این صفحه هاب مسیریابی است: مقایسه مستقیم برندها، مقایسه دسته‌های TMS و CRM و مالی، چارچوب عمومی انتخاب و راهنمای تخصصی فورواردری را از هم جدا می‌کند تا برای هر سؤال وارد صفحه مالک همان Query شوید.</p>
-            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-pages">مشاهده مقایسه‌ها</a><a class="btn btn-outline" href="<?php echo e(route('compare.best-transport-software')); ?>">راهنمای انتخاب</a></div>
+            <h1><?php echo e($pageName); ?></h1>
+            <p>در این مرکز می‌توانید نرم‌افزارهای حمل‌ونقل را از نظر امکانات، گردش کار، هزینه استقرار، آموزش و پشتیبانی بررسی کنید و راهنمای متناسب با تصمیم خود را پیدا کنید.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-pages">انتخاب راهنمای مناسب</a><a class="btn btn-outline" href="<?php echo e(route('compare.best-transport-software')); ?>">مشاهده معیارهای انتخاب</a></div>
         </div>
-        <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مرکز مقایسه نرم‌افزار سپند با راهکارهای حمل‌ونقل">
+        <div class="hero-art comparison-hero-art reveal" role="img" aria-label="راهنمای مقایسه و انتخاب نرم‌افزار حمل‌ونقل">
             <div class="hub-visual">
-                <span>Comparison Hub</span>
-                <strong>یک سناریو،<br>چند انتخاب</strong>
-                <ul><li>قابلیت‌های تأییدشده</li><li>موارد نیازمند بررسی</li><li>چک‌لیست دمو و قرارداد</li></ul>
+                <span>راهنمای انتخاب</span>
+                <strong>یک فرایند واقعی،<br>چند گزینه</strong>
+                <ul><li>پوشش فرایندهای شرکت</li><li>هزینه اجرا و استقرار</li><li>آموزش و پشتیبانی</li></ul>
             </div>
         </div>
     </div>
 </section>
 
+<aside class="comparison-publisher-strip" aria-label="درباره ناشر و روش بررسی اطلاعات">
+    <div class="container">
+        <strong>درباره این مرکز</strong>
+        <p>این مرکز مقایسه توسط سپند منتشر شده است. اطلاعات مربوط به سایر نرم‌افزارها فقط بر پایه منابع رسمی و با تاریخ بررسی بیان می‌شود. نبود اطلاعات عمومی به معنی نبود قابلیت نیست؛ قابلیت‌ها، قیمت و محدودیت‌ها را در جلسه رسمی و پیشنهاد مکتوب هر تأمین‌کننده تأیید کنید.</p>
+    </div>
+</aside>
+
 <section class="section comparison-hub-pages" id="comparison-pages" aria-labelledby="comparison-pages-title">
     <div class="container">
         <div class="section-head reveal">
-            <span class="section-label">صفحات Cluster</span>
-            <h2 class="section-title" id="comparison-pages-title">بر اساس نوع تصمیم، صفحه مقایسه مناسب را انتخاب کنید</h2>
-            <p class="section-sub">این هاب مالک نام صفحات و مسیر تصمیم است؛ پاسخ تفصیلی هر Intent در صفحه تخصصی خودش ارائه می‌شود.</p>
+            <span class="section-label">راهنماهای مقایسه و انتخاب</span>
+            <h2 class="section-title" id="comparison-pages-title">کدام راهنما به پرسش شما پاسخ می‌دهد؟</h2>
+            <p class="section-sub">بر اساس موضوع تصمیم‌گیری، یکی از راهنماهای زیر را انتخاب کنید. هر راهنما پرسش‌ها و معیارهای همان حوزه را توضیح می‌دهد.</p>
         </div>
         <div class="hub-card-grid">
-            <?php $__currentLoopData = $comparisons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <a class="hub-card reveal" href="<?php echo e(route($item['route'])); ?>">
-                    <span class="hub-card-number"><?php echo e(str_pad($index + 1, 2, '0', STR_PAD_LEFT)); ?></span>
-                    <small><?php echo e($item['eyebrow']); ?></small>
-                    <h2><?php echo e($item['title']); ?></h2>
-                    <p><?php echo e($item['description']); ?></p>
-                    <b>مشاهده صفحه <span aria-hidden="true">←</span></b>
-                </a>
+            <?php $__currentLoopData = $hubGuides; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $guide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="hub-card reveal">
+                    <span class="hub-card-number"><?php echo e(['۰۱', '۰۲', '۰۳', '۰۴'][$index]); ?></span>
+                    <small><?php echo e($guide['eyebrow']); ?></small>
+                    <h3><?php echo e($guide['title']); ?></h3>
+                    <p class="hub-card-question"><strong>پرسش این راهنما:</strong> <?php echo e($guide['question']); ?></p>
+                    <p><?php echo e($guide['description']); ?></p>
+                    <div class="hub-card-actions">
+                        <a class="hub-card-primary" href="<?php echo e(route($guide['route'])); ?>"><?php echo e($guide['link_label']); ?> <span aria-hidden="true">←</span></a>
+                        <?php $__currentLoopData = $guide['secondary_links']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <a class="hub-card-secondary" href="<?php echo e(route($link['route'])); ?>"><?php echo e($link['label']); ?></a>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                </article>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
 
-<section class="section soft" aria-labelledby="comparison-method-title">
+<section class="section soft comparison-hub-criteria" aria-labelledby="comparison-method-title">
     <div class="container">
-        <div class="section-head reveal"><span class="section-label">روش ارزیابی</span><h2 class="section-title" id="comparison-method-title">سه اصل برای یک مقایسه قابل اعتماد</h2></div>
-        <div class="criteria-grid">
-            <article class="criteria-card reveal"><span class="criteria-number">۰۱</span><h3>ادعا را از سند جدا نکنید</h3><p>هر قابلیت را در نسخه قابل خرید، مستند فنی یا قرارداد تأیید کنید؛ شباهت نام ماژول‌ها به معنای یکسان بودن گردش کار نیست.</p></article>
-            <article class="criteria-card reveal"><span class="criteria-number">۰۲</span><h3>سناریوی واحد اجرا کنید</h3><p>همان مشتری، مسیر، استعلام، نرخ، Booking، سند و هزینه را در تمام دموها وارد کنید تا دوباره‌کاری و نقاط کور آشکار شوند.</p></article>
-            <article class="criteria-card reveal"><span class="criteria-number">۰۳</span><h3>هزینه کل را بسنجید</h3><p>قیمت مجوز استفاده را کنار استقرار، انتقال داده، آموزش، پشتیبانی، توسعه، زیرساخت و هزینه تغییرات آینده قرار دهید.</p></article>
-            <article class="criteria-card reveal"><span class="criteria-number">۰۴</span><h3>نتیجه را مکتوب کنید</h3><p>موارد نمایش‌داده‌شده، موارد تعهدشده و موارد نیازمند توسعه را جداگانه ثبت کنید تا تصمیم به برداشت شفاهی وابسته نباشد.</p></article>
+        <div class="section-head reveal">
+            <span class="section-label">چارچوب سریع ارزیابی</span>
+            <h2 class="section-title" id="comparison-method-title">در ارزیابی هر نرم‌افزار این ۸ موضوع را بررسی کنید</h2>
+            <p class="section-sub">برای همه گزینه‌ها یک سناریوی واقعی و یکسان اجرا کنید و نتیجه نمایش، تعهد مکتوب و نیاز به توسعه را جداگانه ثبت کنید.</p>
         </div>
+        <div class="criteria-grid">
+            <?php $__currentLoopData = $evaluationCriteria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $criterion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="criteria-card reveal">
+                    <span class="criteria-number"><?php echo e($criterion['number']); ?></span>
+                    <h3><?php echo e($criterion['title']); ?></h3>
+                    <p><?php echo e($criterion['description']); ?></p>
+                </article>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+        <aside class="verification-note reveal">
+            <strong>نکته درباره اطلاعات رقبا:</strong>
+            قابلیت‌ها، قیمت و محدودیت‌های هر نرم‌افزار فقط با منبع معتبر و تاریخ بررسی قابل استناد است. نبود اطلاعات عمومی را معادل نبود قابلیت در نظر نگیرید.
+        </aside>
     </div>
 </section>
 
 <section class="section" aria-labelledby="hub-faq-title">
-    <div class="container"><div class="section-head reveal"><span class="section-label">FAQ</span><h2 class="section-title" id="hub-faq-title">پرسش‌های متداول مرکز مقایسه</h2></div><div class="faq"><?php $__currentLoopData = $faqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $faq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><details class="reveal"><summary><?php echo e($faq['question']); ?></summary><p><?php echo e($faq['answer']); ?></p></details><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></div></div>
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">پرسش‌های رایج</span><h2 class="section-title" id="hub-faq-title">پیش از مقایسه نرم‌افزارها بدانید</h2></div>
+        <div class="faq"><?php $__currentLoopData = $faqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $faq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><details class="reveal"><summary><?php echo e($faq['question']); ?></summary><p><?php echo e($faq['answer']); ?></p></details><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></div>
+    </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>سپند را با سناریوی واقعی شرکت خودتان بررسی کنید</h2><p>در جلسه دمو می‌توانید فرایند فعلی خود را مطرح کنید و پاسخ قابلیت‌ها، استقرار و هزینه را متناسب با همان دامنه دریافت کنید.</p></div><div class="cta-action"><a class="btn" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="comparison_hub_consultation">درخواست دمو و مشاوره</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>سپند را با فرایند شرکت خودتان ارزیابی کنید</h2><p>یک پرونده واقعی را از استعلام تا عملیات و مالی در جلسه دمو بررسی کنید و دامنه قابلیت‌ها، استقرار و پشتیبانی موردنیازتان را مکتوب تحویل بگیرید.</p></div><div class="cta-action"><a class="btn" href="<?php echo e(route('consultation.create')); ?>" data-ga-event="cta_click" data-ga-label="comparison_hub_consultation">درخواست جلسه دمو</a></div></div></div></section>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.marketing', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/portal-customer/resources/views/marketing/compare-index.blade.php ENDPATH**/ ?>

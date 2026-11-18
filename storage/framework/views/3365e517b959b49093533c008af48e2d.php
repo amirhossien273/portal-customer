@@ -1,26 +1,4 @@
 <?php
-    $faqs = [
-        [
-            'question' => 'در جلسه دمو چه بخش‌هایی نمایش داده می‌شود؟',
-            'answer' => 'پس از بررسی نیاز شرکت، بخش‌های مرتبط سپند مانند CRM و فروش، Booking، عملیات، اسناد، مالی یا گزارش‌ها نمایش داده می‌شوند؛ بنابراین جلسه به مرور عمومی همه امکانات محدود نیست.',
-        ],
-        [
-            'question' => 'آیا دمو بر اساس فرایند شرکت ما انجام می‌شود؟',
-            'answer' => 'اطلاعات اولیه درباره نوع فعالیت، روش حمل، ساختار تیم و مسئله اصلی کمک می‌کند جلسه روی فرایندهای مرتبط شرکت شما متمرکز شود؛ دامنه دقیق در هماهنگی پیش از جلسه مشخص می‌شود.',
-        ],
-        [
-            'question' => 'برای درخواست دمو چه اطلاعاتی لازم است؟',
-            'answer' => 'نام متقاضی و شرکت، شماره تماس، نوع کسب‌وکار و مهم‌ترین نیاز فعلی لازم است. ایمیل، تعداد تقریبی کاربران و توضیحات تکمیلی اختیاری هستند.',
-        ],
-        [
-            'question' => 'بعد از جلسه دمو چگونه ماژول‌های مناسب مشخص می‌شوند؟',
-            'answer' => 'نیازها و گلوگاه‌های مطرح‌شده با دامنه ماژول‌های سپند تطبیق داده می‌شوند تا بخش‌های مرتبط و موضوعات نیازمند بررسی بیشتر برای ادامه تصمیم‌گیری مشخص شوند.',
-        ],
-        [
-            'question' => 'آیا سپند برای شرکت‌های حمل‌ونقل بین‌المللی و شرکت‌های فورواردری مناسب است؟',
-            'answer' => 'سپند برای فرایندهای شرکت‌های حمل‌ونقل بین‌المللی و فورواردری طراحی شده است و CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی پرونده حمل را پوشش می‌دهد. تناسب دقیق در جلسه نیازسنجی بررسی می‌شود.',
-        ],
-    ];
     $structuredData = [
         '@context' => 'https://schema.org',
         '@graph' => [
@@ -31,7 +9,7 @@
                 'description' => $description,
                 'url' => $canonical,
                 'inLanguage' => 'fa-IR',
-                'dateModified' => '2026-08-18',
+                'dateModified' => '2026-11-07',
                 'isPartOf' => ['@id' => route('home').'#website'],
                 'about' => [
                     '@type' => 'SoftwareApplication',
@@ -44,20 +22,33 @@
                 '@id' => $canonical.'#breadcrumb',
                 'itemListElement' => [
                     ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'درخواست دمو و مشاوره خرید', 'item' => $canonical],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'بررسی رایگان فرایندها', 'item' => $canonical],
                 ],
-            ],
-            [
-                '@type' => 'FAQPage',
-                '@id' => $canonical.'#faq',
-                'mainEntity' => array_map(static fn (array $faq): array => [
-                    '@type' => 'Question',
-                    'name' => $faq['question'],
-                    'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['answer']],
-                ], $faqs),
             ],
         ],
     ];
+
+    $initialStep = 1;
+    foreach ([2, 3, 4] as $responseStep) {
+        if ($errors->has('responses.'.$responseStep)) {
+            $initialStep = $responseStep;
+            break;
+        }
+    }
+    if ($errors->has('message')) {
+        $initialStep = 5;
+    }
+    if ($errors->hasAny(['name', 'mobile', 'company', 'source_page', 'utm', 'submission'])) {
+        $initialStep = 6;
+    }
+    if ($errors->has('topic')) {
+        $initialStep = 1;
+    }
+    $selectedTopic = old('topic');
+    $initialStepLabel = strtr((string) $initialStep, [
+        '0' => '۰', '1' => '۱', '2' => '۲', '3' => '۳', '4' => '۴',
+        '5' => '۵', '6' => '۶', '7' => '۷', '8' => '۸', '9' => '۹',
+    ]);
 ?>
 
 <?php $__env->startPush('head'); ?>
@@ -65,66 +56,150 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('styles'); ?>
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-consultation.css')); ?>?v=20260818-1">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/marketing-consultation.css')); ?>?v=20261107-1">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
-<section class="page-hero consultation-hero">
-    <div class="container hero-inner">
-        <div class="hero-copy reveal">
-            <div class="breadcrumb"><a href="<?php echo e(route('home')); ?>">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>درخواست دمو و مشاوره</span></div>
-            <h1><span class="h1-primary">درخواست دمو و مشاوره خرید</span><br><span>نرم‌افزار حمل‌ونقل سپند</span></h1>
-            <p>جلسه دمو سپند صرفاً نمایش عمومی فهرست امکانات نیست. ابتدا نوع فعالیت، روش‌های حمل، ساختار تیم و فرایند فعلی فروش، Booking، عملیات، اسناد و مالی شرکت شما بررسی می‌شود. سپس بخش‌ها و ماژول‌های مرتبط نرم‌افزار حمل‌ونقل سپند با تمرکز بر مسئله‌های اصلی تیم نمایش داده می‌شوند. هدف این جلسه آن است که پیش از تصمیم خرید، مشخص شود کدام قسمت‌های سپند CRM با نیازهای واقعی شرکت تطابق دارند، چه موضوعاتی به بررسی بیشتر نیاز دارند و ادامه ارزیابی یا استقرار باید با چه دامنه‌ای انجام شود.</p>
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="#consultation-form" data-ga-event="cta_click" data-ga-label="consultation_hero_form">ثبت درخواست دمو و نیازسنجی</a>
+<section class="page-hero process-review-hero">
+    <div class="container process-review-hero__layout">
+        <div class="process-review-hero__copy reveal">
+            <div class="breadcrumb"><a href="<?php echo e(route('home')); ?>">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>بررسی رایگان فرایندها</span></div>
+            <p class="process-review-kicker">مشاوره رایگان ویژه شرکت‌های حمل‌ونقل بین‌المللی</p>
+            <h1>کدام بخش از کار شرکت شما به <span>راهکار بهتری</span> نیاز دارد؟</h1>
+            <p class="process-review-lead">از فروش و نرخ‌گیری تا بوکینگ، عملیات و امور مالی؛ به چند سؤال کوتاه پاسخ دهید تا مسئله شرکت شما را بررسی کنیم و برای بهبود فرایندها راهکار پیشنهاد بدهیم.</p>
+            <div class="process-review-hero__action">
+                <a class="btn btn-primary" href="#consultation-form" data-form-start>شروع بررسی رایگان</a>
+                <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6v6l4 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>چند سؤال کوتاه، متناسب با نیاز شرکت شما</span>
             </div>
         </div>
-        <figure class="consultation-product-shot hero-art reveal">
-            <div class="product-shot-frame">
-                <span class="product-shot-label">نمای واقعی محصول</span>
-                <img src="<?php echo e(asset('assets/images/marketing/sepand-cargo-details.webp')); ?>" width="835" height="335" loading="eager" fetchpriority="high" alt="نمای نرم افزار مدیریت حمل و نقل سپند">
+
+        <div class="process-review-map reveal" aria-label="مسیر بررسی درخواست">
+            <div class="process-review-map__head">
+                <span>بررسی مسئله شرکت شما</span>
+                <span class="process-review-map__badge">۶ مرحله کوتاه</span>
             </div>
-            <figcaption>نمای نرم‌افزار سپند با اطلاعات نمونه</figcaption>
-        </figure>
+            <ol>
+                <li><span class="process-review-map__number">۱</span><div><strong>انتخاب مسئله اصلی</strong><small>فروش، نرخ، بوکینگ، عملیات، اسناد، مالی یا مدیریت</small></div></li>
+                <li><span class="process-review-map__number">۲</span><div><strong>پاسخ‌های مرتبط</strong><small>فقط سؤال‌هایی که به موضوع انتخابی شما مربوط‌اند</small></div></li>
+                <li><span class="process-review-map__number">۳</span><div><strong>بررسی توسط تیم سپند</strong><small>برای پیشنهاد راهکار متناسب با فرایند شرکت شما</small></div></li>
+            </ol>
+        </div>
     </div>
 </section>
 
-<section class="section consultation-section" aria-label="فرم درخواست دمو و جزئیات جلسه">
-    <div class="container consultation-layout">
-        <div class="consultation-side">
-            <section class="consultation-copy reveal" aria-labelledby="demo-review-title">
-                <span class="consultation-eyebrow">مسیر جلسه</span>
-                <h2 id="demo-review-title">در جلسه دمو سپند چه چیزی بررسی می‌شود؟</h2>
-                <ol class="demo-steps">
-                    <li><span>شناخت ساختار و فرایند فعلی شرکت</span></li>
-                    <li><span>بررسی گلوگاه‌ها و نیازهای اصلی</span></li>
-                    <li><span>نمایش بخش‌های مرتبط سپند</span></li>
-                    <li><span>مشخص‌کردن ماژول‌ها و قابلیت‌های موردنیاز</span></li>
-                    <li><span>پیشنهاد مسیر مناسب برای ادامه بررسی یا استقرار</span></li>
-                </ol>
-            </section>
+<section class="review-outcomes" aria-labelledby="review-outcomes-title">
+    <div class="container">
+        <div class="review-outcomes__heading"><span>خروجی این بررسی</span><h2 id="review-outcomes-title">یک تصویر روشن‌تر از مسئله و اقدام بعدی</h2></div>
+        <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg><span>بررسی چالش اصلی شرکت شما</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg><span>پیشنهاد اقدام‌های عملی برای بهبود فرایند</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg><span>بررسی اینکه سپند چگونه می‌تواند به اجرای راهکار کمک کند</span></li>
+        </ul>
+    </div>
+</section>
 
-            <section class="consultation-focus reveal" aria-labelledby="process-based-demo-title">
-                <span class="consultation-eyebrow">جلسه متمرکز</span>
-                <h2 id="process-based-demo-title">دمو بر اساس فرایند واقعی شرکت شما</h2>
-                <p>اگر نوع فعالیت، روش‌های حمل، ساختار تیم و مسئله اصلی را در فرم مشخص کنید، نمایش محصول روی بخش‌های مرتبط متمرکز می‌شود. این اطلاعات به معنی شخصی‌سازی قطعی محصول نیست و دامنه نهایی پس از بررسی دقیق‌تر مشخص خواهد شد.</p>
-            </section>
+<section class="process-review-form-section" aria-labelledby="process-review-form-section-title">
+    <div class="container">
+        <div class="process-review-form-section__head reveal">
+            <span>شروع بررسی</span>
+            <h2 id="process-review-form-section-title">مسئله اصلی شرکتتان را قدم‌به‌قدم بررسی کنیم</h2>
+            <p>در هر مرحله فقط یک سؤال می‌بینید و پاسخ‌ها هنگام رفت‌وبرگشت حفظ می‌شوند.</p>
         </div>
 
-        <form class="consultation-form reveal" id="consultation-form" method="POST" action="<?php echo e(route('consultation.store')); ?>" data-ga-form="consultation_submit" data-consultation-form aria-labelledby="consultation-form-title">
-            <?php echo csrf_field(); ?>
-            <input type="hidden" name="source_page" value="<?php echo e(old('source_page', url()->previous())); ?>">
-            <div class="honeypot" aria-hidden="true"><label for="website">وب‌سایت</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-            <div class="form-heading">
-                <span class="consultation-eyebrow">اطلاعات اولیه</span>
-                <p class="form-title" id="consultation-form-title">برای هماهنگی دمو، این فرم کوتاه را تکمیل کنید</p>
-                <p>فیلدهای ستاره‌دار برای بررسی اولیه درخواست لازم هستند.</p>
-            </div>
-            <?php if(session('status')): ?><div class="form-status" id="consultation-form-status" role="status" tabindex="-1"><?php echo e(session('status')); ?></div><?php endif; ?>
-            <div class="form-grid">
-                <div class="field">
-                    <label for="name">نام و نام خانوادگی <span aria-hidden="true">*</span></label>
-                    <input id="name" name="name" type="text" value="<?php echo e(old('name')); ?>" maxlength="100" autocomplete="name" required <?php $__errorArgs = ['name'];
+        <?php if(session('status') === 'success'): ?>
+            <section class="consultation-success" id="consultation-form" data-consultation-success tabindex="-1" aria-labelledby="consultation-success-title">
+                <div class="consultation-success__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m7 12.5 3.1 3L17.5 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg></div>
+                <p class="consultation-success__eyebrow">ثبت با موفقیت انجام شد</p>
+                <h2 id="consultation-success-title">درخواست شما ثبت شد</h2>
+                <p>پاسخ‌های شما برای تیم سپند ارسال شد. برای بررسی مسئله شرکتتان و گفت‌وگو درباره راهکارهای پیشنهادی با شما تماس می‌گیریم.</p>
+                <a class="btn btn-outline" href="<?php echo e(route('product')); ?>">آشنایی بیشتر با سپند</a>
+            </section>
+        <?php else: ?>
+            <form class="consultation-wizard reveal" id="consultation-form" method="POST" action="<?php echo e(route('process-review.store')); ?>" data-consultation-form data-initial-step="<?php echo e($initialStep); ?>" data-current-topic="<?php echo e($selectedTopic); ?>" novalidate>
+                <?php echo csrf_field(); ?>
+                <input type="hidden" name="source_page" value="<?php echo e(old('source_page', $sourcePage)); ?>">
+                <?php $__currentLoopData = $utmParameters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <input type="hidden" name="utm[<?php echo e($key); ?>]" value="<?php echo e(old('utm.'.$key, $value)); ?>">
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <div class="honeypot" aria-hidden="true"><label for="website">وب‌سایت</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+                <div class="consultation-wizard__progress">
+                    <div class="consultation-wizard__progress-copy"><span data-step-label>مرحله <?php echo e($initialStepLabel); ?> از ۶</span><strong data-step-context>انتخاب موضوع</strong></div>
+                    <div class="consultation-wizard__progress-track" role="progressbar" aria-label="پیشرفت فرم" aria-valuemin="1" aria-valuemax="6" aria-valuenow="<?php echo e($initialStep); ?>" data-progressbar><span data-progress-fill style="width: <?php echo e(($initialStep / 6) * 100); ?>%"></span></div>
+                </div>
+
+                <div class="consultation-wizard__body">
+                    <fieldset class="consultation-stage" data-stage="1" <?php if($initialStep !== 1): ?> hidden <?php endif; ?>>
+                        <legend class="sr-only">انتخاب موضوع</legend>
+                        <div class="consultation-question"><span class="consultation-question__number">۱</span><div><h3 tabindex="-1" data-question-heading>کدام بخش از شرکت شما بیشتر به بهبود نیاز دارد؟</h3><p>اگر چند موضوع دارید، مهم‌ترین مورد را انتخاب کنید.</p></div></div>
+                        <div class="consultation-options consultation-options--topics">
+                            <?php $__currentLoopData = $topics; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $topicKey => $topic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <label class="consultation-option">
+                                    <input type="radio" name="topic" value="<?php echo e($topicKey); ?>" <?php if($selectedTopic === $topicKey): echo 'checked'; endif; ?>>
+                                    <span class="consultation-option__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span><?php echo e($topic['label']); ?></span>
+                                </label>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
+                        <p class="consultation-step-error" data-step-error="1" role="alert"><?php $__errorArgs = ['topic'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><?php echo e($message); ?><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?></p>
+                    </fieldset>
+
+                    <?php $__currentLoopData = $topics; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $topicKey => $topic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $topic['questions']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $questionStep => $question): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <fieldset class="consultation-stage" data-stage="<?php echo e($questionStep); ?>" data-topic="<?php echo e($topicKey); ?>" <?php if($initialStep !== $questionStep || $selectedTopic !== $topicKey): ?> hidden <?php endif; ?>>
+                                <legend class="sr-only"><?php echo e($question['text']); ?></legend>
+                                <div class="consultation-question"><span class="consultation-question__number"><?php echo e($questionStep); ?></span><div><span class="consultation-question__topic"><?php echo e($topic['label']); ?></span><h3 tabindex="-1" data-question-heading><?php echo e($question['text']); ?></h3></div></div>
+                                <div class="consultation-options">
+                                    <?php $__currentLoopData = $question['options']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $optionKey => $optionLabel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <label class="consultation-option">
+                                            <input type="radio" name="responses[<?php echo e($questionStep); ?>]" value="<?php echo e($optionKey); ?>" <?php if(old('responses.'.$questionStep) === $optionKey): echo 'checked'; endif; ?>>
+                                            <span class="consultation-option__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m5 10.5 3 3L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                            <span><?php echo e($optionLabel); ?></span>
+                                        </label>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div>
+                                <p class="consultation-step-error" data-step-error="<?php echo e($questionStep); ?>" role="alert"><?php $__errorArgs = ['responses.'.$questionStep];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><?php echo e($message); ?><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?></p>
+                            </fieldset>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                    <section class="consultation-stage" data-stage="5" <?php if($initialStep !== 5): ?> hidden <?php endif; ?> aria-labelledby="optional-note-title">
+                        <div class="consultation-question"><span class="consultation-question__number">۵</span><div><span class="consultation-question__topic">اختیاری</span><h3 id="optional-note-title" tabindex="-1" data-question-heading>درباره مسئله شرکتتان، چه نکته دیگری باید بدانیم؟</h3><p>اگر توضیح بیشتری ندارید، می‌توانید از این مرحله عبور کنید.</p></div></div>
+                        <div class="consultation-textarea-field">
+                            <label class="sr-only" for="message">توضیح اختیاری درباره مسئله شرکت</label>
+                            <textarea id="message" name="message" maxlength="2000" rows="5" placeholder="مثلاً مشکلی که مرتب تکرار می‌شود یا کاری که وقت زیادی از تیم شما می‌گیرد."><?php echo e(old('message')); ?></textarea>
+                            <div><span>اختیاری</span><span data-message-count>۰ از ۲۰۰۰</span></div>
+                            <?php $__errorArgs = ['message'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><p class="consultation-step-error" role="alert"><?php echo e($message); ?></p><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                        </div>
+                    </section>
+
+                    <section class="consultation-stage" data-stage="6" <?php if($initialStep !== 6): ?> hidden <?php endif; ?> aria-labelledby="contact-details-title">
+                        <div class="consultation-question"><span class="consultation-question__number">۶</span><div><span class="consultation-question__topic">اطلاعات تماس</span><h3 id="contact-details-title" tabindex="-1" data-question-heading>برای بررسی پاسخ‌ها و ارائه راهکار، چطور با شما در ارتباط باشیم؟</h3><p>تیم سپند پاسخ‌های شما را بررسی می‌کند و برای گفت‌وگو درباره مسئله شرکتتان و راهکارهای پیشنهادی با شما تماس می‌گیرد.</p></div></div>
+                        <div class="consultation-contact-fields">
+                            <div class="field">
+                                <label for="name">نام و نام خانوادگی <span aria-hidden="true">*</span></label>
+                                <input id="name" name="name" type="text" value="<?php echo e(old('name')); ?>" maxlength="100" autocomplete="name" required <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -132,7 +207,7 @@ $message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-described
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>>
-                    <?php $__errorArgs = ['name'];
+                                <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -140,29 +215,10 @@ $message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="name-e
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                </div>
-                <div class="field">
-                    <label for="company">نام شرکت <span aria-hidden="true">*</span></label>
-                    <input id="company" name="company" type="text" value="<?php echo e(old('company')); ?>" maxlength="150" autocomplete="organization" required <?php $__errorArgs = ['company'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-describedby="company-error" <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>>
-                    <?php $__errorArgs = ['company'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="company-error"><?php echo e($message); ?></span><?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                </div>
-                <div class="field">
-                    <label for="mobile">شماره تماس <span aria-hidden="true">*</span></label>
-                    <input id="mobile" name="mobile" type="tel" value="<?php echo e(old('mobile')); ?>" maxlength="30" inputmode="tel" autocomplete="tel" required <?php $__errorArgs = ['mobile'];
+                            </div>
+                            <div class="field">
+                                <label for="mobile">شماره موبایل <span aria-hidden="true">*</span></label>
+                                <input id="mobile" name="mobile" type="tel" value="<?php echo e(old('mobile')); ?>" maxlength="20" inputmode="tel" autocomplete="tel" placeholder="۰۹۱۲۱۲۳۴۵۶۷" dir="ltr" required <?php $__errorArgs = ['mobile'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -170,7 +226,7 @@ $message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-described
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>>
-                    <?php $__errorArgs = ['mobile'];
+                                <?php $__errorArgs = ['mobile'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -178,171 +234,178 @@ $message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="mobile
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                </div>
-                <div class="field">
-                    <label for="email">ایمیل سازمانی <span class="optional">اختیاری</span></label>
-                    <input id="email" name="email" type="email" value="<?php echo e(old('email')); ?>" maxlength="190" inputmode="email" autocomplete="email" <?php $__errorArgs = ['email'];
+                            </div>
+                            <div class="field field--company">
+                                <label for="company">نام شرکت <span aria-hidden="true">*</span></label>
+                                <input id="company" name="company" type="text" value="<?php echo e(old('company')); ?>" maxlength="150" autocomplete="organization" required <?php $__errorArgs = ['company'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-describedby="email-error" <?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-describedby="company-error" <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>>
-                    <?php $__errorArgs = ['email'];
+                                <?php $__errorArgs = ['company'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="email-error"><?php echo e($message); ?></span><?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="company-error"><?php echo e($message); ?></span><?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                </div>
-                <div class="field">
-                    <label for="company_type">نوع کسب‌وکار <span aria-hidden="true">*</span></label>
-                    <select id="company_type" name="company_type" required <?php $__errorArgs = ['company_type'];
+                            </div>
+                        </div>
+                        <?php $__errorArgs = ['submission'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-describedby="company-type-error" <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>>
-                        <option value="">انتخاب کنید</option>
-                        <?php $__currentLoopData = ['شرکت حمل‌ونقل بین‌المللی','شرکت فورواردری','NVOCC','نماینده خط حمل','شرکت لجستیک','سایر']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($type); ?>" <?php if(old('company_type') === $type): echo 'selected'; endif; ?>><?php echo e($type); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                    <?php $__errorArgs = ['company_type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="company-type-error"><?php echo e($message); ?></span><?php unset($message);
+$message = $__bag->first($__errorArgs[0]); ?><p class="consultation-submit-error" role="alert"><?php echo e($message); ?></p><?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                    </section>
                 </div>
-                <div class="field">
-                    <label for="approximate_users">تعداد تقریبی کاربران <span class="optional">اختیاری</span></label>
-                    <select id="approximate_users" name="approximate_users" <?php $__errorArgs = ['approximate_users'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-describedby="approximate-users-error" <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>>
-                        <option value="">انتخاب کنید</option>
-                        <?php $__currentLoopData = ['1 تا 5 نفر','6 تا 15 نفر','16 تا 30 نفر','بیش از 30 نفر']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $range): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($range); ?>" <?php if(old('approximate_users') === $range): echo 'selected'; endif; ?>><?php echo e($range); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                    <?php $__errorArgs = ['approximate_users'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="approximate-users-error"><?php echo e($message); ?></span><?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+
+                <div class="consultation-wizard__actions">
+                    <button class="btn consultation-back" type="button" data-back <?php if($initialStep === 1): ?> hidden <?php endif; ?>><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 6-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>مرحله قبل</button>
+                    <button class="btn btn-primary consultation-next" type="button" data-next <?php if($initialStep === 6): ?> hidden <?php endif; ?>><span data-next-label><?php echo e($initialStep === 5 && blank(old('message')) ? 'ادامه بدون توضیح' : 'ادامه'); ?></span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="btn btn-primary consultation-submit" type="submit" data-submit-button <?php if($initialStep !== 6): ?> hidden <?php endif; ?>><span data-submit-label>ثبت درخواست بررسی رایگان</span></button>
                 </div>
-                <div class="field full">
-                    <label for="primary_need">مهم‌ترین نیاز فعلی شرکت شما چیست؟ <span aria-hidden="true">*</span></label>
-                    <select id="primary_need" name="primary_need" required <?php $__errorArgs = ['primary_need'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-describedby="primary-need-error" <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>>
-                        <option value="">انتخاب کنید</option>
-                        <?php $__currentLoopData = ['CRM و فروش','استعلام و نرخ‌دهی','Booking','عملیات حمل','مدیریت اسناد','مالی','پرتال مشتری','گزارش‌های مدیریتی','یکپارچه‌سازی فرایندها','سایر']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $need): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($need); ?>" <?php if(old('primary_need') === $need): echo 'selected'; endif; ?>><?php echo e($need); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                    <?php $__errorArgs = ['primary_need'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="primary-need-error"><?php echo e($message); ?></span><?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                </div>
-                <div class="field full">
-                    <label for="message">توضیحات تکمیلی <span class="optional">اختیاری</span></label>
-                    <textarea id="message" name="message" maxlength="2000" placeholder="مثلاً روش‌های حمل، ساختار تیم یا گلوگاهی که می‌خواهید در جلسه بررسی شود" <?php $__errorArgs = ['message'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> aria-invalid="true" aria-describedby="message-error" <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>><?php echo e(old('message')); ?></textarea>
-                    <?php $__errorArgs = ['message'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?><span class="form-error" id="message-error"><?php echo e($message); ?></span><?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                </div>
-                <div class="field full form-submit">
-                    <button class="btn btn-primary" type="submit" data-submit-button><span data-submit-label>ثبت درخواست دمو و نیازسنجی</span></button>
-                    <p class="form-help">اطلاعات ثبت‌شده فقط برای بررسی و پیگیری درخواست دمو و مشاوره شما استفاده می‌شود.</p>
-                </div>
-            </div>
-        </form>
+                <p class="consultation-privacy">اطلاعات تماس شما فقط برای بررسی و پیگیری همین درخواست استفاده می‌شود.</p>
+                <noscript><p class="consultation-noscript">برای تکمیل فرم مرحله‌ای، جاوااسکریپت مرورگر باید فعال باشد.</p></noscript>
+            </form>
+        <?php endif; ?>
     </div>
 </section>
 
-<section class="section soft after-submit" aria-labelledby="after-submit-title">
+<section class="review-process" aria-labelledby="review-process-title">
     <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">مسیر بعدی</span>
-            <h2 class="section-title" id="after-submit-title">بعد از ثبت درخواست چه اتفاقی می‌افتد؟</h2>
-        </div>
-        <ol class="after-submit-grid">
-            <li class="reveal"><span>۰۱</span><p>اطلاعات اولیه درخواست بررسی می‌شود.</p></li>
-            <li class="reveal"><span>۰۲</span><p>برای هماهنگی جلسه دمو با متقاضی تماس گرفته می‌شود.</p></li>
-            <li class="reveal"><span>۰۳</span><p>در جلسه، نیازها و بخش‌های مرتبط نرم‌افزار حمل‌ونقل سپند بررسی می‌شوند.</p></li>
+        <div class="review-process__head reveal"><span>روند کار</span><h2 id="review-process-title">از انتخاب مسئله تا گفت‌وگو درباره راهکار</h2></div>
+        <ol class="review-process__steps">
+            <li class="reveal"><span>۱</span><div><strong>موضوع موردنظر را انتخاب می‌کنید</strong><p>مهم‌ترین بخشی را که اکنون به بهبود نیاز دارد مشخص می‌کنید.</p></div></li>
+            <li class="reveal"><span>۲</span><div><strong>به سؤال‌های مرتبط پاسخ می‌دهید</strong><p>سه سؤال کوتاه فقط بر اساس همان موضوع نمایش داده می‌شود.</p></div></li>
+            <li class="reveal"><span>۳</span><div><strong>تیم سپند با شما تماس می‌گیرد</strong><p>پاسخ‌ها برای بررسی مسئله و ارائه راهکار متناسب مرور می‌شوند.</p></div></li>
         </ol>
-    </div>
-</section>
-
-<section class="section consultation-faq" aria-labelledby="consultation-faq-title">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">پیش از ثبت درخواست</span>
-            <h2 class="section-title" id="consultation-faq-title">سؤالات متداول درباره درخواست دمو سپند</h2>
-        </div>
-        <div class="faq">
-            <?php $__currentLoopData = $faqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $faq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <details class="reveal"><summary><?php echo e($faq['question']); ?></summary><p><?php echo e($faq['answer']); ?></p></details>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-    </div>
-</section>
-
-<section class="consultation-links" aria-labelledby="consultation-links-title">
-    <div class="container">
-        <h2 id="consultation-links-title">قبل از درخواست دمو بیشتر بررسی کنید</h2>
-        <nav aria-label="صفحات مرتبط با انتخاب نرم‌افزار سپند">
-            <a href="<?php echo e(route('pricing')); ?>">تعرفه‌های سپند</a>
-            <a href="<?php echo e(route('modules')); ?>">ماژول‌های نرم‌افزار سپند</a>
-            <a href="<?php echo e(route('compare.sepand-other-transport-software')); ?>">مقایسه سپند با سایر نرم‌افزارهای حمل‌ونقل</a>
-            <a href="<?php echo e(route('site.modules.show', ['module' => 'crm'])); ?>">CRM حمل‌ونقل</a>
-            <a href="<?php echo e(route('site.modules.show', ['module' => 'transport-operations'])); ?>">عملیات حمل</a>
-        </nav>
     </div>
 </section>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('scripts'); ?>
 <script>
-(()=>{const form=document.querySelector('[data-consultation-form]');if(!form)return;form.addEventListener('submit',event=>{if(form.dataset.submitting==='true'){event.preventDefault();return}form.dataset.submitting='true';const button=form.querySelector('[data-submit-button]'),label=form.querySelector('[data-submit-label]');if(button){button.disabled=true;button.setAttribute('aria-busy','true')}if(label)label.textContent='در حال ثبت درخواست…'});const status=document.getElementById('consultation-form-status');if(status)status.focus()})();
+(()=>{
+    const form=document.querySelector('[data-consultation-form]');
+    const success=document.querySelector('[data-consultation-success]');
+    const track=(name,detail={})=>{
+        const payload={event_category:'consultation_process_review',form_id:'process_review',...detail};
+        if(typeof window.gtag==='function')window.gtag('event',name,payload);
+        else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:name,...payload})}
+    };
+    if(success){success.focus({preventScroll:true});track('consultation_process_success');return}
+    if(!form)return;
+
+    const panels=[...form.querySelectorAll('[data-stage]')];
+    const progress=form.querySelector('[data-progressbar]');
+    const progressFill=form.querySelector('[data-progress-fill]');
+    const stepLabel=form.querySelector('[data-step-label]');
+    const stepContext=form.querySelector('[data-step-context]');
+    const back=form.querySelector('[data-back]');
+    const next=form.querySelector('[data-next]');
+    const nextLabel=form.querySelector('[data-next-label]');
+    const submit=form.querySelector('[data-submit-button]');
+    const message=form.querySelector('#message');
+    const messageCount=form.querySelector('[data-message-count]');
+    const contexts=['','انتخاب موضوع','سؤال مرتبط اول','سؤال مرتبط دوم','سؤال مرتبط سوم','توضیح اختیاری','اطلاعات تماس'];
+    let step=Number(form.dataset.initialStep||1);
+    let topic=form.querySelector('input[name="topic"]:checked')?.value||'';
+    let started=false;
+
+    const activePanel=(targetStep)=>panels.find(panel=>Number(panel.dataset.stage)===targetStep&&(!panel.dataset.topic||panel.dataset.topic===topic));
+    const setError=(targetStep,message='')=>{
+        const panel=activePanel(targetStep);
+        const error=panel?.querySelector(`[data-step-error="${targetStep}"]`);
+        if(error)error.textContent=message;
+    };
+    const startTracking=()=>{if(started)return;started=true;track('consultation_process_start')};
+    const updateMessageMeta=()=>{
+        if(!message)return;
+        if(messageCount)messageCount.textContent=`${message.value.length.toLocaleString('fa-IR')} از ۲۰۰۰`;
+        if(step===5&&nextLabel)nextLabel.textContent=message.value.trim()?'ادامه':'ادامه بدون توضیح';
+    };
+    const render=(focusQuestion=false)=>{
+        panels.forEach(panel=>panel.hidden=true);
+        const panel=activePanel(step);
+        if(!panel){step=1;topic='';return render(focusQuestion)}
+        panel.hidden=false;
+        stepLabel.textContent=`مرحله ${step.toLocaleString('fa-IR')} از ۶`;
+        stepContext.textContent=contexts[step];
+        progress.setAttribute('aria-valuenow',String(step));
+        progressFill.style.width=`${(step/6)*100}%`;
+        back.hidden=step===1;
+        next.hidden=step===6;
+        submit.hidden=step!==6;
+        updateMessageMeta();
+        if(focusQuestion){
+            const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            form.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
+            window.setTimeout(()=>panel.querySelector('[data-question-heading]')?.focus({preventScroll:true}),reduceMotion?0:260);
+        }
+    };
+    const validateStep=(targetStep)=>{
+        if(targetStep===1){
+            const checked=form.querySelector('input[name="topic"]:checked');
+            if(!checked){setError(1,'لطفاً یک موضوع را انتخاب کنید.');return false}
+            topic=checked.value;
+            return true;
+        }
+        if(targetStep>=2&&targetStep<=4){
+            const panel=activePanel(targetStep);
+            const checked=panel?.querySelector(`input[name="responses[${targetStep}]"]:checked`);
+            if(!checked){setError(targetStep,'لطفاً یک گزینه را انتخاب کنید.');return false}
+        }
+        return true;
+    };
+
+    form.addEventListener('focusin',startTracking,{once:true});
+    document.querySelector('[data-form-start]')?.addEventListener('click',startTracking,{once:true});
+    form.addEventListener('change',event=>{
+        if(event.target.name==='topic'){
+            const previousTopic=topic;
+            topic=event.target.value;
+            form.dataset.currentTopic=topic;
+            setError(1);
+            if(previousTopic&&previousTopic!==topic){
+                form.querySelectorAll('input[name^="responses["]').forEach(input=>input.checked=false);
+                [2,3,4].forEach(responseStep=>setError(responseStep));
+            }
+        }
+        if(event.target.matches('input[name^="responses["]'))setError(step);
+    });
+    message?.addEventListener('input',updateMessageMeta);
+    next.addEventListener('click',()=>{
+        startTracking();
+        if(!validateStep(step))return;
+        track('consultation_process_step_complete',{step_number:step,topic:topic||undefined});
+        step=Math.min(6,step+1);
+        render(true);
+    });
+    back.addEventListener('click',()=>{step=Math.max(1,step-1);render(true)});
+    form.addEventListener('submit',event=>{
+        if(form.dataset.submitting==='true'){event.preventDefault();return}
+        for(let requiredStep=1;requiredStep<=4;requiredStep++){
+            if(!validateStep(requiredStep)){event.preventDefault();step=requiredStep;render(true);return}
+        }
+        const fields=[form.querySelector('#name'),form.querySelector('#mobile'),form.querySelector('#company')];
+        const invalid=fields.find(field=>field&&!field.checkValidity());
+        if(invalid){event.preventDefault();invalid.reportValidity();invalid.focus();return}
+        form.dataset.submitting='true';
+        submit.disabled=true;
+        submit.setAttribute('aria-busy','true');
+        form.querySelector('[data-submit-label]').textContent='در حال ثبت درخواست…';
+        track('consultation_process_submit',{step_number:6,topic:topic||undefined});
+    });
+    updateMessageMeta();
+    render(false);
+})();
 </script>
 <?php $__env->stopPush(); ?>
 
