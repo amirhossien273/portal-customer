@@ -59,7 +59,7 @@
         ->values();
 @endphp
 
-@if(is_array($linkingPage) && $resolvedLinks->isNotEmpty())
+@if(is_array($linkingPage) && $resolvedLinks->isNotEmpty() && ! request()->routeIs('about', 'why-sepand'))
 <section class="section soft contextual-paths" aria-labelledby="contextual-paths-title" data-internal-link-tier="{{ $linkingPage['tier'] }}" data-internal-link-cluster="{{ $linkingPage['cluster'] }}">
     <div class="container">
         <header class="section-head reveal">

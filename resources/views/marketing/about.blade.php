@@ -1,30 +1,112 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'درباره سپند | فناوری برای یک مسیر شفاف‌تر';
-    $description = 'درباره سپند، نگاه ما به مدیریت هوشمند حمل‌ونقل و ارزش‌هایی که مسیر همکاری را شکل می‌دهند.';
+    $title = 'درباره سپند | داستان و شیوه همکاری با شرکت‌های حمل‌ونقل';
+    $description = 'سپند چرا و برای چه شرکت‌هایی ساخته شده است؟ با داستان نرم‌افزار سپند، روش همکاری با شرکت‌های حمل‌ونقل بین‌المللی و یک نمونه واقعی از کاربرد آن آشنا شوید.';
+    $canonical = route('about');
+    $consultationUrl = route('consultation.create', ['source_page' => $canonical]);
+    $caseStudy = config('site_case_studies.operational-control-snapshot');
+    $actionMetric = collect($caseStudy['metrics'])->firstWhere('label', 'مورد نیازمند اقدام');
 @endphp
+
+@push('head')
+<script type="application/ld+json">{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@graph' => [
+        [
+            '@type' => 'AboutPage',
+            '@id' => $canonical.'#webpage',
+            'url' => $canonical,
+            'name' => $title,
+            'headline' => 'درباره سپند',
+            'description' => $description,
+            'inLanguage' => 'fa-IR',
+            'isPartOf' => ['@id' => route('home').'#website'],
+            'about' => ['@id' => route('home').'#organization'],
+            'publisher' => ['@id' => route('home').'#organization'],
+            'dateModified' => '2026-11-18',
+        ],
+        [
+            '@type' => 'BreadcrumbList',
+            '@id' => $canonical.'#breadcrumb',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'درباره سپند', 'item' => $canonical],
+            ],
+        ],
+    ],
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+@endpush
 
 @section('content')
 <section class="page-hero">
     <div class="container hero-inner">
-        <div class="hero-copy reveal"><div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>درباره ما</span></div><h1>فناوری وقتی ارزشمند است<br>که مسیر را <span>روشن‌تر کند</span></h1><p>سپند با همین باور شکل گرفته است: ابزارهای پیچیده باید به تجربه‌ای ساده تبدیل شوند؛ تجربه‌ای که تیم‌ها را هماهنگ، تصمیم‌ها را دقیق و ارتباط با مشتری را قابل‌اعتمادتر کند.</p><div class="hero-actions"><a class="btn btn-primary" href="#story">داستان سپند</a><a class="btn btn-outline" href="{{ route('modules') }}">راهکارهای ما</a></div></div>
-        <div class="hero-art reveal"><div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><img class="about-mark-image" src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt=""></span><span class="art-chip">نگاه سپند</span></div><h2 class="art-title">فراتر از یک نرم‌افزار</h2><p class="art-desc">یک زبان مشترک برای مشتری، عملیات و مدیریت</p><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+        <div class="hero-copy reveal">
+            <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>درباره سپند</span></div>
+            <h1>درباره سپند</h1>
+            <p>سپند نرم‌افزاری برای شرکت‌های حمل‌ونقل بین‌المللی، فورواردرها و تیم‌های لجستیک است. سپند برای حل یک مسئله مشخص شکل گرفت: اطلاعات استعلام، نرخ، محموله و هزینه‌ها میان فروش، عملیات و مالی پراکنده می‌شود. با سپند، هر تیم می‌تواند روی همان پرونده حمل کار کند و ببیند اقدام بعدی چیست و چه کسی مسئول آن است.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="about_hero_consultation">درخواست جلسه آشنایی با سپند</a>
+                <a class="btn btn-outline" href="#case-study" data-ga-event="cta_click" data-ga-label="about_hero_case_study">مشاهده نمونه واقعی کاربرد سپند</a>
+            </div>
+        </div>
+        <div class="hero-art reveal" aria-label="ارتباط تیم‌های فروش، عملیات و مالی در سپند">
+            <div class="art-panel"><div class="art-content"><div class="art-head"><span class="art-mark"><img class="about-mark-image" src="{{ asset('assets/images/brand/sepand-provided-header.png') }}" alt=""></span><span class="art-chip">یک پرونده حمل مشترک</span></div><h2 class="art-title">فروش، عملیات و مالی در یک جریان</h2><p class="art-desc">از استعلام و نرخ تا رزرو، اجرای حمل و ثبت هزینه</p><div class="art-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+        </div>
     </div>
 </section>
 
 <section class="section" id="story">
     <div class="container split">
-        <div class="visual-box reveal"><span class="section-label">ماموریت ما</span><h2 class="about-mission-title">تبدیل پیچیدگی عملیات<br>به جریان کاری روشن</h2><p class="about-mission-copy">می‌خواهیم هر عضو تیم بداند چه کاری، در چه زمانی و بر پایه چه اطلاعاتی باید انجام شود؛ بدون ابهام، بدون داده‌های پراکنده و بدون دوباره‌کاری.</p></div>
-        <div class="split-copy reveal"><span class="section-label">داستان سپند</span><h2 class="section-title">از دل یک نیاز واقعی؛<br><span>برای حل یک مسئله واقعی</span></h2><p>کسب‌وکارهای حمل‌ونقل با حجم زیادی از ارتباطات، اسناد، وظایف و تصمیم‌های به‌هم‌پیوسته روبه‌رو هستند. سپند برای پیوند دادن همین اجزا شکل گرفت؛ پلتفرمی که به‌جای افزودن پیچیدگی، نظم و شفافیت ایجاد کند.</p><p>ما نرم‌افزار را پایان کار نمی‌دانیم. شناخت فرایند، همراهی در استقرار و یادگیری از تجربه کاربران بخشی از محصولی است که هر روز بهتر می‌شود.</p><div class="check-grid"><span class="check"><i>✓</i>شناخت عمیق فرایند</span><span class="check"><i>✓</i>طراحی انسان‌محور</span><span class="check"><i>✓</i>توسعه مستمر</span><span class="check"><i>✓</i>همراهی بلندمدت</span></div></div>
+        <div class="visual-box reveal">
+            <span class="section-label">یک موقعیت کاری آشنا</span>
+            <h2 class="about-mission-title">اطلاعات یک حمل، در چند جای جدا</h2>
+            <p class="about-mission-copy">نرخ تأمین‌کننده در ایمیل است، نتیجه پیگیری مشتری در پیام‌رسان مانده و تیم عملیات برای شروع پرونده دوباره مشخصات محموله را از فروش می‌پرسد. مالی هم برای تطبیق هزینه باید سراغ همان اطلاعات را از چند نفر بگیرد.</p>
+        </div>
+        <div class="split-copy reveal">
+            <span class="section-label">داستان سپند</span>
+            <h2 class="section-title">یک پرونده از استعلام تا مالی؛<br><span>بدون گسست میان تیم‌ها</span></h2>
+            <p>سپند از نیاز به پیوند دادن همین کارهای روزمره شکل گرفت: استعلام مشتری به نرخ‌دهی برسد، نرخ تأییدشده به رزرو و عملیات تحویل شود و هزینه‌ها در ادامه همان پرونده ثبت شوند. درباره نرم‌افزار سپند، مهم‌ترین نکته این است که اطلاعات با تغییر مسئول یا مرحله، دوباره از ابتدا جمع‌آوری نشود.</p>
+            <p>برای آشنایی کلی با <a class="contextual-link" href="{{ route('home') }}">نرم‌افزار حمل‌ونقل بین‌المللی</a> سپند، صفحه اصلی را ببینید؛ در <a class="contextual-link" href="{{ route('product') }}">معرفی نرم‌افزار سپند</a> نیز می‌توانید مسیر کامل محصول را دنبال کنید. اگر می‌خواهید معیارهای انتخاب و تفاوت رویکرد سپند را بررسی کنید، صفحه <a class="contextual-link" href="{{ route('why-sepand') }}">چرا سپند</a> ادامه این بحث است.</p>
+            <div class="check-grid"><span class="check"><i>✓</i>استعلام و نرخ در یک مسیر</span><span class="check"><i>✓</i>تحویل روشن به عملیات</span><span class="check"><i>✓</i>مسئول و اقدام بعدی مشخص</span><span class="check"><i>✓</i>هزینه متصل به پرونده حمل</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section soft" id="collaboration">
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">روش همکاری</span><h2 class="section-title">از جلسه اول تا راه‌اندازی</h2><p class="section-sub">پیش از تصمیم خرید یا تعیین دامنه استقرار، فرایند واقعی شرکت و تناسب محصول با آن مرحله‌به‌مرحله بررسی می‌شود.</p></div>
+        <div class="card-grid about-steps">
+            <article class="content-card reveal"><span class="about-step-number">۱</span><h3>شناخت فرایند شرکت</h3><p>مسیر فعلی یک استعلام یا پرونده حمل، نقش تیم‌ها و نقطه‌ای که اطلاعات یا پیگیری در آن متوقف می‌شود مرور می‌شود. در این مرحله می‌توانید بررسی کنید آیا مسئله شما با دامنه سپند هم‌خوان است.</p></article>
+            <article class="content-card reveal"><span class="about-step-number">۲</span><h3>نمایش یک سناریوی واقعی در دمو</h3><p>یک سناریوی نزدیک به کار شرکت، از ثبت استعلام و نرخ تا تحویل به عملیات یا مالی در محصول دنبال می‌شود. شما می‌توانید داده‌های لازم، مسئول هر مرحله و خروجی قابل مشاهده را ارزیابی کنید.</p></article>
+            <article class="content-card reveal"><span class="about-step-number">۳</span><h3>بررسی دامنه راه‌اندازی و همراهی</h3><p>ماژول‌ها، کاربران، داده‌های اولیه و اولویت‌های راه‌اندازی مرور می‌شوند تا موارد آماده محصول و نیازهای خاص شرکت از هم تفکیک شوند. دامنه همکاری پیش از شروع باید روشن و قابل بررسی باشد.</p></article>
+        </div>
     </div>
 </section>
 
 <section class="dark-section">
-    <div class="container"><div class="section-head reveal"><span class="section-label">ارزش‌های ما</span><h2 class="section-title">اصولی که هر تصمیم را<br><span>هدایت می‌کنند</span></h2></div><div class="values"><article class="value reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.7"/></svg><b>شفافیت</b><p>اطلاعات روشن، مسئولیت مشخص و گفت‌وگوی صادقانه پایه اعتماد است.</p></article><article class="value reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-3 7-9V5l-7-2-7 2v7c0 6 7 9 7 9Z" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><b>اعتمادپذیری</b><p>محصول و تیم ما باید در لحظه‌های حساس، قابل اتکا و پاسخ‌گو باشند.</p></article><article class="value reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15c4-8 8-8 16-8-1 8-5 12-12 11M4 20c2-5 6-8 11-10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><b>رشد مستمر</b><p>هر بازخورد فرصتی برای ساختن تجربه‌ای ساده‌تر و اثربخش‌تر است.</p></article><article class="value reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 0a4 4 0 1 0 0-8M2 21a6 6 0 0 1 12 0m2-6a6 6 0 0 1 6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><b>همراهی</b><p>موفقیت مشتری را یک پروژه مشترک و یک رابطه بلندمدت می‌بینیم.</p></article></div></div>
+    <div class="container">
+        <div class="section-head reveal"><span class="section-label">ارزش‌ها در عمل</span><h2 class="section-title">سه معیار روشن برای همکاری</h2></div>
+        <div class="values about-values">
+            <article class="value reveal"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.7"/></svg><b>شفافیت</b><p>مسئول، موعد و اقدام بعدی هر پرونده برای تیم مشخص باشد؛ نه اینکه وضعیت فقط در گفت‌وگوهای پراکنده بماند.</p></article>
+            <article class="value reveal"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 0a4 4 0 1 0 0-8M2 21a6 6 0 0 1 12 0m2-6a6 6 0 0 1 6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><b>همراهی</b><p>در جلسه، فرایند واقعی شرکت و یک پرونده نمونه بررسی شود تا گفت‌وگو به فهرست کلی قابلیت‌ها محدود نماند.</p></article>
+            <article class="value reveal"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><b>بهبود مبتنی بر مشاهده</b><p>گلوگاه و نتیجه با داده همان فرایند سنجیده شود؛ یک Snapshot به‌عنوان مشاهده مقطعی گزارش شود، نه وعده نتیجه.</p></article>
+        </div>
+    </div>
 </section>
 
-<section class="section soft"><div class="container"><div class="section-head reveal"><span class="section-label">روش کار ما</span><h2 class="section-title">از شنیدن تا ساختن؛<br><span>کنار تیم شما</span></h2><p class="section-sub">راهکار خوب با شناخت دقیق شروع می‌شود و با اندازه‌گیری نتیجه ادامه پیدا می‌کند.</p></div><div class="card-grid"><article class="content-card reveal"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-7h4M4 13v7H2a2 2 0 0 1-2-2v-5h4Z" stroke="currentColor" stroke-width="1.7"/></svg></span><h3>اول گوش می‌دهیم</h3><p>مسئله، محدودیت‌ها و اولویت‌های واقعی تیم شما را بدون پیش‌فرض بررسی می‌کنیم.</p></article><article class="content-card reveal"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h5v5H4V6Zm11 7h5v5h-5v-5ZM9 8h3a4 4 0 0 1 4 4v1M15 16h-3a4 4 0 0 1-4-4v-1" stroke="currentColor" stroke-width="1.7"/></svg></span><h3>سپس طراحی می‌کنیم</h3><p>فرایند و ترکیب ماژول‌ها را متناسب با ساختار سازمان شما شکل می‌دهیم.</p></article><article class="content-card reveal"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><h3>نتیجه را می‌سنجیم</h3><p>پس از استقرار، بازخورد و شاخص‌ها مسیر بهبود مستمر را مشخص می‌کنند.</p></article></div></div></section>
+<section class="section" id="case-study">
+    <div class="container about-case-study reveal">
+        <div class="about-case-study__copy">
+            <span class="section-label">مطالعه موردی ناشناس</span>
+            <h2 class="section-title">یک تصویر واقعی از صف اقدام</h2>
+            <p>در یک محیط عملیاتی واقعی سپند، داشبورد در یک مقطع زمانی <strong>{{ $actionMetric['value'] }} مورد نیازمند اقدام</strong> را نشان داد: {{ $actionMetric['meaning'] }}. این مشاهده، Snapshot ناشناس از همان لحظه است و به‌تنهایی ادعای بهبود یا صرفه‌جویی نیست.</p>
+            <p>در مطالعه کامل، دامنه مشاهده، روش خواندن اعداد و شاخص‌هایی که برای سنجش بعدی لازم‌اند توضیح داده شده است.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="{{ route('case-studies.show', ['caseStudy' => $caseStudy['slug']]) }}" data-ga-event="cta_click" data-ga-label="about_case_study_full">مطالعه کامل کنترل عملیات</a></div>
+        </div>
+        <figure class="about-case-study__media"><img src="{{ asset('assets/images/marketing/'.$caseStudy['image']) }}" alt="{{ $caseStudy['image_alt'] }}" width="{{ $caseStudy['image_width'] }}" height="{{ $caseStudy['image_height'] }}" loading="lazy"><figcaption>{{ $caseStudy['scope'] }}</figcaption></figure>
+    </div>
+</section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>بیایید مسیر بعدی را با هم بسازیم</h2><p>اگر به دنبال یک شریک فناوری برای منظم‌کردن فرایندهای خود هستید، آماده گفت‌وگو هستیم.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="about_consultation">شروع گفت‌وگو</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>سپند را با فرایند واقعی شرکت خود ارزیابی کنید</h2><p>یک نمونه استعلام یا پرونده حمل و گلوگاه اصلی میان فروش، عملیات یا مالی را آماده کنید تا در جلسه آشنایی بررسی شود.</p></div><div class="cta-action"><a class="btn" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="about_bottom_consultation">درخواست جلسه آشنایی با سپند</a></div></div></div></section>
 @endsection

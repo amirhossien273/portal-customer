@@ -1,167 +1,84 @@
 @extends('layouts.marketing')
 
 @php
-    $title = 'چرا سپند؟ | نرم افزار تخصصی مدیریت شرکت‌های حمل‌ونقل و فورواردری';
-    $description = 'ببینید چرا سپند برای اتصال CRM، نرخ‌دهی، Booking، عملیات، اسناد و امور مالی شرکت‌های حمل‌ونقل و فورواردری طراحی شده است.';
+    $title = 'چرا سپند؟ | مزایای نرم‌افزار سپند برای شرکت‌های فورواردری';
+    $description = 'ببینید سپند چطور پیگیری استعلام، تبدیل نرخ به Booking و ثبت دریافت و پرداخت هر پرونده حمل را به هم متصل می‌کند. تصاویر محصول و نمونه کاربرد واقعی را ببینید.';
     $canonical = route('why-sepand');
+    $consultationUrl = route('consultation.create', ['source_page' => $canonical]);
     $image = asset('assets/images/marketing/modules/screenshots/pricing-sales-workflow.webp');
-    $imageAlt = 'جریان واقعی نرخ‌دهی و تبدیل استعلام به Booking در نرم‌افزار سپند';
+    $imageAlt = 'برد واقعی استعلام، پیشنهاد نرخ و تبدیل به Booking در نرم‌افزار سپند';
     $imageWidth = 1600;
     $imageHeight = 687;
+    $caseStudy = config('site_case_studies.operational-control-snapshot');
+    $actionMetric = collect($caseStudy['metrics'])->firstWhere('label', 'مورد نیازمند اقدام');
 
-    $fragmentedTools = ['اکسل', 'واتس‌اپ', 'ایمیل', 'CRM عمومی', 'فایل‌های شخصی', 'گزارش دستی'];
-
-    $dailyProblems = [
-        [
-            'number' => '۰۱',
-            'title' => 'اطلاعات پراکنده',
-            'text' => 'اطلاعات مشتری و پرونده حمل بین چند ابزار و فایل پخش می‌شود.',
-            'solution' => 'اطلاعات مرتبط را در یک ساختار مشترک نگه می‌دارد.',
-        ],
-        [
-            'number' => '۰۲',
-            'title' => 'پیگیری وابسته به افراد',
-            'text' => 'کارها، موعدها و اقدامات بعدی ممکن است در پیام‌ها یا حافظه افراد باقی بمانند.',
-            'solution' => 'کار بعدی، مسئول و مهلت انجام را قابل مشاهده می‌کند.',
-        ],
-        [
-            'number' => '۰۳',
-            'title' => 'فاصله بین فروش و عملیات',
-            'text' => 'پس از تأیید پیشنهاد نرخ، اطلاعات باید دوباره به تیم عملیات منتقل شوند.',
-            'solution' => 'اطلاعات فروش را در همان پرونده به Booking و عملیات حمل می‌رساند.',
-        ],
-        [
-            'number' => '۰۴',
-            'title' => 'دیر مشخص شدن نتیجه مالی',
-            'text' => 'هزینه و درآمد همیشه در کنار همان پرونده حمل قابل مشاهده نیستند.',
-            'solution' => 'هزینه، درآمد و نتیجه مالی را به همان پرونده متصل می‌کند.',
-        ],
-    ];
-
-    $genericCrmFlow = ['سرنخ فروش', 'فرصت فروش', 'فروش'];
-    $specializedFlow = ['سرنخ فروش', 'استعلام', 'نرخ‌دهی', 'پیشنهاد نرخ', 'Booking', 'عملیات حمل', 'اسناد و مالی'];
-    $flowNumbers = ['۰۱', '۰۲', '۰۳', '۰۴', '۰۵', '۰۶', '۰۷', '۰۸'];
-
-    $pillars = [
-        [
-            'number' => '۰۱',
-            'title' => 'تخصصی برای فورواردری',
-            'description' => 'ساختار سپند بر اساس زبان، نقش‌ها و مسیر واقعی پرونده در شرکت‌های فورواردری طراحی شده است.',
-        ],
-        [
-            'number' => '۰۲',
-            'title' => 'اطلاعات فقط یک بار وارد می‌شوند',
-            'description' => 'اطلاعات مشتری و درخواست حمل همراه همان پرونده حرکت می‌کنند و در هر واحد از نو ساخته نمی‌شوند.',
-        ],
-        [
-            'number' => '۰۳',
-            'title' => 'فروش و عملیات از هم جدا نیستند',
-            'description' => 'پیشنهاد نرخ تأییدشده در همان جریان به Booking و عملیات حمل می‌رسد و تحویل پرونده شفاف‌تر می‌شود.',
-        ],
-        [
-            'number' => '۰۴',
-            'title' => 'کار به حافظه افراد وابسته نمی‌ماند',
-            'description' => 'کارها، مسئولیت‌ها، مهلت انجام و یادآوری‌ها ثبت می‌شوند تا پیگیری به حافظه افراد وابسته نماند.',
-        ],
-        [
-            'number' => '۰۵',
-            'title' => 'مدیر نتیجه را می‌بیند، نه فقط داده را',
-            'description' => 'اطلاعات فروش، عملیات و مالی کنار هم قرار می‌گیرند تا وضعیت پرونده‌ها و نتیجه کسب‌وکار روشن باشد.',
-        ],
-    ];
-
-    $metrics = [
-        ['code' => '۰۱', 'title' => 'ورود مجدد اطلاعات', 'question' => 'اطلاعات مشتری یا پرونده حمل چند بار دوباره ثبت می‌شوند؟'],
-        ['code' => '۰۲', 'title' => 'کارهای عقب‌افتاده', 'question' => 'چه تعداد کار از مهلت انجام خود عبور کرده‌اند؟'],
-        ['code' => '۰۳', 'title' => 'زمان پاسخ به مشتری', 'question' => 'کارشناس چقدر سریع به وضعیت پرونده دسترسی پیدا می‌کند؟'],
-        ['code' => '۰۴', 'title' => 'نرخ‌های منقضی‌شده', 'question' => 'چند پیشنهاد نرخ بدون اقدام بعدی منقضی شده‌اند؟'],
-        ['code' => '۰۵', 'title' => 'سود هر پرونده', 'question' => 'درآمد و هزینه هر Booking چگونه با هم مقایسه می‌شوند؟'],
-        ['code' => '۰۶', 'title' => 'ارزش مالی هر مشتری', 'question' => 'کدام مشتری در کنار حجم کار، ارزش مالی بیشتری ایجاد می‌کند؟'],
-        ['code' => '۰۷', 'title' => 'زمان تهیه گزارش مدیریتی', 'question' => 'تهیه تصویر مدیریتی شرکت چقدر به جمع‌آوری دستی اطلاعات وابسته است؟'],
-    ];
+    $fragmentedTools = ['اکسل', 'پیام‌رسان', 'ایمیل', 'CRM عمومی', 'فایل شخصی', 'گزارش دستی'];
 
     $evidence = [
         [
             'number' => '۰۱',
-            'title' => 'از فروش تا Booking',
-            'caption' => 'اطلاعات فروش بدون ورود مجدد، وارد مرحله Booking می‌شوند.',
+            'question' => 'استعلام در کدام مرحله است؟',
+            'title' => 'برد استعلام تا Booking',
+            'caption' => 'به ستون‌های «استعلام قیمت از تأمین‌کننده»، «ثبت و ارسال پیشنهاد نرخ»، «پیگیری و دریافت تأیید مشتری» و «تبدیل به بوکینگ» نگاه کنید؛ کارت هر استعلام جای آن را در جریان فروش نشان می‌دهد.',
             'path' => 'modules/screenshots/pricing-sales-workflow.webp',
-            'alt' => 'برد واقعی سپند از استعلام قیمت تا تأیید مشتری و تبدیل به Booking',
+            'alt' => 'برد واقعی سپند با ستون‌های استعلام قیمت، پیشنهاد نرخ، تأیید مشتری و تبدیل به Booking',
             'width' => 1600,
             'height' => 687,
-            'cta' => 'مشاهده این مرحله در نرم‌افزار',
             'url' => route('product').'#pricing',
         ],
         [
             'number' => '۰۲',
-            'title' => 'از Booking تا مالی',
-            'caption' => 'هزینه‌ها و درآمدها در کنار همان پرونده حمل قابل بررسی هستند.',
+            'question' => 'مالی همان Booking را کجا می‌بیند؟',
+            'title' => 'تطبیق مالی Booking',
+            'caption' => 'در نوار بالای تصویر مبلغ Offer، پرداخت تأییدشده، دریافت تأییدشده و وضعیت تسویه را مقایسه کنید؛ فهرست پایین نیز Bookingهای فاقد نرخ تبدیل را برای تکمیل مالی نشان می‌دهد.',
             'path' => 'modules/screenshots/finance-booking-reconciliation.webp',
-            'alt' => 'نمای واقعی تطبیق مالی Booking شامل پیشنهاد نرخ، دریافت، پرداخت و نرخ تبدیل در سپند',
+            'alt' => 'نمای واقعی تطبیق مالی Booking شامل مبلغ Offer، پرداخت، دریافت و وضعیت تسویه',
             'width' => 1600,
             'height' => 811,
-            'cta' => 'مشاهده بخش مالی در محصول',
             'url' => route('product').'#finance',
         ],
         [
             'number' => '۰۳',
-            'title' => 'دید مدیریتی',
-            'caption' => 'اطلاعات فروش، عملیات و فعالیت‌های تیم در داشبورد مدیریتی قابل مشاهده‌اند.',
+            'question' => 'مدیر چه روندی را می‌بیند؟',
+            'title' => 'دید مدیریتی از فروش',
+            'caption' => 'نمودار «مقایسه استعلام و Booking در ۶ ماه اخیر» را ببینید. این تصویر روند حجمی را نشان می‌دهد؛ موارد بدون اقدام بعدی در مطالعه موردی کنترل عملیات مستند شده‌اند.',
             'path' => 'product-showcase/desktop-reports.webp',
-            'alt' => 'گزارش‌های واقعی مدیریتی سپند برای مقایسه لید، مشتری، استعلام و Booking',
+            'alt' => 'گزارش واقعی سپند برای مقایسه تعداد استعلام و Booking در شش ماه اخیر',
             'width' => 1600,
             'height' => 844,
-            'cta' => 'مشاهده نمونه واقعی داشبورد',
             'url' => route('product').'#dashboard',
         ],
     ];
 
-    $fitItems = [
-        'شرکت فورواردری یا حمل‌ونقل بین‌المللی دارید.',
-        'فروش و عملیات روی یک پرونده مشتری کار می‌کنند.',
-        'نرخ‌دهی و Booking بخشی از کار روزانه شماست.',
-        'اطلاعات بین چند ابزار یا فایل پراکنده شده‌اند.',
-        'به دید مدیریتی از فروش تا نتیجه مالی نیاز دارید.',
+    $evaluationMetrics = [
+        ['code' => '۰۱', 'title' => 'استعلام بدون اقدام بعدی', 'text' => 'پیش و پس از استقرار، تعداد استعلام‌های باز بدون مسئول، موعد یا اقدام بعدی را در یک بازه هم‌طول مقایسه کنید.'],
+        ['code' => '۰۲', 'title' => 'ثبت دوباره اطلاعات', 'text' => 'بررسی کنید مشخصات مشتری، مسیر، محموله و نرخ در تحویل از فروش به عملیات چند بار دوباره وارد می‌شوند.'],
+        ['code' => '۰۳', 'title' => 'زمان دسترسی به وضعیت پرونده', 'text' => 'زمان لازم برای پاسخ به این سؤال را بسنجید: پرونده اکنون کجاست، اقدام بعدی چیست و چه کسی مسئول آن است؟'],
     ];
-
-    $notFitItems = [
-        'فقط یک CRM ساده برای ثبت تماس مشتری می‌خواهید.',
-        'Booking یا عملیات حمل ندارید.',
-        'فقط نرم‌افزار حسابداری می‌خواهید.',
-        'فرایند اصلی شما ارتباطی با فورواردری ندارد.',
-    ];
-
-    $finalFlow = ['مشتری', 'CRM', 'استعلام', 'پیشنهاد نرخ', 'Booking', 'عملیات حمل', 'اسناد و مالی', 'مدیریت'];
 
     $structuredData = [
         '@context' => 'https://schema.org',
         '@graph' => [
             [
                 '@type' => 'WebPage',
-                '@id' => route('why-sepand').'#webpage',
-                'url' => route('why-sepand'),
+                '@id' => $canonical.'#webpage',
+                'url' => $canonical,
                 'name' => $title,
+                'headline' => 'چرا سپند برای شرکت‌های فورواردری؟',
                 'description' => $description,
                 'inLanguage' => 'fa-IR',
+                'isPartOf' => ['@id' => route('home').'#website'],
+                'about' => ['@id' => route('home').'#software'],
+                'publisher' => ['@id' => route('home').'#organization'],
                 'primaryImageOfPage' => ['@type' => 'ImageObject', 'url' => $image, 'width' => $imageWidth, 'height' => $imageHeight],
-                'about' => ['@id' => route('why-sepand').'#software'],
-            ],
-            [
-                '@type' => 'SoftwareApplication',
-                '@id' => route('why-sepand').'#software',
-                'name' => 'سپند CRM',
-                'applicationCategory' => 'BusinessApplication',
-                'operatingSystem' => 'Web',
-                'url' => route('product'),
-                'description' => $description,
-                'image' => $image,
-                'inLanguage' => 'fa-IR',
+                'dateModified' => '2026-11-18',
             ],
             [
                 '@type' => 'BreadcrumbList',
+                '@id' => $canonical.'#breadcrumb',
                 'itemListElement' => [
                     ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
-                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'چرا سپند؟', 'item' => route('why-sepand')],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => 'چرا سپند؟', 'item' => $canonical],
                 ],
             ],
         ],
@@ -173,217 +90,94 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-why-sepand.css') }}?v=20260827-2">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-why-sepand.css') }}?v=20261118-1">
 @endpush
 
 @section('content')
     <section class="why-hero" aria-labelledby="why-sepand-title">
         <div class="container why-hero-grid">
             <div class="why-hero-copy reveal visible">
-                <nav class="breadcrumb" aria-label="مسیر راهنما">
-                    <a href="{{ route('home') }}">صفحه اصلی</a>
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                    <span>چرا سپند؟</span>
-                </nav>
+                <nav class="breadcrumb" aria-label="مسیر راهنما"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>چرا سپند؟</span></nav>
                 <span class="why-eyebrow">چرا سپند؟</span>
-                <h1 id="why-sepand-title">وقتی فروش، عملیات و مالی جدا از هم کار می‌کنند، <span>مشکل فقط پراکندگی اطلاعات نیست</span></h1>
-                <p>سپند برای شرکت‌های حمل‌ونقل و فورواردری طراحی شده تا اطلاعات مشتری، نرخ‌دهی، Booking، عملیات، اسناد و مالی در یک جریان مشترک مدیریت شوند.</p>
+                <h1 id="why-sepand-title">چرا سپند برای شرکت‌های فورواردری؟</h1>
+                <p>در سپند می‌توانید ببینید کدام استعلام منتظر پیگیری است، بعد از تأیید نرخ چه اطلاعاتی به عملیات می‌رسد و دریافت و پرداخت هر رزرو کجا ثبت می‌شود. مسیر یک پرونده را از استعلام تا مالی در تصاویر واقعی محصول ببینید.</p>
                 <div class="why-hero-actions">
-                    <a class="btn btn-primary" href="{{ route('product') }}" data-ga-event="cta_click" data-ga-label="why_hero_product">مشاهده سپند در عمل</a>
-                    <a class="btn btn-outline" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="why_hero_consultation">درخواست دمو</a>
+                    <a class="btn btn-primary" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="why_hero_consultation">درخواست دموی فرایند شرکت شما</a>
+                    <a class="btn btn-outline" href="#product-evidence" data-ga-event="cta_click" data-ga-label="why_hero_evidence">مشاهده نمونه از استعلام تا مالی</a>
                 </div>
             </div>
-
-            <div class="why-hero-visual reveal visible" role="img" aria-label="ابزارهای پراکنده در برابر جریان یکپارچه سپند">
-                <div class="why-tools-panel">
-                    <span>روش پراکنده</span>
-                    <div class="why-tools-cloud">
-                        @foreach($fragmentedTools as $tool)
-                            <b>{{ $tool }}</b>
-                        @endforeach
-                    </div>
-                </div>
+            <div class="why-hero-visual reveal visible" role="img" aria-label="ابزارهای پراکنده در برابر جریان مشترک سپند">
+                <div class="why-tools-panel"><span>روش پراکنده</span><div class="why-tools-cloud">@foreach($fragmentedTools as $tool)<b>{{ $tool }}</b>@endforeach</div></div>
                 <div class="why-visual-connector" aria-hidden="true"><span>اطلاعات یک پرونده</span><i>←</i></div>
-                <div class="why-sepand-panel">
-                    <div class="why-sepand-mark" aria-hidden="true">S</div>
-                    <div><small>جریان مشترک</small><strong>سپند</strong></div>
-                    <p>فروش <i></i> عملیات <i></i> مالی</p>
-                </div>
+                <div class="why-sepand-panel"><div class="why-sepand-mark" aria-hidden="true">S</div><div><small>جریان مشترک</small><strong>سپند</strong></div><p>فروش <i></i> عملیات <i></i> مالی</p></div>
             </div>
         </div>
     </section>
 
-    <section class="why-fragmented" aria-labelledby="fragmented-title">
+    <section class="why-evidence" id="product-evidence" aria-labelledby="evidence-title">
         <div class="container">
-            <header class="why-section-head reveal">
-                <span>مسئله اصلی</span>
-                <h2 id="fragmented-title">وقتی ابزارها جدا هستند، فرایند هم تکه‌تکه می‌شود</h2>
-                <p>پراکندگی فقط محل نگهداری اطلاعات را تغییر نمی‌دهد؛ تحویل کار بین فروش، عملیات و مالی را هم دشوار می‌کند.</p>
-            </header>
-            <div class="why-problem-grid">
-                @foreach($dailyProblems as $problem)
-                    <article class="why-problem-card reveal">
-                        <span>{{ $problem['number'] }}</span>
-                        <h3>{{ $problem['title'] }}</h3>
-                        <p>{{ $problem['text'] }}</p>
-                        <strong><span>نقش سپند:</span> {{ $problem['solution'] }}</strong>
+            <header class="why-section-head reveal"><span>تصاویر واقعی محصول</span><h2 id="evidence-title">سه نمای مستقل برای ارزیابی مسیر استعلام تا مالی</h2><p>این تصاویر بخش‌های متفاوت محصول را نشان می‌دهند و به‌عنوان مراحل ثبت‌شده یک پرونده واحد معرفی نمی‌شوند.</p></header>
+            <div class="why-evidence-grid">
+                @foreach($evidence as $item)
+                    <article class="why-evidence-card reveal">
+                        <a class="why-evidence-media" href="{{ $item['url'] }}" aria-label="{{ $item['title'] }} در معرفی محصول"><img src="{{ asset('assets/images/marketing/'.$item['path']) }}" alt="{{ $item['alt'] }}" width="{{ $item['width'] }}" height="{{ $item['height'] }}" loading="lazy" decoding="async"></a>
+                        <div class="why-evidence-copy"><span>{{ $item['number'] }} · {{ $item['question'] }}</span><h3>{{ $item['title'] }}</h3><p>{{ $item['caption'] }}</p></div>
                     </article>
                 @endforeach
             </div>
+
+            <aside class="why-case-snapshot reveal" aria-labelledby="case-snapshot-title">
+                <div><span>مشاهده در یک مقطع زمانی</span><h2 id="case-snapshot-title">صف اقدام در یک محیط عملیاتی واقعی</h2><p>در یک شرکت حمل‌ونقل که از سپند استفاده می‌کرد، داشبورد در زمان ثبت تصویر {{ $actionMetric['value'] }} مورد نیازمند اقدام نشان داد؛ {{ $actionMetric['meaning'] }}.</p><small>این اعداد یک Snapshot ناشناس هستند و به‌تنهایی نتیجه قبل و بعد یا درصد بهبود را اثبات نمی‌کنند.</small></div>
+                <a class="btn btn-outline" href="{{ route('case-studies.show', ['caseStudy' => $caseStudy['slug']]) }}" data-ga-event="cta_click" data-ga-label="why_case_study">مطالعه کامل کنترل عملیات</a>
+            </aside>
         </div>
     </section>
 
-    <section class="why-pillars" aria-labelledby="pillars-title">
+    <section class="why-fragmented" aria-labelledby="problems-title">
         <div class="container">
-            <header class="why-section-head reveal">
-                <span>دلیل انتخاب</span>
-                <h2 id="pillars-title">چرا سپند با ابزارهای عمومی متفاوت است؟</h2>
-                <p>تفاوت اصلی در تعداد منوها نیست؛ در ساختاری است که ارتباط بین واحدها را حفظ می‌کند.</p>
-            </header>
-            <div class="why-pillar-grid">
-                @foreach($pillars as $pillar)
-                    <article class="why-pillar-card reveal">
-                        <div class="why-pillar-number">{{ $pillar['number'] }}</div>
-                        <h3>{{ $pillar['title'] }}</h3>
-                        <p>{{ $pillar['description'] }}</p>
-                    </article>
-                @endforeach
+            <header class="why-section-head reveal"><span>مزایای نرم‌افزار سپند در کار روزانه</span><h2 id="problems-title">سه گسست که باید در دمو بررسی شوند</h2><p>دلیل انتخاب سپند را می‌توان با سه مسئله مشخص سنجید، نه با یک فهرست کلی از قابلیت‌ها.</p></header>
+            <div class="why-problem-grid why-three-grid">
+                <article class="why-problem-card reveal"><span>۰۱</span><h3>پیگیری استعلام</h3><p>استعلام باز باید مسئول، موعد و اقدام بعدی مشخص داشته باشد؛ مدیر نیز باید موارد متوقف‌شده را بدون جمع‌آوری گزارش دستی پیدا کند.</p><strong><span>در سپند:</span> وضعیت و مرحله هر استعلام در برد فروش قابل مشاهده است.</strong></article>
+                <article class="why-problem-card reveal"><span>۰۲</span><h3>تحویل فروش به عملیات</h3><p>تأیید نرخ در شرکت فورواردری پایان فروش نیست؛ آغاز Booking و کار عملیاتی است و اطلاعات نباید دوباره از مشتری یا فروش گرفته شوند.</p><strong><span>در سپند:</span> پیشنهاد تأییدشده به مسیر Booking متصل می‌شود.</strong></article>
+                <article class="why-problem-card reveal"><span>۰۳</span><h3>دسترسی به مالی پرونده</h3><p>کارشناس مالی باید مبلغ پیشنهاد، دریافت، پرداخت و وضعیت تسویه را در ارتباط با همان Booking بررسی کند.</p><strong><span>در سپند:</span> کنترل مالی در نمای تطبیق Booking انجام می‌شود.</strong></article>
             </div>
         </div>
     </section>
 
     <section class="why-crm" aria-labelledby="crm-comparison-title">
-        <div class="container">
-            <header class="why-section-head is-light reveal">
-                <span>CRM عمومی در برابر سیستم تخصصی فورواردری</span>
-                <h2 id="crm-comparison-title">CRM عمومی برای فروش طراحی شده؛ سپند برای ادامه مسیر بعد از فروش هم ساخته شده است</h2>
-            </header>
-
-            <div class="why-pipeline-comparison">
-                <article class="why-pipeline-card reveal">
-                    <div class="why-pipeline-title"><small>مسیر فروش</small><h3>CRM عمومی</h3></div>
-                    <ol>
-                        @foreach($genericCrmFlow as $step)<li><span>{{ $flowNumbers[$loop->index] }}</span>{{ $step }}</li>@endforeach
-                    </ol>
-                </article>
-                <article class="why-pipeline-card is-sepand reveal">
-                    <div class="why-pipeline-title"><small>مسیر کامل پرونده</small><h3>سپند</h3></div>
-                    <ol>
-                        @foreach($specializedFlow as $step)<li><span>{{ $flowNumbers[$loop->index] }}</span>{{ $step }}</li>@endforeach
-                    </ol>
-                </article>
-            </div>
-
-            <div class="why-crm-explanation reveal">
-                <p>در فورواردری، فروش پایان فرایند نیست؛ شروع یک پرونده عملیاتی است.</p>
-                <a href="{{ route('compare.sepand-other-transport-software') }}">مقایسه کامل سپند با CRMهای عمومی <span aria-hidden="true">←</span></a>
-            </div>
-        </div>
-    </section>
-
-    <section class="why-compare-cta" aria-labelledby="compare-cta-title">
-        <div class="container">
-            <div class="why-compare-cta-inner reveal">
-                <div>
-                    <h2 id="compare-cta-title">نیاز به مقایسه دقیق دارید؟</h2>
-                    <p>سپند را با CRMهای عمومی و سایر راهکارهای مدیریت حمل‌ونقل مقایسه کنید.</p>
-                </div>
-                <a class="btn btn-outline" href="{{ route('compare.index') }}">مشاهده مرکز مقایسه</a>
-            </div>
+        <div class="container why-short-comparison">
+            <div class="reveal"><span class="why-eyebrow">مقایسه با ابزار عمومی</span><h2 id="crm-comparison-title">در فورواردری، تأیید نرخ آغاز کار عملیاتی است</h2><p>CRM عمومی می‌تواند ارتباط و فرصت فروش را مدیریت کند. هنگام ارزیابی برای شرکت فورواردری، بررسی کنید پس از تأیید نرخ، اطلاعات مسیر و محموله چگونه به Booking، عملیات و مالی می‌رسند؛ این نقطه، دامنه تخصصی سپند است.</p></div>
+            <nav class="why-comparison-links reveal" aria-label="راهنماهای مقایسه"><a href="{{ route('compare.sepand-other-transport-software') }}">مقایسه TMS، CRM و نرم‌افزار مالی برای شرکت حمل</a><a href="{{ route('compare.index') }}">بررسی گزینه‌های دیگر در مرکز مقایسه</a></nav>
         </div>
     </section>
 
     <section class="why-metrics" aria-labelledby="metrics-title">
         <div class="container">
-            <header class="why-section-head is-light reveal">
-                <span>نتیجه‌های قابل اندازه‌گیری</span>
-                <h2 id="metrics-title">بعد از استقرار چه چیزهایی قابل اندازه‌گیری می‌شوند؟</h2>
-                <p>اندازه‌گیری از وضعیت واقعی خود شرکت شروع می‌شود و نشان می‌دهد فرایندهای روزانه کجا نیاز به بهبود دارند.</p>
-            </header>
-            <div class="why-metric-grid">
-                @foreach($metrics as $metric)
-                    <article class="why-metric-card reveal">
-                        <span>{{ $metric['code'] }}</span>
-                        <h3>{{ $metric['title'] }}</h3>
-                        <p>{{ $metric['question'] }}</p>
-                    </article>
-                @endforeach
-            </div>
+            <header class="why-section-head is-light reveal"><span>معیار تصمیم خرید</span><h2 id="metrics-title">شاخص‌هایی که می‌توانید قبل و بعد از استقرار بسنجید</h2><p>برای هر شاخص، دامنه پرونده‌ها و بازه زمانی یکسان تعریف کنید تا مقایسه قابل اتکا باشد.</p></header>
+            <div class="why-metric-grid why-three-metrics">@foreach($evaluationMetrics as $metric)<article class="why-metric-card reveal"><span>{{ $metric['code'] }}</span><h3>{{ $metric['title'] }}</h3><p>{{ $metric['text'] }}</p></article>@endforeach</div>
         </div>
     </section>
 
-    <section class="why-evidence" aria-labelledby="evidence-title">
+    <section class="why-pillars" id="demo-checklist" aria-labelledby="demo-title">
         <div class="container">
-            <header class="why-section-head reveal">
-                <span>نمونه واقعی محصول</span>
-                <h2 id="evidence-title">تفاوت سپند را در خود نرم‌افزار ببینید</h2>
-                <p>سه نمای واقعی از نقاطی که اتصال فروش، عملیات و مالی را نشان می‌دهند.</p>
-            </header>
-            <div class="why-evidence-grid">
-                @foreach($evidence as $item)
-                    <article class="why-evidence-card reveal">
-                        <a class="why-evidence-media" href="{{ $item['url'] }}" aria-label="{{ $item['cta'] }}">
-                            <img src="{{ asset('assets/images/marketing/'.$item['path']) }}" alt="{{ $item['alt'] }}" width="{{ $item['width'] }}" height="{{ $item['height'] }}" loading="lazy" decoding="async">
-                        </a>
-                        <div class="why-evidence-copy">
-                            <span>{{ $item['number'] }}</span>
-                            <h3>{{ $item['title'] }}</h3>
-                            <p>{{ $item['caption'] }}</p>
-                        </div>
-                    </article>
-                @endforeach
+            <header class="why-section-head reveal"><span>چک‌لیست ارزیابی</span><h2 id="demo-title">در دموی سپند چه چیزهایی را بررسی کنید؟</h2><p>یک استعلام یا پرونده نمونه همراه داشته باشید و این سه کار را در محصول دنبال کنید.</p></header>
+            <div class="why-pillar-grid why-demo-grid">
+                <article class="why-pillar-card reveal"><div class="why-pillar-number">۰۱</div><h3>استعلام بدون اقدام بعدی</h3><p>ببینید مدیر فروش چگونه استعلام بدون مسئول، موعد یا اقدام بعدی را پیدا می‌کند و کار بعدی کجا ثبت می‌شود.</p></article>
+                <article class="why-pillar-card reveal"><div class="why-pillar-number">۰۲</div><h3>انتقال پیشنهاد به رزرو</h3><p>یک پیشنهاد تأییدشده را تا Booking دنبال کنید و مشخص کنید کدام اطلاعات مشتری، مسیر و محموله به عملیات منتقل می‌شوند.</p></article>
+                <article class="why-pillar-card reveal"><div class="why-pillar-number">۰۳</div><h3>دریافت و پرداخت همان پرونده</h3><p>در نمای مالی همان Booking، مبلغ Offer، دریافت‌ها، پرداخت‌ها، نرخ تبدیل و وضعیت تسویه را بررسی کنید.</p></article>
             </div>
-            <a class="why-summary-link reveal" href="{{ route('product') }}">مشاهده کامل محصول <span aria-hidden="true">←</span></a>
         </div>
     </section>
 
     <section class="why-audience" aria-labelledby="audience-title">
         <div class="container">
-            <header class="why-section-head reveal">
-                <span>تناسب محصول</span>
-                <h2 id="audience-title">سپند برای چه شرکت‌هایی مناسب است؟</h2>
-                <p>ارزش سپند زمانی روشن می‌شود که چند واحد باید روی یک پرونده حمل مشترک کار کنند.</p>
-            </header>
-            <div class="why-audience-grid">
-                <article class="why-audience-card is-fit reveal">
-                    <header><span aria-hidden="true">✓</span><h3>سپند احتمالاً مناسب شماست اگر:</h3></header>
-                    <ul>@foreach($fitItems as $item)<li>{{ $item }}</li>@endforeach</ul>
-                </article>
-                <article class="why-audience-card is-not-fit reveal">
-                    <header><span aria-hidden="true">—</span><h3>سپند احتمالاً بیش از نیاز شماست اگر...</h3></header>
-                    <ul>@foreach($notFitItems as $item)<li>{{ $item }}</li>@endforeach</ul>
-                    <p>در این شرایط، یک ابزار ساده‌تر و محدودتر ممکن است انتخاب متناسب‌تری باشد.</p>
-                </article>
-            </div>
+            <header class="why-section-head reveal"><span>تناسب محصول</span><h2 id="audience-title">سپند برای چه شرکت‌هایی مناسب است؟</h2><p>مزایای سپند برای شرکت‌های فورواردری زمانی قابل ارزیابی است که فروش، عملیات و مالی روی یک جریان مشترک کار کنند.</p></header>
+            <div class="why-fit-compact reveal"><p><strong>سپند را بررسی کنید اگر</strong> شرکت شما استعلام و نرخ‌دهی دارد، پیشنهاد تأییدشده را به Booking و عملیات تحویل می‌دهد و مالی باید دریافت و پرداخت همان پرونده را کنترل کند.</p><p><strong>راهکار ساده‌تر را بررسی کنید اگر</strong> فقط ثبت تماس مشتری یا حسابداری مستقل می‌خواهید و Booking یا عملیات حمل در دامنه کار شما نیست.</p></div>
+            <div class="why-purchase-paths reveal"><p>برای شناخت دامنه کامل، <a href="{{ route('product') }}">معرفی کامل محصول</a> را ببینید. برای آشنایی با داستان و شیوه همکاری، صفحه <a href="{{ route('about') }}">درباره سپند</a> را بخوانید. عبارت عمومی <a href="{{ route('home') }}">نرم‌افزار حمل‌ونقل بین‌المللی</a> در صفحه اصلی معرفی شده است.</p></div>
         </div>
     </section>
 
-    <section class="why-summary" aria-labelledby="summary-title">
-        <div class="container">
-            <header class="why-section-head reveal">
-                <span>جمع‌بندی</span>
-                <h2 id="summary-title">مزیت اصلی سپند یک قابلیت نیست؛ اتصال فرایندها به یکدیگر است</h2>
-                <p>اطلاعات در طول چرخه پرونده همراه همان فرایند حرکت می‌کنند و لازم نیست بین چند ابزار و واحد دوباره ساخته شوند.</p>
-            </header>
-            <ol class="why-final-flow reveal" aria-label="جریان یکپارچه سپند">
-                @foreach($finalFlow as $step)<li><span>{{ $flowNumbers[$loop->index] }}</span><b>{{ $step }}</b></li>@endforeach
-            </ol>
-            <a class="why-summary-link reveal" href="{{ route('product') }}#product-flow">مشاهده نحوه کار سپند <span aria-hidden="true">←</span></a>
-        </div>
-    </section>
-
-    <section class="cta-wrap why-final-cta">
-        <div class="container">
-            <div class="cta reveal">
-                <div class="cta-copy">
-                    <h2>ببینید سپند با فرایند واقعی شرکت شما چگونه کار می‌کند</h2>
-                    <p>در جلسه دمو، مسیر CRM، نرخ‌دهی، Booking، عملیات و مالی شرکت شما را در یک پرونده واقعی مرور می‌کنیم.</p>
-                </div>
-                <div class="why-final-actions">
-                    <a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="why_bottom_consultation">درخواست دمو</a>
-                    <a class="btn why-final-secondary" href="{{ route('product') }}">مشاهده محصول</a>
-                </div>
-            </div>
-        </div>
+    <section class="cta-wrap why-final-cta" id="purchase-next-steps">
+        <div class="container"><div class="cta reveal"><div class="cta-copy"><h2>فرایند واقعی شرکت خود را در سپند دنبال کنید</h2><p>یک استعلام یا Booking نمونه آماده کنید تا مسیر پیگیری، تحویل به عملیات و کنترل مالی آن در جلسه دمو بررسی شود.</p><nav class="why-final-links" aria-label="اطلاعات پیش از خرید"><a href="{{ route('pricing') }}">مشاهده تعرفه‌ها</a><a href="{{ route('solutions.on-premise') }}">بررسی نصب روی سرور شرکت</a><a href="{{ route('product') }}">معرفی کامل محصول</a></nav></div><div class="why-final-actions"><a class="btn" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="why_bottom_consultation">درخواست دموی فرایند شرکت شما</a></div></div></div>
     </section>
 @endsection

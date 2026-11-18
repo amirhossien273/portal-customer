@@ -324,6 +324,30 @@ html { scroll-padding-top: 100px; }
 .why-evidence-copy > a:hover,
 .why-evidence-copy > a:focus-visible { color: var(--navy); }
 
+.why-case-snapshot { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; margin-top: 28px; padding: 31px 34px; color: #fff; background: linear-gradient(125deg, var(--navy-900), #15506c); border-radius: 23px; box-shadow: 0 20px 48px rgba(15,48,91,.15); }
+.why-case-snapshot > div > span { color: var(--cyan); font-size: 12px; font-weight: 800; }
+.why-case-snapshot h2 { margin: 8px 0; font-size: 25px; line-height: 1.65; }
+.why-case-snapshot p { margin: 0; color: rgba(255,255,255,.82); font-size: 14px; line-height: 2; }
+.why-case-snapshot small { display: block; margin-top: 8px; color: rgba(255,255,255,.58); line-height: 1.9; }
+.why-case-snapshot .btn { color: var(--navy); white-space: nowrap; }
+.why-three-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.why-short-comparison { display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 60px; }
+.why-short-comparison h2 { margin: 12px 0; color: #fff; font-size: var(--why-heading); line-height: 1.6; }
+.why-short-comparison p { margin: 0; color: rgba(255,255,255,.72); font-size: 15px; line-height: 2.1; }
+.why-comparison-links { display: grid; gap: 10px; }
+.why-comparison-links a { padding: 15px 17px; color: #fff; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 13px; font-size: 13px; line-height: 1.8; }
+.why-comparison-links a:hover { color: var(--navy); background: var(--cyan); border-color: var(--cyan); }
+.why-three-metrics .why-metric-card,.why-three-metrics .why-metric-card:nth-child(n + 5) { grid-column: span 4; }
+.why-demo-grid .why-pillar-card,.why-demo-grid .why-pillar-card:nth-child(n + 4) { grid-column: span 2; min-height: 230px; }
+.why-fit-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.why-fit-compact p { margin: 0; padding: 23px; color: #5d7283; background: #fff; border: 1px solid var(--why-line); border-radius: 18px; line-height: 2; }
+.why-fit-compact strong { display: block; margin-bottom: 7px; color: var(--navy); font-size: 16px; }
+.why-purchase-paths { margin-top: 16px; padding: 18px 22px; background: #fff; border: 1px solid var(--why-line); border-radius: 16px; }
+.why-purchase-paths p { margin: 0; color: #607486; line-height: 2; }
+.why-purchase-paths a { color: var(--teal-dark); font-weight: 800; text-decoration: underline; text-underline-offset: 4px; }
+.why-final-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 15px; }
+.why-final-links a { color: #fff; font-size: 12px; font-weight: 700; text-decoration: underline; text-underline-offset: 5px; }
+
 .why-audience { background: var(--why-surface); }
 .why-audience-grid { display: grid; grid-template-columns: 1.12fr .88fr; align-items: start; gap: 17px; }
 .why-audience-card { padding: 29px; background: #fff; border: 1px solid var(--why-line); border-radius: 22px; }
@@ -406,6 +430,8 @@ html { scroll-padding-top: 100px; }
     .why-final-flow li:not(:last-child)::after { display: none; }
     .why-final-cta .cta { grid-template-columns: 1fr; }
     .why-final-actions { justify-content: center; }
+    .why-case-snapshot,.why-short-comparison { grid-template-columns: 1fr; }
+    .why-case-snapshot .btn { width: fit-content; }
 }
 
 @media (max-width: 720px) {
@@ -437,6 +463,8 @@ html { scroll-padding-top: 100px; }
     .why-evidence-card { display: block; }
     .why-audience-card ul { grid-template-columns: 1fr; }
     .why-final-flow { grid-template-columns: repeat(2, 1fr); }
+    .why-three-grid,.why-fit-compact { grid-template-columns: 1fr; }
+    .why-three-metrics .why-metric-card,.why-three-metrics .why-metric-card:nth-child(n + 5) { grid-column: span 12; }
 }
 
 @media (max-width: 520px) {
@@ -461,6 +489,9 @@ html { scroll-padding-top: 100px; }
     .why-compare-cta .btn { width: 100%; }
     .why-final-actions { display: grid; width: 100%; }
     .why-final-actions .btn { width: 100%; }
+    .why-case-snapshot { padding: 24px; }
+    .why-case-snapshot .btn { width: 100%; white-space: normal; }
+    .why-final-links { display: grid; }
 }
 
 @media (prefers-reduced-motion: reduce) {

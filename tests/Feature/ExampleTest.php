@@ -34,7 +34,7 @@ class ExampleTest extends TestCase
         return [
             'modules' => ['/modules', 'ماژول‌های یکپارچه سپند'],
             'pricing' => ['/pricing', 'قیمت و تعرفه'],
-            'about' => ['/about', 'فناوری وقتی ارزشمند است'],
+            'about' => ['/about', 'درباره سپند'],
         ];
     }
 
