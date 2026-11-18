@@ -18,9 +18,11 @@ class MarketingContentPageController extends Controller
 
         $page['depth'] = $depth;
 
-        $view = $group === 'solutions' && $slug === 'freight-sales-automation'
-            ? 'marketing.freight-sales-automation'
-            : 'marketing.content-page';
+        $view = match (true) {
+            $group === 'solutions' && $slug === 'freight-sales-automation' => 'marketing.freight-sales-automation',
+            $group === 'solutions' && $slug === 'on-premise' => 'marketing.on-premise',
+            default => 'marketing.content-page',
+        };
 
         return view($view, [
             'group' => $group,

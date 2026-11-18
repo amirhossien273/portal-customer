@@ -412,7 +412,7 @@
                     <span>استقرار</span>
                     <h3>زیرساخت متناسب با سازمان</h3>
                     <p>استقرار داخلی سپند تأیید شده است. محل داده، پشتیبان‌گیری، بازیابی و مدل‌های دیگر استقرار باید در پیشنهاد فنی همان پروژه مشخص شوند.</p>
-                    <a href="{{ route('solutions.on-premise') }}">جزئیات استقرار روی سرور سازمانی</a>
+                    <a href="{{ route('solutions.on-premise') }}">نصب نرم‌افزار روی سرور شرکت</a>
                 </article>
                 <article class="product-deployment-card reveal">
                     <span>راه‌اندازی</span>

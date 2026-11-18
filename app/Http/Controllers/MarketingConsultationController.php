@@ -20,6 +20,10 @@ class MarketingConsultationController extends Controller
         $billing = $request->query('billing');
         $pricingConfig = config('marketing_pricing');
         $pricingSelection = null;
+        $requestedSourcePage = $request->query('source_page');
+        $sourcePage = is_string($requestedSourcePage) && filter_var($requestedSourcePage, FILTER_VALIDATE_URL)
+            ? $requestedSourcePage
+            : url()->previous();
 
         if (
             $pricingUsers >= $pricingConfig['min_users']
@@ -48,6 +52,7 @@ class MarketingConsultationController extends Controller
             'imageWidth' => 835,
             'imageHeight' => 335,
             'pricingSelection' => $pricingSelection,
+            'sourcePage' => $sourcePage,
         ]);
     }
 

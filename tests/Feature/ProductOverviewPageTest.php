@@ -102,6 +102,7 @@ class ProductOverviewPageTest extends TestCase
         }
         $response->assertSee('href="'.self::SITE_URL.'/solutions/bill-of-lading-management">', false)
             ->assertSee('مدیریت تخصصی بارنامه HBL و MBL', false);
+        $response->assertSee('href="'.self::SITE_URL.'/solutions/on-premise">نصب نرم‌افزار روی سرور شرکت</a>', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertSame(1, substr_count($content, 'product-flow-steps reveal'));

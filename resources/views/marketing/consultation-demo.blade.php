@@ -118,7 +118,7 @@
 
         <form class="consultation-form reveal" id="consultation-form" method="POST" action="{{ route('consultation.store') }}" data-ga-form="consultation_submit" data-consultation-form aria-labelledby="consultation-form-title">
             @csrf
-            <input type="hidden" name="source_page" value="{{ old('source_page', url()->previous()) }}">
+            <input type="hidden" name="source_page" value="{{ old('source_page', $sourcePage) }}">
             <div class="honeypot" aria-hidden="true"><label for="website">وب‌سایت</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
             <div class="form-heading">
                 <span class="consultation-eyebrow">اطلاعات اولیه</span>
@@ -238,6 +238,6 @@
 
 @push('scripts')
 <script>
-(()=>{const form=document.querySelector('[data-consultation-form]');if(!form)return;form.addEventListener('submit',event=>{if(form.dataset.submitting==='true'){event.preventDefault();return}form.dataset.submitting='true';const button=form.querySelector('[data-submit-button]'),label=form.querySelector('[data-submit-label]');if(button){button.disabled=true;button.setAttribute('aria-busy','true')}if(label)label.textContent='در حال ثبت درخواست…'});const status=document.getElementById('consultation-form-status');if(status)status.focus()})();
+(()=>{const form=document.querySelector('[data-consultation-form]');if(!form)return;form.addEventListener('submit',event=>{if(form.dataset.submitting==='true'){event.preventDefault();return}form.dataset.submitting='true';const button=form.querySelector('[data-submit-button]'),label=form.querySelector('[data-submit-label]');if(button){button.disabled=true;button.setAttribute('aria-busy','true')}if(label)label.textContent='در حال ثبت درخواست…'});const status=document.getElementById('consultation-form-status');if(status){status.focus();const source=form.querySelector('[name="source_page"]')?.value||window.location.href,payload={event_category:'marketing',event_label:'consultation_form_success',source_page:source};if(typeof window.gtag==='function')window.gtag('event','consultation_success',payload);else{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'consultation_success',...payload})}}})();
 </script>
 @endpush

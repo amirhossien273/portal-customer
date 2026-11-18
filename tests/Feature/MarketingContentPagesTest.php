@@ -31,7 +31,7 @@ class MarketingContentPagesTest extends TestCase
             '/compare/best-transport-accounting-software' => ['title' => 'بهترین نرم افزار حسابداری حمل و نقل | راهنمای انتخاب', 'h1' => 'بهترین نرم افزار حسابداری حمل و نقل چه معیارهایی دارد؟'],
             '/solutions/nvocc' => ['title' => 'نرم‌افزار NVOCC | مدیریت عملیات، اسناد و مالی', 'h1' => 'عملیات NVOCC را از رزرو تا سود پرونده یکپارچه مدیریت کنید'],
             '/solutions/container-management' => ['title' => 'نرم افزار مدیریت کانتینر، دپو و اجاره | سپند', 'h1' => 'نرم افزار مدیریت کانتینر؛ از Depot و Lease تا Return'],
-            '/solutions/on-premise' => ['title' => 'نرم‌افزار حمل‌ونقل On-Premise | راهنمای استقرار', 'h1' => 'استقرار On-Premise نرم‌افزار حمل‌ونقل را با مسئولیت‌های روشن انتخاب کنید'],
+            '/solutions/on-premise' => ['title' => 'نرم‌افزار حمل‌ونقل بین‌المللی روی سرور شرکت | سپند', 'h1' => 'نرم‌افزار حمل‌ونقل بین‌المللی قابل نصب روی سرور شرکت'],
             '/solutions/bill-of-lading-management' => ['title' => 'کنترل بارنامه HBL و MBL با نرم افزار سپند', 'h1' => 'کنترل بارنامه‌های HBL و MBL از Draft تا نسخه نهایی'],
             '/solutions/freight-sales-automation' => ['title' => 'پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند', 'h1' => 'راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل'],
         ];
@@ -132,6 +132,39 @@ class MarketingContentPagesTest extends TestCase
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertSame(5, substr_count($content, '<details class="reveal">'));
         $this->assertLessThan(strpos($content, 'id="product-evidence"'), strpos($content, 'id="sales-solutions"'));
+        $this->assertValidJsonLd($content);
+    }
+
+    public function test_on_premise_page_matches_the_technical_review_brief(): void
+    {
+        $response = $this->get('/solutions/on-premise')->assertOk();
+        $content = $response->getContent();
+
+        $response
+            ->assertSee('<title>نرم‌افزار حمل‌ونقل بین‌المللی روی سرور شرکت | سپند</title>', false)
+            ->assertSee('<meta name="description" content="امکان نصب نرم‌افزار حمل‌ونقل بین‌المللی سپند روی سرور شرکت را بررسی کنید. با پیش‌نیازهای زیرساخت، هزینه راه‌اندازی، پشتیبان‌گیری و شرایط پشتیبانی آشنا شوید.">', false)
+            ->assertSee('<meta property="og:title" content="نرم‌افزار حمل‌ونقل بین‌المللی روی سرور شرکت | سپند">', false)
+            ->assertSee('<meta name="twitter:title" content="نرم‌افزار حمل‌ونقل بین‌المللی روی سرور شرکت | سپند">', false)
+            ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/solutions/on-premise">', false)
+            ->assertSee('نام فنی این مدل استقرار On-Premise است', false)
+            ->assertSee('درخواست بررسی نصب روی سرور شرکت', false)
+            ->assertSee('href="#installation-requirements">مشاهده پیش‌نیازهای نصب</a>', false)
+            ->assertSee('آیا سپند روی سرور شرکت ما نصب می‌شود؟', false)
+            ->assertSee('CRM و فروش', false)
+            ->assertSee('استعلام و نرخ‌دهی', false)
+            ->assertSee('Booking و پرونده حمل', false)
+            ->assertSee('مدیریت اسناد', false)
+            ->assertSee('مالی و گزارش‌ها', false)
+            ->assertSee('پیش‌نیازهای نصب و مسئولیت نگهداری', false)
+            ->assertSee('در بررسی فنی مشخص می‌شود', false)
+            ->assertSee('محاسبه‌گر صفحه تعرفه', false)
+            ->assertSee('نرم‌افزار فورواردری روی سرور سازمان', false)
+            ->assertSee('assets/images/marketing/product-showcase/desktop-dashboard.webp', false)
+            ->assertSee('"name":"نرم‌افزار حمل‌ونقل بین‌المللی روی سرور شرکت | سپند"', false)
+            ->assertSee('"description":"امکان نصب نرم‌افزار حمل‌ونقل بین‌المللی سپند روی سرور شرکت را بررسی کنید.', false);
+
+        $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertSame(count(config('site_content_pages.solutions.on-premise.faqs')), substr_count($content, '<details class="reveal">'));
         $this->assertValidJsonLd($content);
     }
 

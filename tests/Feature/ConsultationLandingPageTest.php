@@ -106,6 +106,42 @@ class ConsultationLandingPageTest extends TestCase
             ->assertDontSee('مرحله ۱ از ۶', false);
     }
 
+    public function test_on_premise_source_is_carried_into_the_demo_form_and_stored(): void
+    {
+        $sourcePage = self::SITE_URL.'/solutions/on-premise';
+
+        $this->get('/solutions/on-premise')
+            ->assertOk()
+            ->assertSee('source_page=https%3A%2F%2Fsepandcrm.ir%2Fsolutions%2Fon-premise', false)
+            ->assertSee('data-ga-label="on-premise_hero_technical_review"', false)
+            ->assertSee('data-ga-label="on-premise_bottom_technical_review"', false);
+
+        $this->get('/consultation?source_page='.rawurlencode($sourcePage))
+            ->assertOk()
+            ->assertSee('name="source_page" value="'.$sourcePage.'"', false);
+
+        $this->post('/consultation', [
+            'name' => 'مدیر فناوری',
+            'company' => 'فورواردری نمونه',
+            'mobile' => '09121234567',
+            'company_type' => 'شرکت فورواردری',
+            'primary_need' => 'یکپارچه‌سازی فرایندها',
+            'source_page' => $sourcePage,
+        ])->assertRedirect(self::SITE_URL.'/consultation');
+
+        $this->assertDatabaseHas('consultation_requests', [
+            'company' => 'فورواردری نمونه',
+            'source_page' => $sourcePage,
+        ]);
+
+        $successPage = $this->withSession([
+            'status' => 'درخواست شما ثبت شد. اطلاعات اولیه بررسی می‌شود و برای هماهنگی جلسه دمو با شما تماس می‌گیریم.',
+        ])->get('/consultation?source_page='.rawurlencode($sourcePage));
+        $successPage
+            ->assertSee("window.gtag('event','consultation_success'", false)
+            ->assertSee("event:'consultation_success'", false);
+    }
+
     public function test_demo_form_uses_the_original_submission_flow(): void
     {
         $response = $this->post('/consultation', [
