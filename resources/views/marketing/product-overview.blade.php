@@ -197,7 +197,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261121-3">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261121-4">
 @endpush
 
 @section('content')
