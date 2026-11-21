@@ -49,6 +49,11 @@
             'question' => 'مدیر فروش چه اطلاعاتی از وضعیت مشتریان و پیگیری‌ها می‌بیند؟',
             'answer' => 'مدیر وضعیت فرصت‌ها، مسئول پیگیری، اقدام‌های عقب‌افتاده یا بدون اقدام بعدی و نماهای تحلیلی مشتریان بر اساس درآمد تأییدشده، سود و تعداد کارهای عملیاتی را می‌بیند؛ نتیجه‌ها مطابق سطح دسترسی نمایش داده می‌شوند.',
         ],
+        [
+            'question' => 'قیمت CRM حمل‌ونقل سپند چطور محاسبه می‌شود؟',
+            'answer' => 'اشتراک سپند بر اساس تعداد کاربران و دوره پرداخت ماهانه یا سالانه محاسبه می‌شود. طبق تعرفه فعلی، ترکیب ماژول‌ها مبلغ اشتراک را تغییر نمی‌دهد. برای برآورد هزینه تیم خود، از محاسبه‌گر تعرفه سپند استفاده کنید. خدمات جانبی و شرایط استقرار در پیشنهاد رسمی مشخص می‌شوند.',
+            'link' => ['text' => 'محاسبه‌گر تعرفه سپند', 'route' => 'pricing'],
+        ],
     ];
 @endphp
 
@@ -296,6 +301,20 @@
     </div>
 </section>
 
+<section class="section soft" id="crm-purchase" aria-labelledby="crm-purchase-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">ارزیابی و برآورد اشتراک</span>
+            <h2 class="section-title" id="crm-purchase-title">خرید و راه‌اندازی CRM حمل‌ونقل سپند</h2>
+            <p class="section-sub">برای ارزیابی CRM حمل‌ونقل سپند، یکی از استعلام‌های نمونه شرکتتان را برای جلسه دمو آماده کنید. در دمو می‌توانید مسیر ثبت مشتری و استعلام، پیگیری پیشنهاد نرخ و تعیین اقدام بعدی را بررسی کنید. برای برآورد اشتراک هم تعداد کاربرانی را که قرار است با سپند کار کنند، در صفحه تعرفه وارد کنید.</p>
+        </div>
+        <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="crm_purchase_consultation">درخواست دموی CRM حمل‌ونقل</a>
+            <a class="btn btn-outline dark" href="{{ route('pricing') }}">محاسبه هزینه اشتراک سپند</a>
+        </div>
+    </div>
+</section>
+
 @include('marketing.partials.related-content-pages')
 
 <section class="section soft" aria-labelledby="crm-faq-title">
@@ -304,7 +323,15 @@
         <p class="crm-faq-intro reveal">پاسخ پرسش‌های رایج شرکت‌های حمل‌ونقل و لجستیک درباره کاربرد CRM تخصصی سپند و ارتباط آن با سایر بخش‌های نرم‌افزار.</p>
         <div class="faq">
             @foreach($faqs as $faq)
-                <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
+                @if (! empty($faq['link'] ?? null))
+                    <details class="reveal">
+                        <summary>{{ $faq['question'] }}</summary>
+                        @php([$answerBeforeLink, $answerAfterLink] = array_pad(explode($faq['link']['text'], $faq['answer'], 2), 2, ''))
+                        <p>{{ $answerBeforeLink }}<a href="{{ route($faq['link']['route']) }}">{{ $faq['link']['text'] }}</a>{{ $answerAfterLink }}</p>
+                    </details>
+                @else
+                    <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
+                @endif
             @endforeach
         </div>
     </div>

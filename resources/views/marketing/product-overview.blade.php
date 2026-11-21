@@ -197,7 +197,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261026-2">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261121-1">
 @endpush
 
 @section('content')
@@ -243,6 +243,7 @@
         </div>
     </section>
 
+    <div class="product-scroll-stack" data-product-scroll-stack>
     <section class="product-audience" aria-labelledby="product-audience-title">
         <div class="container">
             <div class="product-section-head reveal">
@@ -429,6 +430,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <section class="cta-wrap product-final-cta">
         <div class="container">

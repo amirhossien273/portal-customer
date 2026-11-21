@@ -27,6 +27,8 @@ class ProductOverviewPageTest extends TestCase
             ->assertSee('<title>نرم افزار سپند برای شرکت‌های حمل‌ونقل | معرفی محصول</title>', false)
             ->assertSee('<meta name="description" content="امکانات نرم افزار سپند را برای CRM، نرخ‌دهی، Booking، عملیات، اسناد و مالی با تصاویر واقعی محصول ببینید و برای دمو درخواست دهید.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/product">', false)
+            ->assertSee('assets/css/marketing-product.css?v=20261121-1', false)
+            ->assertSee('<div class="product-scroll-stack" data-product-scroll-stack>', false)
             ->assertSee('سپند در عمل', false)
             ->assertSee('نرم افزار سپند؛', false)
             ->assertSee('مدیریت یکپارچه فروش، عملیات و مالی حمل‌ونقل', false)

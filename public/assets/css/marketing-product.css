@@ -11,6 +11,38 @@
 
 html { scroll-padding-top: 105px; }
 
+.product-scroll-stack { position: relative; }
+
+/*
+ * Ozone-inspired scroll story: on roomy desktop viewports each product chapter
+ * stays in the viewport while the next chapter naturally moves over it. The
+ * document flow remains intact, so anchors, keyboard navigation and indexing
+ * continue to work without JavaScript-driven scrolling.
+ */
+@media (min-width: 961px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+    .product-hero {
+        display: grid;
+        min-height: 100svh;
+        align-items: center;
+    }
+
+    .product-scroll-stack > .product-audience,
+    .product-scroll-stack > .product-flow,
+    .product-scroll-stack > .product-evidence,
+    .product-scroll-stack > .product-differentiators,
+    .product-scroll-stack > .product-integration,
+    .product-scroll-stack > .product-portal-proof,
+    .product-scroll-stack > .product-deployment {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: grid;
+        min-height: 100svh;
+        align-items: center;
+        isolation: isolate;
+    }
+}
+
 .product-hero,
 .product-audience,
 .product-flow,

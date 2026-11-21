@@ -297,7 +297,15 @@
         <p class="crm-faq-intro reveal">{{ $page['faq_intro'] }}</p>
         <div class="faq">
             @foreach($faqs as $faq)
-                <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
+                @if (! empty($faq['link'] ?? null))
+                    <details class="reveal">
+                        <summary>{{ $faq['question'] }}</summary>
+                        @php([$answerBeforeLink, $answerAfterLink] = array_pad(explode($faq['link']['text'], $faq['answer'], 2), 2, ''))
+                        <p>{{ $answerBeforeLink }}<a href="{{ route($faq['link']['route']) }}">{{ $faq['link']['text'] }}</a>{{ $answerAfterLink }}</p>
+                    </details>
+                @else
+                    <details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>
+                @endif
             @endforeach
         </div>
     </div>
