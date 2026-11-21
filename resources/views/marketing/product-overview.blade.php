@@ -197,7 +197,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261121-2">
+    <link rel="stylesheet" href="{{ asset('assets/css/marketing-product.css') }}?v=20261121-3">
 @endpush
 
 @section('content')
@@ -515,6 +515,139 @@
 
             dialog?.querySelector('[data-product-lightbox-close]')?.addEventListener('click', closeDialog);
             dialog?.addEventListener('click', event => { if (event.target === dialog) closeDialog(); });
+
+            const initProductChapterScroll = () => {
+                const stack = document.querySelector('[data-product-scroll-stack]');
+                const hero = document.querySelector('.product-hero');
+                const finalCta = document.querySelector('.product-final-cta');
+                const storyMedia = window.matchMedia('(min-width: 961px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)');
+                const panels = [hero, ...Array.from(stack?.children ?? []), finalCta].filter(Boolean);
+
+                if (!stack || panels.length < 2) return;
+
+                let animationFrame = 0;
+                let wheelIntent = 0;
+                let wheelIntentTimer = 0;
+
+                const getStops = () => {
+                    let stackCursor = stack.offsetTop;
+
+                    return panels.map(element => {
+                        if (element.parentElement !== stack) return { element, top: element.offsetTop };
+
+                        const top = stackCursor;
+                        stackCursor += element.offsetHeight;
+
+                        return { element, top };
+                    });
+                };
+                const easeOutQuart = progress => 1 - Math.pow(1 - progress, 4);
+
+                const stopAnimation = () => {
+                    if (animationFrame) cancelAnimationFrame(animationFrame);
+                    animationFrame = 0;
+                    document.documentElement.classList.remove('is-product-chapter-scrolling');
+                };
+
+                const animateTo = target => {
+                    stopAnimation();
+
+                    const start = window.scrollY;
+                    const distance = target - start;
+                    if (Math.abs(distance) < 2) return;
+
+                    const duration = Math.min(820, Math.max(560, Math.abs(distance) * .68));
+                    const startedAt = performance.now();
+                    document.documentElement.classList.add('is-product-chapter-scrolling');
+
+                    const step = now => {
+                        const progress = Math.min(1, (now - startedAt) / duration);
+                        window.scrollTo({ top: start + distance * easeOutQuart(progress), behavior: 'auto' });
+
+                        if (progress < 1) {
+                            animationFrame = requestAnimationFrame(step);
+                            return;
+                        }
+
+                        animationFrame = 0;
+                        document.documentElement.classList.remove('is-product-chapter-scrolling');
+                    };
+
+                    animationFrame = requestAnimationFrame(step);
+                };
+
+                const onWheel = event => {
+                    if (!storyMedia.matches || dialog?.open || event.ctrlKey || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+
+                    if (animationFrame) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    const stops = getStops();
+                    const y = window.scrollY;
+                    let currentIndex = 0;
+
+                    for (let index = 0; index < stops.length; index += 1) {
+                        if (stops[index].top <= y + 24) currentIndex = index;
+                    }
+
+                    if ((event.deltaY > 0 && currentIndex === stops.length - 1)
+                        || (event.deltaY < 0 && currentIndex === 0 && y <= stops[0].top + 24)) return;
+
+                    wheelIntent += event.deltaY;
+                    window.clearTimeout(wheelIntentTimer);
+                    wheelIntentTimer = window.setTimeout(() => { wheelIntent = 0; }, 140);
+
+                    if (Math.abs(wheelIntent) < 18) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    const direction = Math.sign(wheelIntent);
+                    const viewport = window.innerHeight;
+
+                    const current = stops[currentIndex];
+                    const previous = stops[currentIndex - 1];
+                    const next = stops[currentIndex + 1];
+                    let target = null;
+
+                    if (direction > 0 && next) {
+                        const currentHeight = next.top - current.top;
+                        const lastReadableTop = next.top - viewport;
+
+                        target = currentHeight > viewport + 80 && y < lastReadableTop - 20
+                            ? Math.min(lastReadableTop, y + viewport * .86)
+                            : next.top;
+                    } else if (direction < 0) {
+                        const nextTop = next?.top ?? current.top + current.element.offsetHeight;
+                        const currentHeight = nextTop - current.top;
+
+                        if (currentHeight > viewport + 80 && y > current.top + 20) {
+                            target = Math.max(current.top, y - viewport * .86);
+                        } else if (previous) {
+                            const previousHeight = current.top - previous.top;
+                            target = previousHeight > viewport + 80
+                                ? Math.max(previous.top, current.top - viewport)
+                                : previous.top;
+                        }
+                    }
+
+                    if (target === null) {
+                        wheelIntent = 0;
+                        return;
+                    }
+
+                    event.preventDefault();
+                    wheelIntent = 0;
+                    animateTo(Math.max(0, target));
+                };
+
+                window.addEventListener('wheel', onWheel, { passive: false });
+                window.addEventListener('resize', stopAnimation, { passive: true });
+            };
+
+            initProductChapterScroll();
         })();
     </script>
 @endpush
