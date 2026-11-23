@@ -26,7 +26,7 @@ class FleetDispatchModuleTest extends TestCase
             ->assertSee('<meta name="description" content="در سپند، کامیون و راننده را به سفارش حمل تخصیص دهید، نتیجه ثبت را در پرونده ببینید و وضعیت اجرای مأموریت را دنبال کنید.">', false)
             ->assertSee('<meta property="og:title" content="نرم‌افزار دیسپچ ناوگان و تخصیص کامیون به بار | سپند">', false)
             ->assertSee('<meta name="twitter:title" content="نرم‌افزار دیسپچ ناوگان و تخصیص کامیون به بار | سپند">', false)
-            ->assertSee('نرم‌افزار دیسپچ ناوگان برای ثبت تخصیص کامیون و راننده', false)
+            ->assertSeeText('نرم‌افزار دیسپچ ناوگان برای ثبت تخصیص کامیون و راننده')
             ->assertSee('دیسپچ ناوگان در حمل زمینی چیست؟', false)
             ->assertSee('ثبت تخصیص کامیون برای یک سفارش خروج بار از بندرعباس', false)
             ->assertSee('Trip Assignment', false)

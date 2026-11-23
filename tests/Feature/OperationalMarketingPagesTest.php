@@ -70,7 +70,7 @@ class OperationalMarketingPagesTest extends TestCase
 
             $content = $this->get($path)
                 ->assertOk()
-                ->assertSee($expected['h1'], false)
+                ->assertSeeText($expected['h1'])
                 ->assertSee('href="'.self::SITE_URL.$expected['solution'].'"', false)
                 ->assertSee('<link rel="canonical" href="'.self::SITE_URL.$path.'">', false)
                 ->assertSee('"@type":"SoftwareApplication"', false)

@@ -67,7 +67,7 @@
         <div class="fd-hero-copy reveal">
             <nav class="breadcrumb" aria-label="مسیر راهنما"><a href="{{ route('home') }}">صفحه اصلی</a><span>/</span><a href="{{ route('modules') }}">ماژول‌ها</a><span>/</span><span>{{ $module['name'] }}</span></nav>
             <span class="fd-eyebrow">Fleet Dispatch · حمل زمینی</span>
-            <h1 id="fleet-dispatch-title">{{ $page['h1'] }}</h1>
+            <h1 id="fleet-dispatch-title"><span>{{ $page['h1_lines'][0] }} </span><span>{{ $page['h1_lines'][1] }}</span></h1>
             @foreach($page['hero'] as $paragraph)
                 <p>{{ $paragraph }}</p>
             @endforeach
