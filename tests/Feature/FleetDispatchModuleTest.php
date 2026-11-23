@@ -54,4 +54,19 @@ class FleetDispatchModuleTest extends TestCase
             '<loc>'.self::SITE_URL.'/modules/fleet-dispatch</loc>'
         ));
     }
+
+    public function test_embedded_screenshot_stays_in_document_flow_when_faq_expands(): void
+    {
+        $stylesheet = file_get_contents(public_path('assets/css/marketing-fleet-dispatch.css'));
+
+        $this->assertIsString($stylesheet);
+        $this->assertStringContainsString(
+            '.fd-calendar-evidence .module-screenshot-panel{position:relative;inset:auto;',
+            $stylesheet
+        );
+        $this->assertStringContainsString(
+            '.fd-calendar-evidence .module-screenshot-viewport{flex:none;width:100%;aspect-ratio:1600/861}',
+            $stylesheet
+        );
+    }
 }
