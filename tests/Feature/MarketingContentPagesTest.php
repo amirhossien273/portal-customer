@@ -33,7 +33,7 @@ class MarketingContentPagesTest extends TestCase
             '/solutions/container-management' => ['title' => 'نرم افزار مدیریت کانتینر، دپو و اجاره | سپند', 'h1' => 'نرم افزار مدیریت کانتینر؛ از Depot و Lease تا Return'],
             '/solutions/on-premise' => ['title' => 'نرم‌افزار حمل‌ونقل بین‌المللی روی سرور شرکت | سپند', 'h1' => 'نرم‌افزار حمل‌ونقل بین‌المللی قابل نصب روی سرور شرکت'],
             '/solutions/bill-of-lading-management' => ['title' => 'کنترل بارنامه HBL و MBL با نرم افزار سپند', 'h1' => 'کنترل بارنامه‌های HBL و MBL از Draft تا نسخه نهایی'],
-            '/solutions/freight-sales-automation' => ['title' => 'پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند', 'h1' => 'راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل'],
+            '/solutions/freight-sales-automation' => ['title' => 'نرم‌افزار پیگیری استعلام و پیشنهاد قیمت حمل‌ونقل | سپند', 'h1' => 'پیگیری استعلام‌های حمل و پیشنهادهای قیمت در سپند'],
         ];
 
         $renderedTitles = [];
@@ -74,7 +74,7 @@ class MarketingContentPagesTest extends TestCase
             }
 
             $this->assertSame(1, substr_count($content, '<h1'));
-            $this->assertGreaterThanOrEqual($path === '/solutions/freight-sales-automation' ? 8 : 10, substr_count($content, '<h2'));
+            $this->assertGreaterThanOrEqual($path === '/solutions/freight-sales-automation' ? 7 : 10, substr_count($content, '<h2'));
             $this->assertGreaterThan($path === '/solutions/freight-sales-automation' ? 5000 : 7000, mb_strlen(strip_tags($content)));
             $this->assertStringNotContainsString('noindex', strtolower($content));
             $this->assertValidJsonLd($content);
@@ -95,33 +95,41 @@ class MarketingContentPagesTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند</title>', false)
-            ->assertSee('<meta name="description" content="پیگیری مشتریان و استعلام‌های حمل را در سپند منظم کنید؛ مسئول، موعد، سابقه مذاکره و اقدام بعدی را ببینید و پیشنهادهای بی‌پیگیری را شناسایی کنید.">', false)
-            ->assertSee('<meta property="og:title" content="پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند">', false)
-            ->assertSee('<meta name="twitter:title" content="پیگیری مشتریان و استعلام‌های حمل‌ونقل | سپند">', false)
+            ->assertSee('<title>نرم‌افزار پیگیری استعلام و پیشنهاد قیمت حمل‌ونقل | سپند</title>', false)
+            ->assertSee('<meta name="description" content="با سپند، پیشنهادهای قیمت ارسال‌شده، آخرین تماس، مسئول و موعد پیگیری هر استعلام حمل را در یک پرونده ببینید و پیگیری‌های عقب‌افتاده را پیدا کنید.">', false)
+            ->assertSee('<meta property="og:title" content="نرم‌افزار پیگیری استعلام و پیشنهاد قیمت حمل‌ونقل | سپند">', false)
+            ->assertSee('<meta name="twitter:title" content="نرم‌افزار پیگیری استعلام و پیشنهاد قیمت حمل‌ونقل | سپند">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.'/solutions/freight-sales-automation">', false)
-            ->assertSee('<h1>راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل</h1>', false)
+            ->assertSee('<h1>پیگیری استعلام‌های حمل و پیشنهادهای قیمت در سپند</h1>', false)
             ->assertSee('درخواست دموی پیگیری فروش', false)
-            ->assertSee('href="#sales-solutions">ببینید سپند چگونه کمک می‌کند</a>', false)
-            ->assertSee('شش نقطه‌ای که پیگیری فروش حمل', false)
-            ->assertSee('پیشنهاد نرخ ارسال شده، اما پیگیری نمی‌شود', false)
-            ->assertSee('داشبورد «پیگیری‌های من»', false)
-            ->assertSee('سناریوی آموزشی', false)
-            ->assertSee('درخواست حمل دریایی از نینگبو', false)
-            ->assertSee('قالب‌های فعلی محصول', false)
-            ->assertSee('ثبت ارسال پیشنهاد نرخ: پیگیری دو روز بعد', false)
-            ->assertSee('چه اطلاعاتی واقعاً', false)
-            ->assertSee('شاخص پیشنهادی ارزیابی', false)
-            ->assertSee('به معنی وجود گزارش آماده', false)
+            ->assertSee('href="#educational-scenario">مشاهده سناریوی نینگبو تا بندرعباس</a>', false)
+            ->assertSee('پیگیری پیشنهاد نینگبو به بندرعباس؛ از ارسال تا Booking', false)
+            ->assertSee('پیشنهاد ارسال شد', false)
+            ->assertSee('موعد پیگیری رسید', false)
+            ->assertSee('مشتری برای تصمیم‌گیری فرصت خواست', false)
+            ->assertSee('مشتری پیشنهاد را تأیید کرد', false)
+            ->assertSee('دو روز بعد ساعت ۹', false)
+            ->assertSee('آخرین اقدام چه بوده؟', false)
+            ->assertSee('مسئول پیگیری کیست؟', false)
+            ->assertSee('اقدام بعدی چه زمانی است؟', false)
+            ->assertSee('پیگیری یک پیشنهاد قیمت را در سپند ببینید', false)
+            ->assertSee('<th>رویداد</th><th>اقدام کارشناس</th><th>رفتار سپند با قاعده فعال</th>', false)
+            ->assertSee('قالب آماده مستقلی برای تعیین موعد جدید', false)
+            ->assertSee('بعد از تأیید مشتری، چه چیزی به Booking می‌رود؟', false)
+            ->assertSee('شاخص‌های پیشنهادی', false)
+            ->assertSee('وجود گزارش آماده با همین نام‌ها', false)
             ->assertSee('assets/images/marketing/product-showcase/desktop-dashboard.webp', false)
+            ->assertSee('assets/images/marketing/modules/screenshots/crm-overdue-inquiries.webp', false)
             ->assertSee('assets/images/marketing/modules/screenshots/automatic-task-rules.webp', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/crm"><strong>امکانات CRM حمل‌ونقل سپند</strong>', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"><strong>آماده‌سازی پیشنهاد نرخ حمل</strong>', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/automatic-tasks"><strong>پیگیری خودکار فروش</strong>', false)
-            ->assertSee('href="'.self::SITE_URL.'/modules/booking"><strong>ادامه پرونده در Booking</strong>', false)
-            ->assertSee('چگونه استعلام‌های بدون پیگیری را پیدا کنیم؟', false)
-            ->assertSee('چه پیگیری‌هایی به‌صورت خودکار ساخته می‌شوند؟', false)
-            ->assertSee('پیگیری یک استعلام واقعی را در سپند ببینید', false)
+            ->assertSee('href="'.self::SITE_URL.'/solutions/rate-management"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/pricing-sales"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/crm"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/automatic-tasks"', false)
+            ->assertSee('href="'.self::SITE_URL.'/modules/booking"', false)
+            ->assertSee('استعلام‌های نیازمند پیگیری را کجا می‌بینم؟', false)
+            ->assertSee('آیا بعد از ارسال پیشنهاد، تسک خودکار ساخته می‌شود؟', false)
+            ->assertSee('اگر مشتری پاسخ ندهد، موعد بعدی کجا ثبت می‌شود؟', false)
+            ->assertSee('بعد از تأیید مشتری، چه اطلاعاتی وارد Booking می‌شود؟', false)
             ->assertSee('"@type":"HowTo"', false)
             ->assertSee('"@type":"FAQPage"', false)
             ->assertDontSee('RevOps', false)
@@ -130,7 +138,7 @@ class MarketingContentPagesTest extends TestCase
             ->assertDontSee('Rule Catalog', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
-        $this->assertSame(5, substr_count($content, '<details class="reveal">'));
+        $this->assertSame(4, substr_count($content, '<details class="reveal">'));
         $this->assertLessThan(strpos($content, 'id="product-evidence"'), strpos($content, 'id="sales-solutions"'));
         $this->assertValidJsonLd($content);
     }

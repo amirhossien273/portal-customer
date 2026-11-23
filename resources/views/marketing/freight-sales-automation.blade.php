@@ -1,73 +1,42 @@
 @extends('layouts.marketing')
 
 @php
-    $issues = [
-        [
-            'title' => 'سابقه مشتری بین فایل‌ها و پیام‌ها پراکنده است',
-            'impact' => 'کارشناس پیش از پاسخ‌گویی باید آخرین مذاکره، درخواست حمل و نتیجه تماس‌ها را از چند محل جمع کند.',
-            'action' => 'مشتری، افراد مرتبط، استعلام و فعالیت‌های ثبت‌شده را در پرونده همان مشتری مرور می‌کند.',
-            'output' => 'کاربر مجاز به سابقه‌ای واحد و قابل مراجعه دسترسی دارد و می‌بیند آخرین اقدام چه بوده است.',
-            'example' => 'مثال: پیش از پاسخ به درخواست نرخ جدید، کارشناس استعلام قبلی و یادداشت آخرین تماس را در همان پرونده می‌بیند.',
-        ],
-        [
-            'title' => 'پیشنهاد نرخ ارسال شده، اما پیگیری نمی‌شود',
-            'impact' => 'وضعیت فرصت و پاسخ مشتری نامشخص می‌ماند و پیشنهاد باز، بدون اقدام بعدی در میان کارهای روزانه گم می‌شود.',
-            'action' => 'برای استعلام، مسئول، تسک زمان‌دار و اقدام بعدی ثبت می‌شود؛ موارد بدون پیگیری آینده نیز در فهرست جدا دیده می‌شوند.',
-            'output' => 'کارشناس می‌داند کدام پیشنهاد اکنون به تماس، دریافت پاسخ یا ثبت نتیجه نیاز دارد.',
-            'example' => 'مثال: پس از ثبت ارسال پیشنهاد، موعد تماس دو روز بعد تعیین و نتیجه تماس در سابقه استعلام ثبت می‌شود.',
-        ],
-        [
-            'title' => 'کارهای عقب‌افتاده میان کارهای روزانه پنهان می‌شوند',
-            'impact' => 'اولویت‌بندی به حافظه کارشناس وابسته می‌شود و تسکی که از موعد گذشته ممکن است دیر دیده شود.',
-            'action' => 'داشبورد «پیگیری‌های من» را باز می‌کند و استعلام‌های عقب‌افتاده، بدون اقدام بعدی، کارهای امروز و پیگیری‌های آینده را جدا می‌بیند.',
-            'output' => 'فهرست اولویت‌های روز بر اساس موعد واقعی تسک‌ها مشخص است.',
-            'example' => 'مثال: تسکی که موعد آن گذشته، از گروه امروز خارج و در فهرست عقب‌افتاده نمایش داده می‌شود.',
-        ],
-        [
-            'title' => 'مدیر برای اطلاع از وضعیت فروش باید از همه گزارش بگیرد',
-            'impact' => 'تصمیم‌گیری به پیام‌ها و گزارش‌های دستی وابسته می‌شود و موارد نیازمند اقدام به‌موقع جمع‌بندی نمی‌شوند.',
-            'action' => 'نماهای موجودِ پیگیری‌های عقب‌افتاده، بدون اقدام بعدی، امروز و آینده را بررسی می‌کند و از پرونده هر مورد به جزئیات می‌رود.',
-            'output' => 'وضعیت پیگیری‌ها و موارد نیازمند اقدام در خود محصول قابل مشاهده است و گزارش‌های تحلیلی تأییدنشده وعده داده نمی‌شوند.',
-            'example' => 'مثال: مدیر ابتدا تعداد استعلام‌های بدون اقدام بعدی را می‌بیند و سپس مسئول و سابقه هر پرونده را بررسی می‌کند.',
-        ],
-        [
-            'title' => 'با جابه‌جایی کارشناس، سابقه پیگیری در دسترس تیم نیست',
-            'impact' => 'مذاکره از ابتدا تکرار می‌شود و تیم نمی‌داند مشتری قبلاً چه پاسخی داده یا چه قولی ثبت شده است.',
-            'action' => 'سوابق فعالیت، مذاکره، پیامک و تسک‌های ثبت‌شده را در پرونده سازمانی نگه می‌دارد و دسترسی را بر اساس نقش کاربر مدیریت می‌کند.',
-            'output' => 'کاربر مجاز می‌تواند ادامه پیگیری را بر پایه سابقه ثبت‌شده انجام دهد؛ انتقال خودکار مسئولیت ادعا نمی‌شود.',
-            'example' => 'مثال: کارشناس جدید پیش از تماس، یادداشت آخرین گفت‌وگو و موعد پیگیری قبلی را مرور می‌کند.',
-        ],
-        [
-            'title' => 'فروش تأیید شده، اما عملیات دوباره اطلاعات می‌خواهد',
-            'impact' => 'اطلاعات پایه مشتری، مسیر، محموله و پیشنهاد پذیرفته‌شده دوباره وارد می‌شود و احتمال اختلاف افزایش پیدا می‌کند.',
-            'action' => 'پس از تأیید پیشنهاد، Booking مرتبط از استعلام ساخته می‌شود و تصویر ثابتی از اطلاعات مشتری، مسیر، محموله و پیشنهاد پذیرفته‌شده نگه می‌دارد.',
-            'output' => 'عملیات از داده‌های مشخصِ استعلام و پیشنهاد تأییدشده شروع می‌کند؛ انتقال همه تعهدات یا مدارک وعده داده نمی‌شود.',
-            'example' => 'مثال: مسیر نینگبو به بندرعباس، مشخصات محموله و اقلام پیشنهاد پذیرفته‌شده در Booking قابل استفاده‌اند.',
-        ],
-    ];
-
     $scenario = [
-        ['title' => 'ثبت مشتری و درخواست حمل', 'action' => 'کارشناس مشتری، افراد مرتبط و درخواست حمل دریایی نینگبو به بندرعباس را ثبت می‌کند.', 'result' => 'نتیجه در پرونده مشتری و فهرست استعلام‌ها دیده می‌شود.'],
-        ['title' => 'مشخص‌کردن مسئول و اطلاعات موردنیاز', 'action' => 'مالک استعلام، مشخصات مسیر، محموله و داده‌های لازم برای بررسی نرخ تکمیل می‌شوند.', 'result' => 'مسئول پرونده و جزئیات درخواست در استعلام قابل مشاهده‌اند.'],
-        ['title' => 'بررسی نرخ', 'action' => 'کارشناس نرخ، بررسی و مقایسه تأمین‌کننده را در ماژول نرخ‌دهی ادامه می‌دهد.', 'result' => 'نرخ‌ها و اقلام مورد استفاده برای پیشنهاد در همان جریان استعلام باقی می‌مانند.'],
-        ['title' => 'ثبت ارسال پیشنهاد', 'action' => 'پس از آماده‌شدن پیشنهاد، ارسال آن به مشتری در پرونده ثبت می‌شود.', 'result' => 'زمان ارسال و پیشنهاد مرتبط با استعلام قابل مراجعه‌اند.'],
-        ['title' => 'تعیین موعد و اقدام بعدی', 'action' => 'کاربر تسک پیگیری را با مسئول و موعد مشخص ثبت می‌کند یا از قالب خودکار مرتبط استفاده می‌شود.', 'result' => 'پیگیری در فهرست امروز، آینده یا عقب‌افتاده قرار می‌گیرد.'],
-        ['title' => 'ثبت پاسخ یا ادامه پیگیری', 'action' => 'پاسخ مشتری یا فعالیت انجام‌شده ثبت و در صورت بازماندن تصمیم، اقدام بعدی تازه ساخته می‌شود.', 'result' => 'آخرین اقدام و موعد بعدی در سابقه پرونده باقی می‌مانند.'],
-        ['title' => 'ادامه پیشنهاد تأییدشده در Booking', 'action' => 'پس از موفق‌شدن استعلام و تأیید پیشنهاد، Booking مرتبط ساخته می‌شود.', 'result' => 'مشتری، مسیر، محموله و تصویر پیشنهاد پذیرفته‌شده مبنای ادامه پرونده هستند.'],
+        [
+            'title' => 'پیشنهاد ارسال شد',
+            'text' => 'کارشناس پس از انتخاب نرخ خرید و آماده‌سازی Quotation، ارسال پیشنهاد را در پرونده ثبت می‌کند. اگر قاعده پیگیری پس از ارسال پیشنهاد برای شرکت فعال باشد، سپند یک تسک با موعد دو روز بعد ساعت ۹ برای مالک استعلام می‌سازد؛ در غیر این صورت مسئول و موعد از بخش تسک همان استعلام دستی ثبت می‌شوند.',
+            'result' => 'پیشنهاد ارسال‌شده، مالک استعلام و تسک پیگیری به همان پرونده متصل می‌مانند.',
+        ],
+        [
+            'title' => 'موعد پیگیری رسید',
+            'text' => 'کارشناس در داشبورد «پیگیری‌های من» تسک امروز یا استعلام عقب‌افتاده را پیدا می‌کند. فهرست عقب‌افتاده کد استعلام، مشتری، مالک، مرحله، آخرین فعالیت، عنوان تسک و میزان تأخیر را نشان می‌دهد.',
+            'result' => 'پرونده نیازمند اقدام از میان کارهای روزانه قابل تشخیص است.',
+        ],
+        [
+            'title' => 'مشتری برای تصمیم‌گیری فرصت خواست',
+            'text' => 'نتیجه تماس یا یادداشت در سابقه پرونده ثبت می‌شود و کارشناس برای اقدام بعدی یک تسک تازه با مسئول و موعد مشخص می‌سازد. این پاسخ مشتری در قالب‌های فعلی تریگر مستقلی برای تعیین خودکار موعد دلخواه بعدی ندارد.',
+            'result' => 'همکار بعدی می‌تواند آخرین نتیجه و زمان تماس بعدی را از همان پرونده ادامه دهد.',
+        ],
+        [
+            'title' => 'مشتری پیشنهاد را تأیید کرد',
+            'text' => 'پس از پذیرفته‌شدن Quotation و اجرای تبدیل، Booking به استعلام، مشتری و پیشنهاد پذیرفته‌شده متصل می‌شود. سپند snapshot اطلاعات تجاری و محموله را نگه می‌دارد و Operation مرتبط را برای ادامه تیم عملیات ایجاد می‌کند.',
+            'result' => 'تیم عملیات از Booking و Operation مرتبط ادامه می‌دهد؛ تبدیل پیش از پذیرش پیشنهاد مجاز نیست.',
+        ],
     ];
 
-    $faqs = [
-        ['question' => 'چگونه استعلام‌های بدون پیگیری را پیدا کنیم؟', 'answer' => 'در داشبورد «پیگیری‌های من»، استعلام‌های بازِ بدون تسک فعال و زمان‌دار در فهرست «بدون اقدام بعدی» نمایش داده می‌شوند تا کارشناس برای آن‌ها پیگیری ثبت کند.'],
-        ['question' => 'کارشناس از کجا بداند امروز کدام مشتری را پیگیری کند؟', 'answer' => 'تسک‌های فعال تا پایان همان روز در فهرست کارهای امروز و موارد عبورکرده از موعد در فهرست عقب‌افتاده دیده می‌شوند.'],
-        ['question' => 'آیا برای پیشنهاد ارسال‌شده می‌توان اقدام بعدی تعیین کرد؟', 'answer' => 'بله. کاربر می‌تواند برای استعلام مرتبط، تسک زمان‌دار با مسئول و موعد مشخص ثبت کند و نتیجه تماس یا پاسخ مشتری را در سابقه پرونده نگه دارد.'],
-        ['question' => 'چه پیگیری‌هایی به‌صورت خودکار ساخته می‌شوند؟', 'answer' => 'قالب‌های فعلی محصول برای لید جدید، استعلام جدید، پیشنهاد نرخ ارسال‌شده و لید یا استعلام فعالِ بدون پیگیری آینده تسک می‌سازند. فعال‌بودن و تنظیم هر قاعده در سازمان قابل مدیریت است.'],
-        ['question' => 'اطلاعات فروش چگونه به Booking متصل می‌شود؟', 'answer' => 'پس از تأیید پیشنهاد، Booking با ارتباط به استعلام، مشتری و پیشنهاد پذیرفته‌شده ساخته می‌شود و تصویر اطلاعات مسیر، محموله و اقلام پیشنهاد را نگه می‌دارد.'],
+    $automationRows = [
+        ['event' => 'ثبت لید جدید', 'manual' => 'کارشناس لید و مالک آن را ثبت می‌کند.', 'automatic' => 'با قاعده فعال، یک تسک پیگیری یک ساعت بعد برای مالک لید یا ایجادکننده ساخته می‌شود.'],
+        ['event' => 'ثبت استعلام جدید', 'manual' => 'کارشناس مشتری، مسیر، خدمت و مالک استعلام را تکمیل می‌کند.', 'automatic' => 'با قاعده فعال، یک تسک پیگیری یک ساعت بعد برای مالک استعلام ساخته می‌شود.'],
+        ['event' => 'ثبت ارسال پیشنهاد نرخ', 'manual' => 'کارشناس ارسال Quotation را در پرونده ثبت می‌کند.', 'automatic' => 'با قاعده فعال، تسک پیگیری دو روز بعد ساعت ۹ برای مالک استعلام ساخته می‌شود.'],
+        ['event' => 'مشتری برای تصمیم‌گیری فرصت می‌خواهد', 'manual' => 'نتیجه تماس ثبت و تسک بعدی با مسئول و موعد دلخواه ساخته می‌شود.', 'automatic' => 'قالب آماده مستقلی برای تعیین موعد جدید از متن پاسخ مشتری وجود ندارد؛ این مرحله دستی است.'],
+        ['event' => 'موفق یا ناموفق‌شدن استعلام', 'manual' => 'کارشناس نتیجه نهایی استعلام را ثبت می‌کند.', 'automatic' => 'با قواعد فعال، تسک‌های پیگیری باز و خودکار مرتبط لغو می‌شوند.'],
     ];
 
+    $faqs = $page['faqs'];
     $breadcrumbItems = [
         ['@type' => 'ListItem', 'position' => 1, 'name' => 'صفحه اصلی', 'item' => route('home')],
         ['@type' => 'ListItem', 'position' => 2, 'name' => 'راهکارها', 'item' => route('solutions.index')],
-        ['@type' => 'ListItem', 'position' => 3, 'name' => 'پیگیری مشتریان و استعلام‌های حمل‌ونقل', 'item' => $canonical],
+        ['@type' => 'ListItem', 'position' => 3, 'name' => 'پیگیری استعلام و پیشنهاد قیمت حمل', 'item' => $canonical],
     ];
 @endphp
 
@@ -90,12 +59,12 @@
         [
             '@type' => 'HowTo',
             '@id' => $canonical.'#scenario',
-            'name' => 'سناریوی آموزشی پیگیری استعلام حمل دریایی',
+            'name' => 'پیگیری پیشنهاد قیمت حمل از ارسال تا Booking',
             'step' => array_map(static fn (array $step, int $index): array => [
                 '@type' => 'HowToStep',
                 'position' => $index + 1,
                 'name' => $step['title'],
-                'text' => $step['action'].' '.$step['result'],
+                'text' => $step['text'].' '.$step['result'],
             ], $scenario, array_keys($scenario)),
         ],
         [
@@ -112,189 +81,85 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-sales-follow-up.css') }}?v=20261107-1">
+<link rel="stylesheet" href="{{ asset('assets/css/marketing-sales-follow-up.css') }}?v=20261122-1">
 @endpush
 
 @section('content')
 <section class="page-hero sales-follow-hero">
     <div class="container hero-inner">
         <div class="hero-copy reveal">
-            <nav class="breadcrumb" aria-label="مسیر صفحه">
-                <a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                <a href="{{ route('solutions.index') }}">راهکارها</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                <span>پیگیری فروش حمل‌ونقل</span>
-            </nav>
-            <span class="sales-eyebrow">راهکار پیگیری مشتریان حمل‌ونقل</span>
-            <h1>راهکار مدیریت پیگیری مشتریان و فروش حمل‌ونقل</h1>
-            <p>مشتری درخواست نرخ داده و پیشنهاد ارسال شده است؛ اما آخرین پیگیری، پاسخ مشتری و مسئول اقدام بعدی روشن نیست. سپند مشتری، استعلام، مسئول، سابقه ارتباط و تسک بعدی را در یک مسیر مرتبط نگه می‌دارد تا کارشناس بداند کدام پرونده اکنون به اقدام نیاز دارد.</p>
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="freight_sales_hero_demo">درخواست دموی پیگیری فروش</a>
-                <a class="btn btn-outline" href="#sales-solutions">ببینید سپند چگونه کمک می‌کند</a>
-            </div>
+            <nav class="breadcrumb" aria-label="مسیر صفحه"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('solutions.index') }}">راهکارها</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>پیگیری استعلام حمل</span></nav>
+            <span class="sales-eyebrow">نرم‌افزار پیگیری استعلام حمل‌ونقل</span>
+            <h1>پیگیری استعلام‌های حمل و پیشنهادهای قیمت در سپند</h1>
+            <p>دیروز برای مشتری نرخ حمل نینگبو به بندرعباس را فرستادید. امروز هنوز جوابی نیامده و معلوم نیست چه کسی باید پیگیری کند. اگر کارشناس مسئول در دسترس نباشد، همکارش باید بداند آخرین بار چه اقدامی انجام شده و قدم بعدی چیست.</p>
+            <p>در سپند، پیشنهاد قیمت، سابقه تماس، مسئول استعلام و موعد پیگیری در یک پرونده به هم مرتبط‌اند. کارشناس می‌تواند استعلام‌های نیازمند اقدام را پیدا کند و مدیر فروش می‌تواند ببیند کدام پیگیری‌ها عقب افتاده‌اند.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="freight_sales_hero_demo">درخواست دموی پیگیری فروش</a><a class="btn btn-outline" href="#educational-scenario">مشاهده سناریوی نینگبو تا بندرعباس</a></div>
         </div>
-        <aside class="sales-hero-card reveal" aria-label="خروجی قابل مشاهده راهکار">
-            <span>در پایان هر پیگیری چه چیزی روشن است؟</span>
-            <ul>
-                <li><strong>مسئول</strong><small>پیگیری بر عهده چه کسی است؟</small></li>
-                <li><strong>آخرین اقدام</strong><small>چه تماس یا فعالیتی ثبت شده است؟</small></li>
-                <li><strong>موعد</strong><small>اقدام بعدی چه زمانی انجام می‌شود؟</small></li>
-                <li><strong>وضعیت</strong><small>پرونده امروز، آینده یا عقب‌افتاده است؟</small></li>
-            </ul>
+        <aside class="sales-hero-card reveal" aria-label="خروجی قابل مشاهده نرم‌افزار پیگیری استعلام حمل‌ونقل">
+            <span>برای هر پیشنهاد ارسال‌شده</span>
+            <ul><li><strong>آخرین اقدام</strong><small>چه تماس یا فعالیتی ثبت شده است؟</small></li><li><strong>مسئول</strong><small>پیگیری بر عهده چه کسی است؟</small></li><li><strong>موعد بعدی</strong><small>اقدام بعدی چه زمانی است؟</small></li><li><strong>وضعیت</strong><small>امروز، آینده یا عقب‌افتاده؟</small></li></ul>
         </aside>
     </div>
 </section>
 
-<section class="section sales-issues" id="sales-solutions" aria-labelledby="sales-solutions-title">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">مسئله و راهکار</span>
-            <h2 class="section-title" id="sales-solutions-title">شش نقطه‌ای که پیگیری فروش حمل<br><span>از کنترل تیم خارج می‌شود</span></h2>
-            <p class="section-sub">هر مورد از یک مشکل روزمره شروع می‌شود و با اقدامی که در محصول قابل انجام است پایان می‌گیرد.</p>
-        </div>
-        <div class="sales-issue-list">
-            @foreach($issues as $issue)
-                <article class="sales-issue reveal">
-                    <div class="sales-issue-heading"><span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><h3>{{ $issue['title'] }}</h3></div>
-                    <div class="sales-issue-details">
-                        <div><strong>پیامد روزانه</strong><p>{{ $issue['impact'] }}</p></div>
-                        <div><strong>اقدام در سپند</strong><p>{{ $issue['action'] }}</p></div>
-                        <div><strong>خروجی قابل مشاهده</strong><p>{{ $issue['output'] }}</p></div>
-                        <p class="sales-example">{{ $issue['example'] }}</p>
-                    </div>
-                </article>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<section class="section soft sales-evidence" id="product-evidence" aria-labelledby="product-evidence-title">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">شواهد واقعی محصول</span>
-            <h2 class="section-title" id="product-evidence-title">پیگیری‌ها و قواعد ساخت تسک<br><span>در محیط واقعی سپند</span></h2>
-            <p class="section-sub">این دو تصویر از خود محصول انتخاب شده‌اند و نام یا اطلاعات مشتری مشخصی نمایش نمی‌دهند.</p>
-        </div>
-        <div class="sales-evidence-grid">
-            <figure class="sales-evidence-card reveal">
-                <a href="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" target="_blank" rel="noopener">
-                    <img src="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" alt="داشبورد واقعی پیگیری‌های من با تفکیک استعلام عقب‌افتاده، بدون اقدام بعدی، کارهای امروز و پیگیری آینده" width="1600" height="799" loading="lazy">
-                </a>
-                <figcaption><strong>پیگیری‌های من</strong><span>چهار فهرست مستقل برای عقب‌افتاده، بدون اقدام بعدی، امروز و آینده؛ برای بزرگ‌نمایی تصویر را باز کنید.</span></figcaption>
-            </figure>
-            <figure class="sales-evidence-card reveal">
-                <a href="{{ asset('assets/images/marketing/modules/screenshots/automatic-task-rules.webp') }}" target="_blank" rel="noopener">
-                    <img src="{{ asset('assets/images/marketing/modules/screenshots/automatic-task-rules.webp') }}" alt="نمای واقعی قوانین ساخت تسک خودکار در سپند همراه رویداد شروع، وضعیت و آخرین اجرا" width="1600" height="851" loading="lazy">
-                </a>
-                <figcaption><strong>قوانین ساخت تسک خودکار</strong><span>فهرست قواعد، رویداد شروع، وضعیت فعال یا غیرفعال و نتیجه اجرای قواعد؛ بدون نمایش داده شخصی مشتری.</span></figcaption>
-            </figure>
-        </div>
-    </div>
-</section>
-
-<section class="section sales-scenario" id="educational-scenario" aria-labelledby="educational-scenario-title">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">سناریوی آموزشی</span>
-            <h2 class="section-title" id="educational-scenario-title">درخواست حمل دریایی از نینگبو<br><span>تا بندرعباس چگونه پیگیری می‌شود؟</span></h2>
-            <p class="section-sub">این مثال برای آموزش مسیر محصول است و مطالعه موردی یک مشتری واقعی نیست.</p>
-        </div>
+<section class="section sales-scenario" id="educational-scenario" aria-labelledby="educational-scenario-title"><div class="container" id="sales-solutions">
+    <header class="section-head reveal"><span class="section-label">سناریوی چهارمرحله‌ای</span><h2 class="section-title" id="educational-scenario-title">پیگیری پیشنهاد نینگبو به بندرعباس؛ از ارسال تا Booking</h2><p class="section-sub">این سناریو رفتار قابل مشاهده نسخه فعلی را توضیح می‌دهد و مطالعه موردی یک مشتری واقعی نیست.</p></header>
+    <div class="sales-scenario-layout">
         <ol class="sales-scenario-list">
             @foreach($scenario as $step)
-                <li class="reveal">
-                    <span>{{ $loop->iteration }}</span>
-                    <div><h3>{{ $step['title'] }}</h3><p>{{ $step['action'] }}</p><strong>{{ $step['result'] }}</strong></div>
-                </li>
+                <li class="reveal"><span>{{ $loop->iteration }}</span><div><h3>{{ $step['title'] }}</h3><p>{{ $step['text'] }}</p>
+                    @if($loop->iteration === 1)<p class="sales-inline-links">برای مرحله قبل از ارسال، <a href="{{ route('solutions.platform.show', ['solution' => 'rate-management']) }}">انتخاب نرخ خرید</a> و <a href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}">ساخت و ارسال پیشنهاد قیمت</a> را ببینید.</p>@endif
+                    @if($loop->iteration === 3)<p class="sales-inline-links">نتیجه تماس در زمینه <a href="{{ route('site.modules.show', ['module' => 'crm']) }}">پرونده مشتری و سابقه ارتباط</a> قابل مراجعه می‌ماند.</p>@endif
+                    @if($loop->iteration === 4)<p class="sales-inline-links">تیم عملیات از <a href="{{ route('site.modules.show', ['module' => 'booking']) }}">Booking و اطلاعات منتقل‌شده</a> ادامه می‌دهد.</p>@endif
+                    <strong>{{ $step['result'] }}</strong></div></li>
             @endforeach
         </ol>
-        <p class="sales-scenario-links reveal">جزئیات آماده‌سازی پیشنهاد در <a href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}">ماژول نرخ‌دهی و فروش</a> و ادامه پرونده تأییدشده در <a href="{{ route('site.modules.show', ['module' => 'booking']) }}">ماژول Booking</a> توضیح داده شده است.</p>
-    </div>
-</section>
-
-<section class="section soft sales-follow-mode" id="manual-and-automatic" aria-labelledby="manual-and-automatic-title">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">پیگیری دستی و خودکار</span>
-            <h2 class="section-title" id="manual-and-automatic-title">اقدام بعدی را کاربر ثبت می‌کند؛<br><span>رویدادهای مشخص می‌توانند تسک بسازند</span></h2>
-            <p class="section-sub">در مدیریت فروش شرکت‌های حمل‌ونقل، پیگیری پیشنهاد قیمت حمل همیشه یکسان نیست؛ بخشی با تصمیم کارشناس و بخش تکرارشونده با قواعد اتوماسیون فروش فورواردری انجام می‌شود.</p>
-        </div>
-        <div class="sales-mode-grid">
-            <article class="sales-mode-card reveal">
-                <span>ثبت دستی</span><h3>وقتی زمان و نوع پیگیری به تصمیم کارشناس وابسته است</h3>
-                <p>کاربر در پرونده مشتری یا استعلام، عنوان تسک، مسئول و موعد را ثبت می‌کند. پس از تماس یا دریافت پاسخ، فعالیت انجام‌شده ثبت می‌شود و در صورت نیاز اقدام بعدی تازه‌ای ساخته می‌شود.</p>
-                <strong>خروجی: مسئول، سررسید و سابقه نتیجه در پرونده قابل مشاهده‌اند.</strong>
-            </article>
-            <article class="sales-mode-card reveal">
-                <span>قواعد موجود محصول</span><h3>وقتی یک رویداد پرتکرار باید پیگیری استاندارد بسازد</h3>
-                <ul>
-                    <li>ایجاد لید جدید: پیگیری برای مالک لید یا ایجادکننده</li>
-                    <li>لید فعال بدون تسک آینده: ساخت پیگیری زمان‌بندی‌شده</li>
-                    <li>ایجاد استعلام جدید: پیگیری برای مالک استعلام</li>
-                    <li>ثبت ارسال پیشنهاد نرخ: پیگیری دو روز بعد برای مالک استعلام</li>
-                    <li>استعلام فعال بدون تسک آینده: ساخت پیگیری زمان‌بندی‌شده</li>
-                    <li>موفق یا ناموفق‌شدن استعلام: لغو پیگیری‌های باز و خودکار مرتبط</li>
-                </ul>
-                <a href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}">جزئیات پیگیری خودکار در سپند <span aria-hidden="true">←</span></a>
-            </article>
-        </div>
-        <p class="sales-note reveal">کنترل خودکار زمان پاسخ، ارجاع مرحله‌ای فرصت بی‌پاسخ، تأیید حاشیه سود و بازگرداندن خودکار پرونده ناقص در این صفحه به‌عنوان قابلیت موجود وعده داده نمی‌شوند.</p>
-    </div>
-</section>
-
-<section class="section sales-booking" id="booking-continuity" aria-labelledby="booking-continuity-title">
-    <div class="container sales-booking-layout">
-        <div class="reveal">
-            <span class="section-label">ادامه فروش تأییدشده</span>
-            <h2 class="section-title" id="booking-continuity-title">چه اطلاعاتی واقعاً<br><span>به Booking ادامه پیدا می‌کند؟</span></h2>
-            <p>Booking به استعلام، مشتری و پیشنهاد پذیرفته‌شده متصل می‌شود. محصول از اطلاعات مشخص استعلام و پیشنهاد تصویر ثابتی نگه می‌دارد؛ نه اینکه انتقال همه مدارک یا تعهدهای فروش را بدون بررسی وعده دهد.</p>
-            <a class="btn btn-outline" href="{{ route('site.modules.show', ['module' => 'booking']) }}">مشاهده ماژول Booking</a>
-        </div>
-        <ul class="sales-booking-data reveal">
-            <li><strong>مشتری</strong><span>شناسه، نام، شرکت، موبایل و نشانی ثبت‌شده</span></li>
-            <li><strong>درخواست حمل</strong><span>نوع خدمت، روش حمل، مسیرها، شرایط حمل و پرداخت</span></li>
-            <li><strong>محموله</strong><span>اقلام، نوع کالا، وزن، تعداد، حجم و نیازهای ثبت‌شده</span></li>
-            <li><strong>پیشنهاد پذیرفته‌شده</strong><span>کد، تأمین‌کننده، اعتبار، زمان حمل و اقلام هزینه</span></li>
-        </ul>
-    </div>
-</section>
-
-<section class="section soft sales-results" id="verifiable-results" aria-labelledby="verifiable-results-title">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="section-label">نتیجه قابل بررسی</span>
-            <h2 class="section-title" id="verifiable-results-title">به‌جای وعده افزایش قطعی فروش،<br><span>این خروجی‌ها را در محصول ببینید</span></h2>
-        </div>
-        <div class="sales-result-grid">
-            <article class="reveal"><strong>مسئول مشخص</strong><p>مالک استعلام یا تسک در جزئیات پرونده دیده می‌شود.</p></article>
-            <article class="reveal"><strong>آخرین اقدام قابل مراجعه</strong><p>فعالیت و نتیجه ثبت‌شده در سابقه پرونده باقی می‌ماند.</p></article>
-            <article class="reveal"><strong>موعد و اقدام بعدی</strong><p>تسک فعال و زمان‌بندی پیگیری بعدی قابل مشاهده است.</p></article>
-            <article class="reveal"><strong>عقب‌افتادگی قابل شناسایی</strong><p>موارد عبورکرده از موعد در فهرست جدا نمایش داده می‌شوند.</p></article>
-        </div>
-        <div class="sales-measurement reveal">
-            <div><span>شاخص پیشنهادی ارزیابی</span><h3>قبل و بعد از استقرار چه چیزی را اندازه بگیریم؟</h3></div>
-            <ul><li>تعداد استعلام بازِ بدون اقدام بعدی</li><li>تعداد پیگیری‌های عقب‌افتاده</li><li>فاصله ارسال پیشنهاد تا نخستین پیگیری ثبت‌شده</li><li>سهم استعلام‌های دارای مسئول و موعد روشن</li></ul>
-            <p>این موارد پیشنهاد ارزیابی فرایند هستند و به معنی وجود گزارش آماده با همین نام‌ها در نرم‌افزار نیستند.</p>
+        <div class="sales-scenario-proof reveal">
+            <figure><a href="{{ asset('assets/images/marketing/modules/screenshots/crm-overdue-inquiries.webp') }}" target="_blank" rel="noopener" aria-label="مشاهده فهرست استعلام‌های عقب‌افتاده در اندازه کامل"><img src="{{ asset('assets/images/marketing/modules/screenshots/crm-overdue-inquiries.webp') }}" alt="فهرست واقعی استعلام‌های دارای تسک عقب‌افتاده با مالک، آخرین فعالیت، موعد و میزان تأخیر پیگیری در سپند" width="1600" height="879" loading="eager"></a><figcaption><strong>نمای واقعی محصول:</strong> فهرست استعلام‌های دارای تسک عقب‌افتاده، مالک پرونده، آخرین فعالیت و موعد هر تسک را نشان می‌دهد.</figcaption></figure>
+            <dl class="sales-three-answers">
+                <div><dt>آخرین اقدام چه بوده؟</dt><dd>آخرین فعالیت و تسک‌های ثبت‌شده در استعلام قابل مراجعه‌اند.</dd></div>
+                <div><dt>مسئول پیگیری کیست؟</dt><dd>مالک استعلام و مسئول هر تسک در فهرست و جزئیات پرونده دیده می‌شوند.</dd></div>
+                <div><dt>اقدام بعدی چه زمانی است؟</dt><dd>تاریخ و ساعت تسک فعال مشخص است؛ عبور از موعد، آن را در فهرست عقب‌افتاده قرار می‌دهد.</dd></div>
+            </dl>
         </div>
     </div>
-</section>
+    <div class="sales-scenario-cta reveal"><a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="freight_sales_scenario_demo">پیگیری یک پیشنهاد قیمت را در سپند ببینید</a></div>
+</div></section>
 
-<section class="section sales-related" id="related-pages" aria-labelledby="related-pages-title">
-    <div class="container">
-        <div class="section-head reveal"><span class="section-label">صفحات مرتبط</span><h2 class="section-title" id="related-pages-title">هر بخش تخصصی را<br><span>در صفحه خودش بررسی کنید</span></h2></div>
-        <div class="sales-related-grid">
-            <a class="reveal" href="{{ route('site.modules.show', ['module' => 'crm']) }}"><strong>امکانات CRM حمل‌ونقل سپند</strong><span>پرونده مشتری، فعالیت‌ها و پیگیری‌های من</span></a>
-            <a class="reveal" href="{{ route('site.modules.show', ['module' => 'pricing-sales']) }}"><strong>آماده‌سازی پیشنهاد نرخ حمل</strong><span>نرخ، تأمین‌کننده و پیشنهاد مشتری</span></a>
-            <a class="reveal" href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}"><strong>پیگیری خودکار فروش</strong><span>رویدادها، مسئول و زمان ساخت تسک</span></a>
-            <a class="reveal" href="{{ route('site.modules.show', ['module' => 'booking']) }}"><strong>ادامه پرونده در Booking</strong><span>استفاده از استعلام و پیشنهاد پذیرفته‌شده</span></a>
-        </div>
+<section class="section soft sales-follow-mode" id="manual-and-automatic" aria-labelledby="manual-and-automatic-title"><div class="container">
+    <header class="section-head reveal"><span class="section-label">ثبت دستی یا ساخت خودکار</span><h2 class="section-title" id="manual-and-automatic-title">قاعده تسک را می‌سازد؛ نتیجه تماس را کارشناس ثبت می‌کند</h2><p class="section-sub">قواعد زیر در نسخه فعلی وجود دارند، اما اثرشان به فعال‌بودن قاعده برای شرکت وابسته است. جزئیات فعال‌سازی در <a href="{{ route('site.modules.show', ['module' => 'automatic-tasks']) }}">ماژول قواعد ایجاد تسک</a> توضیح داده شده است.</p></header>
+    <div class="sales-rule-table reveal" role="region" aria-label="تفاوت اقدام کارشناس و رفتار قواعد تسک خودکار" tabindex="0"><table><thead><tr><th>رویداد</th><th>اقدام کارشناس</th><th>رفتار سپند با قاعده فعال</th></tr></thead><tbody>@foreach($automationRows as $row)<tr><th>{{ $row['event'] }}</th><td>{{ $row['manual'] }}</td><td>{{ $row['automatic'] }}</td></tr>@endforeach</tbody></table></div>
+    <p class="sales-note reveal">یادآوری پیگیری مشتریان بر پایه موعد تسک انجام می‌شود. استخراج خودکار پاسخ مشتری از تماس یا انتخاب خودکار موعد بعدی، در نسخه بررسی‌شده ادعا نمی‌شود.</p>
+</div></section>
+
+<section class="section sales-evidence" id="product-evidence" aria-labelledby="product-evidence-title"><div class="container">
+    <header class="section-head reveal"><span class="section-label">شواهد واقعی محصول</span><h2 class="section-title" id="product-evidence-title">استعلام نیازمند اقدام و قواعد ساخت تسک کجا دیده می‌شوند؟</h2><p class="section-sub">این تصاویر از محصول‌اند؛ اعداد آن‌ها وضعیت همان محیط در زمان ثبت تصویر است و نتیجه تضمین‌شده برای شرکت دیگری نیست.</p></header>
+    <div class="sales-evidence-grid">
+        <figure class="sales-evidence-card reveal"><a href="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" target="_blank" rel="noopener"><img src="{{ asset('assets/images/marketing/product-showcase/desktop-dashboard.webp') }}" alt="داشبورد واقعی پیگیری‌های من با استعلام عقب‌افتاده، بدون اقدام بعدی، کارهای امروز و پیگیری آینده" width="1600" height="799" loading="lazy"></a><figcaption><strong>پیگیری‌های من</strong><span>چهار گروه عقب‌افتاده، بدون اقدام بعدی، امروز و آینده برای مدیریت استعلام‌های فروش حمل‌ونقل.</span></figcaption></figure>
+        <figure class="sales-evidence-card reveal"><a href="{{ asset('assets/images/marketing/modules/screenshots/automatic-task-rules.webp') }}" target="_blank" rel="noopener"><img src="{{ asset('assets/images/marketing/modules/screenshots/automatic-task-rules.webp') }}" alt="نمای واقعی قواعد ساخت تسک خودکار با رویداد شروع، وضعیت شرکت و آخرین اجرا در سپند" width="1600" height="851" loading="lazy"></a><figcaption><strong>قواعد ساخت تسک خودکار</strong><span>رویداد شروع، نوع تسک ساخته‌شده، وضعیت فعال یا غیرفعال برای شرکت و نتیجه آخرین اجرا.</span></figcaption></figure>
     </div>
-</section>
+</div></section>
 
-<section class="section soft" id="sales-faq" aria-labelledby="sales-faq-title">
-    <div class="container">
-        <div class="section-head reveal"><span class="section-label">پرسش‌های متداول</span><h2 class="section-title" id="sales-faq-title">پرسش‌های رایج درباره<br><span>پیگیری استعلام حمل</span></h2></div>
-        <div class="faq">@foreach($faqs as $faq)<details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>@endforeach</div>
-    </div>
-</section>
+<section class="section soft sales-booking" id="booking-continuity" aria-labelledby="booking-continuity-title"><div class="container sales-booking-layout">
+    <div class="reveal"><span class="section-label">تحویل فروش به عملیات</span><h2 class="section-title" id="booking-continuity-title">بعد از تأیید مشتری، چه چیزی به Booking می‌رود؟</h2><p>پذیرش پیشنهاد شرط تبدیل است. پس از اجرای تبدیل، Booking با وضعیت عملیاتی ساخته و Operation مرتبط ایجاد می‌شود. داده‌ها به‌صورت snapshot نگهداری می‌شوند تا تغییر بعدی رکوردهای فروش، مبنای اولیه Booking را مبهم نکند.</p><a class="btn btn-outline" href="{{ route('site.modules.show', ['module' => 'booking']) }}">مشاهده ادامه کار در Booking</a></div>
+    <ul class="sales-booking-data reveal">
+        <li><strong>مشتری و مرجع استعلام</strong><span>شناسه و اطلاعات ثبت‌شده مشتری، کد استعلام و ارتباط Booking با استعلام.</span></li>
+        <li><strong>خدمت، مسیر و شرایط</strong><span>نوع خدمت، روش حمل، تجهیزات، مسیرها، Incoterm و شرایط پرداخت ثبت‌شده.</span></li>
+        <li><strong>محموله</strong><span>اقلام، نوع کالا، HS Code، وزن، تعداد، حجم و نیازهای انبار یا ترخیص.</span></li>
+        <li><strong>پیشنهاد پذیرفته‌شده</strong><span>کد و تأمین‌کننده، اعتبار، Transit Time، Free Time، اقلام هزینه و جمع هر ارز.</span></li>
+    </ul>
+</div></section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>پیگیری یک استعلام واقعی را در سپند ببینید</h2><p>در دمو، مسیر ثبت درخواست، تعیین مسئول، آماده‌سازی و ارسال پیشنهاد، ثبت موعد و پیگیری پاسخ مشتری با یک سناریوی نزدیک به روال تیم شما نمایش داده می‌شود.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="freight_sales_bottom_demo">درخواست دموی پیگیری فروش</a></div></div></div></section>
+<section class="section sales-results" id="verifiable-results" aria-labelledby="verifiable-results-title"><div class="container">
+    <header class="section-head reveal"><span class="section-label">خروجی قابل بررسی</span><h2 class="section-title" id="verifiable-results-title">پیگیری پیشنهاد قیمت حمل را با این نشانه‌ها بسنجید</h2><p class="section-sub">این موارد معیار ارزیابی فرایندند و وجود گزارش آماده با همین نام‌ها در محصول ادعا نمی‌شود.</p></header>
+    <div class="sales-result-grid"><article class="reveal"><strong>آخرین اقدام روشن</strong><p>سابقه فعالیت و نتیجه ثبت‌شده برای ادامه کار قابل مراجعه است.</p></article><article class="reveal"><strong>مسئول مشخص</strong><p>مالک استعلام و مسئول تسک در جزئیات پرونده دیده می‌شوند.</p></article><article class="reveal"><strong>موعد بعدی مشخص</strong><p>تاریخ و ساعت تسک فعال مبنای فهرست امروز، آینده یا عقب‌افتاده است.</p></article><article class="reveal"><strong>تحویل قابل ردیابی</strong><p>Booking به استعلام و پیشنهاد پذیرفته‌شده متصل می‌ماند.</p></article></div>
+    <div class="sales-measurement reveal"><div><span>شاخص‌های پیشنهادی</span><h3>قبل و بعد از استقرار چه چیزی را اندازه بگیریم؟</h3></div><ul><li>استعلام باز بدون اقدام بعدی</li><li>پیگیری عقب‌افتاده</li><li>فاصله ارسال پیشنهاد تا نخستین پیگیری</li><li>استعلام دارای مسئول و موعد روشن</li></ul><p>بهبود عددی یا افزایش قطعی فروش بدون خط مبنا و داده واقعی شرکت وعده داده نمی‌شود.</p></div>
+</div></section>
+
+<section class="section soft" id="sales-faq" aria-labelledby="sales-faq-title"><div class="container">
+    <header class="section-head reveal"><span class="section-label">پرسش‌های خریداران</span><h2 class="section-title" id="sales-faq-title">سؤال‌های رایج درباره نرم‌افزار پیگیری استعلام حمل‌ونقل</h2></header>
+    <div class="faq">@foreach($faqs as $faq)<details class="reveal"><summary>{{ $faq['question'] }}</summary><p>{{ $faq['answer'] }}</p></details>@endforeach</div>
+</div></section>
+
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>پیگیری یک پیشنهاد قیمت را در سپند ببینید</h2><p>در دمو، ارسال پیشنهاد، ثبت نتیجه تماس، تعیین موعد بعدی و تحویل پیشنهاد پذیرفته‌شده به Booking را با یک استعلام نمونه بررسی کنید.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="freight_sales_bottom_demo">درخواست دموی پیگیری استعلام</a></div></div></div></section>
 @endsection

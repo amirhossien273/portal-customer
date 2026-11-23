@@ -33,9 +33,14 @@ class MarketingPlatformSolutionController extends Controller
 
         abort_unless(is_array($page), 404);
 
-        $view = $solution === 'rate-management'
-            ? 'marketing.rate-management'
-            : 'marketing.platform-solutions.show';
+        $view = match ($solution) {
+            'rate-management' => 'marketing.rate-management',
+            'freight-finance' => 'marketing.freight-finance',
+            'operations-automation' => 'marketing.operations-automation',
+            'fleet-management' => 'marketing.fleet-management',
+            'supplier-management' => 'marketing.supplier-management',
+            default => 'marketing.platform-solutions.show',
+        };
 
         return view($view, [
             'slug' => $solution,
