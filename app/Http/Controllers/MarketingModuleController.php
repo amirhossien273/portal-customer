@@ -15,6 +15,7 @@ class MarketingModuleController extends Controller
         $view = match ($module) {
             'crm' => 'marketing.module-crm',
             'pricing-sales' => 'marketing.module-pricing-sales',
+            'fleet-dispatch' => 'marketing.module-fleet-dispatch',
             default => 'marketing.module-detail',
         };
         $page = config('site_module_pages.'.$module);

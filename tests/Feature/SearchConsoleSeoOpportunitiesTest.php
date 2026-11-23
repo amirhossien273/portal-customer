@@ -13,7 +13,7 @@ class SearchConsoleSeoOpportunitiesTest extends TestCase
         '/modules/workflow-tasks' => ['نرم افزار مدیریت گردش کار حمل و نقل', 'گردش کار چیست و این ماژول چه کاری انجام می‌دهد؟'],
         '/solutions/bill-of-lading-management' => ['نرم افزار مدیریت بارنامه', 'صدور رسمی بارنامه جاده‌ای یا اتصال حاکمیتی در دامنه این صفحه ادعا نمی‌شود'],
         '/product' => ['نرم افزار سپند', 'این صفحه معرفی محصول و شواهد واقعی آن است'],
-        '/modules/fleet-dispatch' => ['نرم افزار دیسپچ ناوگان', 'دیسپچ ناوگان چیست؟'],
+        '/modules/fleet-dispatch' => ['نرم‌افزار دیسپچ ناوگان', 'دیسپچ ناوگان در حمل زمینی چیست؟'],
         '/solutions/fleet-management' => ['نرم افزار مدیریت ناوگان حمل و نقل', 'این صفحه مالک Vehicle Master، Driver Profile، نگهداری، Compliance و Availability است'],
         '/modules/crm' => ['نرم افزار CRM حمل و نقل', 'نرم افزار CRM حمل و نقل چه تفاوتی با CRM عمومی دارد؟'],
         '/modules/booking' => ['نرم افزار بوکینگ حمل و نقل', 'Booking حمل چیست؟'],

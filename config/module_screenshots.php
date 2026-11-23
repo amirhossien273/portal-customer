@@ -170,8 +170,8 @@ $screenshots['fleet-dispatch'] = [[
     'path' => 'modules/screenshots/operations-calendar-list.webp',
     'width' => 1600,
     'height' => 861,
-    'alt' => 'صف اجرایی مأموریت‌ها و پرونده‌های نیازمند اقدام برای دیسپچر ناوگان سپند',
-    'caption' => 'صف اجرایی دیسپچ؛ مشاهده مأموریت‌های جاری، زمان حرکت و اقدام بعدی شیفت',
+    'alt' => 'نمای واقعی فهرست تقویم حرکت Shipmentها با زمان برنامه‌ریزی و موارد نیازمند توجه',
+    'caption' => 'تقویم واقعی حرکت Shipmentها؛ این نما زمینه زمانی اجرای مأموریت را نشان می‌دهد و فرم ثبت Assignment نیست',
 ]];
 
 return $screenshots;
