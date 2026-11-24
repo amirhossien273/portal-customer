@@ -34,6 +34,7 @@ class MarketingPlatformSolutionController extends Controller
         abort_unless(is_array($page), 404);
 
         $view = match ($solution) {
+            'transportation-management-system' => 'marketing.transportation-management-system',
             'rate-management' => 'marketing.rate-management',
             'freight-finance' => 'marketing.freight-finance',
             'operations-automation' => 'marketing.operations-automation',
@@ -51,8 +52,8 @@ class MarketingPlatformSolutionController extends Controller
             'canonical' => route('solutions.platform.show', ['solution' => $solution]),
             'image' => asset('assets/images/marketing/'.$page['image']),
             'imageAlt' => $page['image_alt'],
-            'imageWidth' => 1600,
-            'imageHeight' => 900,
+            'imageWidth' => $page['image_width'] ?? 1600,
+            'imageHeight' => $page['image_height'] ?? 900,
         ]);
     }
 }

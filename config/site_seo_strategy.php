@@ -20,6 +20,13 @@ return [
      * money query.
      */
     'clusters' => [
+        'tms' => [
+            'priority' => 'P0',
+            'pillar' => '/solutions/transportation-management-system',
+            'pages' => [
+                '/solutions/transportation-management-system' => ['query' => 'نرم افزار TMS', 'intent' => 'مدیریت تجاری چرخه سفارش تأییدشده از Booking تا اجرا، اسناد و نتیجه مالی', 'audience' => 'مدیر عملیات و مدیر شرکت حمل‌ونقل یا فورواردری', 'outcome' => 'پرونده حمل متصل به CRM، اجرا و مالی'],
+            ],
+        ],
         'operations' => [
             'priority' => 'P0',
             'pillar' => '/modules/transport-operations',

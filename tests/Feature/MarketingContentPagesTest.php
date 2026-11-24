@@ -225,6 +225,7 @@ class MarketingContentPagesTest extends TestCase
         $menuAuthorityPaths = [
             '/solutions',
             '/modules/crm',
+            '/solutions/transportation-management-system',
             '/modules/transport-operations',
             '/modules/finance-accounting',
             '/modules/document-management',

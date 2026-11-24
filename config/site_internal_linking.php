@@ -74,6 +74,7 @@ $targets = [
     'sea' => $mode('sea', 'مدیریت جریان تخصصی حمل دریایی', ['مدیریت حمل دریایی', 'عملیات Sea Freight', 'پرونده حمل کانتینری', 'نرم‌افزار عملیات دریایی', 'کنترل Shipment دریایی', 'فرایند حمل کانتینری', 'مدیریت عملیات بندری']),
     'rail' => $mode('rail', 'مدیریت واگن و رویدادهای حمل ریلی', ['مدیریت حمل ریلی', 'عملیات واگن و قطار', 'پرونده Rail Freight', 'نرم‌افزار حمل ریلی']),
 
+    'tms' => $platform('transportation-management-system', 'اتصال پیشنهاد تأییدشده به Booking، اجرای حمل، اسناد و مالی', ['نرم‌افزار TMS سپند', 'سیستم مدیریت حمل‌ونقل سپند', 'TMS یکپارچه با CRM', 'چرخه اجرای حمل در سپند']),
     'operations-automation' => $platform('operations-automation', 'تبدیل سیگنال عملیاتی به Rule، اقدام و Escalation', ['اتوماسیون عملیات حمل', 'Ruleهای چندمرحله‌ای عملیات', 'قواعد و Triggerهای عملیاتی', 'چرخه Rule تا اقدام']),
     'freight-finance' => $platform('freight-finance', 'کنترل Accrual، Variance و Margin واقعی', ['سود و زیان پرونده حمل', 'محاسبه سود واقعی Shipment', 'کنترل Margin هر Job', 'مدیریت مالی حمل']),
     'fleet-management' => $platform('fleet-management', 'مدیریت دارایی، راننده، ظرفیت و آمادگی', ['مدیریت ناوگان حمل‌ونقل', 'Vehicle و Driver Master', 'کنترل آمادگی ناوگان', 'مدیریت دارایی و راننده']),
@@ -103,11 +104,11 @@ $targets = [
 $page = static fn (int $tier, string $cluster, array $links): array => compact('tier', 'cluster', 'links');
 
 return [
-    'updated_at' => '2026-09-07',
+    'updated_at' => '2026-11-23',
     'targets' => $targets,
     'pages' => [
-        '/' => $page(1, 'Core', ['product', 'crm', 'transport-operations', 'finance', 'best-forwarding', 'case-study']),
-        '/product' => $page(1, 'Core', ['crm', 'pricing-sales', 'transport-operations', 'finance', 'portal', 'pricing']),
+        '/' => $page(1, 'Core', ['product', 'tms', 'crm', 'transport-operations', 'finance', 'best-forwarding']),
+        '/product' => $page(1, 'Core', ['tms', 'crm', 'pricing-sales', 'transport-operations', 'finance', 'pricing']),
         '/why-sepand' => $page(2, 'Core', ['home', 'product', 'about', 'case-study']),
         '/faq' => $page(3, 'Core', ['product', 'modules', 'solutions']),
         '/modules' => $page(2, 'Core', ['crm', 'email-workflow', 'pricing-sales', 'transport-operations', 'finance']),
@@ -120,7 +121,7 @@ return [
 
         '/compare/sepand-vs-royan' => $page(3, 'Compare', ['compare', 'compare-saba', 'best-forwarding']),
         '/compare/sepand-vs-saba' => $page(3, 'Compare', ['compare', 'compare-royan', 'best-forwarding']),
-        '/compare/sepand-vs-other-transport-software' => $page(3, 'Compare', ['compare', 'best-transport', 'product']),
+        '/compare/sepand-vs-other-transport-software' => $page(3, 'Compare', ['tms', 'compare', 'best-transport', 'product']),
         '/compare/best-transport-software' => $page(2, 'Compare', ['product', 'modules', 'compare-other', 'compare', 'best-forwarding']),
         '/compare/best-freight-forwarding-software' => $page(1, 'Compare', ['product', 'crm', 'pricing-sales', 'transport-operations', 'finance', 'best-transport']),
         '/compare/best-crm-for-transport-companies' => $page(3, 'Sales', ['crm', 'pricing-sales', 'compare']),
@@ -145,6 +146,7 @@ return [
         '/transport-modes/sea' => $page(1, 'Sea / NVOCC', ['nvocc', 'container', 'bill-of-lading', 'schedule', 'finance', 'transport-operations']),
         '/transport-modes/rail' => $page(3, 'Multimodal', ['multimodal', 'schedule', 'transport-operations']),
 
+        '/solutions/transportation-management-system' => $page(1, 'Operations', ['booking', 'transport-operations', 'documents', 'portal', 'finance', 'crm']),
         '/solutions/operations-automation' => $page(2, 'Operations', ['transport-operations', 'control-tower', 'exception', 'workflow']),
         '/solutions/freight-finance' => $page(2, 'Finance', ['finance', 'payment', 'pricing-sales', 'transport-operations']),
         '/solutions/fleet-management' => $page(2, 'Road / Fleet', ['road', 'truck-movement', 'dispatch-planning', 'fleet-dispatch', 'transport-operations']),

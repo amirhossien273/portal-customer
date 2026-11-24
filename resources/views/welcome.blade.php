@@ -213,7 +213,7 @@
                 <div class="section-head reveal">
                     <span class="section-label">محصول سپند</span>
                     <h2 class="section-title">سامانه جامع حمل و نقل بین المللی برای فرایندهای یکپارچه</h2>
-                    <p class="section-subtitle">CRM، ایمیل سازمانی، بازاریابی پیامکی، وظیفه خودکار، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا مکاتبات و رویدادهای فروش به پرونده و اقدام مشخص متصل شوند.</p>
+                    <p class="section-subtitle">CRM، ایمیل سازمانی، بازاریابی پیامکی، وظیفه خودکار، نرخ‌دهی، Booking، عملیات، اسناد، امور مالی و پرتال مشتریان سپند روی داده‌ای مشترک کار می‌کنند تا مکاتبات و رویدادهای فروش به پرونده و اقدام مشخص متصل شوند. چرخه سفارش تأییدشده تا اجرا و هزینه را در صفحه <a href="{{ route('solutions.platform.show', ['solution' => 'transportation-management-system']) }}">نرم‌افزار TMS سپند</a> ببینید.</p>
                 </div>
                 <div class="services-grid">
                     @foreach(config('site_modules') as $slug => $module)

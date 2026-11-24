@@ -313,12 +313,13 @@ class MarketingSeoTest extends TestCase
             '/transport-modes/air' => config('site_transport_modes.air.keywords'),
             '/transport-modes/road' => config('site_transport_modes.road.keywords'),
             '/transport-modes/rail' => config('site_transport_modes.rail.keywords'),
+            '/solutions/transportation-management-system' => config('marketing.page_keywords.solution_transportation_management_system'),
             '/pricing' => config('marketing.page_keywords.pricing'),
             '/consultation' => config('marketing.page_keywords.consultation'),
         ];
 
-        $this->assertCount(23, $pages);
-        $this->assertSame(106, array_sum(array_map('count', $pages)));
+        $this->assertCount(24, $pages);
+        $this->assertSame(120, array_sum(array_map('count', $pages)));
 
         foreach ($pages as $path => $keywords) {
             $response = $this->get($path)->assertOk();
@@ -331,7 +332,7 @@ class MarketingSeoTest extends TestCase
         $planned = config('marketing.planned_pages.tms_transportation_management_system');
         $this->assertSame('/guides/tms-transportation-management-system', $planned['url']);
         $this->assertSame('planned_not_created', $planned['status']);
-        $this->assertSame('سیستم TMS حمل و نقل', $planned['primary_keyword']);
+        $this->assertSame('TMS چیست؟', $planned['primary_keyword']);
         $this->get($planned['url'])->assertNotFound();
         $this->get('/sitemap.xml')->assertDontSee($planned['url'], false);
     }

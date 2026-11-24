@@ -29,29 +29,39 @@ class ComparisonLandingPageTest extends TestCase
         $content = $response->getContent();
 
         $response
-            ->assertSee('<title>مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی | سپند</title>', false)
-            ->assertSee('<meta name="description" content="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با انواع راهکارها از نظر CRM، Booking، عملیات، اسناد، مالی، گزارش سود، پرتال مشتری و یکپارچگی اطلاعات.">', false)
+            ->assertSee('<title>مقایسه انواع نرم‌افزار حمل‌ونقل؛ TMS، CRM و مالی | سپند</title>', false)
+            ->assertSee('<meta name="description" content="انواع نرم‌افزار حمل‌ونقل را مقایسه کنید: تفاوت ERP و TMS، CRM، مالی و ناوگان؛ برای هر گلوگاه، گزینه مناسب و سؤال‌های دمو را مشخص کنید.">', false)
             ->assertSee('<link rel="canonical" href="'.self::SITE_URL.self::COMPARISON_PATH.'">', false)
             ->assertSee('<meta name="robots" content="index,follow,max-image-preview:large">', false)
-            ->assertSee('مقایسه نرم‌افزارهای مدیریت حمل‌ونقل بین‌المللی؛', false)
-            ->assertSee('سپند چه تفاوتی دارد؟', false)
-            ->assertSee('برای مقایسه نرم‌افزارهای مدیریت حمل‌ونقل باید چه معیارهایی را بررسی کنیم؟', false)
+            ->assertSee('مقایسه انواع نرم‌افزار حمل‌ونقل؛', false)
+            ->assertSee('دامنه و نقطه شروع هر دسته نرم‌افزار را چگونه تشخیص دهیم؟', false)
             ->assertSee('<table class="comparison-table">', false)
             ->assertSee('حسابداری‌محور', false)
             ->assertSee('CRM عمومی', false)
             ->assertSee('مدیریت ناوگان', false)
+            ->assertSee('id="erp-vs-tms"', false)
+            ->assertSee('تفاوت ERP و TMS برای شرکت‌های حمل‌ونقل چیست؟', false)
+            ->assertSee('مقایسه ERP و TMS', false)
+            ->assertSee('ERP یا TMS برای شرکت حمل‌ونقل', false)
+            ->assertSee('اتصال TMS به ERP', false)
+            ->assertSee('نرم‌افزار TMS با CRM یکپارچه چه زمانی مناسب است؟', false)
+            ->assertSee('شرکت ERP دارد، اما اطلاعات فروش برای هر رزرو دوباره وارد می‌شود', false)
+            ->assertSee('ببینید CRM و TMS در سپند چگونه به هم وصل می‌شوند', false)
+            ->assertSee('https://www.oracle.com/erp/what-is-erp/', false)
+            ->assertSee('https://www.oracle.com/scm/logistics/transportation-management/what-is-transportation-management-system/', false)
+            ->assertSee('https://help.sap.com/docs/SAP_ERP/', false)
             ->assertSee('تفاوت سپند با نرم‌افزارهای حسابداری حمل‌ونقل چیست؟', false)
             ->assertSee('تفاوت سپند با CRMهای عمومی چیست؟', false)
             ->assertSee('تفاوت سپند با نرم‌افزارهای مدیریت ناوگان چیست؟', false)
-            ->assertSee('Lead / Customer → Inquiry → Quotation → Booking → Operation → Documents → Financial → Profit Report', false)
             ->assertSee('سپند برای چه شرکت‌هایی مناسب‌تر است؟', false)
-            ->assertSee('بهترین نرم‌افزار مدیریت حمل‌ونقل بین‌المللی چه ویژگی‌هایی دارد؟', false)
-            ->assertSee('درخواست دمو و مشاوره', false);
+            ->assertSee('اگر ERP داریم، چه زمانی TMS جداگانه لازم می‌شود؟', false)
+            ->assertSee('مشاهده اجرای TMS با CRM یکپارچه', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
         $this->assertStringNotContainsString('noindex', strtolower($content));
         $this->assertStringNotContainsString('Microsoft Excel', $content);
         $this->assertStringNotContainsString('نه با یک برند مشخص', $content);
+        $this->assertStringNotContainsString('Lead / Customer → Inquiry → Quotation → Booking → Operation → Documents → Financial → Profit Report', $content);
         $this->assertStringNotContainsString('target="_blank"', $content);
     }
 
@@ -65,6 +75,7 @@ class ComparisonLandingPageTest extends TestCase
             '/compare/sepand-vs-royan',
             '/compare/sepand-vs-saba',
             '/compare/best-transport-software',
+            '/solutions/transportation-management-system',
             '/modules',
             '/modules/crm',
             '/modules/pricing-sales',

@@ -32,7 +32,7 @@ class InternalLinkArchitectureTest extends TestCase
         sort($sitemapPaths);
         sort($registeredPaths);
 
-        $this->assertCount(58, $sitemapPaths);
+        $this->assertCount(59, $sitemapPaths);
         $this->assertSame($sitemapPaths, $registeredPaths);
 
         foreach ($registeredPages as $path => $page) {
@@ -160,11 +160,12 @@ class InternalLinkArchitectureTest extends TestCase
         }
     }
 
-    public function test_megamenu_exposes_only_the_solution_hub_and_six_topic_authorities(): void
+    public function test_megamenu_exposes_the_solution_hub_tms_and_six_topic_authorities(): void
     {
         $expected = [
             '/solutions',
             '/modules/crm',
+            '/solutions/transportation-management-system',
             '/modules/transport-operations',
             '/modules/finance-accounting',
             '/modules/document-management',

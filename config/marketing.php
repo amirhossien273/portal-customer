@@ -2,7 +2,7 @@
 
 $marketing = [
     'site_url' => rtrim(env('MARKETING_SITE_URL', 'https://sepandcrm.ir'), '/'),
-    'content_last_modified' => '2026-09-07',
+    'content_last_modified' => '2026-11-23',
     'page_keywords' => [
         'home' => [
             'نرم افزار مدیریت حمل و نقل بین المللی',
@@ -22,6 +22,10 @@ $marketing = [
             'مقایسه انواع نرم افزار حمل و نقل',
             'تفاوت TMS و CRM و حسابداری حمل',
             'مقایسه سیستم یکپارچه و نرم افزار جزیره ای حمل',
+            'تفاوت ERP و TMS',
+            'مقایسه ERP و TMS',
+            'ERP یا TMS برای شرکت حمل و نقل',
+            'اتصال TMS به ERP',
         ],
         'compare_index' => [
             'مرکز مقایسه نرم افزار حمل و نقل',
@@ -62,6 +66,13 @@ $marketing = [
         'solution_on_premise' => ['نرم افزار حمل و نقل On-Premise', 'استقرار داخلی نرم افزار حمل و نقل'],
         'solution_bill_of_lading' => ['نرم افزار مدیریت بارنامه', 'مدیریت HBL و MBL'],
         'solution_freight_sales_automation' => ['اتوماسیون فروش شرکت حمل و نقل', 'اتوماسیون فروش فورواردری'],
+        'solution_transportation_management_system' => [
+            'نرم افزار TMS',
+            'سیستم مدیریت حمل و نقل TMS',
+            'نرم افزار TMS برای شرکت های حمل و نقل',
+            'نرم افزار TMS برای شرکت های فورواردری',
+            'نرم افزار TMS با CRM یکپارچه',
+        ],
         'pricing' => [
             'قیمت نرم افزار حمل و نقل بین المللی',
         ],
@@ -89,7 +100,7 @@ $marketing = [
         'tms_transportation_management_system' => [
             'url' => '/guides/tms-transportation-management-system',
             'status' => 'planned_not_created',
-            'primary_keyword' => 'سیستم TMS حمل و نقل',
+            'primary_keyword' => 'TMS چیست؟',
         ],
     ],
 ];

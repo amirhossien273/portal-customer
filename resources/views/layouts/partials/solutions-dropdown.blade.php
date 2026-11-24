@@ -10,6 +10,7 @@
         </a>
         <span class="solutions-menu-heading">حوزه‌های اصلی</span>
         <a href="{{ route('site.modules.show', ['module' => 'crm']) }}"><span>فروش و CRM</span><small>مشتری، نرخ، پیشنهاد و Booking</small></a>
+        <a href="{{ route('solutions.platform.show', ['solution' => 'transportation-management-system']) }}"><span>سیستم مدیریت حمل‌ونقل (TMS)</span><small>Booking، اجرا، اسناد، وضعیت و هزینه پرونده</small></a>
         <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}"><span>عملیات و کنترل</span><small>اجرا، دیدپذیری، هشدار و Exception</small></a>
         <a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}"><span>مالی</span><small>هزینه، دریافت، پرداخت و سود پرونده</small></a>
         <a href="{{ route('site.modules.show', ['module' => 'document-management']) }}"><span>اسناد</span><small>مخزن، تأیید، آمادگی و بارنامه</small></a>

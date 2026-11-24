@@ -2,48 +2,40 @@
 
 @php
     $title = 'مقایسه انواع نرم‌افزار حمل‌ونقل؛ TMS، CRM و مالی | سپند';
-    $description = 'مقایسه دسته‌های نرم‌افزار حمل‌ونقل شامل راهکار یکپارچه، TMS عملیاتی، CRM عمومی، حسابداری‌محور و مدیریت ناوگان؛ تفاوت دامنه و Trade-off هر معماری.';
+    $description = 'انواع نرم‌افزار حمل‌ونقل را مقایسه کنید: تفاوت ERP و TMS، CRM، مالی و ناوگان؛ برای هر گلوگاه، گزینه مناسب و سؤال‌های دمو را مشخص کنید.';
     $canonical = route('compare.sepand-other-transport-software');
-    $dateModified = '2026-09-06';
+    $dateModified = '2026-11-23';
     $comparisons = config('site_comparisons.pages');
-    $workflowSteps = [
-        ['label' => 'Lead / Customer', 'title' => 'سرنخ و مشتری', 'description' => 'اطلاعات سرنخ، مشتری، سوابق ارتباط و مسئول پیگیری در CRM شرکت حمل‌ونقل ثبت می‌شود.', 'href' => route('site.modules.show', ['module' => 'crm'])],
-        ['label' => 'Inquiry', 'title' => 'استعلام', 'description' => 'مسیر، روش حمل، محموله و نیاز مشتری در استعلام ساختاریافته قرار می‌گیرد.', 'href' => route('site.modules.show', ['module' => 'pricing-sales'])],
-        ['label' => 'Quotation', 'title' => 'پیشنهاد قیمت', 'description' => 'نرخ خرید، مبلغ فروش و اطلاعات پیشنهاد برای تصمیم مشتری و ادامه فرایند آماده می‌شود.', 'href' => route('site.modules.show', ['module' => 'pricing-sales'])],
-        ['label' => 'Booking', 'title' => 'رزرو حمل', 'description' => 'پس از تأیید پیشنهاد، اطلاعات پایه بدون تشکیل پرونده مستقل وارد Booking می‌شود.', 'href' => route('site.modules.show', ['module' => 'booking'])],
-        ['label' => 'Operation', 'title' => 'عملیات حمل', 'description' => 'رویدادها، وضعیت محموله، مسئول هر اقدام و موارد متوقف‌شده در پرونده عملیاتی پیگیری می‌شوند.', 'href' => route('site.modules.show', ['module' => 'transport-operations'])],
-        ['label' => 'Documents', 'title' => 'اسناد', 'description' => 'نسخه، وضعیت بررسی و مهلت اسناد در ارتباط با Booking و همان پرونده حمل مدیریت می‌شود.', 'href' => route('site.modules.show', ['module' => 'document-management'])],
-        ['label' => 'Financial', 'title' => 'مالی', 'description' => 'درآمد، هزینه، دریافت و پرداخت هر پرونده به تفکیک ارز ثبت و کنترل می‌شود.', 'href' => route('site.modules.show', ['module' => 'finance-accounting'])],
-        ['label' => 'Profit Report', 'title' => 'گزارش سود', 'description' => 'درآمد و هزینه واقعی کنار هم قرار می‌گیرند تا سود پرونده برای تصمیم‌گیری قابل مشاهده باشد.', 'href' => route('site.modules.show', ['module' => 'finance-accounting'])],
+    $decisionRows = [
+        ['problem' => 'رزرو، مدارک و وضعیت حمل در چند ابزار پراکنده‌اند', 'option' => 'TMS تخصصی', 'demo' => 'یک سفارش را از رزرو تا ثبت رویداد و تحویل دنبال کنید.'],
+        ['problem' => 'گلوگاه در حسابداری، خرید و بودجه کل سازمان است', 'option' => 'ERP', 'demo' => 'گردش تأیید و ثبت مالی بین واحدهای مرتبط را با نقش‌های واقعی ببینید.'],
+        ['problem' => 'شرکت ERP دارد و به اجرای تخصصی حمل نیاز دارد', 'option' => 'TMS در کنار ERP', 'demo' => 'مرجع سفارش، هزینه و ثبت نهایی مالی و روش تبادل داده را مشخص کنید.'],
+        ['problem' => 'اطلاعات از فروش به عملیات دوباره وارد می‌شود', 'option' => 'TMS با CRM یکپارچه', 'demo' => 'بررسی کنید پس از تأیید پیشنهاد، کدام اطلاعات برای رزرو و اجرای حمل در دسترس‌اند.'],
     ];
     $faqs = [
         [
-            'question' => 'دسته‌های اصلی نرم‌افزار حمل‌ونقل چه تفاوتی دارند؟',
-            'answer' => 'راهکار یکپارچه زنجیره مشتری تا مالی را متصل می‌کند؛ TMS عملیاتی روی برنامه و اجرای حمل، CRM عمومی روی رابطه و فروش، حسابداری‌محور روی ثبت مالی و Fleet System روی دارایی و اعزام تمرکز دارد.',
+            'question' => 'تفاوت ERP و TMS چیست؟',
+            'answer' => 'ERP دامنه‌ای سازمانی دارد و معمولاً فرایندهایی مانند حسابداری، خرید، بودجه و منابع را به هم متصل می‌کند. TMS روی برنامه‌ریزی و اجرای حمل، وضعیت محموله، مدارک و هزینه حمل متمرکز است. دامنه واقعی هر محصول و ماژول‌های خریداری‌شده باید جداگانه در دمو سنجیده شود.',
+        ],
+        [
+            'question' => 'اگر ERP داریم، چه زمانی TMS جداگانه لازم می‌شود؟',
+            'answer' => 'وقتی ERP فرایند تخصصی رزرو، رویدادهای اجرای حمل، مدارک و وضعیت محموله را با عمق موردنیاز پوشش نمی‌دهد، TMS کنار ERP قابل بررسی است. پیش از انتخاب، مرجع سفارش و هزینه و روش تبادل داده میان دو سیستم را مشخص کنید.',
+        ],
+        [
+            'question' => 'چه زمانی TMS با CRM یکپارچه ارزش دارد؟',
+            'answer' => 'وقتی تیم عملیات پس از تأیید پیشنهاد، اطلاعات مشتری، مسیر، محموله یا توافق فروش را دوباره جمع‌آوری و وارد می‌کند، اتصال CRM و TMS ارزش بررسی دارد. در دمو ببینید کدام داده‌ها منتقل می‌شوند و کدام بخش را کارشناس باید تکمیل کند.',
+        ],
+        [
+            'question' => 'آیا سپند یک ERP کامل است؟',
+            'answer' => 'سپند در این راهنما ERP کامل معرفی نمی‌شود. دامنه تأییدشده آن CRM و فروش تخصصی حمل، Booking، عملیات و اسناد و مالی مرتبط با پرونده حمل است. اتصال به ERP بیرونی باید برای سامانه مقصد، داده‌ها و روش تبادل به‌صورت فنی تأیید شود.',
         ],
         [
             'question' => 'سپند چه تفاوتی با CRM عمومی دارد؟',
-            'answer' => 'CRM عمومی بر ارتباطات و قیف فروش تمرکز دارد. سپند CRM اطلاعات مشتری و استعلام را به نرخ‌دهی، Booking، عملیات، اسناد و مالی حمل متصل می‌کند.',
-        ],
-        [
-            'question' => 'سپند چه تفاوتی با نرم‌افزار حسابداری حمل‌ونقل دارد؟',
-            'answer' => 'نرم‌افزارهای حسابداری‌محور معمولاً از ثبت مالی شروع می‌کنند. نرم‌افزار حمل‌ونقل سپند فروش، Booking و عملیات را نیز پوشش می‌دهد و درآمد و هزینه را به پرونده حمل مرتبط می‌کند.',
-        ],
-        [
-            'question' => 'آیا سپند برای Freight Forwarder مناسب است؟',
-            'answer' => 'بله. سپند برای شرکت‌های فورواردری و حمل‌ونقل بین‌المللی طراحی شده و فرایند مشتری، نرخ، Booking، عملیات، اسناد و مالی پرونده را پوشش می‌دهد.',
-        ],
-        [
-            'question' => 'آیا سپند حمل هوایی، دریایی، زمینی و ریلی را مدیریت می‌کند؟',
-            'answer' => 'بله. برای هر چهار روش حمل صفحه و فرایند تخصصی وجود دارد و اطلاعات آن‌ها به پرونده مشتری، عملیات، اسناد و مالی مرتبط می‌شود.',
+            'answer' => 'CRM عمومی بر ارتباطات و قیف فروش تمرکز دارد. سپند پرونده مشتری و استعلام را به نرخ‌دهی، Booking، عملیات، اسناد و مالی پرونده حمل متصل می‌کند.',
         ],
         [
             'question' => 'آیا اطلاعات نرم‌افزار قبلی یا Excel قابل انتقال است؟',
             'answer' => 'انتقال خودکار و عمومی برای هر ساختار داده در اطلاعات فعلی محصول تأیید نشده است. قالب فایل‌ها، کیفیت داده و دامنه Migration باید با نمونه واقعی پیش از قرارداد بررسی شود.',
-        ],
-        [
-            'question' => 'آیا سپند سیستم مالی دارد؟',
-            'answer' => 'بله. ماژول مالی و حسابداری چندارزی، درآمد، هزینه، دریافت، پرداخت، مطالبات، تعهدات و سود هر پرونده حمل را مدیریت می‌کند.',
         ],
         [
             'question' => 'آیا امکان اتصال سپند به سیستم‌های دیگر وجود دارد؟',
@@ -78,6 +70,7 @@
                 route('compare.sepand-vs-royan'),
                 route('compare.sepand-vs-saba'),
                 route('compare.best-transport-software'),
+                route('solutions.platform.show', ['solution' => 'transportation-management-system']),
                 route('modules'),
                 route('site.modules.show', ['module' => 'crm']),
                 route('site.modules.show', ['module' => 'transport-operations']),
@@ -98,15 +91,15 @@
         ],
         [
             '@type' => 'ItemList',
-            '@id' => $canonical.'#shipment-workflow',
-            'name' => 'مراحل مدیریت پرونده حمل در نرم‌افزار سپند',
-            'itemListElement' => array_map(static fn (array $step, int $index): array => [
+            '@id' => $canonical.'#erp-tms-decision',
+            'name' => 'راهنمای انتخاب ERP، TMS یا TMS با CRM یکپارچه',
+            'itemListElement' => array_map(static fn (array $row, int $index): array => [
                 '@type' => 'ListItem',
                 'position' => $index + 1,
-                'name' => $step['label'].' — '.$step['title'],
-                'description' => $step['description'],
-                'url' => $canonical.'#workflow-step-'.($index + 1),
-            ], $workflowSteps, array_keys($workflowSteps)),
+                'name' => $row['problem'].' — '.$row['option'],
+                'description' => $row['demo'],
+                'url' => $canonical.'#erp-tms-row-'.($index + 1),
+            ], $decisionRows, array_keys($decisionRows)),
         ],
         [
             '@type' => 'FAQPage',
@@ -122,7 +115,7 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-comparison.css') }}?v=20260818-1">
+<link rel="stylesheet" href="{{ asset('assets/css/marketing-comparison.css') }}?v=20261123-1">
 @endpush
 
 @section('content')
@@ -131,7 +124,7 @@
         <div class="hero-copy reveal">
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('compare.index') }}">مرکز مقایسه</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>سایر نرم‌افزارها</span></div>
             <h1>مقایسه انواع نرم‌افزار حمل‌ونقل؛<br><span>TMS، CRM، مالی و راهکار یکپارچه</span></h1>
-            <p>این صفحه معماری‌ها را مقایسه می‌کند، نه برندها را: راهکار یکپارچه، TMS عملیاتی، CRM عمومی، نرم‌افزار حسابداری‌محور و سیستم مدیریت ناوگان از نقطه شروع، داده مرجع و خروجی متفاوتی ساخته شده‌اند. جدول صفحه نشان می‌دهد هر دسته کدام مسئله را عمیق‌تر حل می‌کند و در کدام Handoff به اتصال یا ابزار مکمل نیاز دارد.</p>
+            <p>این صفحه معماری‌ها را مقایسه می‌کند، نه برندها را: راهکار یکپارچه، TMS عملیاتی، CRM عمومی، نرم‌افزار حسابداری‌محور و سیستم مدیریت ناوگان از نقطه شروع، داده مرجع و خروجی متفاوتی ساخته شده‌اند. جدول صفحه نشان می‌دهد هر دسته کدام مسئله را عمیق‌تر حل می‌کند و در کدام Handoff به اتصال یا ابزار مکمل نیاز دارد. برای دیدن مصداق اجرایی سپند، صفحه <a href="{{ route('solutions.platform.show', ['solution' => 'transportation-management-system']) }}">نرم‌افزار TMS با CRM یکپارچه</a> را بررسی کنید.</p>
             <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول دسته‌ها</a><a class="btn btn-outline" href="#selection-criteria">شناخت مرز هر معماری</a></div>
         </div>
         <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با دسته‌های مختلف نرم‌افزار حمل‌ونقل">
@@ -222,6 +215,71 @@
     </div>
 </section>
 
+<section class="section erp-tms-section" id="erp-vs-tms" aria-labelledby="erp-vs-tms-title">
+    <div class="container">
+        <header class="section-head reveal">
+            <span class="section-label">راهنمای انتخاب معماری</span>
+            <h2 class="section-title" id="erp-vs-tms-title">تفاوت ERP و TMS برای شرکت‌های حمل‌ونقل چیست؟</h2>
+            <p class="section-sub">در مقایسه ERP و TMS، پاسخ درست از نام نرم‌افزار شروع نمی‌شود. اگر پرسش شما «ERP یا TMS برای شرکت حمل‌ونقل» است، ابتدا مشخص کنید گلوگاه در مدیریت کل سازمان است یا در اجرای تخصصی سفارش حمل.</p>
+        </header>
+
+        <div class="erp-tms-definitions">
+            <article class="erp-tms-definition reveal">
+                <span>دامنه سازمان</span>
+                <h3>ERP؛ برنامه‌ریزی منابع سازمان</h3>
+                <p>ERP در سطح سازمان، فرایندهای روزمره‌ای مانند حسابداری، خرید، بودجه، پروژه و زنجیره تأمین را به هم متصل می‌کند. این تعریف بر مبنای <a href="https://www.oracle.com/erp/what-is-erp/" rel="noopener">راهنمای رسمی ERP اوراکل</a> است؛ اما دامنه هر محصول و ماژول‌های خریداری‌شده را باید جداگانه سنجید.</p>
+            </article>
+            <article class="erp-tms-definition reveal">
+                <span>دامنه عملیات حمل</span>
+                <h3>TMS؛ سیستم مدیریت حمل‌ونقل</h3>
+                <p>TMS در سطح عملیات حمل برای برنامه‌ریزی و اجرای جابه‌جایی کالا، مشاهده وضعیت و کنترل مدارک و هزینه‌های حمل به کار می‌رود. <a href="https://www.oracle.com/scm/logistics/transportation-management/what-is-transportation-management-system/" rel="noopener">تعریف رسمی TMS اوراکل</a> نیز بر برنامه‌ریزی، اجرا و بهینه‌سازی حرکت فیزیکی کالا تأکید دارد؛ پوشش رزرو، مالی و روش‌های حمل در هر محصول باید در دمو تأیید شود.</p>
+            </article>
+        </div>
+
+        <div class="erp-tms-decision-head reveal">
+            <h3>مسئله شرکت شما کدام گزینه را به Shortlist می‌رساند؟</h3>
+            <p>این جدول حکم خرید نیست؛ برای هر گزینه همان گلوگاه را با داده واقعی شرکت در دمو اجرا کنید.</p>
+        </div>
+        <p class="mobile-table-hint"><span aria-hidden="true">↔</span>جدول را به طرفین بکشید.</p>
+        <div class="comparison-table-wrap reveal">
+            <table class="comparison-table erp-tms-table">
+                <caption>راهنمای انتخاب ERP، TMS تخصصی، TMS در کنار ERP یا TMS با CRM یکپارچه بر اساس مسئله شرکت حمل‌ونقل</caption>
+                <thead><tr><th scope="col">مسئله شرکت</th><th scope="col">گزینه‌ای که باید بررسی کند</th><th scope="col">چه چیزی را در دمو بسنجد؟</th></tr></thead>
+                <tbody>
+                    @foreach($decisionRows as $index => $row)
+                        <tr id="erp-tms-row-{{ $index + 1 }}"><th scope="row">{{ $row['problem'] }}</th><td class="is-strong">{{ $row['option'] }}</td><td>{{ $row['demo'] }}</td></tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <p class="erp-tms-integration reveal"><strong>اتصال TMS به ERP:</strong> اگر هر دو سیستم را کنار هم نگه می‌دارید، پیش از خرید تعیین کنید سفارش و هزینه در کدام سیستم مرجع‌اند، چه داده‌ای در چه زمانی جابه‌جا می‌شود و خطا چگونه پیگیری می‌شود. مستند رسمی <a href="https://help.sap.com/docs/SAP_ERP/930f133a36a843318dc3347afe00a9d6/c75d4350be0c4c6fb73284dc73abdcdf.html" rel="noopener">یکپارچگی سفارش ERP و TMS در SAP</a> نمونه‌ای از تبادل سفارش و تحویل میان دو سامانه را نشان می‌دهد؛ این لینک به معنی وجود اتصال آماده سپند به SAP یا ERP دیگری نیست.</p>
+
+        <div class="erp-tms-connected reveal">
+            <span class="section-label">فروش تا اجرا</span>
+            <h3>نرم‌افزار TMS با CRM یکپارچه چه زمانی مناسب است؟</h3>
+            <p>فرض کنید مشتری پیشنهاد قیمت را تأیید کرده، اما تیم عملیات برای ساخت رزرو باید دوباره مشخصات بار، مسیر و توافق‌های فروش را از ایمیل و پیام‌ها جمع کند. در این وضعیت، فقط داشتن CRM یا TMS جداگانه کافی نیست؛ باید مسیر تحویل اطلاعات میان فروش و عملیات را بسنجید.</p>
+            <p>در دمو بررسی کنید پیشنهاد تأییدشده چگونه به رزرو و عملیات می‌رسد، کدام داده‌ها منتقل می‌شوند و کدام موارد را کارشناس تکمیل می‌کند. در سپند، سرنخ، استعلام و پیشنهاد نرخ به Booking و ادامه پرونده عملیات مرتبط می‌مانند؛ دامنه تأییدشده محصول CRM، عملیات حمل و مالی پرونده است و سپند در این صفحه «ERP کامل» معرفی نمی‌شود.</p>
+            <a class="erp-tms-context-link" href="{{ route('solutions.platform.show', ['solution' => 'transportation-management-system']) }}">ببینید CRM و TMS در سپند چگونه به هم وصل می‌شوند</a>
+        </div>
+
+        <article class="erp-tms-scenario reveal" id="erp-tms-demo-checklist">
+            <div>
+                <span>مثال تصمیم خرید</span>
+                <h3>شرکت ERP دارد، اما اطلاعات فروش برای هر رزرو دوباره وارد می‌شود</h3>
+                <p>مدیر نباید با دیدن عنوان ماژول تصمیم بگیرد. یک پیشنهاد تأییدشده واقعی یا نمونه را وارد دمو کند و تحویل آن به عملیات را تا تشکیل رزرو دنبال کند.</p>
+            </div>
+            <div>
+                <strong>سه سؤال جلسه دمو</strong>
+                <ol>
+                    <li>کدام سیستم مرجع مشتری، سفارش و ثبت نهایی مالی است؟</li>
+                    <li>پس از تأیید پیشنهاد، چه فیلدهایی بدون ورود دوباره در رزرو در دسترس‌اند؟</li>
+                    <li>اگر ERP باقی می‌ماند، روش و مسئول تبادل داده و رسیدگی به خطا چیست؟</li>
+                </ol>
+            </div>
+        </article>
+    </div>
+</section>
+
 <section class="section category-differences" aria-label="تفاوت دسته‌های نرم‌افزار حمل‌ونقل">
     <div class="container">
         <div class="comparison-section-intro reveal"><span class="section-label">شناخت دسته‌های نرم‌افزار</span><p>پیش از مقایسه برندها باید مشخص شود هر محصول اساساً برای حل چه مسئله‌ای ساخته شده است.</p></div>
@@ -239,22 +297,6 @@
                 <div><h2>تفاوت سپند با نرم‌افزارهای مدیریت ناوگان چیست؟</h2><p>نرم‌افزار مدیریت ناوگان معمولاً بر خودرو، راننده، سفر، موقعیت، سوخت یا نگهداری تمرکز دارد. سپند اطلاعات خودرو و راننده را در عملیات حمل زمینی نگه می‌دارد، اما در اطلاعات فعلی محصول جایگزین سامانه تخصصی GPS، تلماتیک یا نگهداری ناوگان معرفی نشده است. شرکتی که فقط همین نیاز را دارد، باید راهکار ناوگان را جداگانه ارزیابی کند.</p></div>
             </article>
         </div>
-    </div>
-</section>
-
-<section class="section soft workflow-section" id="shipment-workflow" aria-labelledby="shipment-workflow-title">
-    <div class="container">
-        <div class="section-head reveal"><span class="section-label">سناریوی واقعی</span><h2 class="section-title" id="shipment-workflow-title">یک پرونده حمل در سپند از استعلام تا محاسبه سود چگونه مدیریت می‌شود؟</h2><p class="section-sub workflow-formula" dir="ltr">Lead / Customer → Inquiry → Quotation → Booking → Operation → Documents → Financial → Profit Report</p></div>
-        <ol class="workflow-grid">
-            @foreach($workflowSteps as $index => $step)
-                <li class="workflow-card reveal" id="workflow-step-{{ $index + 1 }}">
-                    <span class="workflow-number">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
-                    <small dir="ltr">{{ $step['label'] }}</small>
-                    <h3><a href="{{ $step['href'] }}">{{ $step['title'] }}</a></h3>
-                    <p>{{ $step['description'] }}</p>
-                </li>
-            @endforeach
-        </ol>
     </div>
 </section>
 
@@ -305,6 +347,7 @@
             <a href="{{ route('site.modules.show', ['module' => 'document-management']) }}">مدیریت اسناد</a>
             <a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و سود پرونده</a>
             <a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان</a>
+            <a href="{{ route('solutions.platform.show', ['solution' => 'transportation-management-system']) }}">اجرای TMS با CRM یکپارچه</a>
             <a href="{{ route('consultation.create') }}">درخواست دمو</a>
         </nav>
     </div>
@@ -312,5 +355,25 @@
 
 @include('marketing.partials.comparison-cluster-links', ['comparisons' => $comparisons])
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>سپند را با فرایند واقعی شرکت خودتان مقایسه کنید</h2><p>در یک جلسه کوتاه، فرایند فعلی فروش، عملیات و مالی شرکت شما بررسی می‌شود تا مشخص شود سپند تا چه حد با نیازهای شما تطابق دارد.</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="comparison_other_software_consultation">درخواست دمو و مشاوره</a></div></div></div></section>
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>حالا اجرای راهکار مرتبط را ببینید</h2><p>اگر گلوگاه شما تحویل فروش به رزرو و عملیات است، سناریوی اجرایی سپند را ببینید؛ برای ارزیابی ERP یا اتصال دو سیستم نیز از سؤال‌های همین چک‌لیست در دمو استفاده کنید.</p></div><div class="cta-action"><a class="btn" href="{{ route('solutions.platform.show', ['solution' => 'transportation-management-system']) }}" data-ga-event="cta_click" data-ga-label="comparison_erp_tms_solution">مشاهده اجرای TMS با CRM یکپارچه</a></div></div></div></section>
 @endsection
+
+@push('scripts')
+<script>
+(() => {
+    const scrollToErpTms = () => {
+        if (window.location.hash !== '#erp-vs-tms') return;
+        const target = document.getElementById('erp-vs-tms');
+        if (!target) return;
+        const alignTarget = () => window.requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+        alignTarget();
+        window.setTimeout(alignTarget, 250);
+        if (document.fonts?.ready) document.fonts.ready.then(alignTarget);
+    };
+
+    if (document.readyState === 'complete') scrollToErpTms();
+    else window.addEventListener('load', scrollToErpTms, { once: true });
+    window.addEventListener('hashchange', scrollToErpTms);
+})();
+</script>
+@endpush
