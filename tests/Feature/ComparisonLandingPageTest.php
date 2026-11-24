@@ -39,13 +39,17 @@ class ComparisonLandingPageTest extends TestCase
             ->assertSee('حسابداری‌محور', false)
             ->assertSee('CRM عمومی', false)
             ->assertSee('مدیریت ناوگان', false)
+            ->assertSee('<a class="btn btn-outline" href="#erp-vs-tms">تفاوت ERP و TMS</a>', false)
             ->assertSee('id="erp-vs-tms"', false)
             ->assertSee('تفاوت ERP و TMS برای شرکت‌های حمل‌ونقل چیست؟', false)
             ->assertSee('مقایسه ERP و TMS', false)
             ->assertSee('ERP یا TMS برای شرکت حمل‌ونقل', false)
             ->assertSee('اتصال TMS به ERP', false)
             ->assertSee('نرم‌افزار TMS با CRM یکپارچه چه زمانی مناسب است؟', false)
-            ->assertSee('شرکت ERP دارد، اما اطلاعات فروش برای هر رزرو دوباره وارد می‌شود', false)
+            ->assertSee('اگر شرکت ERP دارد، سفارش و هزینه حمل در کدام سیستم ثبت شوند؟', false)
+            ->assertSee('سفارش حمل در کدام سیستم ایجاد می‌شود و شناسه آن در سیستم دیگر چطور قابل پیگیری است؟', false)
+            ->assertSee('هزینه برآوردی و هزینه قطعی حمل کجا ثبت می‌شوند و ثبت نهایی مالی در کدام سیستم انجام می‌شود؟', false)
+            ->assertSee('اگر انتقال انجام نشد، چه کسی آن را پیگیری می‌کند؟', false)
             ->assertSee('ببینید CRM و TMS در سپند چگونه به هم وصل می‌شوند', false)
             ->assertSee('https://www.oracle.com/erp/what-is-erp/', false)
             ->assertSee('https://www.oracle.com/scm/logistics/transportation-management/what-is-transportation-management-system/', false)
@@ -58,6 +62,7 @@ class ComparisonLandingPageTest extends TestCase
             ->assertSee('مشاهده اجرای TMS با CRM یکپارچه', false);
 
         $this->assertSame(1, substr_count($content, '<h1'));
+        $this->assertSame(1, substr_count($content, 'id="erp-vs-tms"'));
         $this->assertStringNotContainsString('noindex', strtolower($content));
         $this->assertStringNotContainsString('Microsoft Excel', $content);
         $this->assertStringNotContainsString('نه با یک برند مشخص', $content);

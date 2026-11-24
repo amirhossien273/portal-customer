@@ -125,7 +125,7 @@
             <div class="breadcrumb"><a href="{{ route('home') }}">صفحه اصلی</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><a href="{{ route('compare.index') }}">مرکز مقایسه</a><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>سایر نرم‌افزارها</span></div>
             <h1>مقایسه انواع نرم‌افزار حمل‌ونقل؛<br><span>TMS، CRM، مالی و راهکار یکپارچه</span></h1>
             <p>این صفحه معماری‌ها را مقایسه می‌کند، نه برندها را: راهکار یکپارچه، TMS عملیاتی، CRM عمومی، نرم‌افزار حسابداری‌محور و سیستم مدیریت ناوگان از نقطه شروع، داده مرجع و خروجی متفاوتی ساخته شده‌اند. جدول صفحه نشان می‌دهد هر دسته کدام مسئله را عمیق‌تر حل می‌کند و در کدام Handoff به اتصال یا ابزار مکمل نیاز دارد. برای دیدن مصداق اجرایی سپند، صفحه <a href="{{ route('solutions.platform.show', ['solution' => 'transportation-management-system']) }}">نرم‌افزار TMS با CRM یکپارچه</a> را بررسی کنید.</p>
-            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول دسته‌ها</a><a class="btn btn-outline" href="#selection-criteria">شناخت مرز هر معماری</a></div>
+            <div class="hero-actions"><a class="btn btn-primary" href="#comparison-table">مشاهده جدول دسته‌ها</a><a class="btn btn-outline" href="#selection-criteria">شناخت مرز هر معماری</a><a class="btn btn-outline" href="#erp-vs-tms">تفاوت ERP و TMS</a></div>
         </div>
         <div class="hero-art comparison-hero-art reveal" role="img" aria-label="مقایسه نرم‌افزار مدیریت حمل‌ونقل سپند با دسته‌های مختلف نرم‌افزار حمل‌ونقل">
             <div class="comparison-visual">
@@ -265,15 +265,15 @@
         <article class="erp-tms-scenario reveal" id="erp-tms-demo-checklist">
             <div>
                 <span>مثال تصمیم خرید</span>
-                <h3>شرکت ERP دارد، اما اطلاعات فروش برای هر رزرو دوباره وارد می‌شود</h3>
-                <p>مدیر نباید با دیدن عنوان ماژول تصمیم بگیرد. یک پیشنهاد تأییدشده واقعی یا نمونه را وارد دمو کند و تحویل آن به عملیات را تا تشکیل رزرو دنبال کند.</p>
+                <h3>اگر شرکت ERP دارد، سفارش و هزینه حمل در کدام سیستم ثبت شوند؟</h3>
+                <p>فرض کنید شرکت حسابداری و ثبت نهایی مالی را در ERP انجام می‌دهد و به یک سیستم تخصصی برای بوکینگ، وضعیت محموله و هزینه‌های هر پرونده حمل نیاز دارد. پیش از خرید، مشخص کنید سفارش در کدام سیستم ایجاد می‌شود، تیم عملیات هزینه‌ها را کجا ثبت می‌کند و مالی کدام اطلاعات را برای ثبت نهایی لازم دارد.</p>
             </div>
             <div>
                 <strong>سه سؤال جلسه دمو</strong>
                 <ol>
-                    <li>کدام سیستم مرجع مشتری، سفارش و ثبت نهایی مالی است؟</li>
-                    <li>پس از تأیید پیشنهاد، چه فیلدهایی بدون ورود دوباره در رزرو در دسترس‌اند؟</li>
-                    <li>اگر ERP باقی می‌ماند، روش و مسئول تبادل داده و رسیدگی به خطا چیست؟</li>
+                    <li>سفارش حمل در کدام سیستم ایجاد می‌شود و شناسه آن در سیستم دیگر چطور قابل پیگیری است؟</li>
+                    <li>هزینه برآوردی و هزینه قطعی حمل کجا ثبت می‌شوند و ثبت نهایی مالی در کدام سیستم انجام می‌شود؟</li>
+                    <li>چه داده‌ای، در چه مرحله‌ای و با چه روشی بین دو سیستم منتقل می‌شود؟ اگر انتقال انجام نشد، چه کسی آن را پیگیری می‌کند؟</li>
                 </ol>
             </div>
         </article>
