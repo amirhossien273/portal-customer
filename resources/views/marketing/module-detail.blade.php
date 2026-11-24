@@ -4,6 +4,9 @@
     $capabilities = $page['capabilities'];
     $faqs = $page['faqs'];
     $moduleCanonical = $canonical ?? route('site.modules.show', ['module' => $slug]);
+    $consultationUrl = ! empty($page['track_consultation_source'])
+        ? route('consultation.create', ['source_page' => $moduleCanonical])
+        : route('consultation.create');
 @endphp
 
 @push('head')
@@ -74,7 +77,7 @@
                 <p class="crm-lead">{{ $paragraph }}</p>
             @endforeach
             <div class="hero-actions">
-                <a class="btn btn-primary" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_hero_consultation">{{ $page['cta']['primary'] }}</a>
+                <a class="btn btn-primary" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_hero_consultation">{{ $page['cta']['primary'] }}</a>
                 <a class="btn btn-outline" href="#module-features">{{ $page['cta']['secondary'] }}</a>
             </div>
         </div>
@@ -83,6 +86,55 @@
         </div>
     </div>
 </section>
+
+@if(! empty($page['early_scenario']))
+<section class="section soft module-early-scenario" id="{{ $page['early_scenario']['id'] }}" aria-labelledby="module-early-scenario-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">{{ $page['early_scenario']['label'] }}</span>
+            <h2 class="section-title" id="module-early-scenario-title">{{ $page['early_scenario']['heading'] }}</h2>
+            <p class="section-sub">{{ $page['early_scenario']['intro'] }}</p>
+        </div>
+        <div class="module-evidence-layout">
+            <div class="module-evidence-copy">
+                <ol class="crm-scenario-grid module-evidence-steps">
+                    @foreach($page['early_scenario']['steps'] as $step)
+                        <li class="crm-scenario-step reveal">
+                            <span>{{ $loop->iteration }}</span>
+                            <div><h3>{{ $step['title'] }}</h3><p>{{ $step['description'] }}</p></div>
+                        </li>
+                    @endforeach
+                </ol>
+                @if(! empty($page['early_scenario']['caveat']))
+                    <div class="crm-problem module-scenario-caveat reveal">
+                        <strong>{{ $page['early_scenario']['caveat_title'] }}</strong>
+                        <p>{{ $page['early_scenario']['caveat'] }}</p>
+                    </div>
+                @endif
+                @if(! empty($page['early_scenario']['related_links']))
+                    <nav class="crm-feature-links module-scenario-links reveal" aria-label="ادامه مسیر مدیریت سند">
+                        @foreach($page['early_scenario']['related_links'] as $link)
+                            @if(! $loop->first) <span aria-hidden="true">·</span> @endif
+                            <a href="{{ route($link['route'], $link['parameters'] ?? []) }}">{{ $link['text'] }}</a>
+                        @endforeach
+                    </nav>
+                @endif
+                <div class="module-scenario-actions reveal">
+                    <a class="btn btn-primary" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_scenario_consultation">{{ $page['early_scenario']['cta'] }}</a>
+                </div>
+            </div>
+            @if(! empty($page['early_scenario']['image']))
+                <figure class="crm-follow-up-figure module-evidence-figure reveal">
+                    <a href="{{ asset('assets/images/marketing/'.$page['early_scenario']['image']['path']) }}" target="_blank" rel="noopener">
+                        <img src="{{ asset('assets/images/marketing/'.$page['early_scenario']['image']['path']) }}" alt="{{ $page['early_scenario']['image']['alt'] }}" width="{{ $page['early_scenario']['image']['width'] }}" height="{{ $page['early_scenario']['image']['height'] }}" loading="lazy" decoding="async">
+                    </a>
+                    <figcaption>{{ $page['early_scenario']['image']['caption'] }}</figcaption>
+                </figure>
+            @endif
+        </div>
+    </div>
+</section>
+@endif
 
 @if(! empty($page['search_answer']))
 <section class="section soft" id="module-search-answer" aria-labelledby="module-search-answer-title">
@@ -129,6 +181,15 @@
                 <article class="crm-capability reveal"><span class="crm-capability-num">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span><h3>{{ $capability['title'] }}</h3><p>{{ $capability['description'] }}</p></article>
             @endforeach
         </div>
+        @if(! empty($page['feature_links']))
+            <p class="crm-feature-links reveal">
+                {{ $page['feature_links_intro'] }}
+                @foreach($page['feature_links'] as $link)
+                    @if(! $loop->first) و @endif<a href="{{ route($link['route'], $link['parameters'] ?? []) }}">{{ $link['text'] }}</a>
+                @endforeach
+                را ببینید.
+            </p>
+        @endif
     </div>
 </section>
 
@@ -311,5 +372,28 @@
     </div>
 </section>
 
-<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta']['title'] }}</h2><p>{{ $page['cta']['text'] }}</p></div><div class="cta-action"><a class="btn" href="{{ route('consultation.create') }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_bottom_consultation">{{ $page['cta']['primary'] }}</a></div></div></div></section>
+@if(! empty($page['purchase_checklist']))
+<section class="section" id="{{ $page['purchase_checklist']['id'] }}" aria-labelledby="module-purchase-checklist-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="section-label">{{ $page['purchase_checklist']['label'] }}</span>
+            <h2 class="section-title" id="module-purchase-checklist-title">{{ $page['purchase_checklist']['heading'] }}</h2>
+            <p class="section-sub">{{ $page['purchase_checklist']['intro'] }}</p>
+        </div>
+        <ol class="crm-scenario-grid" aria-label="چک‌لیست ارزیابی مدیریت اسناد در دمو">
+            @foreach($page['purchase_checklist']['items'] as $item)
+                <li class="crm-scenario-step reveal">
+                    <span>{{ $loop->iteration }}</span>
+                    <div><h3>{{ $item['title'] }}</h3><p>{{ $item['description'] }}</p></div>
+                </li>
+            @endforeach
+        </ol>
+        <div class="module-scenario-actions reveal">
+            <a class="btn btn-primary" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_purchase_consultation">{{ $page['purchase_checklist']['cta'] }}</a>
+        </div>
+    </div>
+</section>
+@endif
+
+<section class="cta-wrap"><div class="container"><div class="cta reveal"><div class="cta-copy"><h2>{{ $page['cta']['title'] }}</h2><p>{{ $page['cta']['text'] }}</p></div><div class="cta-action"><a class="btn" href="{{ $consultationUrl }}" data-ga-event="cta_click" data-ga-label="module_{{ $slug }}_bottom_consultation">{{ $page['cta']['primary'] }}</a></div></div></div></section>
 @endsection

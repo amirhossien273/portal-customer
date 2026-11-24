@@ -91,8 +91,8 @@ $screenshots = [
             'path' => 'modules/screenshots/document-attachment-upload.webp',
             'width' => 1600,
             'height' => 790,
-            'alt' => 'پنجره واقعی بارگذاری فایل پیوست برای پرونده استعلام در نرم‌افزار سپند',
-            'caption' => 'بارگذاری فایل پیوست با عنوان اختیاری و اتصال مستقیم آن به پرونده استعلام',
+            'alt' => 'پنجره واقعی افزودن فایل پیوست با عنوان اختیاری در پرونده استعلام سپند',
+            'caption' => 'نمای واقعی فرم مشترک پیوست‌ها در پرونده استعلام؛ عنوان فایل اختیاری است و این تصویر گردش نسخه یا تأیید سند را نشان نمی‌دهد.',
         ],
     ],
     'finance-accounting' => [
@@ -107,8 +107,8 @@ $screenshots = [
             'path' => 'modules/screenshots/finance-booking-reconciliation.webp',
             'width' => 1600,
             'height' => 811,
-            'alt' => 'تطبیق مالی Booking و کنترل نرخ تبدیل در سپند',
-            'caption' => 'تطبیق مالی Booking، پرداخت‌ها، دریافت‌ها و نرخ تبدیل',
+            'alt' => 'نمای واقعی تطبیق مالی Booking با جمع پیشنهادهای ارزی، پرداخت، دریافت و نرخ‌های واردشده در سپند',
+            'caption' => 'نمای تطبیق Booking؛ مقایسه جمع پیشنهاد با پرداخت و دریافت و ثبت دستی نرخ‌های همان Booking',
         ],
         [
             'path' => 'modules/screenshots/finance-payment-details.webp',

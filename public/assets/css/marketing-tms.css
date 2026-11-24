@@ -357,7 +357,7 @@
 }
 
 .tms-boundary-grid article,
-.tms-scope-grid article {
+.tms-scope-grid li {
     padding: 1.35rem;
     border: 1px solid var(--tms-line);
     border-radius: 1.15rem;
@@ -407,12 +407,44 @@
 }
 
 .tms-scope-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-top: 2rem;
+    padding: 0;
+    list-style: none;
 }
 
-.tms-scope-grid article > span {
+.tms-scope-grid li > span {
     color: var(--tms-teal);
+}
+
+.tms-scope-note {
+    max-width: 58rem;
+    margin: 1.25rem auto 0;
+    color: var(--tms-muted);
+    line-height: 2;
+    text-align: center;
+}
+
+.tms-final-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .8rem;
+}
+
+.tms-final-actions .btn,
+.tms-pricing-link {
+    width: min(100%, 23rem);
+    text-align: center;
+}
+
+.tms-pricing-link {
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 850;
+    line-height: 1.8;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, .45);
+    text-underline-offset: .25rem;
 }
 
 .tms-faq-layout {
@@ -522,6 +554,11 @@
 
     .tms-faq-layout header {
         position: static;
+    }
+
+    .tms-final-actions {
+        width: 100%;
+        align-items: center;
     }
 
     .tms-product-shot figcaption,

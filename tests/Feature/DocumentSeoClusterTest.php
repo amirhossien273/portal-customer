@@ -72,9 +72,9 @@ class DocumentSeoClusterTest extends TestCase
 
         $this->assertSame(count($titles), count(array_unique($titles)));
         $this->assertSame(count($headings), count(array_unique($headings)));
-        $this->assertSame('نرم افزار مدیریت اسناد حمل‌ونقل و فورواردری | سپند', $titles['/modules/document-management']);
+        $this->assertSame('نرم‌افزار مدیریت اسناد حمل‌ونقل | سپند', $titles['/modules/document-management']);
         $this->assertSame('چرخه تأیید اسناد حمل | Draft، Approval و Version Control | سپند', $titles['/solutions/document-management']);
-        $this->assertSame('نرم افزار مدیریت اسناد حمل‌ونقل برای شرکت‌های فورواردری', $headings['/modules/document-management']);
+        $this->assertSame('نرم‌افزار مدیریت اسناد حمل‌ونقل برای پرونده‌های حمل بین‌المللی', $headings['/modules/document-management']);
         $this->assertSame('چرخه تأیید اسناد حمل را از Draft تا نسخه نهایی کنترل کنید', $headings['/solutions/document-management']);
     }
 

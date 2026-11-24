@@ -9,9 +9,9 @@
     ];
     $scenarioSteps = [
         ['@type' => 'HowToStep', 'position' => 1, 'name' => 'استعلام و پیشنهاد نرخ', 'text' => 'فروش اطلاعات مشتری، مسیر و محموله را ثبت می‌کند و پیشنهاد پذیرفته‌شده را برای تبدیل آماده می‌کند.'],
-        ['@type' => 'HowToStep', 'position' => 2, 'name' => 'Booking و تحویل به عملیات', 'text' => 'Booking و پرونده عملیات از پیشنهاد تأییدشده و اطلاعات سفارش ساخته می‌شوند.'],
+        ['@type' => 'HowToStep', 'position' => 2, 'name' => 'بوکینگ و تحویل پرونده به عملیات', 'text' => 'کارشناس سفارش حمل کالا را از Booking متصل به مشتری، Transaction و Offer تحویل می‌گیرد و Job و Shipment مرتبط با خدمت و مسیر ساخته می‌شوند.'],
         ['@type' => 'HowToStep', 'position' => 3, 'name' => 'اجرای حمل و اسناد', 'text' => 'تیم عملیات رویداد، اقدام و مدارک مرتبط با Shipment را پیگیری می‌کند.'],
-        ['@type' => 'HowToStep', 'position' => 4, 'name' => 'وضعیت و تحویل', 'text' => 'وضعیت داخلی و رویدادهای مجاز مشتری در نماهای مربوط بررسی می‌شوند.'],
+        ['@type' => 'HowToStep', 'position' => 4, 'name' => 'اطلاع از وضعیت و تحویل', 'text' => 'پیگیری حمل کالا تا تحویل بر پایه رویدادها و وضعیت‌های ثبت‌شده در پرونده عملیات و رویدادهای مجاز پرتال مشتری انجام می‌شود.'],
         ['@type' => 'HowToStep', 'position' => 5, 'name' => 'هزینه و نتیجه مالی', 'text' => 'مبلغ پیشنهاد، دریافت و پرداخت مرتبط برای بررسی نتیجه مالی پرونده مرور می‌شوند.'],
     ];
 @endphp
@@ -52,7 +52,7 @@
             ],
         ],
         ['@type' => 'BreadcrumbList', '@id' => $canonical.'#breadcrumb', 'itemListElement' => $breadcrumb],
-        ['@type' => 'HowTo', '@id' => $canonical.'#scenario', 'name' => 'چرخه یک پرونده حمل در نرم‌افزار TMS سپند', 'step' => $scenarioSteps],
+        ['@type' => 'HowTo', '@id' => $canonical.'#scenario', 'name' => 'مدیریت حمل کالا از رزرو تا تحویل و بررسی هزینه', 'step' => $scenarioSteps],
         [
             '@type' => 'FAQPage',
             '@id' => $canonical.'#faq',
@@ -68,7 +68,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/marketing-platform-solutions.css') }}?v=20261107-1">
-<link rel="stylesheet" href="{{ asset('assets/css/marketing-tms.css') }}?v=20261123-1">
+<link rel="stylesheet" href="{{ asset('assets/css/marketing-tms.css') }}?v=20261124-1">
 @endpush
 
 @section('content')
@@ -107,8 +107,8 @@
     <div class="container">
         <header class="section-head reveal">
             <span class="section-label">مثال آموزشی · حمل دریایی نینگبو به بندرعباس</span>
-            <h2 class="section-title" id="tms-scenario-title">یک پرونده از تأیید پیشنهاد تا بررسی نتیجه مالی چه مسیری دارد؟</h2>
-            <p class="section-sub">داده‌های مسیر این سناریو آموزشی‌اند. تصویرهای این بخش از نسخه فعلی سپند هستند و داده فرضی مثال را نمایش نمی‌دهند.</p>
+            <h2 class="section-title" id="tms-scenario-title">مدیریت حمل کالا از رزرو تا تحویل و بررسی هزینه</h2>
+            <p class="section-sub">برای یک شرکت فورواردری، نرم‌افزار مدیریت حمل کالا باید به تیم عملیات کمک کند پس از تأیید پیشنهاد نرخ، رزرو، وضعیت محموله، اسناد و هزینه‌ها را در همان پرونده دنبال کند. در مثال نینگبو به بندرعباس می‌بینید اطلاعات پیشنهاد پذیرفته‌شده چطور به بوکینگ می‌رسد و تیم عملیات و مالی ادامه کار را از کجا پیگیری می‌کنند. داده‌های مسیر این سناریو آموزشی‌اند؛ تصویرهای این بخش از نسخه فعلی سپند هستند و داده فرضی مثال را نمایش نمی‌دهند.</p>
         </header>
 
         <div class="tms-scenario-layout">
@@ -126,7 +126,7 @@
                     <div>
                         <div class="tms-stage-meta"><b>نقش: Booking و عملیات</b><small>خروجی: Booking و Job عملیاتی</small></div>
                         <h3>بوکینگ و تحویل پرونده به عملیات</h3>
-                        <p>تبدیل فقط برای پیشنهاد پذیرفته‌شده و دارای زمان تأیید انجام می‌شود. سپند <a href="{{ route('site.modules.show', ['module' => 'booking']) }}">Booking</a> را به Transaction و Offer متصل می‌کند و بر اساس خدمت و مسیر، Job و Shipment عملیاتی می‌سازد. تیم عملیات کار را از همین Booking و پرونده مرتبط ادامه می‌دهد.</p>
+                        <p>تبدیل فقط برای پیشنهاد پذیرفته‌شده و دارای زمان تأیید انجام می‌شود. کارشناس برای <strong>مدیریت سفارش حمل کالا</strong>، پرونده را از نمای <a href="{{ route('site.modules.show', ['module' => 'booking']) }}">Booking</a> تحویل می‌گیرد. Booking به مشتری، Transaction و Offer متصل است و اطلاعات نوع خدمت و روش حمل، تجهیزات، مسیر، اقلام و نوع بار، HS Code، وزن، تعداد و حجم را همراه با Snapshot پیشنهاد شامل تأمین‌کننده، اعتبار، زمان حمل، مهلت رایگان، ردیف مبلغ، ارز و واحد نگه می‌دارد. سپند بر اساس خدمت و مسیر، Job و Shipment مرتبط را می‌سازد و تیم عملیات ادامه کار را از همین Booking و پرونده عملیات پیگیری می‌کند.</p>
                     </div>
                 </li>
                 <li class="tms-stage reveal">
@@ -142,7 +142,7 @@
                     <div>
                         <div class="tms-stage-meta"><b>نقش: عملیات و مشتری</b><small>خروجی: مشاهده وضعیت مجاز</small></div>
                         <h3>اطلاع از وضعیت و تحویل</h3>
-                        <p>تیم داخلی آخرین وضعیت ثبت‌شده را در نماهای عملیات می‌بیند. مشتری احراز هویت‌شده در <a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a> فقط رویدادهای مجاز، وضعیت محموله و اطلاعات مرتبط خودش را مشاهده می‌کند؛ این قابلیت جای GPS لحظه‌ای را ادعا نمی‌کند.</p>
+                        <p>کارشناس عملیات آخرین وضعیت ثبت‌شده و رویدادهای Shipment را در <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">پرونده عملیات و فهرست Shipmentها</a> می‌بیند. <strong>پیگیری حمل کالا تا تحویل</strong> بر پایه همین رویدادها و وضعیت‌های ثبت‌شده انجام می‌شود. مشتری احراز هویت‌شده در <a href="{{ route('site.modules.show', ['module' => 'customer-portal-tracking']) }}">پرتال مشتریان و رهگیری</a> برای محموله‌های خودش وضعیت، مبدأ و مقصد، آخرین رویداد مجاز و زمان و موقعیت ثبت‌شده آن را مشاهده می‌کند؛ این نمایش GPS لحظه‌ای یا دریافت خودکار وضعیت از کریر نیست.</p>
                     </div>
                 </li>
                 <li class="tms-stage reveal">
@@ -214,15 +214,16 @@
 <section class="section soft tms-scope" aria-labelledby="tms-scope-title">
     <div class="container">
         <header class="section-head reveal">
-            <span class="section-label">مرز صفحه و تصمیم خرید</span>
-            <h2 class="section-title" id="tms-scope-title">برای ارزیابی سیستم مدیریت حمل‌ونقل (TMS) چه چیزی را جداگانه بررسی کنیم؟</h2>
+            <span class="section-label">چک‌لیست ارزیابی در دمو</span>
+            <h2 class="section-title" id="tms-scope-title">پیش از خرید نرم‌افزار TMS چه چیزی را در دمو بررسی کنید؟</h2>
+            <p class="section-sub">برای ارزیابی پیش از خرید نرم‌افزار TMS، یک پرونده واقعی شرکت را انتخاب کنید و پیوستگی اطلاعات آن را در سه ایستگاه زیر ببینید.</p>
         </header>
-        <div class="tms-scope-grid">
-            <article class="reveal"><span>اجرای حمل</span><h3>این صفحه TMS</h3><p>از پیشنهاد پذیرفته‌شده تا Booking، اجرای حمل، اسناد، وضعیت و نتیجه مالی پرونده را به‌صورت یک چرخه بررسی می‌کند.</p></article>
-            <article class="reveal"><span>عمق عملیات</span><h3>کار داخل Shipment</h3><p>برای ثبت رویداد، وضعیت و اقدام روزانه، جزئیات <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">ماژول عملیات حمل</a> را ببینید.</p></article>
-            <article class="reveal"><span>رابطه مشتری</span><h3>لید و پیگیری فروش</h3><p>برای پرونده مشتری، ارتباطات و پیگیری فرصت‌ها، صفحه <a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM حمل‌ونقل</a> مرجع تخصصی است.</p></article>
-            <article class="reveal"><span>تصمیم خرید</span><h3>مقایسه و هزینه اشتراک</h3><p>برای انتخاب نوع سیستم، بخش <a href="{{ route('compare.sepand-other-transport-software') }}#erp-vs-tms">تفاوت ERP و TMS برای شرکت‌های حمل‌ونقل</a> را بخوانید و مبنای هزینه را در <a href="{{ route('pricing') }}">تعرفه‌های سپند</a> بررسی کنید.</p></article>
-        </div>
+        <ol class="tms-scope-grid tms-buying-checklist">
+            <li class="reveal"><span>۱ · فروش تا رزرو</span><h3>تحویل پیشنهاد تأییدشده به Booking</h3><p>یک پیشنهاد تأییدشده را انتخاب کنید و ببینید چه اطلاعاتی از <a href="{{ route('site.modules.show', ['module' => 'crm']) }}">CRM</a> به <a href="{{ route('site.modules.show', ['module' => 'booking']) }}">Booking</a> می‌رسد.</p></li>
+            <li class="reveal"><span>۲ · اجرای حمل</span><h3>وضعیت محموله و اسناد همان پرونده</h3><p>از تیم عملیات بخواهید وضعیت محموله و اسناد همان حمل را در <a href="{{ route('site.modules.show', ['module' => 'transport-operations']) }}">پرونده عملیات</a> نشان دهد.</p></li>
+            <li class="reveal"><span>۳ · نتیجه مالی</span><h3>هزینه‌های ثبت‌شده همان پرونده</h3><p>بررسی کنید هزینه‌های ثبت‌شده و نتیجه مالی همان پرونده از کدام نمای <a href="{{ route('site.modules.show', ['module' => 'finance-accounting']) }}">مالی و Booking</a> در دسترس‌اند.</p></li>
+        </ol>
+        <p class="tms-scope-note reveal">اگر هنوز درباره تقسیم مسئولیت سفارش، عملیات حمل و ثبت نهایی مالی تصمیم نگرفته‌اید، معیارهای بخش <a href="{{ route('compare.sepand-other-transport-software') }}#erp-vs-tms">تفاوت ERP و TMS برای شرکت‌های حمل‌ونقل</a> را هم در ارزیابی خرید مرور کنید.</p>
     </div>
 </section>
 
@@ -235,7 +236,7 @@
         </header>
         <div class="faq">
             @foreach($page['faqs'] as $faq)
-                <details class="reveal"><summary>{{ $faq['q'] }}</summary><p>{{ $faq['a'] }}</p>@if($loop->last)<a href="{{ route('pricing') }}">مشاهده تعرفه‌ها و مبنای محاسبه قیمت سپند</a>@endif</details>
+                <details class="reveal"><summary>{{ $faq['q'] }}</summary><p>{{ $faq['a'] }}</p></details>
             @endforeach
         </div>
     </div>
@@ -245,7 +246,7 @@
     <div class="container">
         <div class="cta reveal">
             <div class="cta-copy"><h2>{{ $page['cta_title'] }}</h2><p>{{ $page['cta_text'] }}</p></div>
-            <div class="cta-action"><a class="btn" href="{{ $demoUrl }}" data-ga-event="cta_click" data-ga-label="tms_bottom_demo">{{ $page['cta_button'] }}</a></div>
+            <div class="cta-action tms-final-actions"><a class="btn" href="{{ $demoUrl }}" data-ga-event="cta_click" data-ga-label="tms_bottom_demo">{{ $page['cta_button'] }}</a><a class="tms-pricing-link" href="{{ route('pricing') }}">مشاهده تعرفه و محاسبه قیمت نرم‌افزار TMS</a></div>
         </div>
     </div>
 </section>

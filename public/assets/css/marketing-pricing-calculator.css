@@ -99,6 +99,7 @@
 .custom-panel__copy>span{display:block;margin-bottom:2px;color:var(--cyan);font-size:10px;font-weight:800}
 .custom-panel__copy h3{margin:0;color:#fff;font-size:23px;line-height:1.6;font-weight:900}
 .custom-panel__copy p{max-width:660px;margin:5px 0 0;color:rgba(255,255,255,.64);font-size:11px;line-height:1.95}
+.custom-panel__copy a{color:var(--cyan);font-weight:850;text-decoration:underline;text-decoration-color:rgba(18,214,210,.4);text-underline-offset:4px}
 .custom-panel>.btn{min-width:205px;color:var(--navy);background:#fff;box-shadow:0 12px 25px rgba(3,21,40,.18)}
 .custom-panel>.btn:hover{background:var(--cyan)}
 @media(max-width:900px){.custom-panel{grid-template-columns:auto 1fr}.custom-panel>.btn{grid-column:1/-1;width:100%}}
